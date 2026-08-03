@@ -1,17 +1,15 @@
-async function generateContent() {
+function generateContent() {
 
-  const response = await fetch("./generate.js", {
-    method: "POST"
-  });
+alert(`
+📝 مقال تجريبي من نمّى AI
 
-  const data = await response.json();
+🔍 SEO تجريبي
 
-  alert(
-    "📝 " + data.article +
-    "\n\n🔍 " + data.seo +
-    "\n\n📱 " + data.social +
-    "\n\n🎥 " + data.video +
-    "\n\n🎨 " + data.image
-  );
+📱 منشور X تجريبي
+
+🎥 فيديو تجريبي
+
+🎨 صورة تجريبية
+`);
 
 }
