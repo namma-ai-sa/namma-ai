@@ -15,7 +15,6 @@ export default async function handler(req, res) {
 ${topic}
 
 يتضمن:
-
 - عنوان جذاب
 - مقدمة
 - محتوى
@@ -25,11 +24,7 @@ ${topic}
     } else if (type === "seo") {
 
       prompt = `
-اعطني فقط:
-
-10 كلمات SEO
-
-مرتبطة بـ:
+اعطني 10 كلمات SEO فقط عن:
 
 ${topic}
 
@@ -43,7 +38,7 @@ ${topic}
 
 ${topic}
 
-اكتب:
+واكتب:
 
 📱 منشور X
 
@@ -79,7 +74,7 @@ ${topic}
 
 🎤 JACO Video
 
-ويتضمن لكل منصة:
+ويتضمن:
 
 - عنوان
 - وصف
@@ -205,9 +200,14 @@ ${topic}
 
     const data = await response.json();
 
-    const article =
+    let article =
       data?.choices?.[0]?.message?.content ||
       "لم يتم إنشاء محتوى";
+
+    article = article
+      .replace(/#/g, "")
+      .replace(/\*\*/g, "")
+      .replace(/---/g, "");
 
     return res.status(200).json({
       article
