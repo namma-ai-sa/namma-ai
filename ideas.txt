@@ -1,57 +1,41 @@
-NAMMA AI MASTER FEATURES
+NAMMA AI VISION
 
-📝 Content
-- Articles
-- SEO
-- Blog posts
-- X posts
-- Facebook posts
-- LinkedIn posts
+🌱 Smart AI Assistant
 
-🎥 Video
-- Video script
-- Scene breakdown
-- Voice over script
-- YouTube description
-- Hashtags
+User writes any request.
 
-🎨 Images
-- AI image prompts
-- Product image prompts
-- Thumbnail prompts
-- Social media image prompts
+Examples:
 
-🛒 Business
-- Product descriptions
-- Landing pages
-- Marketing campaigns
-- Sales copy
+- Create a marketing campaign
+- Write a blog article
+- Create SEO content
+- Generate social media posts
+- Create a KPI plan
+- Generate a video script
+- Generate image prompts
+- Create a business plan
 
-📊 Management
-- KPI
-- OKR
-- SMART Goals
-- Performance reviews
+Features:
 
-🎓 Education
-- Study plans
-- Summaries
-- Quizzes
-- Mind maps
+✅ Content
+✅ SEO
+✅ Social Media
+✅ Video
+✅ Images
+✅ Business
+✅ Education
+✅ Management
 
-📤 Publishing
-- X
-- Facebook
-- LinkedIn
-- WordPress
+AI Models:
 
-🤖 AI Models
-- Gemini
-- DeepSeek
-- Qwen
-- Mistral
-- Llama
+✅ Gemini
+✅ DeepSeek
+✅ Qwen
+✅ Mistral
+✅ Llama
 
-✅ AUTO MODE
-User writes request.
-Namma AI chooses the best AI automatically.
+Mode:
+
+✅ Auto Selection
+
+Namma AI chooses the best model automatically.
