@@ -1,18 +1,19 @@
+<script>
 function generateContent(){
 
-document.getElementById("articleResult").innerText =
-"كيف تبدأ مشروعك باستخدام الذكاء الاصطناعي";
+let userInput =
+document.querySelector("textarea").value;
 
-document.getElementById("seoResult").innerText =
-"دليل شامل لاستخدام الذكاء الاصطناعي في تطوير الأعمال وزيادة الإنتاجية.";
+document.getElementById("result").innerText =
+`
+📝 طلبك:
+${userInput}
 
-document.getElementById("socialResult").innerText =
-"الذكاء الاصطناعي لم يعد رفاهية بل أداة أساسية لتسريع النمو.";
+🚀 نمّى AI استلم الطلب بنجاح.
 
-document.getElementById("videoResult").innerText =
-"5 طرق يغير بها الذكاء الاصطناعي مستقبل الأعمال.";
-
-document.getElementById("imageResult").innerText =
-"رائد أعمال يعمل على حاسوب حديث مع عناصر ذكاء اصطناعي مستقبلية.";
+المرحلة القادمة:
+ربط Gemini لتوليد محتوى حقيقي.
+`;
 
 }
+</script>
