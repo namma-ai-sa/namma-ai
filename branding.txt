@@ -1,0 +1,39 @@
+NAMMA AI BRANDING
+
+Name:
+نمّى AI
+
+Slogan:
+فكرتك... إلى محتوى جاهز
+
+Mission:
+تحويل أي فكرة إلى محتوى أو خطة أو أصل رقمي جاهز خلال ثوانٍ.
+
+Core Features:
+- Content
+- SEO
+- Social Media
+- Video
+- Images
+- Business
+- Education
+- Management
+
+Colors:
+Primary: #4ade80
+Secondary: #0f3460
+Background: #16213e
+White: #ffffff
+
+Logo Idea:
+🌱 + AI
+
+Style:
+Modern
+Clean
+Professional
+Arabic First
+
+Auto Mode:
+User writes request.
+Namma AI selects the best AI automatically.
