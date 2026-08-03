@@ -3,144 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌱 نمّى AI</title>
+<title>نمّى AI</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Tahoma,sans-serif;
-}
-
 body{
-background:linear-gradient(180deg,#16213e,#0f3460);
-min-height:100vh;
-padding:20px;
+background:#0f3460;
 color:white;
-}
-
-.container{
-max-width:900px;
-margin:auto;
+font-family:Tahoma;
+padding:20px;
 text-align:center;
 }
 
-.logo{
-font-size:55px;
-font-weight:bold;
-color:#7ee787;
-text-shadow:0 0 30px rgba(126,231,135,.8);
-margin-top:20px;
-}
-
-.subtitle{
-font-size:24px;
-margin-top:15px;
-margin-bottom:25px;
-color:#e5e7eb;
-}
-
-textarea{
-width:100%;
-height:120px;
-padding:18px;
-font-size:18px;
-border:none;
-border-radius:20px;
-outline:none;
-color:#111827;
-}
-
 button{
-margin-top:20px;
-padding:18px 40px;
-font-size:22px;
+padding:15px 25px;
+font-size:20px;
 background:#4ade80;
-color:white;
 border:none;
-border-radius:18px;
-cursor:pointer;
-font-weight:bold;
-}
-
-.results{
-margin-top:40px;
-display:grid;
-gap:20px;
+border-radius:10px;
+color:white;
 }
 
 .card{
 background:#1e293b;
-padding:25px;
-border-radius:20px;
-text-align:right;
+padding:20px;
+margin-top:20px;
+border-radius:15px;
 }
-
-.card h3{
-color:#7ee787;
-margin-bottom:10px;
-}
-
-.card p{
-color:#e2e8f0;
-line-height:1.8;
-}
-
 </style>
-</head>
 
+<script>
+function generateContent(){
+document.getElementById("result").innerText =
+"🚀 نمّى AI يعمل بنجاح";
+}
+</script>
+
+</head>
 <body>
 
-<div class="container">
+<h1>🌱 نمّى AI</h1>
 
-<div class="logo">
-🌱 نمّى AI
-</div>
+<p>فكرتك... إلى محتوى جاهز</p>
 
-<div class="subtitle">
-فكرتك... إلى محتوى جاهز
-</div>
+<textarea style="width:100%;height:120px;"></textarea>
 
-<textarea placeholder="اكتب طلبك هنا..."></textarea>
+<br><br>
 
 <button onclick="generateContent()">
 🚀 توليد المحتوى
 </button>
 
-<div class="results">
-
 <div class="card">
-<h3>📝 المقال</h3>
-<p id="articleResult">سيظهر هنا المحتوى المولد.</p>
+<p id="result">
+النتيجة ستظهر هنا
+</p>
 </div>
-
-<div class="card">
-<h3>🔍 SEO</h3>
-<p id="seoResult">سيظهر هنا السيو والكلمات المفتاحية.</p>
-</div>
-
-<div class="card">
-<h3>📱 التواصل الاجتماعي</h3>
-<p id="socialResult">X - Facebook - LinkedIn</p>
-</div>
-
-<div class="card">
-<h3>🎥 الفيديو</h3>
-<p id="videoResult">سكربت الفيديو والتعليق الصوتي.</p>
-</div>
-
-<div class="card">
-<h3>🎨 الصور</h3>
-<p id="imageResult">أفكار وبرومبتات الصور.</p>
-</div>
-
-</div>
-
-</div>
-
-script.jsscript>
 
 </body>
 </html>
