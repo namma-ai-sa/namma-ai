@@ -32,48 +32,42 @@ border-radius:15px;
 </style>
 
 <script>
-function generateContent(){
+async function generateContent(){
 
 let userInput =
 document.querySelector("textarea").value;
 
+let response = await fetch(
+`/api/generate?topic=${encodeURIComponent(userInput)}`
+);
+
+let data = await response.json();
+
 document.getElementById("result").innerText =
 `
-🌱 نمّى AI
-
 📝 مقال
 
-${userInput} من المواضيع المهمة التي يمكن تطويرها وتحويلها إلى مشروع أو محتوى ناجح.
+${data.article}
 
 🔍 SEO
 
-- أفضل ${userInput}
-- دليل ${userInput}
-- أفكار ${userInput}
-- تطوير ${userInput}
+${data.seo}
 
 📱 منشور X
 
-اكتشف كيف يمكن لـ ${userInput} أن تساعدك على تحقيق نتائج أفضل 🚀
+${data.social}
 
 🎥 فكرة فيديو
 
-5 أفكار مبتكرة للاستفادة من ${userInput}
+${data.video}
 
 🎨 فكرة صورة
 
-تصميم احترافي يعبر عن ${userInput} بأسلوب عصري وحديث.
-
-📊 خطة عمل
-
-1- تحديد الهدف
-2- دراسة السوق
-3- التنفيذ
-4- قياس النتائج
-5- التطوير
-
-✅ تم إنشاء المحتوى بنجاح
+${data.image}
 `;
+
+}
+
 }
 </script>
 
