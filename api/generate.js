@@ -13,11 +13,23 @@ export default async function handler(req, res) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "deepseek/deepseek-chat",
+          model: "qwen/qwen-2.5-7b-instruct",
+
           messages: [
             {
               role: "user",
-              content: `اكتب محتوى عربي احترافي عن ${topic}`
+              content: `
+أنشئ عن ${topic}:
+
+1- مقال قصير
+2- SEO
+3- منشور X
+4- فكرة فيديو
+5- فكرة صورة
+
+بشكل مختصر ومباشر.
+`
+
             }
           ]
         })
