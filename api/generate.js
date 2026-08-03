@@ -10,12 +10,13 @@ export default async function handler(req, res) {
     if (type === "article") {
 
       prompt = `
-اكتب مقالاً احترافياً بالعربية عن:
+اكتب مقالاً عربياً احترافياً عن:
 
 ${topic}
 
 يتضمن:
-- عنوان
+
+- عنوان جذاب
 - مقدمة
 - محتوى
 - خاتمة
@@ -24,7 +25,11 @@ ${topic}
     } else if (type === "seo") {
 
       prompt = `
-اعطني 10 كلمات SEO فقط عن:
+اعطني فقط:
+
+10 كلمات SEO
+
+مرتبطة بـ:
 
 ${topic}
 
@@ -38,7 +43,7 @@ ${topic}
 
 ${topic}
 
-واكتب:
+اكتب:
 
 📱 منشور X
 
@@ -52,7 +57,7 @@ ${topic}
 
 💼 منشور LinkedIn
 
-اجعل كل منصة بمنشور منفصل وجاهز للنشر.
+اجعل كل منشور مستقلاً وجاهزاً للنشر.
 `;
 
     } else if (type === "video") {
@@ -70,9 +75,9 @@ ${topic}
 
 📸 Instagram Reels
 
-🎵 TikTok
+🎵 TikTok Video
 
-🎤 JACO
+🎤 JACO Video
 
 ويتضمن لكل منصة:
 
@@ -94,25 +99,48 @@ ${topic}
 
 - فكرة الصورة
 - الألوان المناسبة
-- نص الصورة
+- النص المقترح
 - وصف كامل للمصمم
 `;
 
     } else if (type === "plan") {
 
       prompt = `
-أنشئ خطة محتوى لمدة 30 يوماً عن:
+أنشئ خطة محتوى شهر كامل عن:
 
 ${topic}
 
-تشمل:
+تحتوي على:
 
 - أفكار مقالات
 - أفكار فيديو
 - أفكار سوشال ميديا
-- أفكار حملات تسويقية
 
-بشكل يومي.
+بشكل يومي ومرتب.
+`;
+
+    } else if (type === "analysis-content") {
+
+      prompt = `
+بناءً على التحليل التالي:
+
+${topic}
+
+أنشئ:
+
+📝 10 أفكار مقالات
+
+🎥 10 أفكار فيديو
+
+📱 10 أفكار سوشال ميديا
+
+🔍 أهم فرص SEO
+
+📅 خطة محتوى شهر كامل
+
+🚀 أهم 3 خطوات يجب تنفيذها فوراً
+
+بشكل احترافي وعملي.
 `;
 
     } else {
@@ -150,6 +178,7 @@ ${topic}
 
 بشكل مرتب وواضح.
 `;
+
     }
 
     const response = await fetch(
@@ -157,13 +186,13 @@ ${topic}
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Authorization": \`Bearer \${process.env.OPENROUTER_API_KEY}\`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
-          max_tokens: 800,
-          temperature: 0.7,
+          max_tokens: 1200,
+          temperature: 0.5,
           messages: [
             {
               role: "user",
@@ -187,7 +216,7 @@ ${topic}
   } catch (error) {
 
     return res.status(500).json({
-      article: `خطأ: ${error.message}`
+      article: \`خطأ: \${error.message}\`
     });
 
   }
