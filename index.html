@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>🌱 نمّى AI</title>
 
 <style>
@@ -22,7 +23,7 @@ padding:20px;
 }
 
 .container{
-max-width:950px;
+max-width:1000px;
 margin:auto;
 }
 
@@ -35,7 +36,7 @@ margin-top:20px;
 
 .subtitle{
 text-align:center;
-font-size:25px;
+font-size:24px;
 margin-top:15px;
 margin-bottom:30px;
 }
@@ -45,48 +46,53 @@ input,
 textarea{
 width:100%;
 padding:15px;
-font-size:18px;
 border:none;
 border-radius:15px;
+font-size:18px;
 margin-bottom:15px;
 }
 
 textarea{
-height:160px;
+height:180px;
 resize:none;
 }
 
 button{
 width:100%;
 padding:18px;
-font-size:22px;
-font-weight:bold;
-background:#55dd82;
+background:#4ade80;
 color:white;
 border:none;
 border-radius:15px;
+font-size:22px;
+font-weight:bold;
 cursor:pointer;
-margin-bottom:15px;
+}
+
+button:hover{
+opacity:.9;
 }
 
 .card{
 background:#1b2b4a;
 padding:25px;
 border-radius:20px;
-margin-top:20px;
-white-space:pre-wrap;
+margin-top:25px;
 line-height:2;
+white-space:pre-wrap;
+word-wrap:break-word;
 }
 
 .title{
-color:#7ef29b;
-margin-bottom:15px;
 font-size:24px;
+font-weight:bold;
+margin-bottom:15px;
+color:#7ef29b;
 }
 
 .copy-btn{
 margin-top:15px;
-background:#4ade80;
+background:#22c55e;
 font-size:16px;
 padding:10px;
 }
@@ -95,12 +101,37 @@ padding:10px;
 
 <script>
 
-async function runAction(){
+function changeMode(){
 
-const mode =
+let mode =
 document.getElementById("mode").value;
 
-const result =
+let contentBox =
+document.getElementById("contentArea");
+
+let analyzeBox =
+document.getElementById("analyzeArea");
+
+if(mode === "analyze"){
+
+contentBox.style.display = "none";
+analyzeBox.style.display = "block";
+
+}else{
+
+contentBox.style.display = "block";
+analyzeBox.style.display = "none";
+
+}
+
+}
+
+async function runAction(){
+
+let mode =
+document.getElementById("mode").value;
+
+let result =
 document.getElementById("result");
 
 result.innerText =
@@ -110,7 +141,7 @@ try{
 
 if(mode === "analyze"){
 
-const url =
+let url =
 document.getElementById("websiteUrl").value;
 
 if(!url){
@@ -121,36 +152,40 @@ return;
 
 }
 
-let response = await fetch(
+let response =
+await fetch(
 `/api/analyze?url=${encodeURIComponent(url)}`
 );
 
-let data = await response.json();
+let data =
+await response.json();
 
 result.innerText =
 data.result;
 
 }else{
 
-const topic =
+let topic =
 document.getElementById("topic").value;
+
+let type =
+document.getElementById("contentType").value;
 
 if(!topic){
 
-alert("اكتب الموضوع");
+alert("اكتب موضوعاً أولاً");
 
 return;
 
 }
 
-const type =
-document.getElementById("contentType").value;
-
-let response = await fetch(
+let response =
+await fetch(
 `/api/generate?topic=${encodeURIComponent(topic)}&type=${type}`
 );
 
-let data = await response.json();
+let data =
+await response.json();
 
 result.innerText =
 data.article;
@@ -160,7 +195,7 @@ data.article;
 }catch(error){
 
 result.innerText =
-"❌ حدث خطأ";
+"❌ حدث خطأ أثناء التنفيذ";
 
 }
 
@@ -168,37 +203,12 @@ result.innerText =
 
 function copyResult(){
 
-const text =
+let text =
 document.getElementById("result").innerText;
 
 navigator.clipboard.writeText(text);
 
 alert("✅ تم النسخ");
-
-}
-
-function changeMode(){
-
-const mode =
-document.getElementById("mode").value;
-
-const contentArea =
-document.getElementById("contentArea");
-
-const analyzeArea =
-document.getElementById("analyzeArea");
-
-if(mode === "analyze"){
-
-contentArea.style.display = "none";
-analyzeArea.style.display = "block";
-
-}else{
-
-contentArea.style.display = "block";
-analyzeArea.style.display = "none";
-
-}
 
 }
 
@@ -215,7 +225,7 @@ analyzeArea.style.display = "none";
 </div>
 
 <div class="subtitle">
-كاتب محتوى + مخطط محتوى + محلل مواقع
+مساعد المحتوى الذكي
 </div>
 
 <select id="mode" onchange="changeMode()">
@@ -234,25 +244,49 @@ analyzeArea.style.display = "none";
 
 <select id="contentType">
 
-<option value="all">📦 الكل</option>
+<option value="all">
+📦 الكل
+</option>
 
-<option value="article">📝 مقال</option>
+<option value="article">
+📝 مقال
+</option>
 
-<option value="seo">🔍 SEO</option>
+<option value="seo">
+🔍 SEO
+</option>
 
-<option value="social">📱 سوشال ميديا</option>
+<option value="social">
+📱 سوشال ميديا
+</option>
 
-<option value="video">🎥 فيديو</option>
+<option value="video">
+🎥 فيديو
+</option>
 
-<option value="image">🎨 صورة</option>
+<option value="image">
+🎨 صورة
+</option>
 
-<option value="plan">📊 خطة محتوى</option>
+<option value="plan">
+📊 خطة محتوى
+</option>
+
+<option value="analysis-content">
+🚀 محتوى من التحليل
+</option>
 
 </select>
 
 <textarea
 id="topic"
-placeholder="اكتب الموضوع هنا..."></textarea>
+placeholder="اكتب الموضوع هنا...
+
+مثال:
+نبض التقنية
+متجر عطور
+شركة تسويق
+ذكاء اصطناعي"></textarea>
 
 </div>
 
@@ -284,7 +318,7 @@ placeholder="https://example.com">
 <button
 class="copy-btn"
 onclick="copyResult()">
-📋 نسخ
+📋 نسخ النتيجة
 </button>
 
 </div>
