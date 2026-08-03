@@ -41,6 +41,15 @@ margin-top:20px;
 margin-bottom:40px;
 }
 
+select{
+width:100%;
+padding:15px;
+font-size:18px;
+border:none;
+border-radius:15px;
+margin-bottom:15px;
+}
+
 textarea{
 width:100%;
 height:180px;
@@ -109,6 +118,9 @@ async function generateContent(){
 let userInput =
 document.querySelector("textarea").value;
 
+let contentType =
+document.getElementById("contentType").value;
+
 if(!userInput){
 
 alert("اكتب طلبك أولاً");
@@ -117,57 +129,33 @@ return;
 
 }
 
-document.getElementById("article").innerText =
+document.getElementById("result").innerText =
 "⏳ نمّى AI يفكر الآن...";
-
-document.getElementById("seo").innerText =
-"⏳";
-
-document.getElementById("social").innerText =
-"⏳";
-
-document.getElementById("video").innerText =
-"⏳";
-
-document.getElementById("image").innerText =
-"⏳";
 
 try{
 
 let response = await fetch(
-`/api/generate?topic=${encodeURIComponent(userInput)}`
+`/api/generate?topic=${encodeURIComponent(userInput)}&type=${contentType}`
 );
 
 let data = await response.json();
 
-document.getElementById("article").innerText =
+document.getElementById("result").innerText =
 data.article;
-
-document.getElementById("seo").innerText =
-"✅ موجود داخل المحتوى";
-
-document.getElementById("social").innerText =
-"✅ موجود داخل المحتوى";
-
-document.getElementById("video").innerText =
-"✅ موجود داخل المحتوى";
-
-document.getElementById("image").innerText =
-"✅ موجود داخل المحتوى";
 
 }catch(error){
 
-document.getElementById("article").innerText =
+document.getElementById("result").innerText =
 "❌ حدث خطأ أثناء إنشاء المحتوى";
 
 }
 
 }
 
-function copyText(id){
+function copyText(){
 
 let text =
-document.getElementById(id).innerText;
+document.getElementById("result").innerText;
 
 navigator.clipboard.writeText(text);
 
@@ -191,12 +179,31 @@ alert("✅ تم النسخ");
 فكرتك... إلى محتوى جاهز
 </div>
 
+<select id="contentType">
+
+<option value="all">📦 الكل</option>
+
+<option value="article">📝 مقال</option>
+
+<option value="seo">🔍 SEO</option>
+
+<option value="social">📱 منشور X</option>
+
+<option value="youtube">🎥 يوتيوب</option>
+
+<option value="image">🎨 صورة</option>
+
+<option value="plan">📊 خطة محتوى</option>
+
+</select>
+
 <textarea placeholder="اكتب طلبك هنا...
 
 مثال:
-اكتب مقال لمدونة نبض التقنية
-أنشئ حملة تسويقية لعطر
-أنشئ خطة محتوى لمتجر إلكتروني"></textarea>
+نبض التقنية
+العطور
+التسويق
+الأمن السيبراني"></textarea>
 
 <button onclick="generateContent()">
 🚀 توليد المحتوى
@@ -205,53 +212,17 @@ alert("✅ تم النسخ");
 <div class="grid">
 
 <div class="card">
-<h2>📝 المقال</h2>
-<div id="article">
-سيظهر المقال هنا
-</div>
-<button class="copy-btn" onclick="copyText('article')">
-📋 نسخ
-</button>
+
+<h2>📄 النتيجة</h2>
+
+<div id="result">
+ستظهر النتيجة هنا
 </div>
 
-<div class="card">
-<h2>🔍 SEO</h2>
-<div id="seo">
-سيظهر محتوى SEO هنا
-</div>
-<button class="copy-btn" onclick="copyText('seo')">
+<button class="copy-btn" onclick="copyText()">
 📋 نسخ
 </button>
-</div>
 
-<div class="card">
-<h2>📱 منشور X</h2>
-<div id="social">
-سيظهر المنشور هنا
-</div>
-<button class="copy-btn" onclick="copyText('social')">
-📋 نسخ
-</button>
-</div>
-
-<div class="card">
-<h2>🎥 فكرة فيديو</h2>
-<div id="video">
-ستظهر فكرة الفيديو هنا
-</div>
-<button class="copy-btn" onclick="copyText('video')">
-📋 نسخ
-</button>
-</div>
-
-<div class="card">
-<h2>🎨 فكرة صورة</h2>
-<div id="image">
-ستظهر فكرة الصورة هنا
-</div>
-<button class="copy-btn" onclick="copyText('image')">
-📋 نسخ
-</button>
 </div>
 
 </div>
@@ -259,4 +230,5 @@ alert("✅ تم النسخ");
 </div>
 
 </body>
+
 </html>
