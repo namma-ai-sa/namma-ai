@@ -5,33 +5,49 @@ export default async function handler(req, res) {
     const url = req.query.url;
 
     if (!url) {
+
       return res.status(400).json({
         result: "يرجى إدخال رابط الموقع"
       });
+
     }
 
     const prompt = `
-حلل هذا الموقع:
+حلل الموقع التالي:
 
 ${url}
 
-وأعطني:
+تعليمات مهمة جداً:
 
-✅ وصف الموقع
+- لا تخترع اسم الموقع.
+- لا تغير اسم العلامة التجارية.
+- إذا لم تعرف الاسم الحقيقي فاستخدم اسم النطاق فقط.
+- اكتب بالعربية فقط.
+- ممنوع استخدام Markdown.
+- ممنوع استخدام ###.
+- ممنوع استخدام **.
+- ممنوع الروابط.
+- اجعل الرد احترافياً ومنظماً.
+
+أعطني الأقسام التالية:
+
+📊 ملخص الموقع
 
 ✅ نقاط القوة
 
-✅ نقاط الضعف
+⚠️ نقاط الضعف
 
-✅ أفكار مقالات جديدة
+🔍 فرص تحسين SEO
 
-✅ أفكار فيديوهات
+📝 10 أفكار مقالات جديدة
 
-✅ تحسينات SEO
+🎥 10 أفكار فيديو
 
-✅ خطة محتوى أسبوعية
+📱 10 أفكار سوشال ميديا
 
-اكتب بالعربية فقط.
+📅 خطة محتوى أسبوعية
+
+اجعل الرد واضحاً وسهل القراءة.
 `;
 
     const response = await fetch(
@@ -44,7 +60,8 @@ ${url}
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
-          max_tokens: 800,
+          max_tokens: 1200,
+          temperature: 0.5,
           messages: [
             {
               role: "user",
@@ -57,16 +74,18 @@ ${url}
 
     const data = await response.json();
 
+    const result =
+      data?.choices?.[0]?.message?.content ||
+      "لم يتم الحصول على نتيجة";
+
     return res.status(200).json({
-      result:
-        data?.choices?.[0]?.message?.content ||
-        "لم يتم الحصول على نتيجة"
+      result
     });
 
   } catch (error) {
 
     return res.status(500).json({
-      result: error.message
+      result: `خطأ: ${error.message}`
     });
 
   }
