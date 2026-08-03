@@ -106,21 +106,21 @@ function changeMode(){
 let mode =
 document.getElementById("mode").value;
 
-let contentBox =
+let contentArea =
 document.getElementById("contentArea");
 
-let analyzeBox =
-document.getElementById("analyzeArea");
+let projectArea =
+document.getElementById("projectArea");
 
 if(mode === "analyze"){
 
-contentBox.style.display = "none";
-analyzeBox.style.display = "block";
+contentArea.style.display = "none";
+projectArea.style.display = "block";
 
 }else{
 
-contentBox.style.display = "block";
-analyzeBox.style.display = "none";
+contentArea.style.display = "block";
+projectArea.style.display = "none";
 
 }
 
@@ -146,7 +146,7 @@ document.getElementById("websiteUrl").value;
 
 if(!url){
 
-alert("أدخل رابط الموقع");
+alert("أدخل رابط المشروع");
 
 return;
 
@@ -173,7 +173,7 @@ document.getElementById("contentType").value;
 
 if(!topic){
 
-alert("اكتب موضوعاً أولاً");
+alert("اكتب الموضوع أولاً");
 
 return;
 
@@ -235,7 +235,7 @@ alert("✅ تم النسخ");
 </option>
 
 <option value="analyze">
-🔍 تحليل موقع
+🔍 فحص المشروع
 </option>
 
 </select>
@@ -280,24 +280,18 @@ alert("✅ تم النسخ");
 
 <textarea
 id="topic"
-placeholder="اكتب الموضوع هنا...
-
-مثال:
-نبض التقنية
-متجر عطور
-شركة تسويق
-ذكاء اصطناعي"></textarea>
+placeholder="اكتب الموضوع هنا..."></textarea>
 
 </div>
 
 <div
-id="analyzeArea"
+id="projectArea"
 style="display:none;">
 
 <input
 id="websiteUrl"
 type="text"
-placeholder="https://example.com">
+placeholder="ضع رابط مشروعك هنا">
 
 </div>
 
