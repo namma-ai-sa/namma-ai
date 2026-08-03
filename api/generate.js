@@ -186,7 +186,7 @@ ${topic}
       {
         method: "POST",
         headers: {
-          "Authorization": \`Bearer \${process.env.OPENROUTER_API_KEY}\`,
+          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -216,7 +216,7 @@ ${topic}
   } catch (error) {
 
     return res.status(500).json({
-      article: \`خطأ: \${error.message}\`
+      article: `خطأ: ${error.message}`
     });
 
   }
