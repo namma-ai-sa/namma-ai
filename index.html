@@ -7,21 +7,19 @@
 <title>نمّى AI</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:Tahoma,sans-serif;
 }
 
 body{
-background:linear-gradient(
-180deg,
-#16213e,
-#0f3460
-);
-color:white;
+background:linear-gradient(180deg,#16213e,#0f3460);
+min-height:100vh;
 padding:20px;
+color:white;
 }
 
 .container{
@@ -31,47 +29,52 @@ text-align:center;
 }
 
 .logo{
-font-size:50px;
+font-size:55px;
 font-weight:bold;
-color:#4ade80;
+color:#7ee787;
+text-shadow:0 0 30px rgba(126,231,135,.8);
 margin-top:20px;
-text-shadow:0 0 20px rgba(74,222,128,.7);
 }
 
 .subtitle{
-font-size:22px;
-margin-top:12px;
-color:#dbeafe;
+font-size:24px;
+margin-top:15px;
+color:#e5e7eb;
 text-shadow:0 0 15px rgba(255,255,255,.3);
 }
 
 textarea{
 width:100%;
-height:100px;
-margin-top:30px;
-padding:15px;
+height:120px;
+margin-top:35px;
+padding:18px;
+font-size:18px;
 border:none;
-border-radius:18px;
-font-size:16px;
+border-radius:20px;
+outline:none;
 color:#111827;
 font-weight:bold;
 }
 
 textarea::placeholder{
 color:#6b7280;
-font-weight:600;
 }
 
 button{
-margin-top:20px;
+margin-top:25px;
+padding:18px 40px;
+font-size:22px;
+font-weight:bold;
 background:#4ade80;
 color:white;
 border:none;
-padding:16px 35px;
-font-size:20px;
-border-radius:15px;
+border-radius:18px;
 cursor:pointer;
-font-weight:bold;
+box-shadow:0 0 20px rgba(74,222,128,.5);
+}
+
+button:hover{
+transform:scale(1.03);
 }
 
 .results{
@@ -82,16 +85,17 @@ gap:20px;
 
 .card{
 background:#1e293b;
-padding:20px;
+padding:25px;
 border-radius:20px;
+box-shadow:0 0 15px rgba(0,0,0,.3);
 text-align:right;
-box-shadow:0 0 15px rgba(0,0,0,.2);
 }
 
 .card h3{
-margin-bottom:10px;
-color:#4ade80;
+color:#7ee787;
+margin-bottom:15px;
 font-size:28px;
+text-shadow:0 0 10px rgba(126,231,135,.5);
 }
 
 .card p{
@@ -100,7 +104,6 @@ line-height:1.8;
 color:#e2e8f0;
 }
 </style>
-
 </head>
 
 <body>
@@ -115,29 +118,24 @@ color:#e2e8f0;
 فكرتك... إلى محتوى جاهز
 </div>
 
-<textarea
-placeholder="اكتب أي شيء...
+<textarea placeholder="اكتب طلبك هنا...
 
 مثال:
-
 أنشئ حملة تسويقية لعطر فاخر
 
 أو
 
-اكتب مقال عن Microsoft Copilot
+اكتب مقال عن الذكاء الاصطناعي
 
 أو
 
-أنشئ KPI لموظف خدمة عملاء
+أنشئ فكرة فيديو يوتيوب
 
 أو
 
-أنشئ فكرة فيديو يوتيوب">
-</textarea>
+أنشئ KPI لفريق مبيعات"></textarea>
 
-<br>
-
-<button>
+<button onclick="generateContent()">
 🚀 توليد المحتوى
 </button>
 
@@ -145,45 +143,39 @@ placeholder="اكتب أي شيء...
 
 <div class="card">
 <h3>📝 المقال</h3>
-<p>سيظهر هنا المقال المولد.</p>
+<p>سيظهر هنا المحتوى المولد.</p>
 </div>
 
 <div class="card">
 <h3>🔍 SEO</h3>
-<p>سيظهر هنا وصف محركات البحث والكلمات المفتاحية.</p>
+<p>سيظهر هنا وصف السيو والكلمات المفتاحية.</p>
 </div>
 
 <div class="card">
 <h3>📱 منشورات التواصل</h3>
-<p>
-منشورات X وفيسبوك ولينكدإن.
-</p>
+<p>منشورات X وفيسبوك ولينكدإن.</p>
 </div>
 
 <div class="card">
 <h3>🎥 الفيديو</h3>
-<p>
-سكربت الفيديو والمشاهد والتعليق الصوتي.
-</p>
+<p>سكربت الفيديو والمشاهد والتعليق الصوتي.</p>
 </div>
 
 <div class="card">
 <h3>🎨 الصور</h3>
-<p>
-برومبتات احترافية لإنشاء الصور.
-</p>
+<p>برومبتات وإنشاء أفكار الصور.</p>
 </div>
 
 <div class="card">
 <h3>📊 الأعمال والإدارة</h3>
-<p>
-KPI و OKR و SMART Goals وخطط العمل.
-</p>
+<p>KPI - OKR - SMART Goals - خطط العمل.</p>
 </div>
 
 </div>
 
 </div>
+
+script.jsscript>
 
 </body>
 </html>
