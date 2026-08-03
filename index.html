@@ -32,6 +32,8 @@ border-radius:15px;
 </style>
 
 <script>
+function generateContent(){<script>
+
 function generateContent(){
 
 let userInput =
@@ -39,20 +41,25 @@ document.querySelector("textarea").value;
 
 document.getElementById("result").innerText =
 `
-✅ تم استلام طلبك:
+📝 مقال:
+مقدمة عن ${userInput}
 
-${userInput}
+🔍 SEO:
+أفضل الكلمات المفتاحية المتعلقة بـ ${userInput}
 
-🌱 نمّى AI جاهز لمعالجة الطلب.
+📱 منشور X:
+اكتشف كل ما يتعلق بـ ${userInput} 🚀
 
-الخطوة القادمة:
-ربط Gemini لتوليد محتوى حقيقي بناءً على ما كتبته.
+🎥 فكرة فيديو:
+5 أسرار للنجاح في ${userInput}
+
+🎨 فكرة صورة:
+تصميم احترافي يعبر عن ${userInput}
 `;
 
 }
 
 </script>
-
 
 </head>
 <body>
