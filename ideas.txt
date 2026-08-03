@@ -1,0 +1,57 @@
+NAMMA AI MASTER FEATURES
+
+📝 Content
+- Articles
+- SEO
+- Blog posts
+- X posts
+- Facebook posts
+- LinkedIn posts
+
+🎥 Video
+- Video script
+- Scene breakdown
+- Voice over script
+- YouTube description
+- Hashtags
+
+🎨 Images
+- AI image prompts
+- Product image prompts
+- Thumbnail prompts
+- Social media image prompts
+
+🛒 Business
+- Product descriptions
+- Landing pages
+- Marketing campaigns
+- Sales copy
+
+📊 Management
+- KPI
+- OKR
+- SMART Goals
+- Performance reviews
+
+🎓 Education
+- Study plans
+- Summaries
+- Quizzes
+- Mind maps
+
+📤 Publishing
+- X
+- Facebook
+- LinkedIn
+- WordPress
+
+🤖 AI Models
+- Gemini
+- DeepSeek
+- Qwen
+- Mistral
+- Llama
+
+✅ AUTO MODE
+User writes request.
+Namma AI chooses the best AI automatically.
