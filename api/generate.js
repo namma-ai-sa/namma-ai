@@ -9,8 +9,7 @@ export default async function handler(req, res) {
       {
         method: "POST",
         headers: {
-          "Authorization":
-            `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -18,8 +17,7 @@ export default async function handler(req, res) {
           messages: [
             {
               role: "user",
-              content:
-                `اكتب محتوى عربي احترافي عن ${topic}`
+              content: `اكتب محتوى عربي احترافي عن ${topic}`
             }
           ]
         })
@@ -28,19 +26,11 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    const text =
-      data?.choices?.[0]?.message?.content ||
-      "لم يتم توليد محتوى";
-
-    return res.status(200).json({
-      success: true,
-      article: text
-    });
+    return res.status(200).json(data);
 
   } catch (error) {
 
     return res.status(500).json({
-      success: false,
       error: error.message
     });
 
