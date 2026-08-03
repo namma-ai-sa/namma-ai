@@ -37,6 +37,9 @@ async function generateContent(){
 let userInput =
 document.querySelector("textarea").value;
 
+document.getElementById("result").innerText =
+"⏳ جاري إنشاء المحتوى...";
+
 let response = await fetch(
 `/api/generate?topic=${encodeURIComponent(userInput)}`
 );
@@ -44,31 +47,10 @@ let response = await fetch(
 let data = await response.json();
 
 document.getElementById("result").innerText =
-`
-📝 مقال
-
-${data.article}
-
-🔍 SEO
-
-${data.seo}
-
-📱 منشور X
-
-${data.social}
-
-🎥 فكرة فيديو
-
-${data.video}
-
-🎨 فكرة صورة
-
-${data.image}
-`;
+data.article;
 
 }
 
-}
 </script>
 
 </head>
