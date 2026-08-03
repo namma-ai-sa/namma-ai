@@ -1,24 +1,48 @@
 export default async function handler(req, res) {
 
-  const topic = req.query.topic || "موضوع عام";
+  try {
 
-  res.status(200).json({
-    success: true,
+    const topic = req.query.topic || "موضوع عام";
 
-    article:
-    `${topic} من المواضيع المهمة التي تستحق الاهتمام.`,
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [
+                {
+                  text: `اكتب محتوى عربي احترافي عن: ${topic}`
+                }
+              ]
+            }
+          ]
+        })
+      }
+    );
 
-    seo:
-    `أفضل الكلمات المفتاحية المتعلقة بـ ${topic}`,
+    const data = await response.json();
 
-    social:
-    `اكتشف أسرار ${topic} وكيف تستفيد منها 🚀`,
+    const text =
+      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+      "لم يتم إنشاء محتوى";
 
-    video:
-    `5 أفكار فيديو ناجحة حول ${topic}`,
+    return res.status(200).json({
+      success: true,
+      article: text
+    });
 
-    image:
-    `تصميم احترافي يعبر عن ${topic}`
-  });
+  } catch (error) {
+
+    return res.status(500).json({
+      success: false,
+      error: error.message
+    });
+
+  }
 
 }
