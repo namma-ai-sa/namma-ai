@@ -1,0 +1,39 @@
+NAMMA AI FUTURE FEATURES
+
+✅ AI Content
+✅ SEO
+✅ Social Media
+✅ Video Scripts
+✅ Image Generation
+✅ KPI Generator
+✅ Business Plans
+✅ Marketing Campaigns
+✅ Product Descriptions
+✅ Smart AI Routing
+
+Future:
+
+- Gemini
+- DeepSeek
+- Qwen
+- Mistral
+- Llama
+
+Auto AI Selection
+
+User writes request.
+Namma AI chooses the best model automatically.
+
+Publishing:
+
+- X
+- Facebook
+- LinkedIn
+- WordPress
+
+Premium:
+
+- Team Workspace
+- Dashboard
+- Analytics
+- History
