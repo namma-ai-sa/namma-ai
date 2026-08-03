@@ -1,44 +1,106 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نمّى AI</title>
+<title>🌱 نمّى AI</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma,sans-serif;
+}
+
 body{
 background:#0f3460;
 color:white;
-font-family:Tahoma;
 padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+.logo{
 text-align:center;
+font-size:55px;
+font-weight:bold;
+margin-top:20px;
+margin-bottom:20px;
+}
+
+.subtitle{
+text-align:center;
+font-size:24px;
+margin-bottom:30px;
+}
+
+textarea{
+width:100%;
+height:150px;
+padding:20px;
+border:none;
+border-radius:15px;
+font-size:18px;
+resize:none;
 }
 
 button{
-padding:15px 25px;
-font-size:20px;
+display:block;
+margin:30px auto;
+padding:18px 40px;
+font-size:24px;
+font-weight:bold;
 background:#4ade80;
-border:none;
-border-radius:10px;
 color:white;
+border:none;
+border-radius:15px;
+cursor:pointer;
 }
 
-.card{
-background:#1e293b;
-padding:20px;
-margin-top:20px;
-border-radius:15px;
+button:hover{
+opacity:.9;
 }
+
+.result-card{
+background:#1e293b;
+padding:25px;
+border-radius:20px;
+line-height:2;
+font-size:18px;
+white-space:pre-wrap;
+word-wrap:break-word;
+}
+
+.loading{
+text-align:center;
+font-size:20px;
+margin-top:20px;
+}
+
 </style>
 
 <script>
+
 async function generateContent(){
 
 let userInput =
 document.querySelector("textarea").value;
 
+if(!userInput){
+alert("اكتب طلبك أولاً");
+return;
+}
+
 document.getElementById("result").innerText =
-"⏳ جاري إنشاء المحتوى...";
+"⏳ نمّى AI يفكر الآن...";
+
+try{
 
 let response = await fetch(
 `/api/generate?topic=${encodeURIComponent(userInput)}`
@@ -49,29 +111,48 @@ let data = await response.json();
 document.getElementById("result").innerText =
 data.article;
 
+}catch(error){
+
+document.getElementById("result").innerText =
+"❌ حدث خطأ أثناء إنشاء المحتوى";
+
+}
+
 }
 
 </script>
 
 </head>
+
 <body>
 
-<h1>🌱 نمّى AI</h1>
+<div class="container">
 
-<p>فكرتك... إلى محتوى جاهز</p>
+<div class="logo">
+🌱 نمّى AI
+</div>
 
-<textarea style="width:100%;height:120px;"></textarea>
+<div class="subtitle">
+فكرتك... إلى محتوى جاهز
+</div>
 
-<br><br>
+<textarea placeholder="اكتب طلبك هنا...
+
+مثال:
+اكتب مقال لمدونة نبض التقنية
+أنشئ حملة تسويقية لعطر
+أنشئ خطة محتوى لمتجر إلكتروني"></textarea>
 
 <button onclick="generateContent()">
 🚀 توليد المحتوى
 </button>
 
-<div class="card">
-<p id="result">
+<div class="result-card">
+<div id="result">
 النتيجة ستظهر هنا
-</p>
+</div>
+</div>
+
 </div>
 
 </body>
