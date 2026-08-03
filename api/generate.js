@@ -26,11 +26,19 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    return res.status(200).json(data);
+    const text =
+      data.choices?.[0]?.message?.content ||
+      "لم يتم إنشاء محتوى";
+
+    return res.status(200).json({
+      success: true,
+      article: text
+    });
 
   } catch (error) {
 
     return res.status(500).json({
+      success: false,
       error: error.message
     });
 
