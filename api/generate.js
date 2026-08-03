@@ -13,10 +13,10 @@ export default async function handler(req, res) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "qwen/qwen-2.5-7b-instruct",
+  model: "qwen/qwen-2.5-7b-instruct",
+  max_tokens: 300,
+  messages: [
 
-
-          messages: [
             {
               role: "user",
               content: `
