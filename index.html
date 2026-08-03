@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>نمّى AI</title>
 
 <style>
@@ -19,7 +20,6 @@ background:linear-gradient(
 #16213e,
 #0f3460
 );
-
 color:white;
 padding:20px;
 }
@@ -31,79 +31,113 @@ text-align:center;
 }
 
 .logo{
-font-size:42px;
+font-size:50px;
 font-weight:bold;
-color:#22c55e;
-margin-top:30px;
+color:#4ade80;
+margin-top:20px;
 }
 
 .subtitle{
-font-size:20px;
-margin-top:10px;
-color:#cbd5e1;
+font-size:22px;
+margin-top:12px;
+color:#dbeafe;
 }
 
 textarea{
 width:100%;
 height:100px;
-
 margin-top:30px;
 padding:15px;
 border:none;
-border-radius:15px;
+border-radius:18px;
 font-size:16px;
+color:#111827;
+font-weight:bold;
+}
+
+textarea::placeholder{
+color:#6b7280;
+font-weight:600;
 }
 
 button{
 margin-top:20px;
-background:#22c55e;
+background:#4ade80;
 color:white;
 border:none;
-padding:15px 30px;
-font-size:18px;
-border-radius:12px;
+padding:16px 35px;
+font-size:20px;
+border-radius:15px;
 cursor:pointer;
+font-weight:bold;
 }
 
 .results{
 margin-top:40px;
 display:grid;
-gap:15px;
+gap:20px;
 }
 
 .card{
 background:#1e293b;
 padding:20px;
-border-radius:15px;
+border-radius:20px;
 text-align:right;
+box-shadow:0 0 15px rgba(0,0,0,.2);
 }
 
 .card h3{
 margin-bottom:10px;
-color:#22c55e;
+color:#4ade80;
+font-size:28px;
+}
+
+.card p{
+font-size:18px;
+line-height:1.8;
+color:#e2e8f0;
 }
 </style>
+
 </head>
+
 <body>
 
 <div class="container">
 
-<div class="logo">🌱 نمّى AI</div>
+<div class="logo">
+🌱 نمّى AI
+</div>
 
 <div class="subtitle">
 فكرتك... إلى محتوى جاهز
 </div>
 
-<textarea placeholder="اكتب أي شيء...
+<textarea
+placeholder="اكتب أي شيء...
 
 مثال:
+
 أنشئ حملة تسويقية لعطر فاخر
+
 أو
-اكتب مقال عن Microsoft Copilot"></textarea>
+
+اكتب مقال عن Microsoft Copilot
+
+أو
+
+أنشئ KPI لموظف خدمة عملاء
+
+أو
+
+أنشئ فكرة فيديو يوتيوب">
+</textarea>
 
 <br>
 
-<button>🚀 توليد المحتوى</button>
+<button>
+🚀 توليد المحتوى
+</button>
 
 <div class="results">
 
@@ -114,22 +148,35 @@ color:#22c55e;
 
 <div class="card">
 <h3>🔍 SEO</h3>
-<p>سيظهر هنا وصف وتحسينات محركات البحث.</p>
+<p>سيظهر هنا وصف محركات البحث والكلمات المفتاحية.</p>
 </div>
 
 <div class="card">
 <h3>📱 منشورات التواصل</h3>
-<p>X • فيسبوك • لينكدإن</p>
+<p>
+منشورات X وفيسبوك ولينكدإن.
+</p>
 </div>
 
 <div class="card">
 <h3>🎥 الفيديو</h3>
-<p>سكربت الفيديو والمشاهد.</p>
+<p>
+سكربت الفيديو والمشاهد والتعليق الصوتي.
+</p>
 </div>
 
 <div class="card">
 <h3>🎨 الصور</h3>
-<p>برومبتات إنشاء الصور.</p>
+<p>
+برومبتات احترافية لإنشاء الصور.
+</p>
+</div>
+
+<div class="card">
+<h3>📊 الأعمال والإدارة</h3>
+<p>
+KPI و OKR و SMART Goals وخطط العمل.
+</p>
 </div>
 
 </div>
