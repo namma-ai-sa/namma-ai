@@ -21,11 +21,12 @@ ${topic}
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
+          max_tokens: 800,
           messages: [
             {
               role: "user",
@@ -38,11 +39,28 @@ ${topic}
 
     const data = await response.json();
 
+    if (!response.ok) {
+
+      return res.status(500).json({
+        result: JSON.stringify(data)
+      });
+
+    }
+
     let result =
-      data?.choices?.[0]?.message?.content ||
-      "لم يتم إنشاء SEO";
+      data?.choices?.[0]?.message?.content;
+
+    if (!result) {
+
+      return res.status(500).json({
+        result: JSON.stringify(data)
+      });
+
+    }
 
     result = result
+      .replace(/\\n/g, "\n")
+      .replace(/\\"/g, '"')
       .replace(/#/g, "")
       .replace(/\*\*/g, "")
       .replace(/---/g, "")
@@ -55,7 +73,7 @@ ${topic}
   } catch (error) {
 
     return res.status(500).json({
-      result: `خطأ: ${error.message}`
+      result: error.message
     });
 
   }
