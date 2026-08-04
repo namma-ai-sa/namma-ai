@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🌱 NAMMA AI V3</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma,sans-serif;
+}
+
+body{
+background:#16396b;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+}
+
+.logo{
+text-align:center;
+font-size:60px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+font-size:24px;
+margin-bottom:25px;
+}
+
+textarea{
+width:100%;
+height:180px;
+padding:15px;
+border:none;
+border-radius:15px;
+font-size:18px;
+margin-bottom:15px;
+}
+
+button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:15px;
+background:#4ade80;
+color:white;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+.results-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:20px;
+}
+
+.card{
+background:#1b2b4a;
+padding:20px;
+border-radius:20px;
+min-height:250px;
+white-space:pre-wrap;
+line-height:1.8;
+}
+
+.card h2{
+color:#7ef29b;
+margin-bottom:15px;
+}
+
+</style>
+
+<script>
+
+async function generateContent(){
+
+let topic =
+document.getElementById("topic").value;
+
+if(!topic){
+
+alert("اكتب الموضوع أولاً");
+
+return;
+
+}
+
+document.getElementById("articleResult").innerText =
+"⏳ جاري إنشاء المحتوى...";
+
+try{
+
+let response =
+await fetch(
+`/api/generate?topic=${encodeURIComponent(topic)}&type=all`
+);
+
+let data =
+await response.json();
+
+document.getElementById("articleResult").innerText =
+data.article || "لا يوجد محتوى";
+
+document.getElementById("seoResult").innerText =
+"سيتم ربط SEO الحقيقي في المرحلة القادمة";
+
+document.getElementById("socialResult").innerText =
+"سيتم ربط السوشال الحقيقي في المرحلة القادمة";
+
+document.getElementById("videoResult").innerText =
+"سيتم ربط الفيديو الحقيقي في المرحلة القادمة";
+
+document.getElementById("imageResult").innerText =
+"سيتم ربط الصور الحقيقية في المرحلة القادمة";
+
+document.getElementById("planResult").innerText =
+"سيتم ربط الخطة الحقيقية في المرحلة القادمة";
+
+}
+catch(error){
+
+document.getElementById("articleResult").innerText =
+"❌ حدث خطأ أثناء التنفيذ";
+
+}
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+🌱 NAMMA AI
+</div>
+
+<div class="subtitle">
+V3 Development Build
+</div>
+
+<textarea
+id="topic"
+placeholder="اكتب الموضوع هنا..."></textarea>
+
+<button onclick="generateContent()">
+🚀 تنفيذ
+</button>
+
+<div class="results-grid">
+
+<div class="card">
+<h2>📝 المقال</h2>
+<div id="articleResult">
+سيظهر المقال هنا
+</div>
+</div>
+
+<div class="card">
+<h2>🔍 SEO</h2>
+<div id="seoResult">
+بانتظار الربط
+</div>
+</div>
+
+<div class="card">
+<h2>📱 السوشال</h2>
+<div id="socialResult">
+بانتظار الربط
+</div>
+</div>
+
+<div class="card">
+<h2>🎥 الفيديو</h2>
+<div id="videoResult">
+بانتظار الربط
+</div>
+</div>
+
+<div class="card">
+<h2>🎨 الصورة</h2>
+<div id="imageResult">
+بانتظار الربط
+</div>
+</div>
+
+<div class="card">
+<h2>📊 الخطة</h2>
+<div id="planResult">
+بانتظار الربط
+</div>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
