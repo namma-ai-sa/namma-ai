@@ -396,6 +396,56 @@ localStorage.removeItem(
 location.reload();
 
 }
+async function askAI(){
+
+const prompt =
+document.getElementById(
+"aiPrompt"
+).value;
+
+if(!prompt){
+
+alert(
+"اكتب طلبك أولاً"
+);
+
+return;
+
+}
+
+document.getElementById(
+"aiResult"
+).innerText =
+"⏳ جاري التنفيذ...";
+
+try{
+
+const response =
+await fetch(
+`/api/article?topic=${encodeURIComponent(prompt)}`
+);
+
+const data =
+await response.json();
+
+document.getElementById(
+"aiResult"
+).innerText =
+data.result ||
+data.article ||
+"لا توجد نتيجة";
+
+}
+catch(error){
+
+document.getElementById(
+"aiResult"
+).innerText =
+error.message;
+
+}
+
+}
 
 window.onload=()=>{
 
