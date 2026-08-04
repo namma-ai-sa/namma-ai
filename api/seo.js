@@ -38,20 +38,24 @@ ${topic}
 
     const data = await response.json();
 
+    let result =
+      data?.choices?.[0]?.message?.content ||
+      "لم يتم إنشاء SEO";
+
+    result = result
+      .replace(/#/g, "")
+      .replace(/\*\*/g, "")
+      .replace(/---/g, "")
+      .trim();
+
     return res.status(200).json({
-
-      result:
-        data?.choices?.[0]?.message?.content ||
-        "لم يتم إنشاء SEO"
-
+      result
     });
 
   } catch (error) {
 
     return res.status(500).json({
-
       result: `خطأ: ${error.message}`
-
     });
 
   }
