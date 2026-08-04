@@ -3,8 +3,25 @@
     {
       "username": "abdulrahman",
       "password": "123456",
-      "name": "عبدالرحمن الشمسان"
+      "name": "عبدالرحمن الشمسان",
+      "projects": [
+        {
+          "id": "nabd-tech",
+          "name": "نبض التقنية",
+          "status": "قيد التنفيذ",
+          "progress": 65,
+          "lastTask": "مقال الأمن السيبراني",
+          "nextTask": "فيديو الأمن السيبراني"
+        },
+        {
+          "id": "idrak",
+          "name": "إدراك",
+          "status": "تحت التجهيز",
+          "progress": 10,
+          "lastTask": "تجهيز المشروع",
+          "nextTask": "تحليل المشروع"
+        }
+      ]
     }
   ]
 }
-
