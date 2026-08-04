@@ -4,29 +4,39 @@ import path from "path";
 export default async function handler(req, res) {
 
   if (req.method !== "POST") {
-
     return res.status(405).json({
-      success: false
+      success: false,
+      message: "Method Not Allowed"
     });
-
   }
 
   try {
 
-    const filePath =
-      path.join(
-        process.cwd(),
-        "users.json"
-      );
+    const filePath = path.join(
+      process.cwd(),
+      "users.json"
+    );
 
-    const raw =
-      fs.readFileSync(
-        filePath,
-        "utf8"
-      );
+    if (!fs.existsSync(filePath)) {
+      return res.status(500).json({
+        success: false,
+        message: "users.json غير موجود"
+      });
+    }
 
-    const data =
-      JSON.parse(raw);
+    const raw = fs.readFileSync(
+      filePath,
+      "utf8"
+    );
+
+    const data = JSON.parse(raw);
+
+    if (!data.users) {
+      return res.status(500).json({
+        success: false,
+        message: "صيغة users.json غير صحيحة"
+      });
+    }
 
     const {
       name,
@@ -34,28 +44,36 @@ export default async function handler(req, res) {
       password
     } = req.body;
 
+    if (
+      !name ||
+      !username ||
+      !password
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "جميع الحقول مطلوبة"
+      });
+    }
+
     const exists =
       data.users.find(
-        u => u.username === username
+        u =>
+          u.username.toLowerCase() ===
+          username.toLowerCase()
       );
 
     if (exists) {
-
       return res.status(400).json({
-        success:false,
-        message:"اسم المستخدم مستخدم مسبقاً"
+        success: false,
+        message: "اسم المستخدم مستخدم مسبقاً"
       });
-
     }
 
     const newUser = {
-
       name,
       username,
       password,
-
       projects: []
-
     };
 
     data.users.push(
@@ -73,14 +91,15 @@ export default async function handler(req, res) {
     );
 
     return res.status(200).json({
-      success:true
+      success: true,
+      message: "تم إنشاء الحساب"
     });
 
   } catch (error) {
 
     return res.status(500).json({
-      success:false,
-      error:error.message
+      success: false,
+      message: error.message
     });
 
   }
