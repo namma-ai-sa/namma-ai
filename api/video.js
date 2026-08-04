@@ -23,7 +23,7 @@ ${topic}
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Authorization": \`Bearer ${process.env.OPENROUTER_API_KEY}\`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -40,16 +40,24 @@ ${topic}
 
     const data = await response.json();
 
+    let result =
+      data?.choices?.[0]?.message?.content ||
+      "لم يتم إنشاء الفيديو";
+
+    result = result
+      .replace(/#/g, "")
+      .replace(/\*\*/g, "")
+      .replace(/---/g, "")
+      .trim();
+
     return res.status(200).json({
-      result:
-        data?.choices?.[0]?.message?.content ||
-        "لم يتم إنشاء الفيديو"
+      result
     });
 
   } catch (error) {
 
     return res.status(500).json({
-      result: `خطأ: ${error.message}`
+      result: \`خطأ: ${error.message}\`
     });
 
   }
