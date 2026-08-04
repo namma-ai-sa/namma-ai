@@ -1,41 +1,31 @@
-import fs from "fs";
-import path from "path";
+import supabase from "./supabase.js";
 
 export default async function handler(req, res) {
 
   if (req.method !== "POST") {
 
     return res.status(405).json({
-      success: false,
-      message: "Method Not Allowed"
+      success: false
     });
 
   }
 
   try {
 
-    const filePath =
-      path.join(process.cwd(), "users.json");
-
-    const raw =
-      fs.readFileSync(filePath, "utf8");
-
-    const data =
-      JSON.parse(raw);
-
     const {
       username,
       password
     } = req.body;
 
-    const user =
-      data.users.find(
-        u =>
-          u.username === username &&
-          u.password === password
-      );
+    const { data: user, error } =
+      await supabase
+        .from("users")
+        .select("*")
+        .eq("username", username)
+        .eq("password", password)
+        .single();
 
-    if (!user) {
+    if (error || !user) {
 
       return res.status(401).json({
         success: false,
@@ -49,8 +39,7 @@ export default async function handler(req, res) {
       success: true,
       user: {
         username: user.username,
-        name: user.name,
-        projects: user.projects || []
+        name: user.name
       }
     });
 
@@ -58,7 +47,7 @@ export default async function handler(req, res) {
 
     return res.status(500).json({
       success: false,
-      error: error.message
+      message: error.message
     });
 
   }
