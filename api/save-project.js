@@ -15,13 +15,36 @@ export default async function handler(req, res) {
   try {
 
     const filePath =
-      path.join(process.cwd(), "memory.json");
+      path.join(
+        process.cwd(),
+        "users.json"
+      );
 
     const raw =
-      fs.readFileSync(filePath, "utf8");
+      fs.readFileSync(
+        filePath,
+        "utf8"
+      );
 
-    const memory =
+    const data =
       JSON.parse(raw);
+
+    const username =
+      req.body.username;
+
+    const user =
+      data.users.find(
+        u => u.username === username
+      );
+
+    if (!user) {
+
+      return res.status(404).json({
+        success: false,
+        message: "المستخدم غير موجود"
+      });
+
+    }
 
     const newProject = {
 
@@ -41,20 +64,18 @@ export default async function handler(req, res) {
         req.body.lastTask || "-",
 
       nextTask:
-        req.body.nextTask || "-",
-
-      notes: []
+        req.body.nextTask || "-"
 
     };
 
-    memory.projects.push(
+    user.projects.push(
       newProject
     );
 
     fs.writeFileSync(
       filePath,
       JSON.stringify(
-        memory,
+        data,
         null,
         2
       ),
