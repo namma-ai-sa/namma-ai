@@ -72,6 +72,16 @@ placeholder="اسم المستخدم">
 id="password"
 type="password"
 placeholder="كلمة المرور">
+<label style="display:block;margin:10px 0;">
+
+<input
+type="checkbox"
+id="rememberMe"
+style="width:auto;">
+
+تذكرني
+
+</label>
 
 <button onclick="login()">
 تسجيل الدخول
@@ -304,6 +314,24 @@ return;
 
 currentUser =
 data.user;
+if(
+document.getElementById(
+"rememberMe"
+).checked
+){
+
+localStorage.setItem(
+"rememberedUsername",
+username
+);
+
+}else{
+
+localStorage.removeItem(
+"rememberedUsername"
+);
+
+}
 
 localStorage.setItem(
 "user",
@@ -528,6 +556,24 @@ speech
 }
 
 window.onload=()=>{
+const remembered =
+localStorage.getItem(
+"rememberedUsername"
+);
+
+if(remembered){
+
+document.getElementById(
+"username"
+).value =
+remembered;
+
+document.getElementById(
+"rememberMe"
+).checked =
+true;
+
+}
 
 const saved =
 localStorage.getItem(
