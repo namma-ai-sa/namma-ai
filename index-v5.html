@@ -45,10 +45,10 @@ background:#22c55e;
 color:white;
 font-size:18px;
 cursor:pointer;
+margin-bottom:10px;
 }
 
 .project-btn{
-margin-bottom:10px;
 background:#22385d;
 }
 
@@ -75,6 +75,44 @@ placeholder="كلمة المرور">
 
 <button onclick="login()">
 تسجيل الدخول
+</button>
+
+<button onclick="showRegister()">
+إنشاء حساب جديد
+</button>
+
+</div>
+
+</div>
+
+<div
+id="registerScreen"
+class="container"
+style="display:none;">
+
+<div class="card">
+
+<h2>إنشاء حساب جديد</h2>
+
+<input
+id="registerName"
+placeholder="الاسم">
+
+<input
+id="registerUsername"
+placeholder="اسم المستخدم">
+
+<input
+id="registerPassword"
+type="password"
+placeholder="كلمة المرور">
+
+<button onclick="register()">
+إنشاء الحساب
+</button>
+
+<button onclick="backToLogin()">
+لدي حساب بالفعل
 </button>
 
 </div>
@@ -112,6 +150,85 @@ style="display:none;">
 <script>
 
 let currentUser = null;
+
+function showRegister(){
+
+document.getElementById(
+"loginScreen"
+).style.display="none";
+
+document.getElementById(
+"registerScreen"
+).style.display="block";
+
+}
+
+function backToLogin(){
+
+document.getElementById(
+"registerScreen"
+).style.display="none";
+
+document.getElementById(
+"loginScreen"
+).style.display="block";
+
+}
+
+async function register(){
+
+const name =
+document.getElementById(
+"registerName"
+).value;
+
+const username =
+document.getElementById(
+"registerUsername"
+).value;
+
+const password =
+document.getElementById(
+"registerPassword"
+).value;
+
+const response =
+await fetch(
+"/api/register",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+name,
+username,
+password
+})
+}
+);
+
+const data =
+await response.json();
+
+if(!data.success){
+
+alert(
+data.message ||
+"فشل إنشاء الحساب"
+);
+
+return;
+
+}
+
+alert(
+"تم إنشاء الحساب بنجاح"
+);
+
+backToLogin();
+
+}
 
 async function login(){
 
@@ -204,18 +321,18 @@ project.name;
 
 btn.onclick = async () => {
 
-  const response =
-    await fetch(
-      `/api/project?username=${currentUser.username}&name=${encodeURIComponent(project.name)}`
-    );
+const response =
+await fetch(
+`/api/project?username=${currentUser.username}&name=${encodeURIComponent(project.name)}`
+);
 
-  const data =
-    await response.json();
+const data =
+await response.json();
 
-  const p =
-    data.project;
+const p =
+data.project;
 
-  alert(
+alert(
 `📁 ${p.name}
 
 📊 الحالة:
@@ -229,7 +346,7 @@ ${p.lastTask}
 
 🚀 المهمة القادمة:
 ${p.nextTask}`
-  );
+);
 
 };
 
