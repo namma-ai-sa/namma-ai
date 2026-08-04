@@ -22,11 +22,12 @@ ${topic}
       {
         method: "POST",
         headers: {
-          "Authorization": \`Bearer ${process.env.OPENROUTER_API_KEY}\`,
+          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
+          max_tokens: 1200,
           messages: [
             {
               role: "user",
@@ -44,6 +45,8 @@ ${topic}
       "لم يتم إنشاء فكرة الصورة";
 
     result = result
+      .replace(/\\n/g, "\n")
+      .replace(/\\"/g, '"')
       .replace(/#/g, "")
       .replace(/\*\*/g, "")
       .replace(/---/g, "")
@@ -56,7 +59,7 @@ ${topic}
   } catch (error) {
 
     return res.status(500).json({
-      result: \`خطأ: ${error.message}\`
+      result: error.message
     });
 
   }
