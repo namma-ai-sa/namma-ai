@@ -1,32 +1,71 @@
+import fs from "fs";
+import path from "path";
+
 export default async function handler(req, res) {
 
-  const selected =
-    req.query.name || "نبض التقنية";
+  try {
 
-  const projects = {
+    const username =
+      req.query.username;
 
-    "نبض التقنية": {
-      name: "نبض التقنية",
-      status: "قيد التنفيذ",
-      lastTask: "مقال الأمن السيبراني",
-      nextTask: "فيديو الأمن السيبراني",
-      progress: 65
-    },
+    const projectName =
+      req.query.name;
 
-    "إدراك": {
-      name: "إدراك",
-      status: "تحت التجهيز",
-      lastTask: "إنشاء الهوية",
-      nextTask: "إعداد المحتوى",
-      progress: 15
+    const filePath =
+      path.join(
+        process.cwd(),
+        "users.json"
+      );
+
+    const raw =
+      fs.readFileSync(
+        filePath,
+        "utf8"
+      );
+
+    const data =
+      JSON.parse(raw);
+
+    const user =
+      data.users.find(
+        u => u.username === username
+      );
+
+    if (!user) {
+
+      return res.status(404).json({
+        success: false,
+        message: "المستخدم غير موجود"
+      });
+
     }
 
-  };
+    const project =
+      user.projects.find(
+        p => p.name === projectName
+      );
 
-  return res.status(200).json({
-    project:
-      projects[selected] ||
-      projects["نبض التقنية"]
-  });
+    if (!project) {
+
+      return res.status(404).json({
+        success: false,
+        message: "المشروع غير موجود"
+      });
+
+    }
+
+    return res.status(200).json({
+      success: true,
+      project
+    });
+
+  } catch (error) {
+
+    return res.status(500).json({
+      success: false,
+      error: error.message
+    });
+
+  }
 
 }
