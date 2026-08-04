@@ -272,8 +272,7 @@ await response.json();
 if(!data.success){
 
 alert(
-data.message ||
-"فشل إنشاء الحساب"
+JSON.stringify(data)
 );
 
 return;
