@@ -1,47 +1,32 @@
-import fs from "fs";
-import path from "path";
-
 export default async function handler(req, res) {
 
-  try {
+  const selected =
+    req.query.name || "نبض التقنية";
 
-    const filePath = path.join(process.cwd(), "memory.json");
+  const projects = {
 
-    const memory = JSON.parse(
-      fs.readFileSync(filePath, "utf8")
-    );
+    "نبض التقنية": {
+      name: "نبض التقنية",
+      status: "قيد التنفيذ",
+      lastTask: "مقال الأمن السيبراني",
+      nextTask: "فيديو الأمن السيبراني",
+      progress: 65
+    },
 
-    const project =
-      memory.projects?.[0] || null;
-
-    if (!project) {
-
-      return res.status(404).json({
-        error: "لا يوجد مشروع محفوظ"
-      });
-
+    "إدراك": {
+      name: "إدراك",
+      status: "تحت التجهيز",
+      lastTask: "إنشاء الهوية",
+      nextTask: "إعداد المحتوى",
+      progress: 15
     }
 
-    return res.status(200).json({
+  };
 
-      project: {
-        id: project.id,
-        name: project.name,
-        status: project.status,
-        progress: project.progress,
-        lastTask: project.lastTask,
-        nextTask: project.nextTask,
-        notes: project.notes
-      }
-
-    });
-
-  } catch (error) {
-
-    return res.status(500).json({
-      error: error.message
-    });
-
-  }
+  return res.status(200).json({
+    project:
+      projects[selected] ||
+      projects["نبض التقنية"]
+  });
 
 }
