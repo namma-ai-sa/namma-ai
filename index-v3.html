@@ -1,7 +1,377 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
+<head><!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🌱 NAMMA AI</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma,sans-serif;
+}
+
+body{
+background:#16396b;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+}
+
+.logo{
+text-align:center;
+font-size:60px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+font-size:22px;
+margin-bottom:30px;
+color:#cbd5e1;
+}
+
+.section-title{
+margin-bottom:15px;
+color:#7ef29b;
+font-size:24px;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.info-card{
+background:#1b2b4a;
+padding:20px;
+border-radius:20px;
+}
+
+.info-card h3{
+margin-bottom:15px;
+color:#7ef29b;
+}
+
+.info-card p{
+margin-bottom:10px;
+line-height:1.8;
+}
+
+.progress-bar{
+width:100%;
+height:12px;
+background:#0f172a;
+border-radius:20px;
+overflow:hidden;
+margin-top:15px;
+}
+
+.progress-fill{
+height:100%;
+width:0%;
+background:linear-gradient(
+90deg,
+#22c55e,
+#4ade80
+);
+border-radius:20px;
+transition:all .5s ease;
+}
+
+textarea{
+width:100%;
+height:180px;
+padding:15px;
+border:none;
+border-radius:15px;
+font-size:18px;
+margin-bottom:15px;
+}
+
+button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:15px;
+background:#4ade80;
+color:white;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:25px;
+}
+
+button:hover{
+background:#22c55e;
+}
+
+.results-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:20px;
+}
+
+.card{
+background:#1b2b4a;
+padding:20px;
+border-radius:20px;
+min-height:250px;
+white-space:pre-wrap;
+line-height:1.8;
+}
+
+.card h2{
+margin-bottom:15px;
+color:#7ef29b;
+}
+
+</style>
+
+<script>
+
+async function loadProject(){
+
+try{
+
+const response =
+await fetch("/api/project");
+
+const data =
+await response.json();
+
+const project =
+data.project;
+
+document.getElementById("projectName").innerText =
+project.name;
+
+document.getElementById("projectStatus").innerText =
+project.status;
+
+document.getElementById("lastTask").innerText =
+project.lastTask;
+
+document.getElementById("nextTask").innerText =
+project.nextTask;
+
+document.getElementById("projectProgress").innerText =
+project.progress + "%";
+
+document.getElementById("progressFill").style.width =
+project.progress + "%";
+
+}
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+async function generateContent(){
+
+let topic =
+document.getElementById("topic").value;
+
+if(!topic){
+
+alert("اكتب الموضوع أولاً");
+
+return;
+
+}
+
+document.getElementById("articleResult").innerText =
+"⏳ جاري إنشاء المحتوى...";
+
+try{
+
+let response =
+await fetch(
+`/api/generate?topic=${encodeURIComponent(topic)}&type=all`
+);
+
+let data =
+await response.json();
+
+document.getElementById("articleResult").innerText =
+data.article || "";
+
+document.getElementById("seoResult").innerText =
+data.seo || "";
+
+document.getElementById("socialResult").innerText =
+data.social || "";
+
+document.getElementById("videoResult").innerText =
+data.video || "";
+
+document.getElementById("imageResult").innerText =
+data.image || "";
+
+document.getElementById("planResult").innerText =
+data.plan || "";
+
+}
+catch(error){
+
+document.getElementById("articleResult").innerText =
+"❌ حدث خطأ أثناء التنفيذ";
+
+}
+
+}
+
+window.onload = () => {
+loadProject();
+};
+
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+🌱 NAMMA AI
+</div>
+
+<div class="subtitle">
+منصة إدارة المحتوى والنمو الرقمي والمبيعات بالذكاء الاصطناعي
+</div>
+
+<div class="dashboard">
+
+<div class="info-card">
+
+<h3>📁 مشاريعي</h3>
+
+<p>• نبض التقنية</p>
+<p>• إدراك</p>
+<p>➕ مشروع جديد قريباً</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>🧠 متابعة المشروع</h3>
+
+<p>
+<strong>المشروع:</strong>
+<span id="projectName">جاري التحميل...</span>
+</p>
+
+<p>
+<strong>الحالة:</strong>
+<span id="projectStatus">جاري التحميل...</span>
+</p>
+
+<p>
+<strong>آخر مهمة:</strong>
+<span id="lastTask">جاري التحميل...</span>
+</p>
+
+<p>
+<strong>المهمة القادمة:</strong>
+<span id="nextTask">جاري التحميل...</span>
+</p>
+
+<p>
+<strong>نسبة الإنجاز:</strong>
+<span id="projectProgress">0%</span>
+</p>
+
+<div class="progress-bar">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+</div>
+
+</div>
+
+<h2 class="section-title">
+🚀 إنشاء المحتوى
+</h2>
+
+<textarea
+id="topic"
+placeholder="اكتب الموضوع هنا..."></textarea>
+
+<button onclick="generateContent()">
+إنشاء المحتوى
+</button>
+
+<div class="results-grid">
+
+<div class="card">
+<h2>📝 المقال</h2>
+<div id="articleResult">
+سيظهر المقال هنا
+</div>
+</div>
+
+<div class="card">
+<h2>🔍 SEO</h2>
+<div id="seoResult">
+سيظهر SEO هنا
+</div>
+</div>
+
+<div class="card">
+<h2>📱 السوشال</h2>
+<div id="socialResult">
+سيظهر محتوى السوشال هنا
+</div>
+</div>
+
+<div class="card">
+<h2>🎥 الفيديو</h2>
+<div id="videoResult">
+سيظهر محتوى الفيديو هنا
+</div>
+</div>
+
+<div class="card">
+<h2>🎨 الصورة</h2>
+<div id="imageResult">
+ستظهر أفكار الصور هنا
+</div>
+</div>
+
+<div class="card">
+<h2>📊 الخطة</h2>
+<div id="planResult">
+ستظهر خطة المحتوى هنا
+</div>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
