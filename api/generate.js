@@ -51,8 +51,6 @@ ${topic}
 📘 منشور Facebook
 
 💼 منشور LinkedIn
-
-اجعل كل منشور مستقلاً وجاهزاً للنشر.
 `;
 
     } else if (type === "video") {
@@ -68,19 +66,16 @@ ${topic}
 
 ⚡ يوتيوب شورتس
 
-📸 Instagram Reels
+📸 Reels
 
-🎵 TikTok Video
-
-🎤 JACO Video
+🎵 TikTok
 
 ويتضمن:
 
 - عنوان
 - وصف
 - هاشتاقات
-- فكرة المشاهد
-- سكربت مختصر
+- سكربت
 `;
 
     } else if (type === "image") {
@@ -93,49 +88,16 @@ ${topic}
 واكتب:
 
 - فكرة الصورة
-- الألوان المناسبة
-- النص المقترح
-- وصف كامل للمصمم
+- الألوان
+- وصف المصمم
 `;
 
     } else if (type === "plan") {
 
       prompt = `
-أنشئ خطة محتوى شهر كامل عن:
+أنشئ خطة محتوى شهرية عن:
 
 ${topic}
-
-تحتوي على:
-
-- أفكار مقالات
-- أفكار فيديو
-- أفكار سوشال ميديا
-
-بشكل يومي ومرتب.
-`;
-
-    } else if (type === "analysis-content") {
-
-      prompt = `
-بناءً على التحليل التالي:
-
-${topic}
-
-أنشئ:
-
-📝 10 أفكار مقالات
-
-🎥 10 أفكار فيديو
-
-📱 10 أفكار سوشال ميديا
-
-🔍 أهم فرص SEO
-
-📅 خطة محتوى شهر كامل
-
-🚀 أهم 3 خطوات يجب تنفيذها فوراً
-
-بشكل احترافي وعملي.
 `;
 
     } else {
@@ -147,31 +109,21 @@ ${topic}
 
 ${topic}
 
-أنشئ:
+أنشئ بالترتيب:
 
 📝 مقال
 
 🔍 SEO
 
-📱 محتوى X
+📱 سوشال
 
-📸 محتوى Instagram
+🎥 فيديو
 
-🎵 محتوى TikTok
-
-🎤 محتوى JACO
-
-📘 محتوى Facebook
-
-💼 محتوى LinkedIn
-
-🎥 خطة فيديو
-
-🎨 فكرة صورة
+🎨 صورة
 
 📊 خطة محتوى
 
-بشكل مرتب وواضح.
+واجعل كل قسم مستقلاً.
 `;
 
     }
@@ -186,7 +138,7 @@ ${topic}
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
-          max_tokens: 1200,
+          max_tokens: 1800,
           temperature: 0.5,
           messages: [
             {
@@ -200,23 +152,47 @@ ${topic}
 
     const data = await response.json();
 
-    let article =
+    let content =
       data?.choices?.[0]?.message?.content ||
       "لم يتم إنشاء محتوى";
 
-    article = article
+    content = content
       .replace(/#/g, "")
       .replace(/\*\*/g, "")
       .replace(/---/g, "");
 
     return res.status(200).json({
-      article
+
+      article: content,
+
+      seo: content,
+
+      social: content,
+
+      video: content,
+
+      image: content,
+
+      plan: content
+
     });
 
   } catch (error) {
 
     return res.status(500).json({
-      article: `خطأ: ${error.message}`
+
+      article: `خطأ: ${error.message}`,
+
+      seo: "",
+
+      social: "",
+
+      video: "",
+
+      image: "",
+
+      plan: ""
+
     });
 
   }
