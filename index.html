@@ -72,6 +72,32 @@ margin-bottom:10px;
 line-height:1.8;
 }
 
+.project-btn{
+width:100%;
+padding:14px;
+margin-bottom:10px;
+border:none;
+border-radius:12px;
+background:#22385d;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.project-btn:hover{
+background:#2f4c7d;
+}
+
+.new-project{
+background:#22c55e;
+}
+
+.new-project:hover{
+background:#16a34a;
+}
+
 .progress-bar{
 width:100%;
 height:12px;
@@ -104,7 +130,6 @@ margin-bottom:15px;
 }
 
 button{
-width:100%;
 padding:18px;
 border:none;
 border-radius:15px;
@@ -113,11 +138,6 @@ color:white;
 font-size:22px;
 font-weight:bold;
 cursor:pointer;
-margin-bottom:25px;
-}
-
-button:hover{
-background:#22c55e;
 }
 
 .results-grid{
@@ -139,11 +159,6 @@ box-shadow:0 4px 15px rgba(0,0,0,.2);
 .card h2{
 margin-bottom:15px;
 color:#7ef29b;
-}
-
-.loading{
-color:#fbbf24;
-font-weight:bold;
 }
 
 </style>
@@ -209,7 +224,7 @@ document.getElementById("seoResult").innerText =
 "⏳ جاري إنشاء SEO...";
 
 document.getElementById("socialResult").innerText =
-"⏳ جاري إنشاء السوشال...";
+"⏳ جاري إنشاء المحتوى الاجتماعي...";
 
 document.getElementById("videoResult").innerText =
 "⏳ جاري إنشاء الفيديو...";
@@ -271,7 +286,8 @@ imageData.result || "";
 document.getElementById("planResult").innerText =
 planData.result || "";
 
-}catch(error){
+}
+catch(error){
 
 console.error(error);
 
@@ -325,11 +341,17 @@ loadProject();
 
 <h3>📁 مشاريعي</h3>
 
-<p>• نبض التقنية</p>
+<button class="project-btn">
+نبض التقنية
+</button>
 
-<p>• إدراك</p>
+<button class="project-btn">
+إدراك
+</button>
 
-<p>➕ مشروع جديد قريباً</p>
+<button class="project-btn new-project">
+➕ مشروع جديد
+</button>
 
 </div>
 
@@ -386,6 +408,8 @@ placeholder="اكتب الموضوع هنا...">
 إنشاء المحتوى
 </button>
 
+<br><br>
+
 <div class="results-grid">
 
 <div class="card">
@@ -403,9 +427,9 @@ placeholder="اكتب الموضوع هنا...">
 </div>
 
 <div class="card">
-<h2>📱 السوشال</h2>
+<h2>📱 المحتوى الاجتماعي</h2>
 <div id="socialResult">
-سيظهر محتوى السوشال هنا
+سيظهر المحتوى الاجتماعي هنا
 </div>
 </div>
 
