@@ -49,7 +49,8 @@ export default async function handler(req, res) {
       success: true,
       user: {
         username: user.username,
-        name: user.name
+        name: user.name,
+        projects: user.projects || []
       }
     });
 
