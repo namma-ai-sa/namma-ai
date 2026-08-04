@@ -39,19 +39,13 @@ ${topic}
 
     const data = await response.json();
 
-    if (!response.ok) {
-
-      return res.status(500).json({
-        result: JSON.stringify(data)
-      });
-
-    }
-
     let result =
       data?.choices?.[0]?.message?.content ||
       "لم يتم إنشاء المقال";
 
     result = result
+      .replace(/\\n/g, "\n")
+      .replace(/\\"/g, '"')
       .replace(/#/g, "")
       .replace(/\*\*/g, "")
       .replace(/---/g, "")
