@@ -76,7 +76,7 @@ border-radius:20px;
 padding:20px;
 white-space:pre-wrap;
 line-height:1.8;
-min-height:180px;
+min-height:250px;
 }
 
 .card h2{
@@ -85,6 +85,33 @@ color:#7ef29b;
 }
 
 </style>
+
+<script>
+
+function testCards(){
+
+document.getElementById("articleResult").innerText =
+"مقال تجريبي لنظام NAMMA AI V2";
+
+document.getElementById("seoResult").innerText =
+"Passkeys\nالأمن السيبراني\nالحماية الرقمية";
+
+document.getElementById("socialResult").innerText =
+"منشور X\nمنشور Instagram\nمنشور LinkedIn";
+
+document.getElementById("videoResult").innerText =
+"عنوان الفيديو\nفكرة المشاهد\nسكربت مختصر";
+
+document.getElementById("imageResult").innerText =
+"صورة تقنية عن الأمن الرقمي ومفاتيح المرور";
+
+document.getElementById("planResult").innerText =
+"الأحد: مقال\nالاثنين: Reel\nالثلاثاء: سوشال ميديا";
+
+}
+
+</script>
+
 </head>
 
 <body>
@@ -112,55 +139,84 @@ color:#7ef29b;
 </select>
 
 <textarea
-placeholder="اكتب الموضوع هنا">
-</textarea>
+placeholder="اكتب الموضوع هنا..."></textarea>
 
-<button>
+<button onclick="testCards()">
 🚀 تنفيذ
 </button>
 
 <div class="results-grid">
 
 <div class="card">
-<h2>📝 المقال</h2>
+
+<h2>
+📝 المقال
+</h2>
+
 <div id="articleResult">
 سيظهر المقال هنا
 </div>
+
 </div>
 
 <div class="card">
-<h2>🔍 SEO</h2>
+
+<h2>
+🔍 SEO
+</h2>
+
 <div id="seoResult">
 ستظهر نتائج SEO هنا
 </div>
+
 </div>
 
 <div class="card">
-<h2>📱 السوشال</h2>
+
+<h2>
+📱 السوشال
+</h2>
+
 <div id="socialResult">
 سيظهر محتوى السوشال هنا
 </div>
+
 </div>
 
 <div class="card">
-<h2>🎥 الفيديو</h2>
+
+<h2>
+🎥 الفيديو
+</h2>
+
 <div id="videoResult">
 سيظهر محتوى الفيديو هنا
 </div>
+
 </div>
 
 <div class="card">
-<h2>🎨 الصورة</h2>
+
+<h2>
+🎨 الصورة
+</h2>
+
 <div id="imageResult">
 ستظهر أفكار الصور هنا
 </div>
+
 </div>
 
 <div class="card">
-<h2>📊 الخطة</h2>
+
+<h2>
+📊 الخطة
+</h2>
+
 <div id="planResult">
 ستظهر خطة المحتوى هنا
 </div>
+
 </div>
 
 </div>
