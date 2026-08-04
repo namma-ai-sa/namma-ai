@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🌱 NAMMA AI V3</title>
+<title>🌱 NAMMA AI</title>
 
 <style>
 
@@ -37,8 +37,38 @@ margin-bottom:10px;
 
 .subtitle{
 text-align:center;
+font-size:22px;
+margin-bottom:30px;
+color:#cbd5e1;
+}
+
+.section-title{
+margin-bottom:15px;
+color:#7ef29b;
 font-size:24px;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:20px;
 margin-bottom:25px;
+}
+
+.info-card{
+background:#1b2b4a;
+padding:20px;
+border-radius:20px;
+}
+
+.info-card h3{
+margin-bottom:15px;
+color:#7ef29b;
+}
+
+.info-card p{
+margin-bottom:10px;
+line-height:1.8;
 }
 
 textarea{
@@ -61,7 +91,11 @@ color:white;
 font-size:22px;
 font-weight:bold;
 cursor:pointer;
-margin-bottom:20px;
+margin-bottom:25px;
+}
+
+button:hover{
+background:#22c55e;
 }
 
 .results-grid{
@@ -80,8 +114,13 @@ line-height:1.8;
 }
 
 .card h2{
-color:#7ef29b;
 margin-bottom:15px;
+color:#7ef29b;
+}
+
+.status{
+color:#4ade80;
+font-weight:bold;
 }
 
 </style>
@@ -115,22 +154,22 @@ let data =
 await response.json();
 
 document.getElementById("articleResult").innerText =
-data.article || "لا يوجد محتوى";
+data.article || "";
 
 document.getElementById("seoResult").innerText =
-"سيتم ربط SEO الحقيقي في المرحلة القادمة";
+data.seo || "";
 
 document.getElementById("socialResult").innerText =
-"سيتم ربط السوشال الحقيقي في المرحلة القادمة";
+data.social || "";
 
 document.getElementById("videoResult").innerText =
-"سيتم ربط الفيديو الحقيقي في المرحلة القادمة";
+data.video || "";
 
 document.getElementById("imageResult").innerText =
-"سيتم ربط الصور الحقيقية في المرحلة القادمة";
+data.image || "";
 
 document.getElementById("planResult").innerText =
-"سيتم ربط الخطة الحقيقية في المرحلة القادمة";
+data.plan || "";
 
 }
 catch(error){
@@ -155,15 +194,51 @@ document.getElementById("articleResult").innerText =
 </div>
 
 <div class="subtitle">
-V3 Development Build
+منصة إدارة المحتوى والنمو الرقمي والمبيعات بالذكاء الاصطناعي
 </div>
+
+<div class="dashboard">
+
+<div class="info-card">
+
+<h3>📁 مشاريعي</h3>
+
+<p>• نبض التقنية</p>
+
+<p>• إدراك</p>
+
+<p>➕ مشروع جديد قريباً</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>🧠 متابعة المشروع</h3>
+
+<p><strong>المشروع:</strong> نبض التقنية</p>
+
+<p><strong>الحالة:</strong> <span class="status">قيد التنفيذ</span></p>
+
+<p><strong>آخر مهمة:</strong> مقال الأمن السيبراني</p>
+
+<p><strong>المهمة القادمة:</strong> فيديو الأمن السيبراني</p>
+
+<p><strong>التحسينات:</strong> SEO - الفيديو - الربط الداخلي</p>
+
+</div>
+
+</div>
+
+<h2 class="section-title">
+🚀 إنشاء المحتوى
+</h2>
 
 <textarea
 id="topic"
 placeholder="اكتب الموضوع هنا..."></textarea>
 
 <button onclick="generateContent()">
-🚀 تنفيذ
+إنشاء المحتوى
 </button>
 
 <div class="results-grid">
@@ -178,35 +253,35 @@ placeholder="اكتب الموضوع هنا..."></textarea>
 <div class="card">
 <h2>🔍 SEO</h2>
 <div id="seoResult">
-بانتظار الربط
+سيظهر SEO هنا
 </div>
 </div>
 
 <div class="card">
 <h2>📱 السوشال</h2>
 <div id="socialResult">
-بانتظار الربط
+سيظهر محتوى السوشال هنا
 </div>
 </div>
 
 <div class="card">
 <h2>🎥 الفيديو</h2>
 <div id="videoResult">
-بانتظار الربط
+سيظهر محتوى الفيديو هنا
 </div>
 </div>
 
 <div class="card">
 <h2>🎨 الصورة</h2>
 <div id="imageResult">
-بانتظار الربط
+ستظهر أفكار الصور هنا
 </div>
 </div>
 
 <div class="card">
 <h2>📊 الخطة</h2>
 <div id="planResult">
-بانتظار الربط
+ستظهر خطة المحتوى هنا
 </div>
 </div>
 
