@@ -1,97 +1,66 @@
-import fs from "fs";
-import path from "path";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY
+);
 
 export default async function handler(req, res) {
 
   if (req.method !== "POST") {
 
     return res.status(405).json({
-      success: false,
-      message: "Method Not Allowed"
+      success: false
     });
 
   }
 
   try {
 
-    const filePath =
-      path.join(
-        process.cwd(),
-        "users.json"
-      );
+    const {
+      username,
+      name,
+      status,
+      progress,
+      lastTask,
+      nextTask
+    } = req.body;
 
-    const raw =
-      fs.readFileSync(
-        filePath,
-        "utf8"
-      );
+    const { data, error } =
+      await supabase
+        .from("projects")
+        .insert([
+          {
+            username,
+            project_name: name,
+            status,
+            progress,
+            last_task: lastTask,
+            next_task: nextTask
+          }
+        ])
+        .select()
+        .single();
 
-    const data =
-      JSON.parse(raw);
+    if (error) {
 
-    const username =
-      req.body.username;
-
-    const user =
-      data.users.find(
-        u => u.username === username
-      );
-
-    if (!user) {
-
-      return res.status(404).json({
+      return res.status(500).json({
         success: false,
-        message: "المستخدم غير موجود"
+        message: error.message
       });
 
     }
 
-    const newProject = {
-
-      id:
-        Date.now().toString(),
-
-      name:
-        req.body.name || "مشروع جديد",
-
-      status:
-        req.body.status || "جديد",
-
-      progress:
-        Number(req.body.progress || 0),
-
-      lastTask:
-        req.body.lastTask || "-",
-
-      nextTask:
-        req.body.nextTask || "-"
-
-    };
-
-    user.projects.push(
-      newProject
-    );
-
-    fs.writeFileSync(
-      filePath,
-      JSON.stringify(
-        data,
-        null,
-        2
-      ),
-      "utf8"
-    );
-
     return res.status(200).json({
       success: true,
-      project: newProject
+      project: data
     });
 
   } catch (error) {
 
     return res.status(500).json({
       success: false,
-      error: error.message
+      message: error.message
     });
 
   }
