@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🌱 نمّى Ai</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+height:100vh;
+display:flex;
+}
+
+.sidebar{
+width:280px;
+background:#16213e;
+padding:20px;
+overflow:auto;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+margin-bottom:25px;
+text-align:center;
+}
+
+.new-chat{
+background:#22c55e;
+padding:12px;
+border:none;
+border-radius:12px;
+width:100%;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+.chat-item{
+background:#1e293b;
+padding:12px;
+border-radius:12px;
+margin-bottom:10px;
+cursor:pointer;
+}
+
+.main{
+flex:1;
+display:flex;
+flex-direction:column;
+}
+
+.header{
+padding:20px;
+border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.chat-container{
+flex:1;
+padding:20px;
+overflow-y:auto;
+}
+
+.message{
+margin-bottom:15px;
+padding:15px;
+border-radius:16px;
+max-width:80%;
+line-height:1.8;
+white-space:pre-wrap;
+}
+
+.user{
+background:#22c55e;
+margin-right:auto;
+color:white;
+}
+
+.ai{
+background:#1e293b;
+margin-left:auto;
+}
+
+.input-area{
+padding:20px;
+background:#111827;
+display:flex;
+gap:10px;
+}
+
+textarea{
+flex:1;
+height:70px;
+border:none;
+border-radius:12px;
+padding:15px;
+font-size:16px;
+resize:none;
+}
+
+.btn{
+border:none;
+border-radius:12px;
+padding:15px;
+cursor:pointer;
+background:#22c55e;
+color:white;
+font-size:18px;
+min-width:70px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+🌱 نمّى Ai
+</div>
+
+<button
+class="new-chat"
+onclick="newChat()">
+
+➕ محادثة جديدة
+
+</button>
+
+<div class="chat-item">
+🧠 محادثة جديدة
+</div>
+
+<hr style="margin:20px 0;opacity:.2;">
+
+<div class="chat-item">
+📁 مشاريعي
+</div>
+
+<div class="chat-item">
+👑 حسابي
+</div>
+
+<div class="chat-item">
+⚙️ الإعدادات
+</div>
+
+</div>
+
+<div class="main">
+
+<div class="header">
+
+<h2>
+🌱 نمّى Ai
+</h2>
+
+<p>
+كيف يمكنني مساعدتك اليوم؟
+</p>
+
+</div>
+
+<div
+id="chatContainer"
+class="chat-container">
+
+<div class="message ai">
+
+مرحباً 👋
+
+أنا نمّى Ai.
+
+اسألني أي شيء.
+
+</div>
+
+</div>
+
+<div class="input-area">
+
+<button
+class="btn"
+onclick="startVoiceInput()">
+
+🎤
+
+</button>
+
+<textarea
+id="prompt"
+placeholder="اكتب رسالتك هنا...">
+</textarea>
+
+<button
+class="btn"
+onclick="sendMessage()">
+
+➤
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+async function sendMessage(){
+
+const prompt =
+document.getElementById(
+"prompt"
+).value;
+
+if(!prompt) return;
+
+const container =
+document.getElementById(
+"chatContainer"
+);
+
+container.innerHTML += `
+<div class="message user">
+${prompt}
+</div>
+`;
+
+document.getElementById(
+"prompt"
+).value = "";
+
+const response =
+await fetch(
+`/api/article?topic=${encodeURIComponent(prompt)}`
+);
+
+const data =
+await response.json();
+
+container.innerHTML += `
+<div class="message ai">
+${data.result}
+</div>
+`;
+
+container.scrollTop =
+container.scrollHeight;
+
+speakText(
+data.result
+);
+
+}
+
+function newChat(){
+
+document.getElementById(
+"chatContainer"
+).innerHTML =
+`
+<div class="message ai">
+مرحباً 👋
+
+أنا نمّى Ai.
+
+كيف يمكنني مساعدتك؟
+</div>
+`;
+
+}
+
+function startVoiceInput(){
+
+const SpeechRecognition =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
+
+if(!SpeechRecognition){
+
+alert(
+"المتصفح لا يدعم التعرف الصوتي"
+);
+
+return;
+
+}
+
+const recognition =
+new SpeechRecognition();
+
+recognition.lang =
+"ar-SA";
+
+recognition.start();
+
+recognition.onresult =
+(event)=>{
+
+document.getElementById(
+"prompt"
+).value =
+event.results[0][0].transcript;
+
+};
+
+}
+
+function speakText(text){
+
+speechSynthesis.cancel();
+
+const speech =
+new SpeechSynthesisUtterance(
+text
+);
+
+speech.lang =
+"ar-SA";
+
+speechSynthesis.speak(
+speech
+);
+
+}
+
+</script>
+
+</body>
+
+</html>
