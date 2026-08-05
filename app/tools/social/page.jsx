@@ -2,23 +2,33 @@
 
 import { useState } from "react";
 
-export default function SocialContentPage() {
-  const [topic, setTopic] = useState("");
+export default function SocialAnalyzePage() {
+  const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
+  const [message, setMessage] = useState("");
 
-  const generateSocialContent = async () => {
-    if (!topic) return;
+  const analyzeSocial = async () => {
+    if (!input) {
+      setMessage("يرجى إدخال رابط الحساب أو كتابة وصف المحتوى");
+      return;
+    }
 
     setLoading(true);
+    setMessage("");
     setResult("");
 
     try {
-      const res = await fetch(`/api/social?topic=${encodeURIComponent(topic)}`);
+      const res = await fetch(`/api/social-analyze?input=${encodeURIComponent(input)}`);
       const data = await res.json();
-      setResult(data.result || "لم يتم إنشاء المحتوى");
+
+      if (data.result) {
+        setResult(data.result);
+      } else {
+        setMessage("لم يتم تحليل الحساب");
+      }
     } catch (err) {
-      setResult("حدث خطأ أثناء إنشاء المحتوى");
+      setMessage("حدث خطأ أثناء التحليل");
     }
 
     setLoading(false);
@@ -28,24 +38,26 @@ export default function SocialContentPage() {
     <main className="min-h-screen bg-[#050509] text-white px-6 py-10">
       <div className="max-w-3xl mx-auto">
 
-        <h1 className="text-2xl font-semibold mb-6">محتوى شبكات التواصل 📱</h1>
+        <h1 className="text-2xl font-semibold mb-6">تحليل السوشال 📊</h1>
 
         <div className="flex flex-col gap-4 mb-6">
-          <input
-            type="text"
-            placeholder="اكتب موضوع المنشور..."
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            className="w-full p-3 rounded-lg bg-[#0b0b12] border border-gray-700 text-white"
+
+          <textarea
+            placeholder="أدخل رابط الحساب أو وصف المحتوى..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="w-full p-3 rounded-lg bg-[#0b0b12] border border-gray-700 text-white h-32"
           />
 
           <button
-            onClick={generateSocialContent}
+            onClick={analyzeSocial}
             disabled={loading}
             className="p-3 rounded-lg bg-violet-600 hover:bg-violet-700 transition"
           >
-            {loading ? "جاري إنشاء المحتوى..." : "إنشاء المحتوى"}
+            {loading ? "جاري التحليل..." : "تحليل الحساب"}
           </button>
+
+          {message && <p className="text-red-400">{message}</p>}
         </div>
 
         {result && (
