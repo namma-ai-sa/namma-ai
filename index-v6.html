@@ -19,38 +19,40 @@ font-family:Tahoma,sans-serif;
 
 body{
 background:#0f172a;
-color:white;
+color:#fff;
 height:100vh;
 display:flex;
+overflow:hidden;
 }
 
 .sidebar{
 width:280px;
 background:#16213e;
 padding:20px;
-overflow:auto;
+overflow-y:auto;
+border-left:1px solid rgba(255,255,255,.1);
 }
 
 .logo{
 font-size:28px;
 font-weight:bold;
-margin-bottom:25px;
 text-align:center;
+margin-bottom:20px;
 }
 
 .new-chat{
-background:#22c55e;
-padding:12px;
+width:100%;
+padding:15px;
 border:none;
 border-radius:12px;
-width:100%;
+background:#22c55e;
 color:white;
 font-size:16px;
 cursor:pointer;
 margin-bottom:20px;
 }
 
-.chat-item{
+.menu-item{
 background:#1e293b;
 padding:12px;
 border-radius:12px;
@@ -66,7 +68,7 @@ flex-direction:column;
 
 .header{
 padding:20px;
-border-bottom:1px solid rgba(255,255,255,.15);
+border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .chat-container{
@@ -76,18 +78,17 @@ overflow-y:auto;
 }
 
 .message{
-margin-bottom:15px;
 padding:15px;
-border-radius:16px;
-max-width:80%;
-line-height:1.8;
+border-radius:15px;
+margin-bottom:15px;
+max-width:85%;
 white-space:pre-wrap;
+line-height:1.8;
 }
 
 .user{
 background:#22c55e;
 margin-right:auto;
-color:white;
 }
 
 .ai{
@@ -96,7 +97,7 @@ margin-left:auto;
 }
 
 .input-area{
-padding:20px;
+padding:15px;
 background:#111827;
 display:flex;
 gap:10px;
@@ -116,10 +117,10 @@ resize:none;
 border:none;
 border-radius:12px;
 padding:15px;
+font-size:18px;
 cursor:pointer;
 background:#22c55e;
 color:white;
-font-size:18px;
 min-width:70px;
 }
 
@@ -143,21 +144,29 @@ onclick="newChat()">
 
 </button>
 
-<div class="chat-item">
-🧠 محادثة جديدة
+<div class="menu-item">
+🧠 محادثة التسويق
+</div>
+
+<div class="menu-item">
+🧠 نبض التقنية
+</div>
+
+<div class="menu-item">
+🧠 إدراك
 </div>
 
 <hr style="margin:20px 0;opacity:.2;">
 
-<div class="chat-item">
+<div class="menu-item">
 📁 مشاريعي
 </div>
 
-<div class="chat-item">
+<div class="menu-item">
 👑 حسابي
 </div>
 
-<div class="chat-item">
+<div class="menu-item">
 ⚙️ الإعدادات
 </div>
 
@@ -187,7 +196,7 @@ class="chat-container">
 
 أنا نمّى Ai.
 
-اسألني أي شيء.
+جاهز لمساعدتك.
 
 </div>
 
@@ -227,24 +236,29 @@ async function sendMessage(){
 const prompt =
 document.getElementById(
 "prompt"
-).value;
+).value.trim();
 
 if(!prompt) return;
 
-const container =
+const chat =
 document.getElementById(
 "chatContainer"
 );
 
-container.innerHTML += `
-<div class="message user">
-${prompt}
-</div>
-`;
+chat.innerHTML +=
+`<div class="message user">${prompt}</div>`;
 
 document.getElementById(
 "prompt"
 ).value = "";
+
+chat.innerHTML +=
+`<div id="loading" class="message ai">⏳ جاري التفكير...</div>`;
+
+chat.scrollTop =
+chat.scrollHeight;
+
+try{
 
 const response =
 await fetch(
@@ -254,18 +268,28 @@ await fetch(
 const data =
 await response.json();
 
-container.innerHTML += `
-<div class="message ai">
-${data.result}
-</div>
-`;
+document.getElementById(
+"loading"
+).remove();
 
-container.scrollTop =
-container.scrollHeight;
+chat.innerHTML +=
+`<div class="message ai">${data.result}</div>`;
 
 speakText(
 data.result
 );
+
+chat.scrollTop =
+chat.scrollHeight;
+
+}catch(error){
+
+document.getElementById(
+"loading"
+).innerText =
+error.message;
+
+}
 
 }
 
@@ -280,7 +304,7 @@ document.getElementById(
 
 أنا نمّى Ai.
 
-كيف يمكنني مساعدتك؟
+كيف يمكنني مساعدتك اليوم؟
 </div>
 `;
 
@@ -295,7 +319,7 @@ window.webkitSpeechRecognition;
 if(!SpeechRecognition){
 
 alert(
-"المتصفح لا يدعم التعرف الصوتي"
+"التعرف الصوتي غير مدعوم"
 );
 
 return;
@@ -334,6 +358,8 @@ text
 speech.lang =
 "ar-SA";
 
+speech.rate = 1;
+
 speechSynthesis.speak(
 speech
 );
@@ -343,5 +369,4 @@ speech
 </script>
 
 </body>
-
 </html>
