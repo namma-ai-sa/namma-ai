@@ -2,54 +2,65 @@ export default async function handler(req, res) {
 
   try {
 
-    const topic = req.query.topic || "موضوع عام";
+    const topic =
+      req.query.topic || "موضوع عام";
 
     const prompt = `
-أنشئ فكرة صورة احترافية عن:
+أنت خبير تصميم وإنتاج محتوى بصري.
+
+أنشئ فكرة صورة احترافية حول:
 
 ${topic}
 
-يتضمن:
+يجب أن تتضمن الإجابة:
 
-- وصف الصورة
-- الألوان المناسبة
-- فكرة التصميم
-- Prompt للمصمم
+1. عنوان الفكرة
+2. وصف المشهد
+3. أسلوب التصميم
+4. الألوان المقترحة
+5. عناصر الصورة
+6. Prompt احترافي جاهز لتوليد الصورة بالذكاء الاصطناعي
+
+اكتب الإجابة باللغة العربية وبشكل مرتب وواضح.
 `;
 
-    const response = await fetch(
-      "https://openrouter.ai/api/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          model: "deepseek/deepseek-chat",
-          max_tokens: 1200,
-          messages: [
-            {
-              role: "user",
-              content: prompt
-            }
-          ]
-        })
-      }
-    );
+    const response =
+      await fetch(
+        "https://openrouter.ai/api/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Authorization":
+              `Bearer ${process.env.OPENROUTER_API_KEY}`,
+            "Content-Type":
+              "application/json"
+          },
+          body: JSON.stringify({
+            model: "deepseek/deepseek-chat",
+            max_tokens: 1500,
+            temperature: 0.5,
+            messages: [
+              {
+                role: "user",
+                content: prompt
+              }
+            ]
+          })
+        }
+      );
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
     let result =
       data?.choices?.[0]?.message?.content ||
-      "لم يتم إنشاء فكرة الصورة";
+      "تعذر إنشاء فكرة الصورة";
 
     result = result
       .replace(/\\n/g, "\n")
       .replace(/\\"/g, '"')
-      .replace(/#/g, "")
       .replace(/\*\*/g, "")
-      .replace(/---/g, "")
+      .replace(/#/g, "")
       .trim();
 
     return res.status(200).json({
