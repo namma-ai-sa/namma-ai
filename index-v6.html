@@ -214,7 +214,8 @@ onclick="startVoiceInput()">
 
 <textarea
 id="prompt"
-placeholder="اكتب رسالتك هنا...">
+placeholder="اكتب رسالتك هنا..."
+onkeydown="handleEnter(event)">
 </textarea>
 
 <button
@@ -230,6 +231,21 @@ onclick="sendMessage()">
 </div>
 
 <script>
+
+function handleEnter(event){
+
+if(
+event.key === "Enter" &&
+!event.shiftKey
+){
+
+event.preventDefault();
+
+sendMessage();
+
+}
+
+}
 
 async function sendMessage(){
 
@@ -268,9 +284,14 @@ await fetch(
 const data =
 await response.json();
 
+const loading =
 document.getElementById(
 "loading"
-).remove();
+);
+
+if(loading){
+loading.remove();
+}
 
 chat.innerHTML +=
 `<div class="message ai">${data.result}</div>`;
@@ -284,10 +305,15 @@ chat.scrollHeight;
 
 }catch(error){
 
+const loading =
 document.getElementById(
 "loading"
-).innerText =
+);
+
+if(loading){
+loading.innerText =
 error.message;
+}
 
 }
 
