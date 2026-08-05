@@ -2,18 +2,28 @@ export default async function handler(req, res) {
 
   try {
 
-    const topic = req.query.topic || "موضوع عام";
+    const question =
+      req.query.topic || "مرحباً";
 
     const prompt = `
-اكتب مقالاً احترافياً باللغة العربية عن:
+أنت NAMMA AI.
 
-${topic}
+أجب على المستخدم باللغة العربية.
 
-يتضمن:
-- عنوان جذاب
-- مقدمة
-- محتوى تفصيلي
-- خاتمة
+القواعد:
+
+- إذا كان السؤال معلومة عامة فأجب مباشرة.
+- إذا طلب مقالاً فاكتب مقالاً احترافياً.
+- إذا طلب خطة فاكتب خطة.
+- إذا طلب أفكار فيديو فأعطه أفكار فيديو.
+- إذا طلب محتوى سوشال فأعطه محتوى سوشال.
+- لا تخترع معلومات.
+- إذا لم تكن متأكداً من معلومة اذكر ذلك بوضوح.
+- اجعل الإجابة واضحة ومرتبة ومهنية.
+
+سؤال المستخدم:
+
+${question}
 `;
 
     const response = await fetch(
@@ -21,12 +31,15 @@ ${topic}
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json"
+          "Authorization":
+            `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Content-Type":
+            "application/json"
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
-          max_tokens: 1200,
+          max_tokens: 1500,
+          temperature: 0.5,
           messages: [
             {
               role: "user",
@@ -37,18 +50,18 @@ ${topic}
       }
     );
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
     let result =
       data?.choices?.[0]?.message?.content ||
-      "لم يتم إنشاء المقال";
+      "تعذر إنشاء الرد";
 
     result = result
-      .replace(/\\n/g, "\n")
-      .replace(/\\"/g, '"')
-      .replace(/#/g, "")
-      .replace(/\*\*/g, "")
-      .replace(/---/g, "")
+      .replace(/\\n/g,"\n")
+      .replace(/\\"/g,'"')
+      .replace(/\*\*/g,"")
+      .replace(/#/g,"")
       .trim();
 
     return res.status(200).json({
