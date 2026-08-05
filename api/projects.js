@@ -1,53 +1,36 @@
-import fs from "fs";
-import path from "path";
+import supabase from "./supabase.js";
 
 export default async function handler(req, res) {
 
   try {
 
-    const username =
-      req.query.username;
+    const username = req.query.username;
 
-    const filePath =
-      path.join(
-        process.cwd(),
-        "users.json"
-      );
+    const { data, error } =
+      await supabase
+        .from("projects")
+        .select("*")
+        .eq("username", username);
 
-    const raw =
-      fs.readFileSync(
-        filePath,
-        "utf8"
-      );
+    if (error) {
 
-    const data =
-      JSON.parse(raw);
-
-    const user =
-      data.users.find(
-        u => u.username === username
-      );
-
-    if (!user) {
-
-      return res.status(404).json({
+      return res.status(500).json({
         success: false,
-        message: "المستخدم غير موجود"
+        message: error.message
       });
 
     }
 
     return res.status(200).json({
       success: true,
-      projects:
-        user.projects || []
+      projects: data || []
     });
 
   } catch (error) {
 
     return res.status(500).json({
       success: false,
-      error: error.message
+      message: error.message
     });
 
   }
