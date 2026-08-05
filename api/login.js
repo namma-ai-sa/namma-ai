@@ -1,13 +1,16 @@
-import supabase from "./supabase.js";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY
+);
 
 export default async function handler(req, res) {
 
   if (req.method !== "POST") {
-
     return res.status(405).json({
       success: false
     });
-
   }
 
   try {
@@ -17,7 +20,7 @@ export default async function handler(req, res) {
       password
     } = req.body;
 
-    const { data: user, error } =
+    const { data: user } =
       await supabase
         .from("users")
         .select("*")
@@ -25,7 +28,7 @@ export default async function handler(req, res) {
         .eq("password", password)
         .single();
 
-    if (error || !user) {
+    if (!user) {
 
       return res.status(401).json({
         success: false,
