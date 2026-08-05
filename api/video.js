@@ -2,55 +2,67 @@ export default async function handler(req, res) {
 
   try {
 
-    const topic = req.query.topic || "موضوع عام";
+    const topic =
+      req.query.topic || "موضوع عام";
 
     const prompt = `
-أنشئ فكرة فيديو احترافية عن:
+أنت خبير صناعة محتوى وفيديو.
+
+أنشئ فيديو احترافياً عن:
 
 ${topic}
 
-يتضمن:
+يجب أن تتضمن الإجابة:
 
-- عنوان الفيديو
-- وصف الفيديو
-- هاشتاقات
-- سكربت كامل
-- فكرة Shorts
+1. عنوان الفيديو
+2. وصف الفيديو
+3. الجمهور المستهدف
+4. الخطاف الافتتاحي (Hook)
+5. سكربت كامل للفيديو
+6. فكرة فيديو قصير Shorts أو Reels
+7. هاشتاقات مناسبة
+8. دعوة لاتخاذ إجراء (CTA)
+
+اكتب النتيجة باللغة العربية بشكل احترافي ومنظم.
 `;
 
-    const response = await fetch(
-      "https://openrouter.ai/api/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          model: "deepseek/deepseek-chat",
-          max_tokens: 1200,
-          messages: [
-            {
-              role: "user",
-              content: prompt
-            }
-          ]
-        })
-      }
-    );
+    const response =
+      await fetch(
+        "https://openrouter.ai/api/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Authorization":
+              `Bearer ${process.env.OPENROUTER_API_KEY}`,
+            "Content-Type":
+              "application/json"
+          },
+          body: JSON.stringify({
+            model: "deepseek/deepseek-chat",
+            max_tokens: 1500,
+            temperature: 0.5,
+            messages: [
+              {
+                role: "user",
+                content: prompt
+              }
+            ]
+          })
+        }
+      );
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
     let result =
       data?.choices?.[0]?.message?.content ||
-      "لم يتم إنشاء الفيديو";
+      "تعذر إنشاء فكرة الفيديو";
 
     result = result
       .replace(/\\n/g, "\n")
       .replace(/\\"/g, '"')
-      .replace(/#/g, "")
       .replace(/\*\*/g, "")
-      .replace(/---/g, "")
+      .replace(/#/g, "")
       .trim();
 
     return res.status(200).json({
