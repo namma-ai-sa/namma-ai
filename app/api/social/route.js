@@ -3,27 +3,41 @@ import { NextResponse } from "next/server";
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
-    const topic = searchParams.get("topic") || "موضوع عام";
+
+    const topic =
+      searchParams.get("topic") || "موضوع عام";
 
     const prompt = `
-أنت خبير تسويق وصناعة محتوى.
+أنت خبير محتوى وتسويق رقمي ضمن منصة نمّى AI.
 
-أنشئ محتوى سوشال ميديا احترافي حول:
+مهم جداً:
+
+- أجب باللغة العربية فقط.
+- لا تخترع معلومات أو إحصائيات غير مؤكدة.
+- ركز على الوضوح والتأثير والإقناع.
+- اجعل المحتوى جاهزاً للنشر مباشرة.
+- خصص أسلوب الكتابة لكل منصة.
+- استخدم أفضل الممارسات الحديثة لمنصات التواصل الاجتماعي.
+- ركز على جذب الانتباه وتحفيز التفاعل.
+
+أنشئ محتوى احترافياً حول:
 
 ${topic}
 
 يجب أن تتضمن النتيجة:
 
-1. منشور X
+1. منشور منصة X
 2. منشور Instagram
 3. منشور TikTok
 4. منشور Facebook
 5. منشور LinkedIn
 6. هاشتاقات مناسبة
-7. دعوة لاتخاذ إجراء (CTA)
-8. فكرة تصميم مرافقة للمنشور
+7. CTA مناسب
+8. فكرة تصميم مرافقة
+9. أفكار لتحسين التفاعل
+10. أفضل وقت مقترح للنشر
 
-اكتب المحتوى باللغة العربية بشكل احترافي وجاهز للنشر.
+اكتب المحتوى بشكل احترافي ومنظم.
 `;
 
     const response = await fetch(
@@ -31,20 +45,20 @@ ${topic}
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json"
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
-          max_tokens: 1500,
-          temperature: 0.6,
+          temperature: 0.3,
+          max_tokens: 2000,
           messages: [
             {
               role: "user",
-              content: prompt
-            }
-          ]
-        })
+              content: prompt,
+            },
+          ],
+        }),
       }
     );
 
@@ -52,7 +66,7 @@ ${topic}
 
     let result =
       data?.choices?.[0]?.message?.content ||
-      "تعذر إنشاء محتوى السوشال";
+      "تعذر إنشاء محتوى التواصل الاجتماعي";
 
     result = result
       .replace(/\\n/g, "\n")
@@ -61,11 +75,15 @@ ${topic}
       .replace(/#/g, "")
       .trim();
 
-    return NextResponse.json({ result }, { status: 200 });
-
+    return NextResponse.json(
+      { result },
+      { status: 200 }
+    );
   } catch (error) {
     return NextResponse.json(
-      { result: error.message },
+      {
+        result: error.message,
+      },
       { status: 500 }
     );
   }
