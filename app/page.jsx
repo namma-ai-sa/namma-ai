@@ -62,23 +62,63 @@ export default function HomePage() {
             والسوشال ميديا والفيديو والتحليلات في مكان واحد.
           </p>
 
-          <div style={{ marginTop: "40px" }}>
-            <button
+          <div
+            style={{
+              marginTop: "40px",
+              maxWidth: "750px",
+              marginInline: "auto",
+            }}
+          >
+            <div
               style={{
-                background:
-                  "linear-gradient(135deg,#2563eb,#7c3aed)",
-                color: "#fff",
-                border: "none",
-                padding: "18px 40px",
-                borderRadius: "14px",
-                fontSize: "18px",
-                cursor: "pointer",
-                boxShadow:
-                  "0 0 30px rgba(59,130,246,.4)",
+                background: "#111827",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: "18px",
+                padding: "18px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "15px",
               }}
             >
-              🚀 ابدأ الآن
-            </button>
+              <input
+                type="text"
+                placeholder="اكتب طلبك هنا..."
+                style={{
+                  flex: 1,
+                  background: "transparent",
+                  border: "none",
+                  outline: "none",
+                  color: "white",
+                  fontSize: "18px",
+                }}
+              />
+
+              <span
+                style={{
+                  fontSize: "24px",
+                  cursor: "pointer",
+                  color: "#60a5fa",
+                }}
+              >
+                ➜
+              </span>
+            </div>
+
+            <div
+              style={{
+                marginTop: "15px",
+                display: "flex",
+                justifyContent: "center",
+                gap: "10px",
+                flexWrap: "wrap",
+              }}
+            >
+              <span>💡 مقال تسويقي</span>
+              <span>📈 تحليل SEO</span>
+              <span>🎥 سيناريو فيديو</span>
+              <span>📱 منشورات سوشال</span>
+            </div>
           </div>
         </section>
 
