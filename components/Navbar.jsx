@@ -1,48 +1,21 @@
-import Link from "next/link";
-
 export default function Navbar() {
   return (
     <nav
       style={{
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center",
-        padding: "20px 40px",
-        borderBottom: "1px solid rgba(255,255,255,0.1)",
-        background: "#0b0f19",
-        position: "sticky",
-        top: 0,
+        padding: "20px",
+        background: "#111827",
       }}
     >
-      /
-        🚀 NAMMA AI
-      </Link>
+      <h2>🚀 NAMMA AI</h2>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "25px",
-        }}
-      >
-        /tools
-          الأدوات
-        </Link>
-
-        /projects
-          المشاريع
-        </Link>
-
-        /pricing
-          الأسعار
-        </Link>
-
-        /about
-          عن المنصة
-        </Link>
-
-        /contact
-          تواصل معنا
-        </Link>
+      <div style={{ display: "flex", gap: "20px" }}>
+        <span>الأدوات</span>
+        <span>المشاريع</span>
+        <span>الأسعار</span>
+        <span>عن المنصة</span>
+        <span>تواصل معنا</span>
       </div>
     </nav>
   );
