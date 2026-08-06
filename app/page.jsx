@@ -107,17 +107,77 @@ export default function HomePage() {
 
             <div
               style={{
-                marginTop: "15px",
+                marginTop: "20px",
                 display: "flex",
                 justifyContent: "center",
                 gap: "10px",
                 flexWrap: "wrap",
               }}
             >
-              <span>💡 مقال تسويقي</span>
-              <span>📈 تحليل SEO</span>
-              <span>🎥 سيناريو فيديو</span>
-              <span>📱 منشورات سوشال</span>
+              <button
+                style={{
+                  background: "#111827",
+                  border: "1px solid rgba(255,255,255,.1)",
+                  color: "white",
+                  padding: "10px 16px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                }}
+              >
+                💡 كتابة مقال
+              </button>
+
+              <button
+                style={{
+                  background: "#111827",
+                  border: "1px solid rgba(255,255,255,.1)",
+                  color: "white",
+                  padding: "10px 16px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                }}
+              >
+                📈 تحليل SEO
+              </button>
+
+              <button
+                style={{
+                  background: "#111827",
+                  border: "1px solid rgba(255,255,255,.1)",
+                  color: "white",
+                  padding: "10px 16px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                }}
+              >
+                🎥 سيناريو فيديو
+              </button>
+
+              <button
+                style={{
+                  background: "#111827",
+                  border: "1px solid rgba(255,255,255,.1)",
+                  color: "white",
+                  padding: "10px 16px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                }}
+              >
+                📱 منشورات سوشال
+              </button>
+
+              <button
+                style={{
+                  background: "#111827",
+                  border: "1px solid rgba(255,255,255,.1)",
+                  color: "white",
+                  padding: "10px 16px",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                }}
+              >
+                🎨 هوية بصرية
+              </button>
             </div>
           </div>
         </section>
