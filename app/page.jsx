@@ -104,11 +104,79 @@ export default function HomePage() {
               <h3>{tool}</h3>
 
               <p style={{ color: "#94a3b8" }}>
-                أداة احترافية تساعدك على إنجاز مهامك
-                بسرعة وكفاءة.
+                أداة احترافية تساعدك على إنجاز مهامك بسرعة وكفاءة.
               </p>
             </div>
           ))}
+        </section>
+
+        <section
+          style={{
+            marginTop: "100px",
+            textAlign: "center",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "42px",
+              marginBottom: "40px",
+            }}
+          >
+            لماذا نمّى AI؟
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fit,minmax(220px,1fr))",
+              gap: "20px",
+            }}
+          >
+            <div
+              style={{
+                background: "#111827",
+                padding: "24px",
+                borderRadius: "18px",
+              }}
+            >
+              <h3>⚡ سرعة فائقة</h3>
+              <p>أنجز المحتوى خلال ثوانٍ.</p>
+            </div>
+
+            <div
+              style={{
+                background: "#111827",
+                padding: "24px",
+                borderRadius: "18px",
+              }}
+            >
+              <h3>🎯 نتائج دقيقة</h3>
+              <p>محتوى احترافي جاهز للاستخدام.</p>
+            </div>
+
+            <div
+              style={{
+                background: "#111827",
+                padding: "24px",
+                borderRadius: "18px",
+              }}
+            >
+              <h3>🌍 عربي بالكامل</h3>
+              <p>مصمم خصيصًا للمستخدم العربي.</p>
+            </div>
+
+            <div
+              style={{
+                background: "#111827",
+                padding: "24px",
+                borderRadius: "18px",
+              }}
+            >
+              <h3>🔒 موثوق وآمن</h3>
+              <p>واجهة مستقرة وسهلة الاستخدام.</p>
+            </div>
+          </div>
         </section>
 
         <section
@@ -118,7 +186,7 @@ export default function HomePage() {
           }}
         >
           <h2 style={{ fontSize: "42px" }}>
-            لماذا نمّى AI؟
+            أرقام تتحدث عن نفسها
           </h2>
 
           <div
@@ -167,8 +235,7 @@ export default function HomePage() {
               marginTop: "15px",
             }}
           >
-            منصة عربية تساعدك على صناعة محتوى أفضل
-            وتنمية أعمالك باستخدام الذكاء الاصطناعي.
+            منصة عربية تساعدك على صناعة محتوى أفضل وتنمية أعمالك باستخدام الذكاء الاصطناعي.
           </p>
         </section>
       </main>
