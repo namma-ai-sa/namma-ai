@@ -3,29 +3,41 @@ import { NextResponse } from "next/server";
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
-    const topic = searchParams.get("topic") || "موضوع عام";
+
+    const topic =
+      searchParams.get("topic") || "موضوع عام";
 
     const prompt = `
-أنت خبير SEO محترف.
+أنت خبير SEO محترف ضمن منصة نمّى AI.
+
+مهم جداً:
+
+- أجب باللغة العربية فقط.
+- لا تخترع أرقاماً أو بيانات أو إحصائيات غير مؤكدة.
+- إذا لم تتوفر معلومات مؤكدة فاذكر ذلك بوضوح.
+- ركز على الدقة قبل الإبداع.
+- استخدم أفضل ممارسات SEO الحديثة.
+- اجعل النتيجة منظمة وسهلة التطبيق.
 
 أنشئ خطة SEO احترافية حول:
 
 ${topic}
 
-يجب أن تتضمن الإجابة:
+يجب أن تتضمن:
 
 1. عنوان SEO
 2. Meta Description
 3. الكلمات المفتاحية الرئيسية
 4. الكلمات المفتاحية الثانوية
 5. الكلمات طويلة الذيل
-6. اقتراح عناوين للمقال
-7. بنية H1 و H2 و H3
-8. فرص تحسين الظهور في محركات البحث
-9. اقتراح روابط داخلية
-10. اقتراح CTA مناسب
+6. عناوين مقترحة للمحتوى
+7. هيكل H1 و H2 و H3
+8. فرص تحسين الظهور
+9. أفكار للروابط الداخلية
+10. CTA مناسب
+11. أخطاء SEO يجب تجنبها
 
-اكتب النتيجة بالعربية وبشكل منظم.
+اكتب النتيجة بشكل احترافي ومنظم.
 `;
 
     const response = await fetch(
@@ -33,20 +45,20 @@ ${topic}
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "Content-Type": "application/json"
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
-          max_tokens: 1500,
-          temperature: 0.5,
+          temperature: 0.2,
+          max_tokens: 2000,
           messages: [
             {
               role: "user",
-              content: prompt
-            }
-          ]
-        })
+              content: prompt,
+            },
+          ],
+        }),
       }
     );
 
@@ -63,11 +75,15 @@ ${topic}
       .replace(/#/g, "")
       .trim();
 
-    return NextResponse.json({ result }, { status: 200 });
-
+    return NextResponse.json(
+      { result },
+      { status: 200 }
+    );
   } catch (error) {
     return NextResponse.json(
-      { result: error.message },
+      {
+        result: error.message,
+      },
       { status: 500 }
     );
   }
