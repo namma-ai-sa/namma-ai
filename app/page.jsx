@@ -5,9 +5,9 @@ export default function HomePage() {
   const tools = [
     "📝 كتابة المقالات",
     "📈 تحسين SEO",
-    "📱 محتوى السوشال",
     "🎥 صناعة الفيديو",
-    "🎨 الصور الإبداعية",
+    "📱 محتوى السوشال",
+    "🎨 الهوية البصرية",
     "💡 توليد الأفكار",
   ];
 
@@ -15,13 +15,7 @@ export default function HomePage() {
     <>
       <Navbar />
 
-      <main
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "40px 20px",
-        }}
-      >
+      <main className="container">
         <section
           style={{
             textAlign: "center",
@@ -30,12 +24,9 @@ export default function HomePage() {
         >
           <div
             style={{
-              display: "inline-block",
-              background: "#1e293b",
-              padding: "10px 18px",
-              borderRadius: "999px",
               color: "#60a5fa",
-              marginBottom: "25px",
+              marginBottom: "20px",
+              fontSize: "18px",
             }}
           >
             🚀 NAMMA AI
@@ -43,9 +34,9 @@ export default function HomePage() {
 
           <h1
             style={{
-              fontSize: "64px",
+              fontSize: "60px",
               lineHeight: "1.2",
-              marginBottom: "24px",
+              marginBottom: "20px",
             }}
           >
             منصة الذكاء الاصطناعي
@@ -55,14 +46,14 @@ export default function HomePage() {
 
           <p
             style={{
-              maxWidth: "800px",
+              maxWidth: "700px",
               margin: "0 auto",
-              fontSize: "22px",
               color: "#cbd5e1",
+              fontSize: "20px",
             }}
           >
-            أنشئ المقالات، وطور السوشال ميديا، وحلل المنافسين،
-            وحسّن ظهورك في محركات البحث من منصة واحدة.
+            أنشئ المقالات والأفكار وخطط المحتوى وتحسين SEO والسوشال
+            ميديا من مكان واحد.
           </p>
 
           <div
@@ -79,9 +70,9 @@ export default function HomePage() {
                 style={{
                   background: "#2563eb",
                   color: "#fff",
+                  padding: "14px 26px",
                   border: "none",
-                  padding: "15px 30px",
-                  borderRadius: "12px",
+                  borderRadius: "10px",
                   cursor: "pointer",
                 }}
               >
@@ -94,13 +85,13 @@ export default function HomePage() {
                 style={{
                   background: "#1f2937",
                   color: "#fff",
+                  padding: "14px 26px",
                   border: "none",
-                  padding: "15px 30px",
-                  borderRadius: "12px",
+                  borderRadius: "10px",
                   cursor: "pointer",
                 }}
               >
-                استعرض المشاريع
+                المشاريع
               </button>
             </Link>
           </div>
@@ -111,7 +102,6 @@ export default function HomePage() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
             gap: "20px",
-            marginTop: "50px",
           }}
         >
           {tools.map((tool) => (
@@ -119,18 +109,14 @@ export default function HomePage() {
               key={tool}
               style={{
                 background: "#111827",
-                borderRadius: "16px",
                 padding: "24px",
+                borderRadius: "16px",
               }}
             >
               <h3>{tool}</h3>
 
-              <p
-                style={{
-                  color: "#94a3b8",
-                }}
-              >
-                أداة ذكية تساعدك على إنجاز أعمالك بسرعة وكفاءة.
+              <p style={{ color: "#94a3b8" }}>
+                أداة ذكية تساعدك في إنشاء نتائج احترافية بسرعة.
               </p>
             </div>
           ))}
@@ -140,13 +126,10 @@ export default function HomePage() {
           style={{
             textAlign: "center",
             marginTop: "90px",
+            paddingBottom: "80px",
           }}
         >
-          <h2
-            style={{
-              fontSize: "42px",
-            }}
-          >
+          <h2 style={{ fontSize: "40px" }}>
             لماذا NAMMA AI؟
           </h2>
 
@@ -156,7 +139,7 @@ export default function HomePage() {
               justifyContent: "center",
               gap: "40px",
               flexWrap: "wrap",
-              marginTop: "40px",
+              marginTop: "30px",
             }}
           >
             <div>
@@ -174,42 +157,6 @@ export default function HomePage() {
               <p>جاهزة للاستخدام</p>
             </div>
           </div>
-        </section>
-
-        <section
-          style={{
-            textAlign: "center",
-            marginTop: "100px",
-            padding: "60px 20px",
-            background: "#111827",
-            borderRadius: "20px",
-          }}
-        >
-          <h2>جاهز للانطلاق؟</h2>
-
-          <p
-            style={{
-              color: "#cbd5e1",
-            }}
-          >
-            ابدأ رحلتك مع NAMMA AI اليوم واستخدم جميع الأدوات من مكان واحد.
-          </p>
-
-          /tools
-            <button
-              style={{
-                background: "#2563eb",
-                color: "#fff",
-                border: "none",
-                padding: "15px 30px",
-                borderRadius: "12px",
-                cursor: "pointer",
-                marginTop: "20px",
-              }}
-            >
-              ابدأ مجاناً
-            </button>
-          </Link>
         </section>
       </main>
     </>
