@@ -2,16 +2,47 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="w-full py-4 px-6 bg-[#0b0b12] border-b border-gray-800 flex justify-between items-center">
-      <Link href="/" className="text-xl font-semibold">
-        AI Marketing Suite
+    <nav
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "20px 40px",
+        borderBottom: "1px solid rgba(255,255,255,0.1)",
+        background: "#0b0f19",
+        position: "sticky",
+        top: 0,
+      }}
+    >
+      /
+        🚀 NAMMA AI
       </Link>
 
-      <div className="flex gap-6 text-gray-300">
-        <Link href="/tools">الأدوات</Link>
-        <Link href="/pricing">الأسعار</Link>
-        <Link href="/about">عن المنصة</Link>
-        <Link href="/contact">تواصل معنا</Link>
+      <div
+        style={{
+          display: "flex",
+          gap: "25px",
+        }}
+      >
+        /tools
+          الأدوات
+        </Link>
+
+        /projects
+          المشاريع
+        </Link>
+
+        /pricing
+          الأسعار
+        </Link>
+
+        /about
+          عن المنصة
+        </Link>
+
+        /contact
+          تواصل معنا
+        </Link>
       </div>
     </nav>
   );
