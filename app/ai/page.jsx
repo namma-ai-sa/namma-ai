@@ -1,3 +1,5 @@
+import Chat from "./chat";
+
 export default async function AIPage(props) {
   const searchParams = await props.searchParams;
 
@@ -56,11 +58,7 @@ export default async function AIPage(props) {
         >
           <strong>👤 أنت</strong>
 
-          <p
-            style={{
-              marginTop: "10px",
-            }}
-          >
+          <p style={{ marginTop: "10px" }}>
             {question}
           </p>
         </div>
@@ -76,14 +74,12 @@ export default async function AIPage(props) {
         >
           <strong>🤖 نمّى AI</strong>
 
-          <p
-            style={{
-              marginTop: "10px",
-            }}
-          >
+          <p style={{ marginTop: "10px" }}>
             {result}
           </p>
         </div>
+
+        <Chat />
       </div>
     </main>
   );
