@@ -1,6 +1,13 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
+  const router = useRouter();
+  const [prompt, setPrompt] = useState("");
+
   const tools = [
     "📝 كتابة المقالات",
     "📈 تحسين SEO",
@@ -9,6 +16,14 @@ export default function HomePage() {
     "🎨 الهوية البصرية",
     "💡 توليد الأفكار",
   ];
+
+  const handleSubmit = () => {
+    if (!prompt.trim()) return;
+
+    router.push(
+      `/ai?q=${encodeURIComponent(prompt)}`
+    );
+  };
 
   return (
     <>
@@ -83,6 +98,15 @@ export default function HomePage() {
             >
               <input
                 type="text"
+                value={prompt}
+                onChange={(e) =>
+                  setPrompt(e.target.value)
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSubmit();
+                  }
+                }}
                 placeholder="اكتب طلبك هنا..."
                 style={{
                   flex: 1,
@@ -95,6 +119,7 @@ export default function HomePage() {
               />
 
               <span
+                onClick={handleSubmit}
                 style={{
                   fontSize: "24px",
                   cursor: "pointer",
@@ -115,228 +140,46 @@ export default function HomePage() {
               }}
             >
               <button
-                style={{
-                  background: "#111827",
-                  border: "1px solid rgba(255,255,255,.1)",
-                  color: "white",
-                  padding: "10px 16px",
-                  borderRadius: "999px",
-                  cursor: "pointer",
-                }}
+                onClick={() =>
+                  setPrompt("اكتب مقالاً احترافياً")
+                }
               >
                 💡 كتابة مقال
               </button>
 
               <button
-                style={{
-                  background: "#111827",
-                  border: "1px solid rgba(255,255,255,.1)",
-                  color: "white",
-                  padding: "10px 16px",
-                  borderRadius: "999px",
-                  cursor: "pointer",
-                }}
+                onClick={() =>
+                  setPrompt("أنشئ خطة SEO كاملة")
+                }
               >
                 📈 تحليل SEO
               </button>
 
               <button
-                style={{
-                  background: "#111827",
-                  border: "1px solid rgba(255,255,255,.1)",
-                  color: "white",
-                  padding: "10px 16px",
-                  borderRadius: "999px",
-                  cursor: "pointer",
-                }}
+                onClick={() =>
+                  setPrompt("اكتب سيناريو فيديو")
+                }
               >
                 🎥 سيناريو فيديو
               </button>
 
               <button
-                style={{
-                  background: "#111827",
-                  border: "1px solid rgba(255,255,255,.1)",
-                  color: "white",
-                  padding: "10px 16px",
-                  borderRadius: "999px",
-                  cursor: "pointer",
-                }}
+                onClick={() =>
+                  setPrompt("أنشئ منشورات سوشال ميديا")
+                }
               >
                 📱 منشورات سوشال
               </button>
 
               <button
-                style={{
-                  background: "#111827",
-                  border: "1px solid rgba(255,255,255,.1)",
-                  color: "white",
-                  padding: "10px 16px",
-                  borderRadius: "999px",
-                  cursor: "pointer",
-                }}
+                onClick={() =>
+                  setPrompt("أنشئ هوية بصرية")
+                }
               >
                 🎨 هوية بصرية
               </button>
             </div>
           </div>
-        </section>
-
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(250px,1fr))",
-            gap: "20px",
-            marginTop: "60px",
-          }}
-        >
-          {tools.map((tool) => (
-            <div
-              key={tool}
-              style={{
-                background: "#111827",
-                borderRadius: "18px",
-                padding: "24px",
-                textAlign: "center",
-              }}
-            >
-              <h3>{tool}</h3>
-
-              <p style={{ color: "#94a3b8" }}>
-                أداة احترافية تساعدك على إنجاز مهامك بسرعة وكفاءة.
-              </p>
-            </div>
-          ))}
-        </section>
-
-        <section
-          style={{
-            marginTop: "100px",
-            textAlign: "center",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "42px",
-              marginBottom: "40px",
-            }}
-          >
-            لماذا نمّى AI؟
-          </h2>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(220px,1fr))",
-              gap: "20px",
-            }}
-          >
-            <div
-              style={{
-                background: "#111827",
-                padding: "24px",
-                borderRadius: "18px",
-              }}
-            >
-              <h3>⚡ سرعة فائقة</h3>
-              <p>أنجز المحتوى خلال ثوانٍ.</p>
-            </div>
-
-            <div
-              style={{
-                background: "#111827",
-                padding: "24px",
-                borderRadius: "18px",
-              }}
-            >
-              <h3>🎯 نتائج دقيقة</h3>
-              <p>محتوى احترافي جاهز للاستخدام.</p>
-            </div>
-
-            <div
-              style={{
-                background: "#111827",
-                padding: "24px",
-                borderRadius: "18px",
-              }}
-            >
-              <h3>🌍 عربي بالكامل</h3>
-              <p>مصمم خصيصًا للمستخدم العربي.</p>
-            </div>
-
-            <div
-              style={{
-                background: "#111827",
-                padding: "24px",
-                borderRadius: "18px",
-              }}
-            >
-              <h3>🔒 موثوق وآمن</h3>
-              <p>واجهة مستقرة وسهلة الاستخدام.</p>
-            </div>
-          </div>
-        </section>
-
-        <section
-          style={{
-            textAlign: "center",
-            marginTop: "100px",
-          }}
-        >
-          <h2 style={{ fontSize: "42px" }}>
-            أرقام تتحدث عن نفسها
-          </h2>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "60px",
-              flexWrap: "wrap",
-              marginTop: "40px",
-            }}
-          >
-            <div>
-              <h1>15+</h1>
-              <p>أداة ذكية</p>
-            </div>
-
-            <div>
-              <h1>100%</h1>
-              <p>واجهة عربية</p>
-            </div>
-
-            <div>
-              <h1>24/7</h1>
-              <p>جاهزة للعمل</p>
-            </div>
-
-            <div>
-              <h1>5000+</h1>
-              <p>عملية إنشاء محتوى</p>
-            </div>
-          </div>
-        </section>
-
-        <section
-          style={{
-            textAlign: "center",
-            marginTop: "120px",
-            paddingBottom: "80px",
-          }}
-        >
-          <h2>🌱 ابدأ رحلتك مع نمّى AI</h2>
-
-          <p
-            style={{
-              color: "#94a3b8",
-              marginTop: "15px",
-            }}
-          >
-            منصة عربية تساعدك على صناعة محتوى أفضل وتنمية أعمالك باستخدام الذكاء الاصطناعي.
-          </p>
         </section>
       </main>
     </>
