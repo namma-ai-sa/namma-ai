@@ -1,5 +1,8 @@
-export default async function AIPage({ searchParams }) {
-  const question = searchParams?.q || "";
+export default async function AIPage(props) {
+  const searchParams = await props.searchParams;
+
+  const question =
+    searchParams?.q || "لم يتم إدخال طلب بعد";
 
   return (
     <main
@@ -10,13 +13,7 @@ export default async function AIPage({ searchParams }) {
         color: "white",
       }}
     >
-      <h1
-        style={{
-          marginBottom: "20px",
-        }}
-      >
-        🌱 نمّى AI
-      </h1>
+      <h1>🌱 نمّى AI</h1>
 
       <div
         style={{
@@ -24,29 +21,22 @@ export default async function AIPage({ searchParams }) {
           borderRadius: "20px",
           padding: "30px",
           minHeight: "300px",
+          marginTop: "20px",
         }}
       >
         <h2>نتيجة الطلب</h2>
 
         <div
           style={{
-            marginTop: "20px",
+            background: "#1f2937",
             padding: "15px",
             borderRadius: "12px",
-            background: "#1f2937",
+            marginTop: "20px",
           }}
         >
           <strong>سؤال المستخدم:</strong>
-          <p>{question || "لم يتم إدخال طلب بعد"}</p>
-        </div>
 
-        <div
-          style={{
-            marginTop: "20px",
-            color: "#94a3b8",
-          }}
-        >
-          سيتم ربط الذكاء الاصطناعي هنا في الخطوة التالية.
+          <p>{question}</p>
         </div>
       </div>
     </main>
