@@ -1,14 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Chat() {
+  const router = useRouter();
+
   const [message, setMessage] = useState("");
 
   const handleSend = () => {
     if (!message.trim()) return;
 
-    alert(`سيتم إرسال: ${message}`);
+    router.push(
+      `/ai?q=${encodeURIComponent(message)}`
+    );
   };
 
   return (
@@ -36,6 +41,11 @@ export default function Chat() {
           onChange={(e) =>
             setMessage(e.target.value)
           }
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSend();
+            }
+          }}
           placeholder="اكتب رسالتك..."
           style={{
             flex: 1,
