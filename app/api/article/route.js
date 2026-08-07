@@ -42,13 +42,18 @@ ${question}
 
     const data = await response.json();
 
-    let result =
+    const result =
       data?.choices?.[0]?.message?.content ||
       "تعذر إنشاء الرد";
 
     return NextResponse.json(
-      { result },
-      { status: 200 }
+      {
+        result,
+        debug: data,
+      },
+      {
+        status: 200,
+      }
     );
   } catch (error) {
     return NextResponse.json(
