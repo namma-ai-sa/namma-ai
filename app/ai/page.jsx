@@ -1,3 +1,4 @@
+import Messages from "./messages";
 import Chat from "./chat";
 
 export default async function AIPage(props) {
