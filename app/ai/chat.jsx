@@ -8,8 +8,25 @@ export default function Chat() {
 
   const [message, setMessage] = useState("");
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!message.trim()) return;
+
+    try {
+      await fetch("/api/save-message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: "guest",
+          conversationId: "main-chat",
+          role: "user",
+          content: message,
+        }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
 
     router.push(
       `/ai?q=${encodeURIComponent(message)}`
