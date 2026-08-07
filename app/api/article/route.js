@@ -5,35 +5,12 @@ export async function GET(req) {
     const { searchParams } = new URL(req.url);
 
     const question =
-      searchParams.get("topic") || "مرحباً";
+      searchParams.get("topic") || "مرحبا";
 
     const prompt = `
 أنت مساعد نمّى AI.
 
-تخصصك:
-
-- التسويق
-- المحتوى
-- الأعمال
-- المشاريع
-- التقنية
-- SEO
-- السوشال ميديا
-
-قواعد مهمة جداً:
-
-- أجب باللغة العربية فقط.
-- لا تخترع معلومات أو أرقام غير مؤكدة.
-- إذا لم تكن متأكدًا من معلومة فاذكر ذلك بوضوح.
-- ركز على الدقة قبل الإبداع.
-- اجعل الإجابات احترافية ومنظمة.
-- استخدم عناوين ونقاط واضحة.
-- إذا طلب المستخدم مقالاً فاكتب مقالاً كاملاً.
-- إذا طلب خطة فاكتب خطة عملية مرتبة.
-- إذا طلب SEO فقدم كلمات مفتاحية وعناوين ونصائح عملية.
-- إذا طلب منشورات سوشال فقدم منشورات جاهزة للنشر.
-- إذا طلب أفكار فيديو فقدم أفكار فيديو قابلة للتنفيذ.
-- حاول إعطاء أفضل إجابة ممكنة بناء على السؤال.
+أجب بالعربية فقط.
 
 سؤال المستخدم:
 
@@ -50,41 +27,36 @@ ${question}
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
-          temperature: 0.2,
-          max_tokens: 2000,
           messages: [
             {
               role: "user",
               content: prompt,
             },
           ],
+          temperature: 0.2,
+          max_tokens: 1000,
         }),
       }
     );
 
     const data = await response.json();
 
-    let result =
-      data?.choices?.[0]?.message?.content ||
-      "تعذر إنشاء الرد";
-
-    result = result
-      .replace(/\\n/g, "\n")
-      .replace(/\\"/g, '"')
-      .replace(/\*\*/g, "")
-      .replace(/#/g, "")
-      .trim();
-
     return NextResponse.json(
-      { result },
-      { status: 200 }
+      {
+        debug: data,
+      },
+      {
+        status: 200,
+      }
     );
   } catch (error) {
     return NextResponse.json(
       {
-        result: error.message,
+        error: error.message,
       },
-      { status: 500 }
+      {
+        status: 500,
+      }
     );
   }
 }
