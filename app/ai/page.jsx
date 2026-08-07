@@ -1,4 +1,6 @@
-export default function AIPage() {
+export default async function AIPage({ searchParams }) {
+  const question = searchParams?.q || "";
+
   return (
     <main
       style={{
@@ -26,13 +28,26 @@ export default function AIPage() {
       >
         <h2>نتيجة الطلب</h2>
 
-        <p
+        <div
           style={{
+            marginTop: "20px",
+            padding: "15px",
+            borderRadius: "12px",
+            background: "#1f2937",
+          }}
+        >
+          <strong>سؤال المستخدم:</strong>
+          <p>{question || "لم يتم إدخال طلب بعد"}</p>
+        </div>
+
+        <div
+          style={{
+            marginTop: "20px",
             color: "#94a3b8",
           }}
         >
-          سيتم عرض نتائج الذكاء الاصطناعي هنا قريباً.
-        </p>
+          سيتم ربط الذكاء الاصطناعي هنا في الخطوة التالية.
+        </div>
       </div>
     </main>
   );
