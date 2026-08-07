@@ -26,6 +26,13 @@ export default function Messages() {
     }
 
     loadMessages();
+
+    const interval = setInterval(
+      loadMessages,
+      1000
+    );
+
+    return () => clearInterval(interval);
   }, []);
 
   if (loading) {
@@ -45,7 +52,7 @@ export default function Messages() {
         marginBottom: "20px",
       }}
     >
-      {messages.slice(-10).map((message) => (
+      {messages.slice(-20).map((message) => (
         <div
           key={message.id}
           style={{
