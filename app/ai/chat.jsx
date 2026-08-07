@@ -1,0 +1,76 @@
+"use client";
+
+import { useState } from "react";
+
+export default function Chat() {
+  const [message, setMessage] = useState("");
+
+  const handleSend = () => {
+    if (!message.trim()) return;
+
+    alert(`سيتم إرسال: ${message}`);
+  };
+
+  return (
+    <div
+      style={{
+        marginTop: "30px",
+        position: "sticky",
+        bottom: "20px",
+      }}
+    >
+      <div
+        style={{
+          background: "#111827",
+          border: "1px solid rgba(255,255,255,.1)",
+          borderRadius: "18px",
+          padding: "15px",
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+        }}
+      >
+        <input
+          type="text"
+          value={message}
+          onChange={(e) =>
+            setMessage(e.target.value)
+          }
+          placeholder="اكتب رسالتك..."
+          style={{
+            flex: 1,
+            background: "transparent",
+            border: "none",
+            outline: "none",
+            color: "white",
+            fontSize: "16px",
+          }}
+        />
+
+        <button
+          style={{
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "22px",
+          }}
+        >
+          🎤
+        </button>
+
+        <button
+          onClick={handleSend}
+          style={{
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            color: "#60a5fa",
+            fontSize: "24px",
+          }}
+        >
+          ➜
+        </button>
+      </div>
+    </div>
+  );
+}
