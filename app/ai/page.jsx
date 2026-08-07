@@ -41,43 +41,47 @@ export default async function AIPage(props) {
 
       <div
         style={{
-          background: "#111827",
-          borderRadius: "20px",
-          padding: "30px",
-          minHeight: "300px",
-          marginTop: "20px",
+          marginTop: "30px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
         }}
       >
-        <h2>نتيجة الطلب</h2>
-
         <div
           style={{
             background: "#1f2937",
-            padding: "15px",
-            borderRadius: "12px",
-            marginTop: "20px",
+            padding: "20px",
+            borderRadius: "16px",
           }}
         >
-          <strong>سؤال المستخدم:</strong>
+          <strong>👤 أنت</strong>
 
-          <p>{question}</p>
+          <p
+            style={{
+              marginTop: "10px",
+            }}
+          >
+            {question}
+          </p>
         </div>
 
         <div
           style={{
-            background: "#0f172a",
+            background: "#111827",
             padding: "20px",
-            borderRadius: "12px",
-            marginTop: "20px",
+            borderRadius: "16px",
             whiteSpace: "pre-wrap",
             lineHeight: "1.8",
           }}
         >
-          <strong>نتيجة نمّى AI:</strong>
+          <strong>🤖 نمّى AI</strong>
 
-          <p>
-            {result ||
-              "جاري إنشاء المحتوى..."}
+          <p
+            style={{
+              marginTop: "10px",
+            }}
+          >
+            {result}
           </p>
         </div>
       </div>
