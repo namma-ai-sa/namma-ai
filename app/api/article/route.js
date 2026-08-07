@@ -10,7 +10,7 @@ export async function GET(req) {
     const prompt = `
 أنت مساعد نمّى AI.
 
-أجب باللغة العربية.
+أجب باللغة العربية فقط.
 
 سؤال المستخدم:
 
@@ -42,18 +42,18 @@ ${question}
 
     const data = await response.json();
 
+    let result =
+      data?.choices?.[0]?.message?.content ||
+      "تعذر إنشاء الرد";
+
     return NextResponse.json(
-      {
-        debug: data,
-      },
-      {
-        status: 200,
-      }
+      { result },
+      { status: 200 }
     );
   } catch (error) {
     return NextResponse.json(
       {
-        error: error.message,
+        result: error.message,
       },
       {
         status: 500,
