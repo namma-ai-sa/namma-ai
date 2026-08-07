@@ -42,6 +42,8 @@ export default async function AIPage(props) {
     >
       <h1>🌱 نمّى AI</h1>
 
+      <Messages />
+
       <div
         style={{
           marginTop: "30px",
