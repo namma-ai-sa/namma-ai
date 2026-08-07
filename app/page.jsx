@@ -1,12 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
   const router = useRouter();
+
   const [prompt, setPrompt] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreen();
+
+    window.addEventListener(
+      "resize",
+      checkScreen
+    );
+
+    return () =>
+      window.removeEventListener(
+        "resize",
+        checkScreen
+      );
+  }, []);
 
   const tools = [
     "📝 كتابة المقالات",
@@ -39,13 +60,17 @@ export default function HomePage() {
         <section
           style={{
             textAlign: "center",
-            padding: "100px 20px",
+            padding: isMobile
+              ? "40px 15px"
+              : "100px 20px",
           }}
         >
           <div
             style={{
               color: "#60a5fa",
-              fontSize: "20px",
+              fontSize: isMobile
+                ? "18px"
+                : "20px",
               fontWeight: "bold",
               marginBottom: "20px",
             }}
@@ -55,7 +80,9 @@ export default function HomePage() {
 
           <h1
             style={{
-              fontSize: "72px",
+              fontSize: isMobile
+                ? "42px"
+                : "72px",
               lineHeight: "1.2",
               marginBottom: "25px",
             }}
@@ -70,7 +97,10 @@ export default function HomePage() {
               maxWidth: "800px",
               margin: "0 auto",
               color: "#cbd5e1",
-              fontSize: "22px",
+              fontSize: isMobile
+                ? "16px"
+                : "22px",
+              lineHeight: "1.8",
             }}
           >
             منصة عربية متكاملة تجمع أدوات كتابة المحتوى وتحسين SEO
@@ -87,7 +117,8 @@ export default function HomePage() {
             <div
               style={{
                 background: "#111827",
-                border: "1px solid rgba(255,255,255,0.1)",
+                border:
+                  "1px solid rgba(255,255,255,0.1)",
                 borderRadius: "18px",
                 padding: "18px",
                 display: "flex",
@@ -114,7 +145,9 @@ export default function HomePage() {
                   border: "none",
                   outline: "none",
                   color: "white",
-                  fontSize: "18px",
+                  fontSize: isMobile
+                    ? "16px"
+                    : "18px",
                 }}
               />
 
@@ -141,7 +174,9 @@ export default function HomePage() {
             >
               <button
                 onClick={() =>
-                  setPrompt("اكتب مقالاً احترافياً")
+                  setPrompt(
+                    "اكتب مقالاً احترافياً"
+                  )
                 }
               >
                 💡 كتابة مقال
@@ -149,7 +184,9 @@ export default function HomePage() {
 
               <button
                 onClick={() =>
-                  setPrompt("أنشئ خطة SEO كاملة")
+                  setPrompt(
+                    "أنشئ خطة SEO كاملة"
+                  )
                 }
               >
                 📈 تحليل SEO
@@ -157,7 +194,9 @@ export default function HomePage() {
 
               <button
                 onClick={() =>
-                  setPrompt("اكتب سيناريو فيديو")
+                  setPrompt(
+                    "اكتب سيناريو فيديو"
+                  )
                 }
               >
                 🎥 سيناريو فيديو
@@ -165,7 +204,9 @@ export default function HomePage() {
 
               <button
                 onClick={() =>
-                  setPrompt("أنشئ منشورات سوشال ميديا")
+                  setPrompt(
+                    "أنشئ منشورات سوشال ميديا"
+                  )
                 }
               >
                 📱 منشورات سوشال
