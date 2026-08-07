@@ -5,11 +5,14 @@ import { useRouter } from "next/navigation";
 
 export default function Chat() {
   const router = useRouter();
-
   const [message, setMessage] = useState("");
 
   const handleSend = async () => {
     if (!message.trim()) return;
+
+    const currentMessage = message;
+
+    setMessage("");
 
     try {
       await fetch("/api/save-message", {
@@ -21,7 +24,7 @@ export default function Chat() {
           username: "guest",
           conversationId: "main-chat",
           role: "user",
-          content: message,
+          content: currentMessage,
         }),
       });
     } catch (error) {
@@ -29,7 +32,7 @@ export default function Chat() {
     }
 
     router.push(
-      `/ai?q=${encodeURIComponent(message)}`
+      `/ai?q=${encodeURIComponent(currentMessage)}`
     );
   };
 
@@ -55,9 +58,7 @@ export default function Chat() {
         <input
           type="text"
           value={message}
-          onChange={(e) =>
-            setMessage(e.target.value)
-          }
+          onChange={(e) => setMessage(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSend();
