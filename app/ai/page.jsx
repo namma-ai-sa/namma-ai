@@ -1,5 +1,4 @@
 import Chat from "./chat";
-import Messages from "./messages";
 
 export default async function AIPage(props) {
   const searchParams = await props.searchParams;
@@ -42,11 +41,9 @@ export default async function AIPage(props) {
     >
       <h1>🌱 نمّى AI</h1>
 
-      <Messages />
-
       <div
         style={{
-          marginTop: "20px",
+          marginTop: "30px",
           display: "flex",
           flexDirection: "column",
           gap: "20px",
