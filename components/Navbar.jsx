@@ -3,9 +3,11 @@ export default function Navbar() {
     <nav
       style={{
         display: "flex",
+        flexWrap: "wrap",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "20px 40px",
+        gap: "15px",
+        padding: "20px",
         background: "#0b1220",
         borderBottom: "1px solid rgba(255,255,255,0.1)",
       }}
@@ -23,8 +25,11 @@ export default function Navbar() {
       <div
         style={{
           display: "flex",
-          gap: "24px",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "16px",
           color: "#cbd5e1",
+          fontSize: "15px",
         }}
       >
         <span>الأدوات</span>
