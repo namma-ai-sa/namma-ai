@@ -10,7 +10,7 @@ export async function GET(req) {
     const prompt = `
 أنت مساعد نمّى AI.
 
-أجب بالعربية فقط.
+أجب باللغة العربية.
 
 سؤال المستخدم:
 
@@ -26,7 +26,8 @@ ${question}
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "deepseek/deepseek-chat",
+          model:
+            "nvidia/nemotron-3-ultra-550b-a55b:free",
           messages: [
             {
               role: "user",
