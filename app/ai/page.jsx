@@ -1,5 +1,6 @@
 import Messages from "./messages";
 import Chat from "./chat";
+import Conversations from "./conversations";
 
 export default function AIPage() {
   return (
@@ -22,6 +23,8 @@ export default function AIPage() {
       >
         🟢 جاهز للمساعدة
       </p>
+
+      <Conversations />
 
       <Messages />
 
