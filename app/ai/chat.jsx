@@ -1,14 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useConversation } from "./context/ConversationContext";
 
 export default function Chat() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
 
   const { activeConversationId } =
     useConversation();
+
+  useEffect(() => {
+    async function loadUser() {
+      const response = await fetch(
+        "/api/session"
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        setUsername(
+          data.user.username
+        );
+      }
+    }
+
+    loadUser();
+  }, []);
 
   const handleSend = async () => {
     if (
@@ -25,18 +44,37 @@ export default function Chat() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/chat", {
+      await fetch(
+        "/api/update-conversation-title",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            conversationId:
+              activeConversationId,
+            title: currentMessage.slice(
+              0,
+              40
+            ),
+          }),
+        }
+      );
+
+      await fetch("/api/chat", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type":
+            "application/json",
         },
         body: JSON.stringify({
+          username,
           message: currentMessage,
-          conversationId: activeConversationId,
+          conversationId:
+            activeConversationId,
         }),
       });
-
-      await response.json();
     } catch (error) {
       console.error(error);
     }
@@ -55,18 +93,20 @@ export default function Chat() {
       <div
         style={{
           background: "#111827",
-          border: "1px solid rgba(255,255,255,.1)",
+          border:
+            "1px solid rgba(255,255,255,.1)",
           borderRadius: "18px",
           padding: "15px",
           display: "flex",
-          alignItems: "center",
           gap: "12px",
         }}
       >
         <input
           type="text"
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) =>
+            setMessage(e.target.value)
+          }
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleSend();
@@ -79,7 +119,6 @@ export default function Chat() {
             border: "none",
             outline: "none",
             color: "white",
-            fontSize: "16px",
           }}
         />
 

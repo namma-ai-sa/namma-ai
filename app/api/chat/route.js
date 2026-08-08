@@ -8,12 +8,15 @@ const supabase = createClient(
 
 export async function POST(req) {
   try {
-    const { message, conversationId } =
-      await req.json();
+    const {
+      username,
+      message,
+      conversationId,
+    } = await req.json();
 
     await supabase.from("chat_messages").insert([
       {
-        username: "abdulrahman",
+        username,
         conversation_id: conversationId,
         role: "user",
         content: message,
@@ -40,7 +43,7 @@ ${message}
       {
         method: "POST",
         headers: {
-          Authorization: \`Bearer \${process.env.OPENROUTER_API_KEY}\`,
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -65,7 +68,7 @@ ${message}
 
     await supabase.from("chat_messages").insert([
       {
-        username: "abdulrahman",
+        username,
         conversation_id: conversationId,
         role: "assistant",
         content: aiMessage,
