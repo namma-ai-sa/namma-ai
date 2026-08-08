@@ -10,14 +10,16 @@ export async function POST(req) {
   try {
     const { message } = await req.json();
 
-    await supabase.from("chat_messages").insert([
-      {
-        username: "guest",
-        conversation_id: "main-chat",
-        role: "user",
-        content: message,
-      },
-    ]);
+    await supabase
+      .from("chat_messages")
+      .insert([
+        {
+          username: "guest",
+          conversation_id: "main-chat",
+          role: "user",
+          content: message,
+        },
+      ]);
 
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
@@ -36,36 +38,33 @@ export async function POST(req) {
             },
           ],
           temperature: 0.7,
-          max_tokens: 100,
+          max_tokens: 1000,
         }),
       }
     );
 
     const data = await response.json();
 
-    console.log("OPENROUTER RESPONSE:");
-    console.log(JSON.stringify(data, null, 2));
-
     const aiMessage =
       data?.choices?.[0]?.message?.content ||
       "عذراً، تعذر إنشاء الرد حالياً.";
 
-    await supabase.from("chat_messages").insert([
-      {
-        username: "guest",
-        conversation_id: "main-chat",
-        role: "assistant",
-        content: aiMessage,
-      },
-    ]);
+    await supabase
+      .from("chat_messages")
+      .insert([
+        {
+          username: "guest",
+          conversation_id: "main-chat",
+          role: "assistant",
+          content: aiMessage,
+        },
+      ]);
 
     return NextResponse.json({
       success: true,
       message: aiMessage,
     });
   } catch (error) {
-    console.error("CHAT API ERROR:", error);
-
     return NextResponse.json(
       {
         success: false,
