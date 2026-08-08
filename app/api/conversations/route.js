@@ -10,13 +10,13 @@ export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
 
-    const username =
-      searchParams.get("username");
+    const userId =
+      searchParams.get("userId");
 
     const { data, error } = await supabase
       .from("conversations")
       .select("*")
-      .eq("username", username)
+      .eq("user_id", userId)
       .order("created_at", {
         ascending: false
       });

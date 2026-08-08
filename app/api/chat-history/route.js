@@ -13,6 +13,9 @@ export async function GET(req) {
     const conversationId =
       searchParams.get("conversationId");
 
+    const userId =
+      searchParams.get("userId");
+
     if (!conversationId) {
       return NextResponse.json(
         {
@@ -27,6 +30,7 @@ export async function GET(req) {
       .from("chat_messages")
       .select("*")
       .eq("conversation_id", conversationId)
+      .eq("user_id", userId)
       .order("created_at", {
         ascending: true
       });

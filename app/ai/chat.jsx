@@ -6,34 +6,27 @@ import { useConversation } from "./context/ConversationContext";
 export default function Chat() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [username, setUsername] = useState("");
+  const [userId, setUserId] = useState(null);
 
   const { activeConversationId } =
     useConversation();
 
   useEffect(() => {
-    async function loadUser() {
-      const response = await fetch(
-        "/api/session"
-      );
+    const user = JSON.parse(
+      localStorage.getItem("user") || "{}"
+    );
 
-      const data = await response.json();
-
-      if (data.success) {
-        setUsername(
-          data.user.username
-        );
-      }
+    if (user.id) {
+      setUserId(user.id);
     }
-
-    loadUser();
   }, []);
 
   const handleSend = async () => {
     if (
       !message.trim() ||
       loading ||
-      !activeConversationId
+      !activeConversationId ||
+      !userId
     ) {
       return;
     }
@@ -69,7 +62,7 @@ export default function Chat() {
             "application/json",
         },
         body: JSON.stringify({
-          username,
+          userId,
           message: currentMessage,
           conversationId:
             activeConversationId,

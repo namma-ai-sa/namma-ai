@@ -11,7 +11,7 @@ export async function POST(req) {
     const body = await req.json();
 
     const {
-      username,
+      userId,
       conversationId,
       role,
       content
@@ -21,7 +21,7 @@ export async function POST(req) {
       .from("chat_messages")
       .insert([
         {
-          username,
+          userId,
           conversation_id: conversationId,
           role,
           content

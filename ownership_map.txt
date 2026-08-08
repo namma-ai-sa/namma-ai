@@ -1,0 +1,23 @@
+app/api/save-message/route.js:      conversationId,
+app/api/save-message/route.js:          conversation_id: conversationId,
+app/api/update-conversation-title/route.js:    const { conversationId, title } =
+app/api/update-conversation-title/route.js:      .eq("id", conversationId);
+app/api/login/route.js:          id: user.id,
+app/api/login/route.js:          username: user.username,
+app/api/chat-history/route.js:    const conversationId =
+app/api/chat-history/route.js:      searchParams.get("conversationId");
+app/api/chat-history/route.js:    if (!conversationId) {
+app/api/chat-history/route.js:          message: "يرجى إدخال conversationId"
+app/api/chat-history/route.js:      .eq("conversation_id", conversationId)
+app/api/chat/route.js:      conversationId,
+app/api/chat/route.js:        conversation_id: conversationId,
+app/api/chat/route.js:        conversation_id: conversationId,
+app/ai/chat.jsx:    if (user.username) {
+app/ai/chat.jsx:      setUsername(user.username);
+app/ai/chat.jsx:            conversationId:
+app/ai/chat.jsx:      await fetch("/api/chat", {
+app/ai/chat.jsx:          conversationId:
+app/ai/conversations.jsx:    if (user.username) {
+app/ai/conversations.jsx:      setUsername(user.username);
+app/ai/messages.jsx:          `/api/chat-history?conversationId=${activeConversationId}`
+app/components/UserInfo.jsx:      👤 {user.name || user.username}

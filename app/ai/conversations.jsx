@@ -5,7 +5,7 @@ import { useConversation } from "./context/ConversationContext";
 
 export default function Conversations() {
   const [items, setItems] = useState([]);
-  const [username, setUsername] = useState("");
+  const [userId, setUserId] = useState(null);
 
   const {
     activeConversationId,
@@ -17,20 +17,20 @@ export default function Conversations() {
       localStorage.getItem("user") || "{}"
     );
 
-    if (user.username) {
-      setUsername(user.username);
+    if (user.id) {
+      setUserId(user.id);
     }
   }, []);
 
   useEffect(() => {
-    if (username) {
+    if (userId) {
       loadConversations();
     }
-  }, [username]);
+  }, [userId]);
 
   async function loadConversations() {
     const response = await fetch(
-      `/api/conversations?username=${username}`
+      `/api/conversations?userId=${userId}`
     );
 
     const data = await response.json();
@@ -59,7 +59,7 @@ export default function Conversations() {
             "application/json",
         },
         body: JSON.stringify({
-          username,
+          userId,
           title: "محادثة جديدة",
         }),
       }

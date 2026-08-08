@@ -9,14 +9,14 @@ const supabase = createClient(
 export async function POST(req) {
   try {
     const {
-      username,
+      userId,
       message,
       conversationId,
     } = await req.json();
 
     await supabase.from("chat_messages").insert([
       {
-        username,
+        user_id: userId,
         conversation_id: conversationId,
         role: "user",
         content: message,
@@ -68,7 +68,7 @@ ${message}
 
     await supabase.from("chat_messages").insert([
       {
-        username,
+        user_id: userId,
         conversation_id: conversationId,
         role: "assistant",
         content: aiMessage,
