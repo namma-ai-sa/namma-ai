@@ -1,36 +1,39 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Chat() {
+  const router = useRouter();
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleSend = async () => {
-    if (!message.trim() || loading) return;
+    if (!message.trim()) return;
 
     const currentMessage = message;
 
     setMessage("");
-    setLoading(true);
 
     try {
-      const response = await fetch("/api/chat", {
+      await fetch("/api/save-message", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: currentMessage,
+          username: "guest",
+          conversationId: "main-chat",
+          role: "user",
+          content: currentMessage,
         }),
       });
-
-      await response.json();
     } catch (error) {
       console.error(error);
     }
 
-    setLoading(false);
+    router.push(
+      `/ai?q=${encodeURIComponent(currentMessage)}`
+    );
   };
 
   return (
@@ -85,17 +88,15 @@ export default function Chat() {
 
         <button
           onClick={handleSend}
-          disabled={loading}
           style={{
             background: "transparent",
             border: "none",
             cursor: "pointer",
             color: "#60a5fa",
             fontSize: "24px",
-            opacity: loading ? 0.5 : 1,
           }}
         >
-          {loading ? "..." : "➜"}
+          ➜
         </button>
       </div>
     </div>
