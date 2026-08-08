@@ -1,16 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useConversation } from "./context/ConversationContext";
 
 export default function Messages() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const { activeConversationId } =
+    useConversation();
+
   useEffect(() => {
+    if (!activeConversationId) return;
+
     async function loadMessages() {
       try {
         const response = await fetch(
-          "/api/chat-history?conversationId=main-chat"
+          `/api/chat-history?conversationId=${activeConversationId}`
         );
 
         const data = await response.json();
@@ -33,13 +39,9 @@ export default function Messages() {
     );
 
     return () => clearInterval(interval);
-  }, []);
+  }, [activeConversationId]);
 
   if (loading) {
-    return null;
-  }
-
-  if (!messages.length) {
     return null;
   }
 
@@ -52,7 +54,7 @@ export default function Messages() {
         marginBottom: "20px",
       }}
     >
-      {messages.slice(-20).map((message) => (
+      {messages.map((message) => (
         <div
           key={message.id}
           style={{
@@ -63,7 +65,6 @@ export default function Messages() {
             padding: "16px",
             borderRadius: "16px",
             whiteSpace: "pre-wrap",
-            lineHeight: "1.8",
           }}
         >
           <strong>
@@ -72,9 +73,7 @@ export default function Messages() {
               : "🤖 نمّى AI"}
           </strong>
 
-          <p style={{ marginTop: "10px" }}>
-            {message.content}
-          </p>
+          <p>{message.content}</p>
         </div>
       ))}
     </div>

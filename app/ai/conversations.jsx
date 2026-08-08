@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useConversation } from "./context/ConversationContext";
 
 export default function Conversations() {
   const [items, setItems] = useState([]);
+  const { setActiveConversationId } =
+    useConversation();
 
   useEffect(() => {
     loadConversations();
@@ -18,6 +21,12 @@ export default function Conversations() {
 
     if (data.success) {
       setItems(data.conversations || []);
+
+      if (data.conversations?.length) {
+        setActiveConversationId(
+          data.conversations[0].id
+        );
+      }
     }
   }
 
@@ -44,7 +53,16 @@ export default function Conversations() {
 
       <div style={{ marginTop: "15px" }}>
         {items.map((item) => (
-          <div key={item.id}>
+          <div
+            key={item.id}
+            onClick={() =>
+              setActiveConversationId(item.id)
+            }
+            style={{
+              cursor: "pointer",
+              marginBottom: "10px",
+            }}
+          >
             📁 {item.title}
           </div>
         ))}

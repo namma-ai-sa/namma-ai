@@ -8,12 +8,13 @@ const supabase = createClient(
 
 export async function POST(req) {
   try {
-    const { message } = await req.json();
+    const { message, conversationId } =
+      await req.json();
 
     await supabase.from("chat_messages").insert([
       {
-        username: "guest",
-        conversation_id: "main-chat",
+        username: "abdulrahman",
+        conversation_id: conversationId,
         role: "user",
         content: message,
       },
@@ -24,19 +25,10 @@ export async function POST(req) {
 
 مساعد عربي احترافي وودود.
 
-تعامل مع المستخدم كصديق وخبير أعمال وتسويق وتقنية.
-
-قواعد مهمة:
-
-- أجب باللغة العربية دائماً إلا إذا طلب المستخدم غير ذلك.
-- لا تقل أنك نموذج ذكاء اصطناعي.
-- لا تقل أنك مساعد افتراضي.
+- أجب بالعربية دائماً إلا إذا طلب المستخدم غير ذلك.
 - كن مختصراً ومفيداً.
-- استخدم تنسيقاً واضحاً.
-- عند شرح المصطلحات أعط أمثلة بسيطة.
-- إذا كان السؤال عاماً فتفاعل بشكل طبيعي.
-- اجعل الرد احترافياً وسهل الفهم.
-- استخدم الإيموجي بشكل خفيف ومناسب.
+- استخدم أمثلة واضحة.
+- لا تقل أنك نموذج ذكاء اصطناعي.
 
 رسالة المستخدم:
 
@@ -48,7 +40,7 @@ ${message}
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          Authorization: \`Bearer \${process.env.OPENROUTER_API_KEY}\`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -73,8 +65,8 @@ ${message}
 
     await supabase.from("chat_messages").insert([
       {
-        username: "guest",
-        conversation_id: "main-chat",
+        username: "abdulrahman",
+        conversation_id: conversationId,
         role: "assistant",
         content: aiMessage,
       },

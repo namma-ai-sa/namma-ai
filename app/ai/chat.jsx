@@ -1,13 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import { useConversation } from "./context/ConversationContext";
 
 export default function Chat() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const { activeConversationId } =
+    useConversation();
+
   const handleSend = async () => {
-    if (!message.trim() || loading) return;
+    if (
+      !message.trim() ||
+      loading ||
+      !activeConversationId
+    ) {
+      return;
+    }
 
     const currentMessage = message;
 
@@ -22,6 +32,7 @@ export default function Chat() {
         },
         body: JSON.stringify({
           message: currentMessage,
+          conversationId: activeConversationId,
         }),
       });
 
@@ -73,17 +84,6 @@ export default function Chat() {
         />
 
         <button
-          style={{
-            background: "transparent",
-            border: "none",
-            cursor: "pointer",
-            fontSize: "22px",
-          }}
-        >
-          🎤
-        </button>
-
-        <button
           onClick={handleSend}
           disabled={loading}
           style={{
@@ -92,7 +92,6 @@ export default function Chat() {
             cursor: "pointer",
             color: "#60a5fa",
             fontSize: "24px",
-            opacity: loading ? 0.5 : 1,
           }}
         >
           {loading ? "..." : "➜"}
