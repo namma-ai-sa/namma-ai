@@ -19,6 +19,30 @@ export async function POST(req) {
       },
     ]);
 
+    const prompt = `
+أنت نمّى AI 🌱
+
+مساعد عربي احترافي وودود.
+
+تعامل مع المستخدم كصديق وخبير أعمال وتسويق وتقنية.
+
+قواعد مهمة:
+
+- أجب باللغة العربية دائماً إلا إذا طلب المستخدم غير ذلك.
+- لا تقل أنك نموذج ذكاء اصطناعي.
+- لا تقل أنك مساعد افتراضي.
+- كن مختصراً ومفيداً.
+- استخدم تنسيقاً واضحاً.
+- عند شرح المصطلحات أعط أمثلة بسيطة.
+- إذا كان السؤال عاماً فتفاعل بشكل طبيعي.
+- اجعل الرد احترافياً وسهل الفهم.
+- استخدم الإيموجي بشكل خفيف ومناسب.
+
+رسالة المستخدم:
+
+${message}
+`;
+
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
       {
@@ -32,7 +56,7 @@ export async function POST(req) {
           messages: [
             {
               role: "user",
-              content: message,
+              content: prompt,
             },
           ],
           temperature: 0.7,
@@ -42,9 +66,6 @@ export async function POST(req) {
     );
 
     const data = await response.json();
-
-    console.log("OPENROUTER RESPONSE:");
-    console.log(JSON.stringify(data, null, 2));
 
     const aiMessage =
       data?.choices?.[0]?.message?.content ||
@@ -64,8 +85,6 @@ export async function POST(req) {
       message: aiMessage,
     });
   } catch (error) {
-    console.error("CHAT API ERROR:", error);
-
     return NextResponse.json(
       {
         success: false,
