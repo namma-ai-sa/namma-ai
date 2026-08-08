@@ -3,7 +3,10 @@
 import Messages from "./messages";
 import Chat from "./chat";
 import Conversations from "./conversations";
+
 import AuthGuard from "../components/AuthGuard";
+import UserInfo from "../components/UserInfo";
+import LogoutButton from "../components/LogoutButton";
 
 import {
   ConversationProvider,
@@ -23,15 +26,9 @@ export default function AIPage() {
         >
           <h1>🌱 نمّى AI</h1>
 
-          <p
-            style={{
-              color: "#9ca3af",
-              marginTop: "10px",
-              marginBottom: "25px",
-            }}
-          >
-            🟢 جاهز للمساعدة
-          </p>
+          <UserInfo />
+
+          <LogoutButton />
 
           <Conversations />
 
