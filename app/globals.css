@@ -78,3 +78,42 @@ button:hover{
     font-size:22px !important;
   }
 }
+
+img{
+  max-width:100%;
+}
+
+textarea{
+  min-height:140px;
+}
+
+@media (max-width:768px){
+
+  body{
+    overflow-x:hidden;
+  }
+
+  main{
+    width:100%;
+  }
+
+  .mobile-stack{
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+  .mobile-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  button{
+    width:100%;
+  }
+
+  input,
+  textarea,
+  select{
+    font-size:16px;
+  }
+
+}
