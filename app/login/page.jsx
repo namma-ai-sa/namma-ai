@@ -80,9 +80,6 @@ export default function LoginPage() {
         <input
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleLogin();
-          }}
           placeholder="اسم المستخدم"
           style={{
             width: "100%",
@@ -96,9 +93,6 @@ export default function LoginPage() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleLogin();
-          }}
           placeholder="كلمة المرور"
           style={{
             width: "100%",
@@ -134,17 +128,6 @@ export default function LoginPage() {
             {message}
           </p>
         )}
-
-        <div
-          style={{
-            marginTop: "20px",
-            textAlign: "center",
-          }}
-        >
-          /register
-            إنشاء حساب جديد
-          </a>
-        </div>
       </div>
     </main>
   );

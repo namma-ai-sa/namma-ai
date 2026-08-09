@@ -1,0 +1,32 @@
+
+> namma-ai@1.0.0 build
+> next build
+
+▲ Next.js 16.3.0 (Turbopack)
+✓ Running next.config took 34ms
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 error:
+./app/login/page.jsx:146:15
+Error: Expected '</', got 'jsx text'
+  [90m144 |[0m           /register
+  [90m145 |[0m             إنشاء حساب جديد
+[31m[1m>[0m [90m146 |[0m           </a>
+  [90m    |[0m               [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+[31m[1m>[0m [90m147 |[0m         </div>
+  [90m    |[0m [31m[1m^^^^^^^^[0m
+  [90m148 |[0m       </div>
+  [90m149 |[0m     </main>
+  [90m150 |[0m   );
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (./app/login/page.jsx:146:15)
