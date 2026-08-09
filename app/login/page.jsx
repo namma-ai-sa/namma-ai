@@ -42,37 +42,129 @@ export default function LoginPage() {
   }
 
   return (
-    <main>
-      <h1>تسجيل الدخول</h1>
-
-      <input
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            handleLogin();
-          }
+    <main
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#050509",
+        color: "white",
+        padding: "20px",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "420px",
+          background: "#0b0b12",
+          border: "1px solid #222",
+          borderRadius: "20px",
+          padding: "30px",
         }}
-        placeholder="اسم المستخدم"
-      />
+      >
+        <h1 style={{ textAlign: "center" }}>
+          🌱 نمّى AI
+        </h1>
 
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            handleLogin();
+        <p
+          style={{
+            textAlign: "center",
+            color: "#94a3b8",
+            marginBottom: "25px",
+          }}
+        >
+          مرحباً بعودتك
+        </p>
+
+        <input
+          value={username}
+          onChange={(e) =>
+            setUsername(e.target.value)
           }
-        }}
-        placeholder="كلمة المرور"
-      />
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleLogin();
+            }
+          }}
+          placeholder="اسم المستخدم"
+          style={{
+            width: "100%",
+            padding: "14px",
+            borderRadius: "10px",
+            marginBottom: "15px",
+          }}
+        />
 
-      <button onClick={handleLogin}>
-        دخول
-      </button>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) =>
+            setPassword(e.target.value)
+          }
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleLogin();
+            }
+          }}
+          placeholder="كلمة المرور"
+          style={{
+            width: "100%",
+            padding: "14px",
+            borderRadius: "10px",
+            marginBottom: "20px",
+          }}
+        />
 
-      <p>{message}</p>
+        <button
+          onClick={handleLogin}
+          style={{
+            width: "100%",
+            padding: "14px",
+            background: "#2563eb",
+            border: "none",
+            borderRadius: "10px",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          تسجيل الدخول
+        </button>
+
+        {message && (
+          <p
+            style={{
+              color: "#ef4444",
+              marginTop: "15px",
+              textAlign: "center",
+            }}
+          >
+            {message}
+          </p>
+        )}
+
+        <div
+          style={{
+            marginTop: "25px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            textAlign: "center",
+          }}
+        >
+          /forgot-password
+            نسيت كلمة المرور؟
+          </a>
+
+          /forgot-username
+            نسيت اسم المستخدم؟
+          </a>
+
+          /register
+            إنشاء حساب جديد
+          </a>
+        </div>
+      </div>
     </main>
   );
 }
