@@ -4,6 +4,7 @@ import Messages from "./messages";
 import Chat from "./chat";
 import Conversations from "./conversations";
 import Cards from "./cards";
+import { useState } from "react";
 
 import AuthGuard from "../components/AuthGuard";
 import UserInfo from "../components/UserInfo";
@@ -14,6 +15,7 @@ import {
 } from "./context/ConversationContext";
 
 export default function AIPage() {
+  const [cardPrompt,setCardPrompt]=useState("");
   return (
     <AuthGuard>
       <ConversationProvider>
@@ -79,7 +81,7 @@ export default function AIPage() {
               </p>
             </div>
 
-            <Cards />
+            <Cards onSelect={setCardPrompt} />
 
             <div
               style={{
@@ -94,7 +96,7 @@ export default function AIPage() {
               <Messages />
             </div>
 
-            <Chat />
+            <Chat initialMessage={cardPrompt} />
           </main>
         </div>
       </ConversationProvider>

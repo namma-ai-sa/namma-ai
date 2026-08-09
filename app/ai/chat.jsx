@@ -1,12 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import {
+  useState,
+  useEffect,
+} from "react";
+
 import { useConversation } from "./context/ConversationContext";
 
-export default function Chat() {
-  const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [userId, setUserId] = useState(null);
+export default function Chat({
+  initialMessage = "",
+}) {
+  const [message, setMessage] =
+    useState("");
+
+  const [loading, setLoading] =
+    useState(false);
+
+  const [userId, setUserId] =
+    useState(null);
 
   const { activeConversationId } =
     useConversation();
@@ -20,6 +31,12 @@ export default function Chat() {
       setUserId(user.id);
     }
   }, []);
+
+  useEffect(() => {
+    if (initialMessage) {
+      setMessage(initialMessage);
+    }
+  }, [initialMessage]);
 
   const handleSend = async () => {
     if (
@@ -42,15 +59,17 @@ export default function Chat() {
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type":
+              "application/json",
           },
           body: JSON.stringify({
             conversationId:
               activeConversationId,
-            title: currentMessage.slice(
-              0,
-              40
-            ),
+            title:
+              currentMessage.slice(
+                0,
+                40
+              ),
           }),
         }
       );
@@ -63,7 +82,8 @@ export default function Chat() {
         },
         body: JSON.stringify({
           userId,
-          message: currentMessage,
+          message:
+            currentMessage,
           conversationId:
             activeConversationId,
         }),
@@ -79,8 +99,6 @@ export default function Chat() {
     <div
       style={{
         marginTop: "30px",
-        position: "sticky",
-        bottom: "20px",
       }}
     >
       <div
@@ -98,17 +116,15 @@ export default function Chat() {
           type="text"
           value={message}
           onChange={(e) =>
-            setMessage(e.target.value)
+            setMessage(
+              e.target.value
+            )
           }
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSend();
-            }
-          }}
           placeholder="اكتب رسالتك..."
           style={{
             flex: 1,
-            background: "transparent",
+            background:
+              "transparent",
             border: "none",
             outline: "none",
             color: "white",
@@ -118,15 +134,10 @@ export default function Chat() {
         <button
           onClick={handleSend}
           disabled={loading}
-          style={{
-            background: "transparent",
-            border: "none",
-            cursor: "pointer",
-            color: "#60a5fa",
-            fontSize: "24px",
-          }}
         >
-          {loading ? "..." : "➜"}
+          {loading
+            ? "..."
+            : "➜"}
         </button>
       </div>
     </div>
