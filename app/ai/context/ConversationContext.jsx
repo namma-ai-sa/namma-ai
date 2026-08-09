@@ -6,7 +6,7 @@ const ConversationContext = createContext();
 
 export function ConversationProvider({ children }) {
   const [activeConversationId, setActiveConversationId] =
-    useState(1);
+    useState(null);
 
   return (
     <ConversationContext.Provider
