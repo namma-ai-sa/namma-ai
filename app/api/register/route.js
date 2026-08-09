@@ -9,57 +9,78 @@ const supabase = createClient(
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { name, username, password } = body;
 
-    if (!name || !username || !password) {
+    const {
+      name,
+      username,
+      email,
+      password,
+    } = body;
+
+    if (
+      !name ||
+      !username ||
+      !email ||
+      !password
+    ) {
       return NextResponse.json(
-        { success: false, message: "يرجى إدخال جميع البيانات المطلوبة" },
-        { status: 400 }
+        {
+          success: false,
+          message: "جميع الحقول مطلوبة",
+        },
+        {
+          status: 400,
+        }
       );
     }
 
-    // التحقق من وجود المستخدم مسبقاً
-    const { data: existingUser } = await supabase
-      .from("users")
-      .select("*")
-      .eq("username", username)
-      .single();
+    const { data: existingUser } =
+      await supabase
+        .from("users")
+        .select("*")
+        .eq("email", email)
+        .maybeSingle();
 
     if (existingUser) {
       return NextResponse.json(
-        { success: false, message: "اسم المستخدم مستخدم مسبقاً" },
-        { status: 400 }
+        {
+          success: false,
+          message:
+            "البريد مستخدم مسبقاً",
+        }
       );
     }
 
-    // إنشاء الحساب
-    const { error } = await supabase
-      .from("users")
-      .insert([
-        {
-          name,
-          username,
-          password,
-          account_type: "individual"
-        }
-      ]);
+    const { error } =
+      await supabase
+        .from("users")
+        .insert([
+          {
+            name,
+            username,
+            email,
+            password,
+          },
+        ]);
 
     if (error) {
       return NextResponse.json(
-        { success: false, message: error.message },
-        { status: 500 }
+        {
+          success: false,
+          message: error.message,
+        }
       );
     }
 
-    return NextResponse.json(
-      { success: true, message: "تم إنشاء الحساب" },
-      { status: 200 }
-    );
-
+    return NextResponse.json({
+      success: true,
+      message:
+        "تم إنشاء الحساب بنجاح",
+    });
   } catch (error) {
-    return NextResponse.json(
-      { success: false, message: error.message },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      success: false,
+      message: error.message,
+    });
   }
 }
