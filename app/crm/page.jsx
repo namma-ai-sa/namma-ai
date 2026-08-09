@@ -65,6 +65,23 @@ async function analyzeLead(lead) {
   setAnalysis(
     data.result || ""
   );
+
+  await fetch(
+    "/api/crm-leads/recommendation",
+    {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        id:lead.id,
+        ai_recommendation:
+          data.result || ""
+      })
+    }
+  );
+
+  loadLeads();
 }
 
 async function deleteLead(id) {
@@ -202,6 +219,22 @@ async function updateStatus(
             {" "}
             {lead.status}
           </p>
+
+          {lead.ai_recommendation && (
+            <div
+              className="card"
+              style={{
+                marginTop:"10px",
+                whiteSpace:"pre-wrap"
+              }}
+            >
+              🤖 توصية AI
+
+              <br /><br />
+
+              {lead.ai_recommendation}
+            </div>
+          )}
 
           <br />
 
