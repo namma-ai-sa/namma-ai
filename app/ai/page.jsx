@@ -3,6 +3,7 @@
 import Messages from "./messages";
 import Chat from "./chat";
 import Conversations from "./conversations";
+import Cards from "./cards";
 
 import AuthGuard from "../components/AuthGuard";
 import UserInfo from "../components/UserInfo";
@@ -77,6 +78,8 @@ export default function AIPage() {
                 التسويق • المبيعات • المحتوى • SEO • التحليل
               </p>
             </div>
+
+            <Cards />
 
             <div
               style={{
