@@ -60,7 +60,7 @@ export default function LoginPage() {
           background: "#0b0b12",
           border: "1px solid #222",
           borderRadius: "20px",
-          padding: "30px",
+          padding: "32px",
         }}
       >
         <h1 style={{ textAlign: "center" }}>
@@ -71,7 +71,7 @@ export default function LoginPage() {
           style={{
             textAlign: "center",
             color: "#94a3b8",
-            marginBottom: "25px",
+            marginBottom: "24px",
           }}
         >
           مرحباً بعودتك
@@ -79,40 +79,32 @@ export default function LoginPage() {
 
         <input
           value={username}
-          onChange={(e) =>
-            setUsername(e.target.value)
-          }
+          onChange={(e) => setUsername(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleLogin();
-            }
+            if (e.key === "Enter") handleLogin();
           }}
           placeholder="اسم المستخدم"
           style={{
             width: "100%",
-            padding: "14px",
+            padding: "12px",
+            marginBottom: "12px",
             borderRadius: "10px",
-            marginBottom: "15px",
           }}
         />
 
         <input
           type="password"
           value={password}
-          onChange={(e) =>
-            setPassword(e.target.value)
-          }
+          onChange={(e) => setPassword(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleLogin();
-            }
+            if (e.key === "Enter") handleLogin();
           }}
           placeholder="كلمة المرور"
           style={{
             width: "100%",
-            padding: "14px",
+            padding: "12px",
+            marginBottom: "16px",
             borderRadius: "10px",
-            marginBottom: "20px",
           }}
         />
 
@@ -120,11 +112,11 @@ export default function LoginPage() {
           onClick={handleLogin}
           style={{
             width: "100%",
-            padding: "14px",
+            padding: "12px",
             background: "#2563eb",
+            color: "#fff",
             border: "none",
             borderRadius: "10px",
-            color: "white",
             cursor: "pointer",
           }}
         >
@@ -135,7 +127,7 @@ export default function LoginPage() {
           <p
             style={{
               color: "#ef4444",
-              marginTop: "15px",
+              marginTop: "12px",
               textAlign: "center",
             }}
           >
@@ -145,21 +137,10 @@ export default function LoginPage() {
 
         <div
           style={{
-            marginTop: "25px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
+            marginTop: "20px",
             textAlign: "center",
           }}
         >
-          /forgot-password
-            نسيت كلمة المرور؟
-          </a>
-
-          /forgot-username
-            نسيت اسم المستخدم؟
-          </a>
-
           /register
             إنشاء حساب جديد
           </a>
