@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function CRMPage() {
   const [leads,setLeads]=useState([]);
+const [analysis,setAnalysis]=useState("");
 
   const [name,setName]=useState("");
   const [email,setEmail]=useState("");
@@ -45,7 +46,29 @@ export default function CRMPage() {
     loadLeads();
   }
 
-  async function deleteLead(id) {
+  
+async function analyzeLead(lead) {
+
+  const res = await fetch(
+    "/api/crm-ai",
+    {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(lead)
+    }
+  );
+
+  const data = await res.json();
+
+  setAnalysis(
+    data.result || ""
+  );
+}
+
+async function deleteLead(id) {
+
     await fetch(
       "/api/crm-leads/delete",
       {
@@ -187,6 +210,18 @@ export default function CRMPage() {
 
           <button
             onClick={() =>
+              analyzeLead(
+                lead
+              )
+            }
+          >
+            🤖 تحليل AI
+          </button>
+
+          <br /><br />
+
+          <button
+            onClick={() =>
               deleteLead(
                 lead.id
               )
@@ -197,6 +232,26 @@ export default function CRMPage() {
         </div>
 
       ))}
-    </main>
+    
+{analysis && (
+  <div
+    className="card"
+    style={{
+      marginTop:"30px",
+      whiteSpace:"pre-wrap"
+    }}
+  >
+    <h2>
+      🤖 تحليل العميل
+    </h2>
+
+    <br />
+
+    {analysis}
+  </div>
+)}
+
+</main>
+
   );
 }
