@@ -4,17 +4,22 @@
   padding: 0;
 }
 
+:root {
+  --bg: #030712;
+  --card: #111827;
+  --card-light: #1f2937;
+  --border: #374151;
+  --text: #f9fafb;
+  --muted: #94a3b8;
+  --primary: #3b82f6;
+}
+
 html,
 body {
   min-height: 100%;
   font-family: Arial, sans-serif;
-  background: radial-gradient(
-    circle at top,
-    #1e293b 0%,
-    #0f172a 40%,
-    #020617 100%
-  );
-  color: white;
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
 }
 
@@ -27,10 +32,7 @@ a {
   text-decoration: none;
 }
 
-h1 {
-  font-weight: 800;
-}
-
+h1,
 h2,
 h3 {
   font-weight: 700;
@@ -43,10 +45,65 @@ h3 {
 }
 
 button {
-  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 button:hover {
-  transform: translateY(-2px);
   opacity: 0.95;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: white;
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+}
+
+.page-wrapper {
+  max-width: 1400px;
+  margin: auto;
+  padding: 24px;
+}
+
+.sidebar-item {
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sidebar-item:hover {
+  background: var(--card-light);
+}
+
+.sidebar-item.active {
+  background: var(--primary);
+  color: white;
+}
+
+.primary-btn {
+  background: var(--primary);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
 }
