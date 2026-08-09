@@ -1,61 +1,119 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CRMPage() {
-  const [leads] = useState([
-    {
-      id: 1,
-      name: "عميل محتمل 1",
-      status: "جديد"
-    },
-    {
-      id: 2,
-      name: "عميل محتمل 2",
-      status: "متابعة"
-    },
-    {
-      id: 3,
-      name: "عميل محتمل 3",
-      status: "مغلق"
-    }
-  ]);
+  const [leads, setLeads] = useState([]);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  async function loadLeads() {
+    const res = await fetch(
+      "/api/crm-leads"
+    );
+
+    const data = await res.json();
+
+    setLeads(data.leads || []);
+  }
+
+  useEffect(() => {
+    loadLeads();
+  }, []);
+
+  async function saveLead() {
+    await fetch("/api/crm-leads", {
+      method: "POST",
+      headers: {
+        "Content-Type":
+          "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        status: "جديد"
+      })
+    });
+
+    setName("");
+    setEmail("");
+    setPhone("");
+
+    loadLeads();
+  }
 
   return (
     <main
       style={{
         maxWidth: "1000px",
         margin: "40px auto",
-        color: "white",
+        color: "white"
       }}
     >
-      <h1>📊 CRM</h1>
+      <h1>📊 CRM V2</h1>
 
-      <div
-        style={{
-          display: "grid",
-          gap: "15px",
-          marginTop: "20px",
-        }}
-      >
-        {leads.map((lead) => (
-          <div
-            key={lead.id}
-            style={{
-              padding: "20px",
-              background: "#111827",
-              border: "1px solid #374151",
-              borderRadius: "16px",
-            }}
-          >
-            <h3>{lead.name}</h3>
+      <input
+        placeholder="الاسم"
+        value={name}
+        onChange={(e)=>
+          setName(e.target.value)
+        }
+      />
 
-            <p>
-              الحالة: {lead.status}
-            </p>
-          </div>
-        ))}
-      </div>
+      <br /><br />
+
+      <input
+        placeholder="البريد"
+        value={email}
+        onChange={(e)=>
+          setEmail(e.target.value)
+        }
+      />
+
+      <br /><br />
+
+      <input
+        placeholder="الجوال"
+        value={phone}
+        onChange={(e)=>
+          setPhone(e.target.value)
+        }
+      />
+
+      <br /><br />
+
+      <button onClick={saveLead}>
+        ➕ إضافة عميل
+      </button>
+
+      <hr />
+
+      {leads.map((lead) => (
+        <div
+          key={lead.id}
+          style={{
+            padding: "20px",
+            marginTop: "10px",
+            background: "#111827",
+            borderRadius: "12px"
+          }}
+        >
+          <h3>{lead.name}</h3>
+
+          <p>{lead.email}</p>
+
+          <p>{lead.phone}</p>
+
+          <p>
+            الحالة:
+            {" "}
+            {lead.status}
+          </p>
+        </div>
+      ))}
     </main>
   );
 }
