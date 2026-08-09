@@ -3,18 +3,18 @@
 import { useEffect, useState } from "react";
 
 export default function CRMPage() {
-  const [leads, setLeads] = useState([]);
+  const [leads,setLeads]=useState([]);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [name,setName]=useState("");
+  const [email,setEmail]=useState("");
+  const [phone,setPhone]=useState("");
 
   async function loadLeads() {
-    const res = await fetch(
-      "/api/crm-leads"
-    );
+    const res =
+      await fetch("/api/crm-leads");
 
-    const data = await res.json();
+    const data =
+      await res.json();
 
     setLeads(data.leads || []);
   }
@@ -24,17 +24,17 @@ export default function CRMPage() {
   }, []);
 
   async function saveLead() {
-    await fetch("/api/crm-leads", {
-      method: "POST",
-      headers: {
+    await fetch("/api/crm-leads",{
+      method:"POST",
+      headers:{
         "Content-Type":
-          "application/json"
+        "application/json"
       },
-      body: JSON.stringify({
+      body:JSON.stringify({
         name,
         email,
         phone,
-        status: "جديد"
+        status:"جديد"
       })
     });
 
@@ -45,15 +45,52 @@ export default function CRMPage() {
     loadLeads();
   }
 
+  async function deleteLead(id) {
+    await fetch(
+      "/api/crm-leads/delete",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
+        body:JSON.stringify({id})
+      }
+    );
+
+    loadLeads();
+  }
+
+  async function updateStatus(
+    id,
+    status
+  ) {
+    await fetch(
+      "/api/crm-leads/status",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
+        body:JSON.stringify({
+          id,
+          status
+        })
+      }
+    );
+
+    loadLeads();
+  }
+
   return (
     <main
+      className="container"
       style={{
-        maxWidth: "1000px",
-        margin: "40px auto",
-        color: "white"
+        color:"white"
       }}
     >
-      <h1>📊 CRM V2</h1>
+      <h1>📊 CRM V3</h1>
 
       <input
         placeholder="الاسم"
@@ -85,20 +122,25 @@ export default function CRMPage() {
 
       <br /><br />
 
-      <button onClick={saveLead}>
+      <button
+        onClick={saveLead}
+      >
         ➕ إضافة عميل
       </button>
 
-      <hr />
+      <hr
+        style={{
+          margin:"20px 0"
+        }}
+      />
 
-      {leads.map((lead) => (
+      {leads.map((lead)=>(
+
         <div
           key={lead.id}
+          className="card"
           style={{
-            padding: "20px",
-            marginTop: "10px",
-            background: "#111827",
-            borderRadius: "12px"
+            marginBottom:"15px"
           }}
         >
           <h3>{lead.name}</h3>
@@ -112,7 +154,48 @@ export default function CRMPage() {
             {" "}
             {lead.status}
           </p>
+
+          <br />
+
+          <select
+            value={lead.status}
+            onChange={(e)=>
+              updateStatus(
+                lead.id,
+                e.target.value
+              )
+            }
+          >
+            <option>
+              جديد
+            </option>
+
+            <option>
+              متابعة
+            </option>
+
+            <option>
+              مهتم
+            </option>
+
+            <option>
+              تم الإغلاق
+            </option>
+          </select>
+
+          <br /><br />
+
+          <button
+            onClick={() =>
+              deleteLead(
+                lead.id
+              )
+            }
+          >
+            🗑️ حذف
+          </button>
         </div>
+
       ))}
     </main>
   );
