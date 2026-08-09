@@ -4,6 +4,7 @@ import Messages from "./messages";
 import Chat from "./chat";
 import Conversations from "./conversations";
 import Cards from "./cards";
+import Dashboard from "./dashboard";
 import { useState } from "react";
 
 import AuthGuard from "../components/AuthGuard";
@@ -80,6 +81,8 @@ export default function AIPage() {
                 التسويق • المبيعات • المحتوى • SEO • التحليل
               </p>
             </div>
+
+            <Dashboard />
 
             <Cards onSelect={setCardPrompt} />
 
