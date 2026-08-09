@@ -84,7 +84,32 @@ async function deleteLead(id) {
     loadLeads();
   }
 
-  async function updateStatus(
+  
+async function saveFollowup(lead){
+
+  await fetch(
+    "/api/crm-leads/followup",
+    {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        id:lead.id,
+        notes:lead.notes || "",
+        last_followup:
+          lead.last_followup || "",
+        next_followup:
+          lead.next_followup || ""
+      })
+    }
+  );
+
+  loadLeads();
+}
+
+async function updateStatus(
+
     id,
     status
   ) {
@@ -205,6 +230,55 @@ async function deleteLead(id) {
               تم الإغلاق
             </option>
           </select>
+
+          <br /><br />
+
+          <textarea
+            placeholder="ملاحظات"
+            defaultValue={
+              lead.notes || ""
+            }
+            onChange={(e)=>{
+              lead.notes =
+                e.target.value;
+            }}
+          />
+
+          <br /><br />
+
+          <input
+            placeholder="آخر متابعة"
+            defaultValue={
+              lead.last_followup || ""
+            }
+            onChange={(e)=>{
+              lead.last_followup =
+                e.target.value;
+            }}
+          />
+
+          <br /><br />
+
+          <input
+            placeholder="المتابعة القادمة"
+            defaultValue={
+              lead.next_followup || ""
+            }
+            onChange={(e)=>{
+              lead.next_followup =
+                e.target.value;
+            }}
+          />
+
+          <br /><br />
+
+          <button
+            onClick={()=>
+              saveFollowup(lead)
+            }
+          >
+            💾 حفظ المتابعة
+          </button>
 
           <br /><br />
 
