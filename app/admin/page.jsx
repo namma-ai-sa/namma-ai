@@ -1,89 +1,110 @@
 "use client";
 
+import {
+  useEffect,
+  useState
+} from "react";
+
 export default function AdminPage() {
-  const stats = [
+
+  const [stats,setStats] =
+    useState({
+      users:0,
+      crm:0,
+      conversations:0
+    });
+
+  useEffect(() => {
+
+    async function loadStats() {
+
+      const res =
+        await fetch(
+          "/api/admin-stats"
+        );
+
+      const data =
+        await res.json();
+
+      if(data.success){
+        setStats(data);
+      }
+    }
+
+    loadStats();
+
+  }, []);
+
+  const cards = [
     {
-      title: "المستخدمون",
-      value: "100+",
-      icon: "👥",
-      color: "#3b82f6",
+      title:"المستخدمون",
+      value:stats.users,
+      icon:"👥",
+      color:"#3b82f6"
     },
     {
-      title: "المحادثات",
-      value: "500+",
-      icon: "💬",
-      color: "#22c55e",
+      title:"المحادثات",
+      value:stats.conversations,
+      icon:"💬",
+      color:"#22c55e"
     },
     {
-      title: "عملاء CRM",
-      value: "50+",
-      icon: "📊",
-      color: "#f59e0b",
-    },
-    {
-      title: "AI Seller",
-      value: "نشط",
-      icon: "🤖",
-      color: "#8b5cf6",
-    },
+      title:"عملاء CRM",
+      value:stats.crm,
+      icon:"📊",
+      color:"#f59e0b"
+    }
   ];
 
   return (
-    <main
-      className="container"
-      style={{
-        minHeight: "100vh",
-      }}
-    >
+    <main className="container">
       <h1
         style={{
-          marginBottom: "25px",
+          marginBottom:"25px"
         }}
       >
-        ⚡ لوحة تحكم NAMMA AI
+        ⚡ لوحة التحكم
       </h1>
 
       <div
+        className="mobile-grid"
         style={{
-          display: "grid",
+          display:"grid",
           gridTemplateColumns:
-            "repeat(auto-fit,minmax(220px,1fr))",
-          gap: "20px",
+          "repeat(auto-fit,minmax(220px,1fr))",
+          gap:"20px"
         }}
       >
-        {stats.map((item, i) => (
+        {cards.map((card,index)=>(
+
           <div
-            key={i}
+            key={index}
             className="card"
           >
             <div
               style={{
-                fontSize: "36px",
-                marginBottom: "10px",
+                fontSize:"36px"
               }}
             >
-              {item.icon}
+              {card.icon}
             </div>
+
+            <h3>
+              {card.title}
+            </h3>
 
             <div
               style={{
-                color: "#94a3b8",
+                color:card.color,
+                fontSize:"34px",
+                fontWeight:"bold"
               }}
             >
-              {item.title}
+              {card.value}
             </div>
 
-            <div
-              style={{
-                color: item.color,
-                fontSize: "30px",
-                fontWeight: "700",
-                marginTop: "10px",
-              }}
-            >
-              {item.value}
-            </div>
           </div>
+
         ))}
       </div>
     </main>
