@@ -16,26 +16,84 @@ export default function AIPage() {
   return (
     <AuthGuard>
       <ConversationProvider>
-        <main
+        <div
           style={{
-            maxWidth: "1000px",
-            margin: "0 auto",
-            padding: "40px 20px",
-            color: "white",
+            display: "grid",
+            gridTemplateColumns: "280px 1fr",
+            minHeight: "100vh",
+            background: "#030712",
           }}
         >
-          <h1>🌱 نمّى AI</h1>
+          <aside
+            style={{
+              borderLeft: "1px solid #374151",
+              background: "#111827",
+              padding: "20px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+            }}
+          >
+            <h2
+              style={{
+                color: "#3b82f6",
+                fontSize: "26px",
+              }}
+            >
+              🌱 NAMMA AI
+            </h2>
 
-          <UserInfo />
+            <Conversations />
 
-          <LogoutButton />
+            <div style={{ marginTop: "auto" }}>
+              <UserInfo />
+              <LogoutButton />
+            </div>
+          </aside>
 
-          <Conversations />
+          <main
+            style={{
+              padding: "30px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+            }}
+          >
+            <div>
+              <h1
+                style={{
+                  fontSize: "32px",
+                  marginBottom: "8px",
+                }}
+              >
+                مركز نمو الأعمال 🚀
+              </h1>
 
-          <Messages />
+              <p
+                style={{
+                  color: "#94a3b8",
+                }}
+              >
+                التسويق • المبيعات • المحتوى • SEO • التحليل
+              </p>
+            </div>
 
-          <Chat />
-        </main>
+            <div
+              style={{
+                flex: 1,
+                background: "#111827",
+                border: "1px solid #374151",
+                borderRadius: "20px",
+                padding: "20px",
+                overflowY: "auto",
+              }}
+            >
+              <Messages />
+            </div>
+
+            <Chat />
+          </main>
+        </div>
       </ConversationProvider>
     </AuthGuard>
   );
