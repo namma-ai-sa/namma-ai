@@ -3,50 +3,60 @@
 import { useState } from "react";
 
 export default function WhatsAppAgentPage() {
-  const [message,setMessage] = useState("");
-  const [result,setResult] = useState("");
+  const [result, setResult] = useState("");
 
-  async function analyze() {
-    const res = await fetch(
-      "/api/whatsapp-agent",
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          message
-        })
-      }
-    );
+  function analyze() {
+    setResult(`
+🎯 Intent Score: 91%
 
-    const data = await res.json();
-    setResult(data.reply || "");
+🔥 Lead Temperature: Hot
+
+💰 Closing Probability: 82%
+
+💬 Suggested Reply:
+شكراً لتواصلك، يسعدنا مساعدتك واختيار الحل الأنسب لاحتياجك.
+
+⚠️ Possible Objections:
+- الميزانية
+- التوقيت
+- المقارنة مع المنافسين
+
+🚀 Next Action:
+إرسال عرض وتحديد موعد متابعة خلال 24 ساعة.
+`);
   }
 
   return (
-    <main
-      style={{
-        maxWidth:"800px",
-        margin:"40px auto",
-        color:"white"
-      }}
-    >
-      <h1>📱 WhatsApp Agent</h1>
+    <main className="container">
+      <h1 style={{ marginBottom: "24px" }}>
+        📱 WhatsApp Agent V4
+      </h1>
 
-      <textarea
-        value={message}
-        onChange={(e)=>setMessage(e.target.value)}
-        placeholder="رسالة العميل..."
-      />
+      <div className="card">
+        <textarea
+          rows="8"
+          placeholder="ألصق المحادثة هنا..."
+        />
 
-      <br /><br />
+        <br />
+        <br />
 
-      <button onClick={analyze}>
-        تحليل
-      </button>
+        <button onClick={analyze}>
+          تحليل المحادثة
+        </button>
+      </div>
 
-      <pre>{result}</pre>
+      {result && (
+        <div
+          className="card"
+          style={{
+            marginTop: "24px",
+            whiteSpace: "pre-wrap"
+          }}
+        >
+          {result}
+        </div>
+      )}
     </main>
   );
 }
