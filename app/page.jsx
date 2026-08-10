@@ -9,22 +9,26 @@ export default function HomePage() {
     {
       icon: "📊",
       title: "CRM الذكي",
-      desc: "إدارة العملاء والمتابعات وتحسين فرص الإغلاق."
+      desc: "إدارة العملاء والمتابعات وتحسين فرص الإغلاق.",
+      path: "/crm"
     },
     {
       icon: "🤖",
       title: "البائع الذكي",
-      desc: "تحليل احتمالية الشراء وتوصيات المبيعات."
+      desc: "تحليل احتمالية الشراء وتوصيات المبيعات.",
+      path: "/ai-seller"
     },
     {
       icon: "📱",
       title: "WhatsApp Agent",
-      desc: "تحليل المحادثات واقتراح الردود المناسبة."
+      desc: "تحليل المحادثات واقتراح الردود المناسبة.",
+      path: "/whatsapp-agent"
     },
     {
       icon: "⚡",
       title: "لوحة الإدارة",
-      desc: "إحصائيات ومؤشرات أداء المنصة بالكامل."
+      desc: "إحصائيات ومؤشرات أداء المنصة بالكامل.",
+      path: "/admin"
     }
   ];
 
@@ -32,142 +36,123 @@ export default function HomePage() {
     <main
       style={{
         minHeight: "100vh",
-        background:
-          "linear-gradient(180deg,#020617,#0f172a,#111827)",
+        background: "#020617",
         color: "white",
-        padding: "40px 20px"
+        padding: "20px"
       }}
     >
-      <section
+      <div
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          textAlign: "center",
-          paddingTop: "60px"
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "30px"
         }}
       >
-        <div
+        <button
+          onClick={() => router.push("/login")}
           style={{
-            color: "#22c55e",
-            fontWeight: "bold",
-            marginBottom: "20px"
+            background: "#22c55e",
+            border: "none",
+            padding: "10px 14px",
+            borderRadius: "10px",
+            color: "white"
           }}
         >
-          🌱 NAMMA AI
-        </div>
+          ☰
+        </button>
 
-        <h1
-          style={{
-            fontSize: "64px",
-            fontWeight: "900",
-            marginBottom: "20px"
-          }}
-        >
+        <h2 style={{ margin: 0 }}>
+          🌱 نمّى AI
+        </h2>
+      </div>
+
+      <section
+        style={{
+          textAlign: "center",
+          maxWidth: "900px",
+          margin: "0 auto"
+        }}
+      >
+        <h1>
           منصة عربية للمبيعات
-          <br />
           والذكاء الاصطناعي
         </h1>
 
         <p
           style={{
-            maxWidth: "800px",
-            margin: "0 auto",
             color: "#cbd5e1",
-            lineHeight: "2",
-            fontSize: "20px"
+            lineHeight: "2"
           }}
         >
           اجمع CRM والبائع الذكي ووكيل واتساب وصناعة المحتوى
-          في منصة واحدة تساعدك على زيادة المبيعات وتحسين تجربة العملاء.
+          في منصة واحدة.
         </p>
-
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            marginTop: "40px"
-          }}
-        >
-          <button
-            onClick={() => router.push("/register")}
-            style={{
-              padding: "16px 32px",
-              border: "none",
-              borderRadius: "14px",
-              background: "#22c55e",
-              color: "white",
-              cursor: "pointer",
-              fontWeight: "bold"
-            }}
-          >
-            ابدأ مجاناً
-          </button>
-
-          <button
-            onClick={() => router.push("/pricing")}
-            style={{
-              padding: "16px 32px",
-              borderRadius: "14px",
-              border: "1px solid rgba(255,255,255,.15)",
-              background: "transparent",
-              color: "white",
-              cursor: "pointer"
-            }}
-          >
-            عرض الأسعار
-          </button>
-        </div>
       </section>
 
-      <section
+      <div
         style={{
-          maxWidth: "1200px",
-          margin: "80px auto"
+          display: "grid",
+          gridTemplateColumns:
+            "repeat(auto-fit,minmax(250px,1fr))",
+          gap: "20px",
+          marginTop: "40px"
         }}
       >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(250px,1fr))",
-            gap: "20px"
-          }}
-        >
-          {features.map((item) => (
-            <div
-              key={item.title}
+        {features.map((item) => (
+          <div
+            key={item.title}
+            onClick={() => router.push(item.path)}
+            style={{
+              cursor: "pointer",
+              background: "rgba(255,255,255,.04)",
+              border: "1px solid rgba(255,255,255,.08)",
+              borderRadius: "20px",
+              padding: "24px"
+            }}
+          >
+            <div style={{ fontSize: "50px" }}>
+              {item.icon}
+            </div>
+
+            <h3>{item.title}</h3>
+
+            <p
               style={{
-                background: "rgba(255,255,255,.04)",
-                border: "1px solid rgba(255,255,255,.08)",
-                borderRadius: "20px",
-                padding: "30px"
+                color: "#cbd5e1"
               }}
             >
-              <div
-                style={{
-                  fontSize: "48px",
-                  marginBottom: "12px"
-                }}
-              >
-                {item.icon}
-              </div>
+              {item.desc}
+            </p>
+          </div>
+        ))}
+      </div>
 
-              <h3>{item.title}</h3>
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          flexWrap: "wrap",
+          marginTop: "30px",
+          justifyContent: "center"
+        }}
+      >
+        <button onClick={() => router.push("/login")}>
+          تسجيل الدخول
+        </button>
 
-              <p
-                style={{
-                  color: "#cbd5e1",
-                  lineHeight: "1.8"
-                }}
-              >
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+        <button onClick={() => router.push("/register")}>
+          إنشاء حساب
+        </button>
+
+        <button onClick={() => router.push("/forgot-password")}>
+          نسيت كلمة المرور
+        </button>
+
+        <button onClick={() => alert("Face ID Coming Soon")}>
+          بصمة الوجه
+        </button>
+      </div>
     </main>
   );
 }
