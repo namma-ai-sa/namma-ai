@@ -1,42 +1,132 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 export default function Navbar() {
+
+  const router = useRouter();
+
   return (
     <nav
       style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-        alignItems: "center",
-        gap: "15px",
-        padding: "20px",
-        background: "#0b1220",
-        borderBottom: "1px solid rgba(255,255,255,0.1)",
+        display:"flex",
+        justifyContent:"space-between",
+        alignItems:"center",
+        gap:"20px",
+        padding:"18px 24px",
+        background:"rgba(2,6,23,.9)",
+        backdropFilter:"blur(12px)",
+        borderBottom:
+          "1px solid rgba(255,255,255,.08)",
+        position:"sticky",
+        top:0,
+        zIndex:999
       }}
     >
-      <h2
+
+      <div
+        onClick={() => router.push("/")}
         style={{
-          margin: 0,
-          color: "#60a5fa",
-          fontSize: "28px",
+          cursor:"pointer",
+          color:"#60a5fa",
+          fontSize:"28px",
+          fontWeight:"bold"
         }}
       >
         🌱 نمّى AI
-      </h2>
+      </div>
 
       <div
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "16px",
-          color: "#cbd5e1",
-          fontSize: "15px",
+          display:"flex",
+          gap:"20px",
+          alignItems:"center",
+          flexWrap:"wrap"
         }}
       >
-        <span>الأدوات</span>
-        <span>المشاريع</span>
-        <span>الأسعار</span>
-        <span>عن المنصة</span>
+
+        <button
+          onClick={() => router.push("/")}
+          style={linkStyle}
+        >
+          الرئيسية
+        </button>
+
+        <button
+          onClick={() => router.push("/crm")}
+          style={linkStyle}
+        >
+          CRM
+        </button>
+
+        <button
+          onClick={() => router.push("/ai-seller")}
+          style={linkStyle}
+        >
+          AI Seller
+        </button>
+
+        <button
+          onClick={() => router.push("/whatsapp-agent")}
+          style={linkStyle}
+        >
+          WhatsApp Agent
+        </button>
+
+        <button
+          onClick={() => router.push("/admin")}
+          style={linkStyle}
+        >
+          Admin
+        </button>
+
       </div>
+
+      <div
+        style={{
+          display:"flex",
+          gap:"10px"
+        }}
+      >
+
+        <button
+          style={{
+            padding:"10px 16px",
+            borderRadius:"12px",
+            border:
+              "1px solid rgba(255,255,255,.15)",
+            background:"transparent",
+            color:"white",
+            cursor:"pointer"
+          }}
+        >
+          دخول
+        </button>
+
+        <button
+          style={{
+            padding:"10px 16px",
+            borderRadius:"12px",
+            border:"none",
+            background:"#22c55e",
+            color:"white",
+            fontWeight:"bold",
+            cursor:"pointer"
+          }}
+        >
+          إنشاء حساب
+        </button>
+
+      </div>
+
     </nav>
   );
 }
+
+const linkStyle = {
+  background:"transparent",
+  border:"none",
+  color:"#cbd5e1",
+  cursor:"pointer",
+  fontSize:"15px"
+};
