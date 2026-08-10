@@ -14,10 +14,9 @@ export default function Navbar() {
         alignItems:"center",
         gap:"20px",
         padding:"18px 24px",
-        background:"rgba(2,6,23,.9)",
-        backdropFilter:"blur(12px)",
-        borderBottom:
-          "1px solid rgba(255,255,255,.08)",
+        background:"rgba(2,6,23,.85)",
+        backdropFilter:"blur(16px)",
+        borderBottom:"1px solid rgba(255,255,255,.08)",
         position:"sticky",
         top:0,
         zIndex:999
@@ -28,9 +27,9 @@ export default function Navbar() {
         onClick={() => router.push("/")}
         style={{
           cursor:"pointer",
-          color:"#60a5fa",
+          color:"#22c55e",
           fontSize:"28px",
-          fontWeight:"bold"
+          fontWeight:"800"
         }}
       >
         🌱 نمّى AI
@@ -39,47 +38,16 @@ export default function Navbar() {
       <div
         style={{
           display:"flex",
-          gap:"20px",
-          alignItems:"center",
+          gap:"18px",
           flexWrap:"wrap"
         }}
       >
-
-        <button
-          onClick={() => router.push("/")}
-          style={linkStyle}
-        >
-          الرئيسية
-        </button>
-
-        <button
-          onClick={() => router.push("/crm")}
-          style={linkStyle}
-        >
-          CRM
-        </button>
-
-        <button
-          onClick={() => router.push("/ai-seller")}
-          style={linkStyle}
-        >
-          AI Seller
-        </button>
-
-        <button
-          onClick={() => router.push("/whatsapp-agent")}
-          style={linkStyle}
-        >
-          WhatsApp Agent
-        </button>
-
-        <button
-          onClick={() => router.push("/admin")}
-          style={linkStyle}
-        >
-          Admin
-        </button>
-
+        <button style={linkStyle} onClick={() => router.push("/")}>الرئيسية</button>
+        <button style={linkStyle} onClick={() => router.push("/tools")}>الأدوات</button>
+        <button style={linkStyle} onClick={() => router.push("/projects")}>المشاريع</button>
+        <button style={linkStyle} onClick={() => router.push("/pricing")}>الأسعار</button>
+        <button style={linkStyle} onClick={() => router.push("/about")}>عن المنصة</button>
+        <button style={linkStyle} onClick={() => router.push("/contact")}>تواصل معنا</button>
       </div>
 
       <div
@@ -88,35 +56,21 @@ export default function Navbar() {
           gap:"10px"
         }}
       >
-
         <button
+          onClick={() => router.push("/login")}
           style={{
-            padding:"10px 16px",
-            borderRadius:"12px",
-            border:
-              "1px solid rgba(255,255,255,.15)",
             background:"transparent",
-            color:"white",
-            cursor:"pointer"
+            border:"1px solid rgba(255,255,255,.15)"
           }}
         >
           دخول
         </button>
 
         <button
-          style={{
-            padding:"10px 16px",
-            borderRadius:"12px",
-            border:"none",
-            background:"#22c55e",
-            color:"white",
-            fontWeight:"bold",
-            cursor:"pointer"
-          }}
+          onClick={() => router.push("/register")}
         >
           إنشاء حساب
         </button>
-
       </div>
 
     </nav>
