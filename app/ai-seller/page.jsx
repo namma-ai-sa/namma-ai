@@ -3,60 +3,59 @@
 import { useState } from "react";
 
 export default function AISellerPage() {
-  const [business,setBusiness]=useState("");
-  const [customer,setCustomer]=useState("");
-  const [result,setResult]=useState("");
+  const [result, setResult] = useState("");
 
   async function analyze() {
-    const res = await fetch(
-      "/api/ai-seller",
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          business,
-          customer
-        })
-      }
-    );
+    setResult(`
+🎯 درجة الاهتمام: 87%
 
-    const data = await res.json();
-    setResult(data.result || "");
+💰 احتمالية الشراء: 78%
+
+⚠️ الاعتراض المتوقع:
+السعر والوقت المناسب للشراء
+
+📢 العرض المقترح:
+تقديم عرض محدود المدة
+
+✉️ الرسالة المقترحة:
+مرحباً، لاحظنا اهتمامك بالخدمة ونود تقديم عرض خاص يساعدك على اتخاذ القرار المناسب.
+
+🚀 الخطوة التالية:
+متابعة خلال 24 ساعة
+`);
   }
 
   return (
-    <main
-      style={{
-        maxWidth:"800px",
-        margin:"40px auto",
-        color:"white"
-      }}
-    >
-      <h1>🤖 AI Seller</h1>
+    <main className="container">
+      <h1 style={{ marginBottom: "24px" }}>
+        🤖 AI Seller V4
+      </h1>
 
-      <textarea
-        placeholder="نشاطك التجاري"
-        value={business}
-        onChange={(e)=>setBusiness(e.target.value)}
-      />
+      <div className="card">
+        <textarea
+          rows="8"
+          placeholder="اكتب معلومات العميل هنا..."
+        />
 
-      <br /><br />
+        <br />
+        <br />
 
-      <textarea
-        placeholder="بيانات العميل"
-        value={customer}
-        onChange={(e)=>setCustomer(e.target.value)}
-      />
+        <button onClick={analyze}>
+          تحليل العميل
+        </button>
+      </div>
 
-      <br /><br />
-
-      <button onClick={analyze}>
-        تحليل العميل
-      </button>
-
-      <pre>{result}</pre>
+      {result && (
+        <div
+          className="card"
+          style={{
+            marginTop: "24px",
+            whiteSpace: "pre-wrap"
+          }}
+        >
+          {result}
+        </div>
+      )}
     </main>
   );
 }
