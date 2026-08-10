@@ -2,58 +2,68 @@
 
 import { useState } from "react";
 
-export default function VideoPage() {
-  const [idea, setIdea] = useState("");
-  const [loading, setLoading] = useState(false);
+export default function VideoStudioPage() {
   const [result, setResult] = useState("");
 
-  const generateVideoScript = async () => {
-    if (!idea) return;
+  function generateVideo() {
+    setResult(`
+🎬 عنوان الفيديو
+كيف تضاعف مبيعاتك باستخدام NAMMA AI
 
-    setLoading(true);
-    setResult("");
+🎙️ التعليق الصوتي
+اكتشف منصة عربية متكاملة تساعدك على إدارة العملاء وتحليل المحادثات وتحسين فرص البيع.
 
-    try {
-      const res = await fetch(`/api/video?idea=${encodeURIComponent(idea)}`);
-      const data = await res.json();
-      setResult(data.result || "لم يتم إنشاء السكربت");
-    } catch (err) {
-      setResult("حدث خطأ أثناء إنشاء السكربت");
-    }
+🎥 المشهد 1
+شعار NAMMA AI مع ظهور الخدمات.
 
-    setLoading(false);
-  };
+🎥 المشهد 2
+عرض CRM وإدارة العملاء.
+
+🎥 المشهد 3
+عرض AI Seller وتحليل العملاء.
+
+🎥 المشهد 4
+عرض WhatsApp Agent وتحليل المحادثات.
+
+🎥 المشهد 5
+دعوة للتسجيل والبدء مجاناً.
+
+⏱️ المدة
+30 ثانية
+`);
+  }
 
   return (
-    <main className="min-h-screen bg-[#050509] text-white px-6 py-10">
-      <div className="max-w-3xl mx-auto">
+    <main className="container">
+      <h1 style={{ marginBottom: "24px" }}>
+        🎬 Video Studio V1
+      </h1>
 
-        <h1 className="text-2xl font-semibold mb-6">أفكار وسكربتات الفيديو 🎬</h1>
+      <div className="card">
+        <textarea
+          rows="8"
+          placeholder="اكتب فكرة الفيديو..."
+        />
 
-        <div className="flex flex-col gap-4 mb-6">
-          <input
-            type="text"
-            placeholder="اكتب فكرة الفيديو..."
-            value={idea}
-            onChange={(e) => setIdea(e.target.value)}
-            className="w-full p-3 rounded-lg bg-[#0b0b12] border border-gray-700 text-white"
-          />
+        <br />
+        <br />
 
-          <button
-            onClick={generateVideoScript}
-            disabled={loading}
-            className="p-3 rounded-lg bg-violet-600 hover:bg-violet-700 transition"
-          >
-            {loading ? "جاري إنشاء السكربت..." : "إنشاء السكربت"}
-          </button>
-        </div>
-
-        {result && (
-          <div className="whitespace-pre-wrap bg-[#0b0b12] p-5 rounded-xl border border-gray-800 text-gray-300">
-            {result}
-          </div>
-        )}
+        <button onClick={generateVideo}>
+          إنشاء الفيديو
+        </button>
       </div>
+
+      {result && (
+        <div
+          className="card"
+          style={{
+            marginTop: "24px",
+            whiteSpace: "pre-wrap"
+          }}
+        >
+          {result}
+        </div>
+      )}
     </main>
   );
 }
