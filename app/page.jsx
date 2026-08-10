@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "./components/Navbar";
 import { useRouter } from "next/navigation";
 
 export default function HomePage() {
@@ -29,6 +30,8 @@ export default function HomePage() {
   ];
 
   return (
+    <>
+      <Navbar />
     <main
       style={{
         minHeight: "100vh",
@@ -168,6 +171,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-    </main>
+    </main></>
   );
 }
