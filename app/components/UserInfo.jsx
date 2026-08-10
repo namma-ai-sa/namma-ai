@@ -6,25 +6,29 @@ export default function UserInfo() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
+    fetch("/api/session")
+      .then((r) => r.json())
+      .then((data) => {
+        setUser(data.user || null);
+      })
+      .catch(() => {});
   }, []);
 
-  if (!user) return null;
+  if (!user) {
+    return null;
+  }
 
   return (
     <div
       style={{
-        marginBottom: "20px",
+        background: "rgba(255,255,255,.05)",
+        border: "1px solid rgba(255,255,255,.08)",
         padding: "12px",
         borderRadius: "12px",
-        background: "#111827",
+        marginBottom: "16px",
       }}
     >
-      👤 {user.name || user.username}
+      <strong>👤 المستخدم:</strong> {user.username || user.email}
     </div>
   );
 }
