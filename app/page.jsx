@@ -1,50 +1,69 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
+
   const router = useRouter();
 
-  const [prompt, setPrompt] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
+  const [prompt,setPrompt] =
+    useState("");
 
-  useEffect(() => {
-    const checkScreen = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkScreen();
-
-    window.addEventListener(
-      "resize",
-      checkScreen
-    );
-
-    return () =>
-      window.removeEventListener(
-        "resize",
-        checkScreen
-      );
-  }, []);
-
-  const tools = [
-    "📝 كتابة المقالات",
-    "📈 تحسين SEO",
-    "🎥 صناعة الفيديو",
-    "📱 السوشال ميديا",
-    "🎨 الهوية البصرية",
-    "💡 توليد الأفكار",
+  const apps = [
+    {
+      icon:"📊",
+      title:"CRM",
+      path:"/crm"
+    },
+    {
+      icon:"🤖",
+      title:"AI Seller",
+      path:"/ai-seller"
+    },
+    {
+      icon:"📱",
+      title:"WhatsApp Agent",
+      path:"/whatsapp-agent"
+    },
+    {
+      icon:"⚡",
+      title:"Admin",
+      path:"/admin"
+    },
+    {
+      icon:"📝",
+      title:"Article",
+      path:"/tools/article"
+    },
+    {
+      icon:"📈",
+      title:"SEO",
+      path:"/tools/seo"
+    },
+    {
+      icon:"🎨",
+      title:"Image",
+      path:"/tools/image"
+    },
+    {
+      icon:"🎥",
+      title:"Video",
+      path:"/tools/video"
+    }
   ];
 
-  const handleSubmit = () => {
-    if (!prompt.trim()) return;
+  function handleSubmit() {
+
+    if(!prompt.trim()){
+      return;
+    }
 
     router.push(
       `/ai?q=${encodeURIComponent(prompt)}`
     );
-  };
+  }
 
   return (
     <>
@@ -52,176 +71,120 @@ export default function HomePage() {
 
       <main
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "40px 20px",
+          maxWidth:"1200px",
+          margin:"0 auto",
+          padding:"40px 20px"
         }}
       >
-        <section
+
+        <div
           style={{
-            textAlign: "center",
-            padding: isMobile
-              ? "40px 15px"
-              : "100px 20px",
+            textAlign:"center",
+            marginBottom:"50px"
           }}
         >
-          <div
-            style={{
-              color: "#60a5fa",
-              fontSize: isMobile
-                ? "18px"
-                : "20px",
-              fontWeight: "bold",
-              marginBottom: "20px",
-            }}
-          >
-            🌱 نمّى AI
-          </div>
 
           <h1
             style={{
-              fontSize: isMobile
-                ? "42px"
-                : "72px",
-              lineHeight: "1.2",
-              marginBottom: "25px",
+              fontSize:"60px",
+              marginBottom:"20px"
             }}
           >
-            حوّل أفكارك إلى محتوى
-            <br />
-            ومحتواك إلى نمو حقيقي
+            🚀 NAMMA AI
           </h1>
 
           <p
             style={{
-              maxWidth: "800px",
-              margin: "0 auto",
-              color: "#cbd5e1",
-              fontSize: isMobile
-                ? "16px"
-                : "22px",
-              lineHeight: "1.8",
+              color:"#cbd5e1",
+              maxWidth:"700px",
+              margin:"0 auto"
             }}
           >
-            منصة عربية متكاملة تجمع أدوات كتابة المحتوى وتحسين SEO
-            والسوشال ميديا والفيديو والتحليلات في مكان واحد.
+            منصة ذكاء أعمال ومبيعات وتسويق
+            متكاملة تجمع CRM و AI Seller
+            و WhatsApp Agent في مكان واحد.
           </p>
 
-          <div
+        </div>
+
+        <div
+          style={{
+            display:"flex",
+            gap:"10px",
+            marginBottom:"40px"
+          }}
+        >
+
+          <input
+            value={prompt}
+            onChange={(e)=>
+              setPrompt(
+                e.target.value
+              )
+            }
+            placeholder="اكتب طلبك..."
             style={{
-              marginTop: "40px",
-              maxWidth: "750px",
-              marginInline: "auto",
+              flex:1
             }}
+          />
+
+          <button
+            onClick={handleSubmit}
           >
+            إرسال
+          </button>
+
+        </div>
+
+        <h2
+          style={{
+            marginBottom:"20px"
+          }}
+        >
+          ⚡ التطبيقات
+        </h2>
+
+        <div
+          style={{
+            display:"grid",
+            gridTemplateColumns:
+              "repeat(auto-fit,minmax(240px,1fr))",
+            gap:"20px"
+          }}
+        >
+
+          {apps.map((app)=>(
             <div
+              key={app.path}
+              className="card"
               style={{
-                background: "#111827",
-                border:
-                  "1px solid rgba(255,255,255,0.1)",
-                borderRadius: "18px",
-                padding: "18px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "15px",
+                cursor:"pointer",
+                textAlign:"center"
               }}
+              onClick={()=>
+                router.push(
+                  app.path
+                )
+              }
             >
-              <input
-                type="text"
-                value={prompt}
-                onChange={(e) =>
-                  setPrompt(e.target.value)
-                }
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleSubmit();
-                  }
-                }}
-                placeholder="اكتب طلبك هنا..."
+
+              <div
                 style={{
-                  flex: 1,
-                  background: "transparent",
-                  border: "none",
-                  outline: "none",
-                  color: "white",
-                  fontSize: isMobile
-                    ? "16px"
-                    : "18px",
-                }}
-              />
-
-              <span
-                onClick={handleSubmit}
-                style={{
-                  fontSize: "24px",
-                  cursor: "pointer",
-                  color: "#60a5fa",
+                  fontSize:"44px"
                 }}
               >
-                ➜
-              </span>
+                {app.icon}
+              </div>
+
+              <h3>
+                {app.title}
+              </h3>
+
             </div>
+          ))}
 
-            <div
-              style={{
-                marginTop: "20px",
-                display: "flex",
-                justifyContent: "center",
-                gap: "10px",
-                flexWrap: "wrap",
-              }}
-            >
-              <button
-                onClick={() =>
-                  setPrompt(
-                    "اكتب مقالاً احترافياً"
-                  )
-                }
-              >
-                💡 كتابة مقال
-              </button>
+        </div>
 
-              <button
-                onClick={() =>
-                  setPrompt(
-                    "أنشئ خطة SEO كاملة"
-                  )
-                }
-              >
-                📈 تحليل SEO
-              </button>
-
-              <button
-                onClick={() =>
-                  setPrompt(
-                    "اكتب سيناريو فيديو"
-                  )
-                }
-              >
-                🎥 سيناريو فيديو
-              </button>
-
-              <button
-                onClick={() =>
-                  setPrompt(
-                    "أنشئ منشورات سوشال ميديا"
-                  )
-                }
-              >
-                📱 منشورات سوشال
-              </button>
-
-              <button
-                onClick={() =>
-                  setPrompt("أنشئ هوية بصرية")
-                }
-              >
-                🎨 هوية بصرية
-              </button>
-            </div>
-          </div>
-        </section>
       </main>
     </>
   );
