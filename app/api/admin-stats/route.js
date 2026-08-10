@@ -13,39 +13,72 @@ export async function GET() {
       await supabase
         .from("users")
         .select("*", {
-          count: "exact",
-          head: true
+          count:"exact",
+          head:true
         });
 
     const { count: crmCount } =
       await supabase
         .from("crm_leads")
         .select("*", {
-          count: "exact",
-          head: true
+          count:"exact",
+          head:true
         });
 
     const { count: conversationsCount } =
       await supabase
         .from("conversations")
         .select("*", {
-          count: "exact",
-          head: true
+          count:"exact",
+          head:true
         });
 
-    return NextResponse.json({
-      success: true,
-      users: usersCount || 0,
-      crm: crmCount || 0,
-      conversations:
-        conversationsCount || 0
+    const { data: leads } =
+      await supabase
+        .from("crm_leads")
+        .select("status");
+
+    const stats = {
+      newLeads:0,
+      followup:0,
+      interested:0,
+      closed:0
+    };
+
+    (leads || []).forEach((lead)=>{
+
+      if(lead.status === "جديد"){
+        stats.newLeads++;
+      }
+
+      if(lead.status === "متابعة"){
+        stats.followup++;
+      }
+
+      if(lead.status === "مهتم"){
+        stats.interested++;
+      }
+
+      if(lead.status === "تم الإغلاق"){
+        stats.closed++;
+      }
+
     });
 
-  } catch (error) {
+    return NextResponse.json({
+      success:true,
+      users:usersCount || 0,
+      crm:crmCount || 0,
+      conversations:
+        conversationsCount || 0,
+      ...stats
+    });
+
+  } catch(error) {
 
     return NextResponse.json({
-      success: false,
-      message: error.message
+      success:false,
+      message:error.message
     });
 
   }
