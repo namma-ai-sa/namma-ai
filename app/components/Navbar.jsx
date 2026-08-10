@@ -1,23 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function Navbar() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  const links = [
-    { href: "/", label: "الرئيسية" },
-    { href: "/tools", label: "الأدوات" },
-    { href: "/crm", label: "CRM" },
-    { href: "/ai-seller", label: "البائع الذكي" },
-    { href: "/whatsapp-agent", label: "واتساب" },
-    { href: "/pricing", label: "الأسعار" },
-    { href: "/about", label: "عن المنصة" },
-    { href: "/contact", label: "تواصل معنا" }
-  ];
 
   return (
     <>
@@ -26,76 +13,90 @@ export default function Navbar() {
           position: "sticky",
           top: 0,
           zIndex: 1000,
-          background: "#0b1220",
-          borderBottom: "1px solid rgba(255,255,255,.1)",
-          padding: "16px 24px",
+          background: "#0f172a",
+          borderBottom: "1px solid rgba(255,255,255,.08)",
           display: "flex",
+          justifyContent: "space-between",
           alignItems: "center",
-          justifyContent: "space-between"
+          padding: "16px 20px"
         }}
       >
-        /
-          🌱 نمّى AI
-        </Link>
-
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            flexWrap: "wrap",
-            justifyContent: "center"
-          }}
-        >
-          {links.map((item) => (
-            {item.href}
-              {item.label}
-            </Link>
-          ))}
-        </div>
-
         <button
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen(true)}
           style={{
-            background: "#111827",
+            background: "transparent",
+            border: "none",
             color: "white",
-            border: "1px solid rgba(255,255,255,.1)",
-            borderRadius: "10px",
-            padding: "8px 12px",
+            fontSize: "24px",
             cursor: "pointer"
           }}
         >
           ☰
         </button>
+
+        <div
+          style={{
+            color: "#22c55e",
+            fontWeight: "800",
+            fontSize: "20px"
+          }}
+        >
+          🌱 نمّى AI
+        </div>
       </nav>
 
       {open && (
-        <div
-          style={{
-            background: "#111827",
-            borderBottom: "1px solid rgba(255,255,255,.1)",
-            padding: "20px"
-          }}
-        >
+        <>
+          <div
+            onClick={() => setOpen(false)}
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,.55)",
+              zIndex: 1001
+            }}
+          />
+
           <div
             style={{
+              position: "fixed",
+              top: 0,
+              right: 0,
+              width: "320px",
+              height: "100%",
+              background: "#111827",
+              zIndex: 1002,
+              padding: "24px",
               display: "flex",
               flexDirection: "column",
-              gap: "12px"
+              gap: "14px"
             }}
           >
-            {links.map((item) => (
-              {item.href}
-                {item.label}
-              </Link>
-            ))}
+            <button
+              onClick={() => setOpen(false)}
+              style={{
+                width: "fit-content"
+              }}
+            >
+              ✕
+            </button>
+
+            /الرئيسية</Link>
+            /toolsالأدوات</Link>
+            /crmCRM</Link>
+            /ai-sellerالبائع الذكي</Link>
+            /whatsapp-agentواتساب</Link>
+            /dashboardلوحة التحكم</Link>
+            /pricingالأسعار</Link>
 
             <hr />
 
             /loginتسجيل الدخول</Link>
             /registerإنشاء حساب</Link>
-            /dashboardلوحة التحكم</Link>
+            /forgot-passwordنسيت كلمة المرور</Link>
+            /forgot-usernameنسيت اسم المستخدم</Link>
           </div>
-        </div>
+        </>
       )}
     </>
   );
