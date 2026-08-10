@@ -29,32 +29,12 @@ export default function HomePage() {
     },
     {
       icon:"⚡",
-      title:"Admin",
+      title:"Admin Dashboard",
       path:"/admin"
-    },
-    {
-      icon:"📝",
-      title:"Article",
-      path:"/tools/article"
-    },
-    {
-      icon:"📈",
-      title:"SEO",
-      path:"/tools/seo"
-    },
-    {
-      icon:"🎨",
-      title:"Image",
-      path:"/tools/image"
-    },
-    {
-      icon:"🎥",
-      title:"Video",
-      path:"/tools/video"
     }
   ];
 
-  function handleSubmit() {
+  function handleSubmit(){
 
     if(!prompt.trim()){
       return;
@@ -71,119 +51,172 @@ export default function HomePage() {
 
       <main
         style={{
-          maxWidth:"1200px",
-          margin:"0 auto",
+          minHeight:"100vh",
+          background:
+            "radial-gradient(circle at top,#0f172a,#020617)",
+          color:"white",
           padding:"40px 20px"
         }}
       >
 
-        <div
+        <section
           style={{
             textAlign:"center",
-            marginBottom:"50px"
+            maxWidth:"1000px",
+            margin:"0 auto"
           }}
         >
 
-          <h1
+          <div
             style={{
-              fontSize:"60px",
+              fontSize:"24px",
               marginBottom:"20px"
             }}
           >
-            🚀 NAMMA AI
+            🌱 نمّى AI
+          </div>
+
+          <h1
+            style={{
+              fontSize:"72px",
+              fontWeight:"800",
+              marginBottom:"20px",
+              lineHeight:"1.2"
+            }}
+          >
+            ذكاء الأعمال
+            <br />
+            في منصة واحدة
           </h1>
 
           <p
             style={{
               color:"#cbd5e1",
               maxWidth:"700px",
-              margin:"0 auto"
+              margin:"0 auto",
+              fontSize:"22px",
+              lineHeight:"1.9"
             }}
           >
-            منصة ذكاء أعمال ومبيعات وتسويق
-            متكاملة تجمع CRM و AI Seller
-            و WhatsApp Agent في مكان واحد.
+            منصة عربية متكاملة تجمع
+            CRM و AI Seller و
+            WhatsApp Agent
+            لمساعدتك على إدارة العملاء
+            ورفع المبيعات وتحسين المتابعة.
           </p>
 
-        </div>
-
-        <div
-          style={{
-            display:"flex",
-            gap:"10px",
-            marginBottom:"40px"
-          }}
-        >
-
-          <input
-            value={prompt}
-            onChange={(e)=>
-              setPrompt(
-                e.target.value
-              )
-            }
-            placeholder="اكتب طلبك..."
+          <div
             style={{
-              flex:1
+              display:"flex",
+              gap:"12px",
+              marginTop:"35px",
+              maxWidth:"800px",
+              marginInline:"auto"
             }}
-          />
-
-          <button
-            onClick={handleSubmit}
           >
-            إرسال
-          </button>
 
-        </div>
-
-        <h2
-          style={{
-            marginBottom:"20px"
-          }}
-        >
-          ⚡ التطبيقات
-        </h2>
-
-        <div
-          style={{
-            display:"grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(240px,1fr))",
-            gap:"20px"
-          }}
-        >
-
-          {apps.map((app)=>(
-            <div
-              key={app.path}
-              className="card"
-              style={{
-                cursor:"pointer",
-                textAlign:"center"
-              }}
-              onClick={()=>
-                router.push(
-                  app.path
+            <input
+              value={prompt}
+              onChange={(e)=>
+                setPrompt(
+                  e.target.value
                 )
               }
-            >
+              placeholder="اكتب طلبك..."
+              style={{
+                flex:1,
+                padding:"16px",
+                borderRadius:"14px",
+                border:
+                  "1px solid rgba(255,255,255,.1)",
+                background:"#0f172a",
+                color:"white"
+              }}
+            />
 
+            <button
+              onClick={handleSubmit}
+              style={{
+                padding:"16px 28px",
+                borderRadius:"14px",
+                border:"none",
+                background:"#22c55e",
+                color:"white",
+                fontWeight:"bold",
+                cursor:"pointer"
+              }}
+            >
+              ابدأ الآن
+            </button>
+
+          </div>
+
+        </section>
+
+        <section
+          style={{
+            maxWidth:"1200px",
+            margin:"70px auto 0"
+          }}
+        >
+
+          <h2
+            style={{
+              textAlign:"center",
+              marginBottom:"30px"
+            }}
+          >
+            ⚡ التطبيقات
+          </h2>
+
+          <div
+            style={{
+              display:"grid",
+              gridTemplateColumns:
+                "repeat(auto-fit,minmax(260px,1fr))",
+              gap:"20px"
+            }}
+          >
+
+            {apps.map((app)=>(
               <div
+                key={app.path}
+                className="card"
+                onClick={()=>
+                  router.push(
+                    app.path
+                  )
+                }
                 style={{
-                  fontSize:"44px"
+                  cursor:"pointer",
+                  textAlign:"center",
+                  padding:"30px",
+                  borderRadius:"20px",
+                  background:
+                    "rgba(255,255,255,.03)",
+                  border:
+                    "1px solid rgba(255,255,255,.08)"
                 }}
               >
-                {app.icon}
+                <div
+                  style={{
+                    fontSize:"52px",
+                    marginBottom:"10px"
+                  }}
+                >
+                  {app.icon}
+                </div>
+
+                <h3>
+                  {app.title}
+                </h3>
+
               </div>
+            ))}
 
-              <h3>
-                {app.title}
-              </h3>
+          </div>
 
-            </div>
-          ))}
-
-        </div>
+        </section>
 
       </main>
     </>
