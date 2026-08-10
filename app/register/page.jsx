@@ -3,92 +3,113 @@
 import { useState } from "react";
 
 export default function RegisterPage() {
-  const [name, setName] =
-    useState("");
 
-  const [username, setUsername] =
-    useState("");
-
-  const [password, setPassword] =
-    useState("");
-
-  const [message, setMessage] =
-    useState("");
+  const [name,setName] = useState("");
+  const [username,setUsername] = useState("");
+  const [password,setPassword] = useState("");
+  const [message,setMessage] = useState("");
 
   async function handleRegister() {
-    const response = await fetch(
+
+    const res = await fetch(
       "/api/register",
       {
-        method: "POST",
-        headers: {
-          "Content-Type":
-            "application/json",
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
         },
-        body: JSON.stringify({
+        body:JSON.stringify({
           name,
           username,
-          password,
-        }),
+          password
+        })
       }
     );
 
-    const data =
-      await response.json();
+    const data = await res.json();
 
-    setMessage(data.message);
+    setMessage(
+      data.message || ""
+    );
   }
 
   return (
     <main
       style={{
-        maxWidth: "500px",
-        margin: "50px auto",
-        color: "white",
+        minHeight:"100vh",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+        padding:"20px"
       }}
     >
-      <h1>إنشاء حساب</h1>
 
-      <input
-        placeholder="الاسم"
-        value={name}
-        onChange={(e) =>
-          setName(e.target.value)
-        }
-      />
-
-      <br />
-      <br />
-
-      <input
-        placeholder="اسم المستخدم"
-        value={username}
-        onChange={(e) =>
-          setUsername(e.target.value)
-        }
-      />
-
-      <br />
-      <br />
-
-      <input
-        type="password"
-        placeholder="كلمة المرور"
-        value={password}
-        onChange={(e) =>
-          setPassword(e.target.value)
-        }
-      />
-
-      <br />
-      <br />
-
-      <button
-        onClick={handleRegister}
+      <div
+        className="card"
+        style={{
+          width:"100%",
+          maxWidth:"450px"
+        }}
       >
-        إنشاء حساب
-      </button>
 
-      <p>{message}</p>
+        <h1
+          style={{
+            textAlign:"center",
+            marginBottom:"20px"
+          }}
+        >
+          🌱 نمّى AI
+        </h1>
+
+        <input
+          placeholder="الاسم"
+          value={name}
+          onChange={(e)=>
+            setName(e.target.value)
+          }
+        />
+
+        <br /><br />
+
+        <input
+          placeholder="اسم المستخدم"
+          value={username}
+          onChange={(e)=>
+            setUsername(e.target.value)
+          }
+        />
+
+        <br /><br />
+
+        <input
+          type="password"
+          placeholder="كلمة المرور"
+          value={password}
+          onChange={(e)=>
+            setPassword(e.target.value)
+          }
+        />
+
+        <br /><br />
+
+        <button
+          onClick={handleRegister}
+        >
+          إنشاء حساب
+        </button>
+
+        {message && (
+          <p
+            style={{
+              marginTop:"15px"
+            }}
+          >
+            {message}
+          </p>
+        )}
+
+      </div>
+
     </main>
   );
 }
