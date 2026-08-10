@@ -1,111 +1,122 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const router = useRouter();
-  const [prompt, setPrompt] = useState("");
 
-  const apps = [
-    { icon: "📊", title: "CRM", path: "/crm" },
-    { icon: "🤖", title: "AI Seller", path: "/ai-seller" },
-    { icon: "📱", title: "WhatsApp Agent", path: "/whatsapp-agent" },
-    { icon: "⚡", title: "Admin Dashboard", path: "/admin" }
+  const features = [
+    {
+      icon: "📊",
+      title: "CRM الذكي",
+      desc: "إدارة العملاء والمتابعات وتحسين فرص الإغلاق."
+    },
+    {
+      icon: "🤖",
+      title: "البائع الذكي",
+      desc: "تحليل احتمالية الشراء وتوصيات المبيعات."
+    },
+    {
+      icon: "📱",
+      title: "WhatsApp Agent",
+      desc: "تحليل المحادثات واقتراح الردود المناسبة."
+    },
+    {
+      icon: "⚡",
+      title: "لوحة الإدارة",
+      desc: "إحصائيات ومؤشرات أداء المنصة بالكامل."
+    }
   ];
-
-  function handleSubmit() {
-    if (!prompt.trim()) return;
-    router.push(`/ai?q=${encodeURIComponent(prompt)}`);
-  }
 
   return (
     <main
       style={{
         minHeight: "100vh",
-        background: "radial-gradient(circle at top,#0f172a,#020617)",
+        background:
+          "linear-gradient(180deg,#020617,#0f172a,#111827)",
         color: "white",
         padding: "40px 20px"
       }}
     >
       <section
         style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
           textAlign: "center",
-          maxWidth: "1000px",
-          margin: "0 auto"
+          paddingTop: "60px"
         }}
       >
         <div
           style={{
-            fontSize: "24px",
+            color: "#22c55e",
+            fontWeight: "bold",
             marginBottom: "20px"
           }}
         >
-          🌱 نمّى AI
+          🌱 NAMMA AI
         </div>
 
         <h1
           style={{
-            fontSize: "72px",
-            fontWeight: "800",
-            marginBottom: "20px",
-            lineHeight: "1.2"
+            fontSize: "64px",
+            fontWeight: "900",
+            marginBottom: "20px"
           }}
         >
-          ذكاء الأعمال
+          منصة عربية للمبيعات
           <br />
-          في منصة واحدة
+          والذكاء الاصطناعي
         </h1>
 
         <p
           style={{
-            color: "#cbd5e1",
-            maxWidth: "700px",
+            maxWidth: "800px",
             margin: "0 auto",
-            fontSize: "22px",
-            lineHeight: "1.9"
+            color: "#cbd5e1",
+            lineHeight: "2",
+            fontSize: "20px"
           }}
         >
-          منصة عربية متكاملة تجمع CRM و AI Seller و WhatsApp Agent
-          لمساعدتك على إدارة العملاء ورفع المبيعات وتحسين المتابعة.
+          اجمع CRM والبائع الذكي ووكيل واتساب وصناعة المحتوى
+          في منصة واحدة تساعدك على زيادة المبيعات وتحسين تجربة العملاء.
         </p>
 
         <div
           style={{
             display: "flex",
-            gap: "12px",
-            marginTop: "35px",
-            maxWidth: "800px",
-            marginInline: "auto"
+            gap: "16px",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            marginTop: "40px"
           }}
         >
-          <input
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="اكتب طلبك..."
-            style={{
-              flex: 1,
-              padding: "16px",
-              borderRadius: "14px",
-              border: "1px solid rgba(255,255,255,.1)",
-              background: "#0f172a",
-              color: "white"
-            }}
-          />
-
           <button
-            onClick={handleSubmit}
+            onClick={() => router.push("/register")}
             style={{
-              padding: "16px 28px",
-              borderRadius: "14px",
+              padding: "16px 32px",
               border: "none",
+              borderRadius: "14px",
               background: "#22c55e",
               color: "white",
-              fontWeight: "bold",
+              cursor: "pointer",
+              fontWeight: "bold"
+            }}
+          >
+            ابدأ مجاناً
+          </button>
+
+          <button
+            onClick={() => router.push("/pricing")}
+            style={{
+              padding: "16px 32px",
+              borderRadius: "14px",
+              border: "1px solid rgba(255,255,255,.15)",
+              background: "transparent",
+              color: "white",
               cursor: "pointer"
             }}
           >
-            ابدأ الآن
+            عرض الأسعار
           </button>
         </div>
       </section>
@@ -113,48 +124,46 @@ export default function HomePage() {
       <section
         style={{
           maxWidth: "1200px",
-          margin: "70px auto 0"
+          margin: "80px auto"
         }}
       >
-        <h2
-          style={{
-            textAlign: "center",
-            marginBottom: "30px"
-          }}
-        >
-          ⚡ التطبيقات
-        </h2>
-
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
+            gridTemplateColumns:
+              "repeat(auto-fit,minmax(250px,1fr))",
             gap: "20px"
           }}
         >
-          {apps.map((app) => (
+          {features.map((item) => (
             <div
-              key={app.path}
-              onClick={() => router.push(app.path)}
+              key={item.title}
               style={{
-                cursor: "pointer",
-                textAlign: "center",
-                padding: "30px",
+                background: "rgba(255,255,255,.04)",
+                border: "1px solid rgba(255,255,255,.08)",
                 borderRadius: "20px",
-                background: "rgba(255,255,255,.03)",
-                border: "1px solid rgba(255,255,255,.08)"
+                padding: "30px"
               }}
             >
               <div
                 style={{
-                  fontSize: "52px",
-                  marginBottom: "10px"
+                  fontSize: "48px",
+                  marginBottom: "12px"
                 }}
               >
-                {app.icon}
+                {item.icon}
               </div>
 
-              <h3>{app.title}</h3>
+              <h3>{item.title}</h3>
+
+              <p
+                style={{
+                  color: "#cbd5e1",
+                  lineHeight: "1.8"
+                }}
+              >
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
