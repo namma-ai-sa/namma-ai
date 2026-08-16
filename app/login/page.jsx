@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
@@ -16,13 +16,15 @@ export default function LoginPage() {
   }, []);
 
   async function handleLogin() {
+    setMessage("");
+
     const response = await fetch("/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
+        email,
         password,
       }),
     });
@@ -37,7 +39,7 @@ export default function LoginPage() {
 
       window.location.href = "/ai";
     } else {
-      setMessage(data.message);
+      setMessage(data.message || "فشل تسجيل الدخول");
     }
   }
 
@@ -74,48 +76,49 @@ export default function LoginPage() {
             marginBottom: "24px",
           }}
         >
-          مرحباً بعودتك
+          تسجيل الدخول
         </p>
 
         <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="اسم المستخدم"
-          style={{
-            width: "100%",
-            padding: "12px",
-            marginBottom: "12px",
-            borderRadius: "10px",
-          }}
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="البريد الإلكتروني"
         />
+
+        <br />
+        <br />
 
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="كلمة المرور"
-          style={{
-            width: "100%",
-            padding: "12px",
-            marginBottom: "16px",
-            borderRadius: "10px",
-          }}
         />
+
+        <br />
+        <br />
 
         <button
           onClick={handleLogin}
           style={{
             width: "100%",
-            padding: "12px",
             background: "#2563eb",
-            color: "#fff",
-            border: "none",
-            borderRadius: "10px",
-            cursor: "pointer",
           }}
         >
           تسجيل الدخول
         </button>
+
+        <div
+          style={{
+            marginTop: "15px",
+            textAlign: "center",
+          }}
+        >
+          /forgot-password
+            نسيت كلمة المرور؟
+          </a>
+        </div>
 
         {message && (
           <p
