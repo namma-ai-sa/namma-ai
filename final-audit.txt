@@ -1,0 +1,591 @@
+================ APP FILES ================
+app/about/page.jsx
+app/admin/page.jsx
+app/admin/page.jsx.bak
+app/ai-seller/page.jsx
+app/ai/cards.jsx
+app/ai/chat.jsx
+app/ai/context/ConversationContext.jsx
+app/ai/conversations.jsx
+app/ai/dashboard.jsx
+app/ai/messages.jsx
+app/ai/page.jsx
+app/ai/page.jsx.bak
+app/api/admin-stats/route.js
+app/api/ai-seller/route.js
+app/api/analyze/route.js
+app/api/article/route.js
+app/api/chat-history/route.js
+app/api/chat/route.js
+app/api/chat/route.js.bak
+app/api/conversations/route.js
+app/api/create-conversation/route.js
+app/api/crm-ai/route.js
+app/api/crm-leads/delete/route.js
+app/api/crm-leads/followup/route.js
+app/api/crm-leads/recommendation/route.js
+app/api/crm-leads/route.js
+app/api/crm-leads/status/route.js
+app/api/crm-timeline/route.js
+app/api/forgot-password/route.js
+app/api/forgot-username/route.js
+app/api/image/route.js
+app/api/login/route.js
+app/api/logout/route.js
+app/api/project/route.js
+app/api/projects/route.js
+app/api/register/route.js
+app/api/save-message/route.js
+app/api/save-project/route.js
+app/api/seo/route.js
+app/api/session/route.js
+app/api/social/route.js
+app/api/update-conversation-title/route.js
+app/api/video/route.js
+app/api/whatsapp-agent/route.js
+app/components/AuthGuard.jsx
+app/components/LogoutButton.jsx
+app/components/Navbar.jsx
+app/components/Navbar.jsx.bak
+app/components/Sidebar.jsx
+app/components/UserInfo.jsx
+app/contact/page.jsx
+app/crm/page.jsx
+app/crm/page.jsx.bak
+app/dashboard/page.jsx
+app/forgot-password/page.jsx
+app/forgot-username/page.jsx
+app/globals.css
+app/jsconfig.json
+app/layout.jsx
+app/login/page.jsx
+app/login/page.jsx.bak
+app/mobile-check/page.jsx
+app/not-found.jsx
+app/page.jsx
+app/pricing/page.jsx
+app/projects/[id]/page.jsx
+app/projects/new/page.jsx
+app/projects/page.jsx
+app/register/page.jsx
+app/tools/ad-generator/page.jsx
+app/tools/analyze/page.jsx
+app/tools/article/page.jsx
+app/tools/audience/page.jsx
+app/tools/brand-identity/page.jsx
+app/tools/caption-generator/page.jsx
+app/tools/competitor/page.jsx
+app/tools/content-plan/page.jsx
+app/tools/description/page.jsx
+app/tools/ecommerce/page.jsx
+app/tools/hashtags/page.jsx
+app/tools/ideas/page.jsx
+app/tools/image/page.jsx
+app/tools/page.jsx
+app/tools/plan/page.jsx
+app/tools/product-ideas/page.jsx
+app/tools/seo/page.jsx
+app/tools/social/page.jsx
+app/tools/title-generator/page.jsx
+app/tools/video/page.jsx
+app/tools/website/page.jsx
+app/whatsapp-agent/page.jsx
+
+================ API FILES ================
+app/api/admin-stats/route.js
+app/api/ai-seller/route.js
+app/api/analyze/route.js
+app/api/article/route.js
+app/api/chat-history/route.js
+app/api/chat/route.js
+app/api/chat/route.js.bak
+app/api/conversations/route.js
+app/api/create-conversation/route.js
+app/api/crm-ai/route.js
+app/api/crm-leads/delete/route.js
+app/api/crm-leads/followup/route.js
+app/api/crm-leads/recommendation/route.js
+app/api/crm-leads/route.js
+app/api/crm-leads/status/route.js
+app/api/crm-timeline/route.js
+app/api/forgot-password/route.js
+app/api/forgot-username/route.js
+app/api/image/route.js
+app/api/login/route.js
+app/api/logout/route.js
+app/api/project/route.js
+app/api/projects/route.js
+app/api/register/route.js
+app/api/save-message/route.js
+app/api/save-project/route.js
+app/api/seo/route.js
+app/api/session/route.js
+app/api/social/route.js
+app/api/update-conversation-title/route.js
+app/api/video/route.js
+app/api/whatsapp-agent/route.js
+
+================ COMPONENT FILES ================
+app/components/AuthGuard.jsx
+app/components/LogoutButton.jsx
+app/components/Navbar.jsx
+app/components/Navbar.jsx.bak
+app/components/Sidebar.jsx
+app/components/UserInfo.jsx
+
+================ PACKAGE JSON ================
+{
+  "name": "namma-ai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.112.2",
+    "next": "^16.3.0",
+    "next-auth": "^4.24.15",
+    "openai": "^5.12.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}
+
+================ CRM AI ================
+import { NextResponse } from "next/server";
+
+export async function POST(req) {
+
+  try {
+
+    const {
+      name,
+      email,
+      phone,
+      status,
+      notes,
+      last_followup,
+      next_followup
+    } = await req.json();
+
+    const prompt = `
+أنت مدير مبيعات وخبير CRM.
+
+قم بتحليل العميل التالي:
+
+الاسم:
+${name || "-"}
+
+البريد:
+${email || "-"}
+
+الجوال:
+${phone || "-"}
+
+الحالة:
+${status || "-"}
+
+الملاحظات:
+${notes || "-"}
+
+آخر متابعة:
+${last_followup || "-"}
+
+المتابعة القادمة:
+${next_followup || "-"}
+
+أعطني التقرير بهذا الشكل فقط:
+
+🎯 Interest Score:
+/10
+
+💰 Closing Probability:
+%
+
+✅ Recommended Next Action:
+
+📅 Recommended Follow-up Timing:
+
+⚠️ Expected Objections:
+
+💬 Recommended Message:
+
+📊 Lead Health:
+Hot / Warm / Cold
+`;
+
+    const response =
+      await fetch(
+        "https://openrouter.ai/api/v1/chat/completions",
+        {
+          method:"POST",
+          headers:{
+            Authorization:
+              `Bearer ${process.env.OPENROUTER_API_KEY}`,
+            "Content-Type":
+              "application/json"
+          },
+          body:JSON.stringify({
+            model:
+              "deepseek/deepseek-chat",
+            messages:[
+              {
+                role:"user",
+                content:prompt
+              }
+            ],
+            temperature:0.3,
+            max_tokens:1400
+          })
+        }
+      );
+
+    const data =
+      await response.json();
+
+    return NextResponse.json({
+      success:true,
+      result:
+        data?.choices?.[0]?.message?.content ||
+        "لا توجد نتيجة"
+    });
+
+  } catch(error) {
+
+    return NextResponse.json({
+      success:false,
+      message:error.message
+    });
+
+  }
+
+}
+
+================ AI SELLER ================
+import { NextResponse } from "next/server";
+
+export async function POST(req) {
+  try {
+    const { business, customer } =
+      await req.json();
+
+    const prompt = `
+أنت خبير مبيعات محترف.
+
+حلل العميل التالي:
+
+النشاط التجاري:
+${business}
+
+بيانات العميل:
+${customer}
+
+أعطني:
+
+1- درجة الاهتمام من 10
+2- احتمالية الشراء
+3- الاعتراضات المحتملة
+4- أفضل رسالة مبيعات
+5- الخطوة التالية
+6- فرصة إغلاق الصفقة
+`;
+
+    const response = await fetch(
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "deepseek/deepseek-chat",
+          messages: [
+            {
+              role: "user",
+              content: prompt,
+            },
+          ],
+          temperature: 0.4,
+          max_tokens: 1200,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    return NextResponse.json({
+      success: true,
+      result:
+        data?.choices?.[0]?.message
+          ?.content ||
+        "لا توجد نتيجة",
+    });
+  } catch (error) {
+    return NextResponse.json({
+      success: false,
+      message: error.message,
+    });
+  }
+}
+
+================ PROJECT API ================
+import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY
+);
+
+export async function GET(req) {
+  try {
+    const { searchParams } = new URL(req.url);
+
+    const username = searchParams.get("username");
+    const projectName = searchParams.get("name");
+
+    if (!username || !projectName) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "يرجى إدخال اسم المستخدم واسم المشروع"
+        },
+        { status: 400 }
+      );
+    }
+
+    const { data, error } = await supabase
+      .from("projects")
+      .select("*")
+      .eq("username", username)
+      .eq("project_name", projectName)
+      .single();
+
+    if (error || !data) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "المشروع غير موجود"
+        },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        success: true,
+        project: {
+          name: data.project_name,
+          status: data.status,
+          progress: data.progress,
+          lastTask: data.last_task,
+          nextTask: data.next_task
+        }
+      },
+      { status: 200 }
+    );
+
+  } catch (error) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: error.message
+      },
+      { status: 500 }
+    );
+  }
+}
+
+================ PROJECTS API ================
+import { NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY
+);
+
+export async function GET(req) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const username = searchParams.get("username");
+
+    if (!username) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "يرجى إدخال اسم المستخدم"
+        },
+        { status: 400 }
+      );
+    }
+
+    const { data, error } = await supabase
+      .from("projects")
+      .select("*")
+      .eq("username", username);
+
+    if (error) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: error.message
+        },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        success: true,
+        projects: data || []
+      },
+      { status: 200 }
+    );
+
+  } catch (error) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: error.message
+      },
+      { status: 500 }
+    );
+  }
+}
+
+================ BUILD ================
+
+> namma-ai@1.0.0 build
+> next build
+
+▲ Next.js 16.3.0 (Turbopack)
+- Environments: .env.local
+✓ Running next.config took 15ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 3ms ...
+  Collecting page data using 1 worker ...
+  Generating static pages using 1 worker (0/71) ...
+  Generating static pages using 1 worker (17/71) 
+  Generating static pages using 1 worker (35/71) 
+  Generating static pages using 1 worker (53/71) 
+✓ Generating static pages using 1 worker (71/71) in 696ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /admin
+├ ○ /ai
+├ ○ /ai-seller
+├ ƒ /api/admin-stats
+├ ƒ /api/ai-seller
+├ ƒ /api/analyze
+├ ƒ /api/article
+├ ƒ /api/chat
+├ ƒ /api/chat-history
+├ ƒ /api/conversations
+├ ƒ /api/create-conversation
+├ ƒ /api/crm-ai
+├ ƒ /api/crm-leads
+├ ƒ /api/crm-leads/delete
+├ ƒ /api/crm-leads/followup
+├ ƒ /api/crm-leads/recommendation
+├ ƒ /api/crm-leads/status
+├ ƒ /api/crm-timeline
+├ ƒ /api/forgot-password
+├ ƒ /api/forgot-username
+├ ƒ /api/image
+├ ƒ /api/login
+├ ƒ /api/logout
+├ ƒ /api/project
+├ ƒ /api/projects
+├ ƒ /api/register
+├ ƒ /api/save-message
+├ ƒ /api/save-project
+├ ƒ /api/seo
+├ ƒ /api/session
+├ ƒ /api/social
+├ ƒ /api/update-conversation-title
+├ ƒ /api/video
+├ ƒ /api/whatsapp-agent
+├ ○ /contact
+├ ○ /crm
+├ ○ /dashboard
+├ ○ /forgot-password
+├ ○ /forgot-username
+├ ○ /login
+├ ○ /mobile-check
+├ ○ /pricing
+├ ○ /projects
+├ ƒ /projects/[id]
+├ ○ /projects/new
+├ ○ /register
+├ ○ /tools
+├ ○ /tools/ad-generator
+├ ○ /tools/analyze
+├ ○ /tools/article
+├ ○ /tools/audience
+├ ○ /tools/brand-identity
+├ ○ /tools/caption-generator
+├ ○ /tools/competitor
+├ ○ /tools/content-plan
+├ ○ /tools/description
+├ ○ /tools/ecommerce
+├ ○ /tools/hashtags
+├ ○ /tools/ideas
+├ ○ /tools/image
+├ ○ /tools/plan
+├ ○ /tools/product-ideas
+├ ○ /tools/seo
+├ ○ /tools/social
+├ ○ /tools/title-generator
+├ ○ /tools/video
+├ ○ /tools/website
+└ ○ /whatsapp-agent
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+================ GIT STATUS ================
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	audit.txt
+	final-audit.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+================ BRANCHES ================
+  feat-navigation-fix
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/feat-admin-dashboard-v5
+  remotes/origin/feat-ai-seller-v4
+  remotes/origin/feat-auth-security
+  remotes/origin/feat-content-studio
+  remotes/origin/feat-dashboard-polish
+  remotes/origin/feat-image-studio
+  remotes/origin/feat-mobile-navbar-pro
+  remotes/origin/feat-navigation-fix
+  remotes/origin/feat-publish-hub
+  remotes/origin/feat-video-studio
+  remotes/origin/feat-whatsapp-agent-v4
+  remotes/origin/feat/landing-page-v3
+  remotes/origin/feat/mobile-navbar-pro
+  remotes/origin/feat/mobile-ux-polish
+  remotes/origin/main
+  remotes/origin/sprint-account-menu
+  remotes/origin/sprint/crm-navbar-pro
+  remotes/origin/v2-realtime-chat
