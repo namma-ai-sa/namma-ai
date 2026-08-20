@@ -53,22 +53,25 @@ export default function Navbar() {
 
         </div>
 
-        <div className="desktop-auth">
+        <div
+          className="desktop-auth"
+          style={{
+            position:"relative"
+          }}
+        >
 
           <button
-            onClick={() => go("/login")}
+            onClick={() => setOpen(!open)}
             style={{
-              background:"transparent",
-              border:"1px solid rgba(255,255,255,.15)"
+              background:"rgba(255,255,255,.06)",
+              border:"1px solid rgba(255,255,255,.1)",
+              color:"white",
+              padding:"10px 16px",
+              borderRadius:"12px",
+              cursor:"pointer"
             }}
           >
-            دخول
-          </button>
-
-          <button
-            onClick={() => go("/register")}
-          >
-            إنشاء حساب
+            👤 حسابي
           </button>
 
         </div>
@@ -79,6 +82,48 @@ export default function Navbar() {
         >
           ☰
         </button>
+
+        {open && (
+          <div
+            style={{
+              position:"absolute",
+              top:"70px",
+              left:"24px",
+              background:"#111827",
+              border:"1px solid rgba(255,255,255,.1)",
+              borderRadius:"16px",
+              padding:"12px",
+              minWidth:"220px",
+              zIndex:2000
+            }}
+          >
+            <button style={drawerBtn} onClick={() => go("/profile")}>
+              👤 الملف الشخصي
+            </button>
+
+            <button style={drawerBtn} onClick={() => go("/projects")}>
+              📁 مشاريعي
+            </button>
+
+            <button style={drawerBtn} onClick={() => go("/crm")}>
+              📊 CRM
+            </button>
+
+            <button style={drawerBtn} onClick={() => go("/settings")}>
+              ⚙️ الإعدادات
+            </button>
+
+            <button
+              style={{
+                ...drawerBtn,
+                color:"#ef4444"
+              }}
+              onClick={() => go("/logout")}
+            >
+              🚪 تسجيل الخروج
+            </button>
+          </div>
+        )}
 
       </nav>
 
