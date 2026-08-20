@@ -129,3 +129,93 @@ button:hover{
   }
 
 }
+
+/* NAMMA AI Premium Mobile */
+
+@media (max-width:768px){
+
+  nav{
+    padding:16px !important;
+  }
+
+  nav > div:first-child{
+    font-size:22px !important;
+    white-space:nowrap !important;
+  }
+
+  h1{
+    font-size:48px !important;
+  }
+
+  button{
+    min-height:52px;
+  }
+
+}
+
+.desktop-menu{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.desktop-auth{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.mobile-menu-btn{
+  display:none;
+  background:transparent;
+  border:none;
+  color:white;
+  font-size:32px;
+  cursor:pointer;
+}
+
+.mobile-drawer{
+  position:fixed;
+  top:76px;
+  right:12px;
+  left:12px;
+  background:#111827;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:16px;
+  z-index:9999;
+  backdrop-filter:blur(20px);
+}
+
+.mobile-drawer button{
+  width:100%;
+  text-align:right;
+  margin-bottom:10px;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:rgba(255,255,255,.03);
+  color:white;
+  cursor:pointer;
+}
+
+.mobile-drawer button:hover{
+  background:rgba(34,197,94,.15);
+}
+
+@media (max-width:768px){
+
+  .desktop-menu{
+    display:none;
+  }
+
+  .desktop-auth{
+    display:none;
+  }
+
+  .mobile-menu-btn{
+    display:block;
+  }
+
+}
+
