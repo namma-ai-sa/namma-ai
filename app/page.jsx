@@ -19,7 +19,7 @@ export default function HomePage() {
     },
     {
       icon: "📱",
-      title: "WhatsApp Agent",
+      title: "وكيل واتساب",
       desc: "تحليل المحادثات واقتراح الردود المناسبة."
     },
     {
@@ -29,148 +29,226 @@ export default function HomePage() {
     }
   ];
 
+  const stats = [
+    {
+      value: "+5000",
+      label: "رسالة تم تحليلها"
+    },
+    {
+      value: "+300",
+      label: "عميل تمت متابعته"
+    },
+    {
+      value: "24/7",
+      label: "مساعد ذكي متاح"
+    },
+    {
+      value: "90%",
+      label: "تحسين سرعة المتابعة"
+    }
+  ];
+
   return (
     <>
       <Navbar />
-    <main
-      style={{
-        minHeight: "100vh",
-        background:
-          "linear-gradient(180deg,#020617,#0f172a,#111827)",
-        color: "white",
-        padding: "40px 20px"
-      }}
-    >
-      <section
+
+      <main
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          textAlign: "center",
-          paddingTop: "60px"
+          minHeight: "100vh",
+          background:
+            "linear-gradient(180deg,#020617,#0f172a,#111827)",
+          color: "white",
+          padding: "40px 20px"
         }}
       >
-        <div
+        <section
           style={{
-            color: "#22c55e",
-            fontWeight: "bold",
-            marginBottom: "20px"
-          }}
-        >
-          🌱 NAMMA AI
-        </div>
-
-        <h1
-          style={{
-            fontSize: "64px",
-            fontWeight: "900",
-            marginBottom: "20px"
-          }}
-        >
-          منصة عربية للمبيعات
-          <br />
-          والذكاء الاصطناعي
-        </h1>
-
-        <p
-          style={{
-            maxWidth: "800px",
+            maxWidth: "1200px",
             margin: "0 auto",
-            color: "#cbd5e1",
-            lineHeight: "2",
-            fontSize: "20px"
+            textAlign: "center",
+            paddingTop: "80px"
           }}
         >
-          اجمع CRM والبائع الذكي ووكيل واتساب وصناعة المحتوى
-          في منصة واحدة تساعدك على زيادة المبيعات وتحسين تجربة العملاء.
-        </p>
-
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            marginTop: "40px"
-          }}
-        >
-          <button
-            onClick={() => router.push("/register")}
+          <div
             style={{
-              padding: "16px 32px",
-              border: "none",
-              borderRadius: "14px",
-              background: "#22c55e",
-              color: "white",
-              cursor: "pointer",
-              fontWeight: "bold"
+              display: "inline-block",
+              padding: "10px 18px",
+              border: "1px solid rgba(34,197,94,.3)",
+              background: "rgba(34,197,94,.08)",
+              borderRadius: "999px",
+              color: "#22c55e",
+              fontWeight: "700",
+              marginBottom: "25px"
             }}
           >
-            ابدأ مجاناً
-          </button>
+            🌱 نمّى AI | وكيل النمو الذكي
+          </div>
 
-          <button
-            onClick={() => router.push("/pricing")}
+          <h1
             style={{
-              padding: "16px 32px",
-              borderRadius: "14px",
-              border: "1px solid rgba(255,255,255,.15)",
-              background: "transparent",
-              color: "white",
-              cursor: "pointer"
+              fontSize: "72px",
+              fontWeight: "900",
+              lineHeight: "1.2",
+              marginBottom: "24px"
             }}
           >
-            عرض الأسعار
-          </button>
-        </div>
-      </section>
+            وكيل المبيعات الذكي
+            <br />
+            للشركات العربية
+          </h1>
 
-      <section
-        style={{
-          maxWidth: "1200px",
-          margin: "80px auto"
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(250px,1fr))",
-            gap: "20px"
-          }}
-        >
-          {features.map((item) => (
-            <div
-              key={item.title}
+          <p
+            style={{
+              maxWidth: "850px",
+              margin: "0 auto",
+              color: "#cbd5e1",
+              fontSize: "22px",
+              lineHeight: "2"
+            }}
+          >
+            اجمع CRM الذكي والبائع الذكي ووكيل واتساب
+            وصناعة المحتوى وتحليل العملاء
+            داخل منصة واحدة مصممة لزيادة المبيعات
+            وتحسين تجربة العميل.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              gap: "16px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              marginTop: "40px"
+            }}
+          >
+            <button
+              onClick={() => router.push("/register")}
               style={{
-                background: "rgba(255,255,255,.04)",
-                border: "1px solid rgba(255,255,255,.08)",
-                borderRadius: "20px",
-                padding: "30px"
+                padding: "16px 32px",
+                border: "none",
+                borderRadius: "14px",
+                background: "#22c55e",
+                color: "white",
+                cursor: "pointer",
+                fontWeight: "bold"
               }}
             >
+              ابدأ مجاناً
+            </button>
+
+            <button
+              onClick={() => router.push("/pricing")}
+              style={{
+                padding: "16px 32px",
+                borderRadius: "14px",
+                border: "1px solid rgba(255,255,255,.15)",
+                background: "transparent",
+                color: "white",
+                cursor: "pointer"
+              }}
+            >
+              شاهد الأسعار
+            </button>
+          </div>
+        </section>
+
+        <section
+          style={{
+            maxWidth: "1200px",
+            margin: "80px auto"
+          }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fit,minmax(220px,1fr))",
+              gap: "20px"
+            }}
+          >
+            {stats.map((item) => (
               <div
+                key={item.label}
                 style={{
-                  fontSize: "48px",
-                  marginBottom: "12px"
+                  background: "rgba(255,255,255,.04)",
+                  border:
+                    "1px solid rgba(255,255,255,.08)",
+                  borderRadius: "20px",
+                  padding: "24px",
+                  textAlign: "center"
                 }}
               >
-                {item.icon}
+                <h2
+                  style={{
+                    color: "#22c55e",
+                    fontSize: "34px",
+                    fontWeight: "900"
+                  }}
+                >
+                  {item.value}
+                </h2>
+
+                <p
+                  style={{
+                    color: "#cbd5e1"
+                  }}
+                >
+                  {item.label}
+                </p>
               </div>
+            ))}
+          </div>
+        </section>
 
-              <h3>{item.title}</h3>
-
-              <p
+        <section
+          style={{
+            maxWidth: "1200px",
+            margin: "80px auto"
+          }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fit,minmax(250px,1fr))",
+              gap: "20px"
+            }}
+          >
+            {features.map((item) => (
+              <div
+                key={item.title}
                 style={{
-                  color: "#cbd5e1",
-                  lineHeight: "1.8"
+                  background: "rgba(255,255,255,.04)",
+                  border:
+                    "1px solid rgba(255,255,255,.08)",
+                  borderRadius: "20px",
+                  padding: "30px"
                 }}
               >
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-    </main></>
+                <div
+                  style={{
+                    fontSize: "48px",
+                    marginBottom: "12px"
+                  }}
+                >
+                  {item.icon}
+                </div>
+
+                <h3>{item.title}</h3>
+
+                <p
+                  style={{
+                    color: "#cbd5e1",
+                    lineHeight: "1.8"
+                  }}
+                >
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+    </>
   );
 }

@@ -85,3 +85,47 @@ button:hover{
     width:100%;
   }
 }
+
+.desktop-menu{
+  display:flex;
+  gap:16px;
+  align-items:center;
+}
+
+.desktop-auth{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.mobile-menu-btn{
+  display:none;
+  background:transparent;
+  border:none;
+  color:white;
+  font-size:28px;
+  cursor:pointer;
+}
+
+.desktop-auth button{
+  padding:10px 16px;
+  border-radius:10px;
+  color:white;
+  cursor:pointer;
+}
+
+@media (max-width: 768px){
+
+  .desktop-menu{
+    display:none;
+  }
+
+  .desktop-auth{
+    display:none;
+  }
+
+  .mobile-menu-btn{
+    display:block;
+  }
+
+}
