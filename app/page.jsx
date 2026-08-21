@@ -81,20 +81,21 @@ export default function HomePage() {
               marginBottom: "25px"
             }}
           >
-            🌱 نمّى AI | وكيل النمو الذكي
+            ⭐ أكثر من 5000 رسالة تم تحليلها
           </div>
 
           <h1
             style={{
-              fontSize: "72px",
+              fontSize: "88px",
+              textShadow: "0 0 30px rgba(34,197,94,.25)",
               fontWeight: "900",
               lineHeight: "1.2",
               marginBottom: "24px"
             }}
           >
-            وكيل المبيعات الذكي
+            شغّل شركة كاملة
             <br />
-            للشركات العربية
+            بذكاء اصطناعي واحد
           </h1>
 
           <p
@@ -106,10 +107,10 @@ export default function HomePage() {
               lineHeight: "2"
             }}
           >
-            اجمع CRM الذكي والبائع الذكي ووكيل واتساب
-            وصناعة المحتوى وتحليل العملاء
-            داخل منصة واحدة مصممة لزيادة المبيعات
-            وتحسين تجربة العميل.
+            CRM + WhatsApp + AI + Analytics
+
+            كل أدوات النمو والمبيعات والتسويق
+            داخل منصة واحدة مصممة للشركات العربية.
           </p>
 
           <div
@@ -124,7 +125,7 @@ export default function HomePage() {
             <button
               onClick={() => router.push("/register")}
               style={{
-                padding: "16px 32px",
+                padding: "18px 38px",
                 border: "none",
                 borderRadius: "14px",
                 background: "#22c55e",
@@ -139,7 +140,7 @@ export default function HomePage() {
             <button
               onClick={() => router.push("/pricing")}
               style={{
-                padding: "16px 32px",
+                padding: "18px 38px",
                 borderRadius: "14px",
                 border: "1px solid rgba(255,255,255,.15)",
                 background: "transparent",
@@ -153,7 +154,7 @@ export default function HomePage() {
             <button
               onClick={() => router.push("/guest")}
               style={{
-                padding: "16px 32px",
+                padding: "18px 38px",
                 borderRadius: "14px",
                 border: "none",
                 background: "#2563eb",
@@ -196,7 +197,7 @@ export default function HomePage() {
                 <h2
                   style={{
                     color: "#22c55e",
-                    fontSize: "34px",
+                    fontSize: "48px",
                     fontWeight: "900"
                   }}
                 >
@@ -237,7 +238,9 @@ export default function HomePage() {
                   border:
                     "1px solid rgba(255,255,255,.08)",
                   borderRadius: "20px",
-                  padding: "30px"
+                  padding: "36px",
+                  cursor: "pointer",
+                  transition: "all .2s ease"
                 }}
               >
                 <div
