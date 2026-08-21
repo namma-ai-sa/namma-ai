@@ -272,6 +272,19 @@ export default function GuestPage() {
                   whiteSpace: "pre-wrap",
                 }}
               >
+                <div
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    marginBottom: "8px",
+                    opacity: 0.8,
+                  }}
+                >
+                  {item.role === "user"
+                    ? "👤 أنت"
+                    : "🤖 نمّى AI"}
+                </div>
+
                 {item.content}
 
                 {item.role === "assistant" && (
