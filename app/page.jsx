@@ -151,7 +151,7 @@ export default function HomePage() {
             </button>
 
             <button
-              onClick={() => router.push("/ai")}
+              onClick={() => router.push("/guest")}
               style={{
                 padding: "16px 32px",
                 borderRadius: "14px",
