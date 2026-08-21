@@ -273,6 +273,55 @@ export default function GuestPage() {
                 }}
               >
                 {item.content}
+
+                {item.role === "assistant" && (
+                  <div
+                    style={{
+                      marginTop: "10px",
+                    }}
+                  >
+                    <button
+                      onClick={() =>
+                        navigator.clipboard.writeText(
+                          item.content
+                        )
+                      }
+                      style={{
+                        background: "transparent",
+                        border: "1px solid #4b5563",
+                        color: "#cbd5e1",
+                        padding: "6px 10px",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      📋 نسخ الرد
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        window.open(
+                          "https://wa.me/?text=" +
+                            encodeURIComponent(
+                              item.content
+                            ),
+                          "_blank"
+                        )
+                      }
+                      style={{
+                        background: "#22c55e",
+                        border: "none",
+                        color: "white",
+                        padding: "6px 10px",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                        marginRight: "8px",
+                      }}
+                    >
+                      📱 واتساب
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ))}
