@@ -1,14 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function GuestPage() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [messages, loading]);
+
+  const FREE_MESSAGES = 3;
+  const remainingMessages =
+    FREE_MESSAGES -
+    messages.filter(
+      (m) => m.role === "user"
+    ).length;
+
   async function askAI() {
-    if (!message.trim() || loading) return;
+    if (
+      !message.trim() ||
+      loading ||
+      remainingMessages <= 0
+    ) {
+      return;
+    }
 
     const userMessage = message;
 
@@ -88,11 +109,82 @@ export default function GuestPage() {
           style={{
             textAlign: "center",
             color: "#94a3b8",
-            marginBottom: "30px",
+            marginBottom: "15px",
           }}
         >
           جرّب الذكاء الاصطناعي قبل التسجيل.
         </p>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
+            gap: "12px",
+            marginBottom: "25px",
+          }}
+        >
+          {[
+            "📈 زيادة المبيعات",
+            "📱 كتابة رسائل واتساب",
+            "🎯 إنشاء خطط تسويقية",
+            "🤖 تحليل العملاء",
+          ].map((item) => (
+            <div
+              key={item}
+              style={{
+                background: "#111827",
+                border: "1px solid #374151",
+                borderRadius: "14px",
+                padding: "12px",
+                textAlign: "center",
+              }}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3,1fr)",
+            gap: "12px",
+            marginBottom: "20px",
+          }}
+        >
+          {[
+            "⭐ 5000+ رسالة",
+            "👥 300+ عميل",
+            "⚡ تحسين المتابعة 90%",
+          ].map((item) => (
+            <div
+              key={item}
+              style={{
+                background: "#111827",
+                border: "1px solid #374151",
+                borderRadius: "12px",
+                padding: "12px",
+                textAlign: "center",
+              }}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "25px",
+            color: "#22c55e",
+            fontWeight: "bold",
+          }}
+        >
+          🎁 المتبقي من التجربة المجانية:
+          {" "}
+          {remainingMessages}
+          /3
+        </div>
 
         <div
           style={{
@@ -113,6 +205,46 @@ export default function GuestPage() {
               }}
             >
               اسأل أي سؤال عن المبيعات أو التسويق أو العملاء.
+
+              <div
+                style={{
+                  marginTop: "25px",
+                  display: "flex",
+                  gap: "10px",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                }}
+              >
+                {[
+                  "📈 كيف أزيد المبيعات؟",
+                  "📱 اكتب رسالة واتساب",
+                  "🎯 أعطني خطة تسويق",
+                  "🤖 حلل نشاطي التجاري",
+                ].map((prompt) => (
+                  <button
+                    key={prompt}
+                    onClick={() => {
+                      setMessage(
+                        prompt
+                          .replace("📈 ", "")
+                          .replace("📱 ", "")
+                          .replace("🎯 ", "")
+                          .replace("🤖 ", "")
+                      );
+                    }}
+                    style={{
+                      background: "#111827",
+                      border: "1px solid #374151",
+                      color: "white",
+                      padding: "10px 14px",
+                      borderRadius: "999px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 
@@ -145,6 +277,29 @@ export default function GuestPage() {
             </div>
           ))}
 
+          {loading && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                marginBottom: "15px",
+              }}
+            >
+              <div
+                style={{
+                  maxWidth: "80%",
+                  padding: "14px",
+                  borderRadius: "16px",
+                  background: "#1f2937",
+                }}
+              >
+                🤖 نمّى AI يكتب...
+              </div>
+            </div>
+          )}
+
+          <div ref={messagesEndRef} />
+
           {messages.length >= 3 && (
             <div
               style={{
@@ -154,8 +309,23 @@ export default function GuestPage() {
                 fontWeight: "bold",
               }}
             >
-              🚀 أنشئ حساباً مجاناً لحفظ المحادثات
-              واستخدام المنصة بالكامل.
+              <button
+                onClick={() => {
+                  window.location.href =
+                    "/register";
+                }}
+                style={{
+                  background: "#22c55e",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "12px",
+                  padding: "14px 22px",
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                }}
+              >
+                🚀 ابدأ مجاناً الآن
+              </button>
             </div>
           )}
         </div>
@@ -171,6 +341,11 @@ export default function GuestPage() {
             onChange={(e) =>
               setMessage(e.target.value)
             }
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                askAI();
+              }
+            }}
             placeholder="كيف أزيد مبيعات شركتي؟"
             style={{
               flex: 1,
@@ -184,7 +359,10 @@ export default function GuestPage() {
 
           <button
             onClick={askAI}
-            disabled={loading}
+            disabled={
+              loading ||
+              remainingMessages <= 0
+            }
             style={{
               padding: "16px 24px",
               border: "none",
@@ -195,7 +373,11 @@ export default function GuestPage() {
               fontWeight: "bold",
             }}
           >
-            {loading ? "..." : "إرسال"}
+            {loading
+              ? "..."
+              : remainingMessages <= 0
+              ? "انتهت التجربة"
+              : "إرسال"}
           </button>
         </div>
       </div>
