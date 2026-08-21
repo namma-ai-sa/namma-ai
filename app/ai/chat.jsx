@@ -1,23 +1,14 @@
 "use client";
 
-import {
-  useState,
-  useEffect,
-} from "react";
-
+import { useState, useEffect } from "react";
 import { useConversation } from "./context/ConversationContext";
 
 export default function Chat({
   initialMessage = "",
 }) {
-  const [message, setMessage] =
-    useState("");
-
-  const [loading, setLoading] =
-    useState(false);
-
-  const [userId, setUserId] =
-    useState(null);
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const { activeConversationId } =
     useConversation();
@@ -66,10 +57,7 @@ export default function Chat({
             conversationId:
               activeConversationId,
             title:
-              currentMessage.slice(
-                0,
-                40
-              ),
+              currentMessage.slice(0, 40),
           }),
         }
       );
@@ -82,8 +70,7 @@ export default function Chat({
         },
         body: JSON.stringify({
           userId,
-          message:
-            currentMessage,
+          message: currentMessage,
           conversationId:
             activeConversationId,
         }),
@@ -98,47 +85,97 @@ export default function Chat({
   return (
     <div
       style={{
-        marginTop: "30px",
+        position: "sticky",
+        bottom: "0",
+        background: "#030712",
+        paddingTop: "10px",
       }}
     >
       <div
         style={{
           background: "#111827",
           border:
-            "1px solid rgba(255,255,255,.1)",
-          borderRadius: "18px",
-          padding: "15px",
+            "1px solid rgba(255,255,255,.08)",
+          borderRadius: "24px",
+          padding: "14px",
           display: "flex",
+          alignItems: "center",
           gap: "12px",
+          boxShadow:
+            "0 10px 30px rgba(0,0,0,.25)",
         }}
       >
         <input
           type="text"
           value={message}
           onChange={(e) =>
-            setMessage(
-              e.target.value
-            )
+            setMessage(e.target.value)
           }
-          placeholder="اكتب رسالتك..."
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSend();
+            }
+          }}
+          placeholder="اسأل نمّى AI عن المبيعات والتسويق والعملاء..."
           style={{
             flex: 1,
-            background:
-              "transparent",
+            background: "transparent",
             border: "none",
             outline: "none",
             color: "white",
+            fontSize: "16px",
           }}
         />
 
         <button
           onClick={handleSend}
           disabled={loading}
+          style={{
+            border: "none",
+            cursor: "pointer",
+            background: "#22c55e",
+            color: "white",
+            width: "50px",
+            height: "50px",
+            borderRadius: "14px",
+            fontSize: "20px",
+            fontWeight: "bold",
+          }}
         >
-          {loading
-            ? "..."
-            : "➜"}
+          {loading ? "..." : "➜"}
         </button>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          marginTop: "12px",
+          flexWrap: "wrap",
+        }}
+      >
+        {[
+          "اعطني خطة تسويق",
+          "كيف أزيد المبيعات؟",
+          "حلل العملاء",
+          "اكتب عرض سعر",
+        ].map((item) => (
+          <button
+            key={item}
+            onClick={() => setMessage(item)}
+            style={{
+              border:
+                "1px solid rgba(255,255,255,.08)",
+              background: "#111827",
+              color: "#cbd5e1",
+              borderRadius: "999px",
+              padding: "8px 14px",
+              cursor: "pointer",
+            }}
+          >
+            {item}
+          </button>
+        ))}
       </div>
     </div>
   );

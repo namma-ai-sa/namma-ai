@@ -40,19 +40,66 @@ export async function GET(req) {
       );
     }
 
+    return NextResponse.json({
+      success: true,
+      project: data
+    });
+
+  } catch (error) {
     return NextResponse.json(
       {
-        success: true,
-        project: {
-          name: data.project_name,
-          status: data.status,
-          progress: data.progress,
-          lastTask: data.last_task,
-          nextTask: data.next_task
-        }
+        success: false,
+        message: error.message
       },
-      { status: 200 }
+      { status: 500 }
     );
+  }
+}
+
+export async function POST(req) {
+  try {
+    const body = await req.json();
+
+    const { title, description } = body;
+
+    if (!title) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "اسم المشروع مطلوب"
+        },
+        { status: 400 }
+      );
+    }
+
+    const { data, error } = await supabase
+      .from("projects")
+      .insert([
+        {
+          project_name: title,
+          status: "active",
+          progress: 0,
+          last_task: description || "",
+          next_task: ""
+        }
+      ])
+      .select()
+      .single();
+
+    if (error) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: error.message
+        },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      project: data
+    });
 
   } catch (error) {
     return NextResponse.json(

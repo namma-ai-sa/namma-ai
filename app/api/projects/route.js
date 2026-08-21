@@ -6,25 +6,12 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 );
 
-export async function GET(req) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(req.url);
-    const username = searchParams.get("username");
-
-    if (!username) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "يرجى إدخال اسم المستخدم"
-        },
-        { status: 400 }
-      );
-    }
-
     const { data, error } = await supabase
       .from("projects")
       .select("*")
-      .eq("username", username);
+      .order("id", { ascending: false });
 
     if (error) {
       return NextResponse.json(
@@ -36,14 +23,10 @@ export async function GET(req) {
       );
     }
 
-    return NextResponse.json(
-      {
-        success: true,
-        projects: data || []
-      },
-      { status: 200 }
-    );
-
+    return NextResponse.json({
+      success: true,
+      projects: data || []
+    });
   } catch (error) {
     return NextResponse.json(
       {
