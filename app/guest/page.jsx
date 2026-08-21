@@ -4,14 +4,24 @@ import { useState } from "react";
 
 export default function GuestPage() {
   const [message, setMessage] = useState("");
-  const [reply, setReply] = useState("");
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
   async function askAI() {
-    if (!message.trim()) return;
+    if (!message.trim() || loading) return;
 
+    const userMessage = message;
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "user",
+        content: userMessage,
+      },
+    ]);
+
+    setMessage("");
     setLoading(true);
-    setReply("");
 
     try {
       const res = await fetch("/api/guest-chat", {
@@ -20,19 +30,30 @@ export default function GuestPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message,
+          message: userMessage,
         }),
       });
 
       const data = await res.json();
 
-      if (data.success) {
-        setReply(data.message);
-      } else {
-        setReply("حدث خطأ أثناء إنشاء الرد");
-      }
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content:
+            data.message ||
+            "تعذر إنشاء الرد.",
+        },
+      ]);
     } catch {
-      setReply("فشل الاتصال بالخادم");
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content:
+            "حدث خطأ أثناء الاتصال بالخادم.",
+        },
+      ]);
     }
 
     setLoading(false);
@@ -44,7 +65,7 @@ export default function GuestPage() {
         minHeight: "100vh",
         background: "#050509",
         color: "white",
-        padding: "40px 20px",
+        padding: "20px",
       }}
     >
       <div
@@ -57,7 +78,7 @@ export default function GuestPage() {
           style={{
             textAlign: "center",
             fontSize: "48px",
-            marginBottom: "12px",
+            marginBottom: "10px",
           }}
         >
           🤖 جرّب نمّى AI
@@ -70,67 +91,113 @@ export default function GuestPage() {
             marginBottom: "30px",
           }}
         >
-          اسأل أي سؤال وجرب الذكاء الاصطناعي قبل التسجيل.
+          جرّب الذكاء الاصطناعي قبل التسجيل.
         </p>
 
-        <input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="كيف أزيد مبيعات شركتي؟"
+        <div
           style={{
-            width: "100%",
-            padding: "16px",
-            borderRadius: "12px",
-            border: "1px solid #374151",
             background: "#111827",
-            color: "white",
-          }}
-        />
-
-        <button
-          onClick={askAI}
-          disabled={loading}
-          style={{
-            marginTop: "15px",
-            padding: "14px 24px",
-            border: "none",
-            borderRadius: "12px",
-            background: "#22c55e",
-            color: "white",
-            cursor: "pointer",
-            fontWeight: "bold",
+            borderRadius: "20px",
+            padding: "20px",
+            minHeight: "400px",
+            marginBottom: "20px",
+            border: "1px solid #374151",
           }}
         >
-          {loading ? "جاري التفكير..." : "🚀 جرب الآن"}
-        </button>
-
-        {reply && (
-          <div
-            style={{
-              marginTop: "25px",
-              background: "#111827",
-              borderRadius: "16px",
-              padding: "20px",
-              whiteSpace: "pre-wrap",
-            }}
-          >
-            <strong>🤖 نمّى AI</strong>
-
-            <div style={{ marginTop: "12px" }}>
-              {reply}
+          {messages.length === 0 && (
+            <div
+              style={{
+                color: "#94a3b8",
+                textAlign: "center",
+                marginTop: "120px",
+              }}
+            >
+              اسأل أي سؤال عن المبيعات أو التسويق أو العملاء.
             </div>
+          )}
 
+          {messages.map((item, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                justifyContent:
+                  item.role === "user"
+                    ? "flex-end"
+                    : "flex-start",
+                marginBottom: "15px",
+              }}
+            >
+              <div
+                style={{
+                  maxWidth: "80%",
+                  padding: "14px",
+                  borderRadius: "16px",
+                  background:
+                    item.role === "user"
+                      ? "#2563eb"
+                      : "#1f2937",
+                  whiteSpace: "pre-wrap",
+                }}
+              >
+                {item.content}
+              </div>
+            </div>
+          ))}
+
+          {messages.length >= 3 && (
             <div
               style={{
                 marginTop: "20px",
+                textAlign: "center",
                 color: "#22c55e",
                 fontWeight: "bold",
               }}
             >
-              🚀 للاستمرار بشكل غير محدود قم بإنشاء حساب مجاني
+              🚀 أنشئ حساباً مجاناً لحفظ المحادثات
+              واستخدام المنصة بالكامل.
             </div>
-          </div>
-        )}
+          )}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
+          }}
+        >
+          <input
+            value={message}
+            onChange={(e) =>
+              setMessage(e.target.value)
+            }
+            placeholder="كيف أزيد مبيعات شركتي؟"
+            style={{
+              flex: 1,
+              padding: "16px",
+              borderRadius: "12px",
+              border: "1px solid #374151",
+              background: "#111827",
+              color: "white",
+            }}
+          />
+
+          <button
+            onClick={askAI}
+            disabled={loading}
+            style={{
+              padding: "16px 24px",
+              border: "none",
+              borderRadius: "12px",
+              background: "#22c55e",
+              color: "white",
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+          >
+            {loading ? "..." : "إرسال"}
+          </button>
+        </div>
       </div>
     </main>
   );
