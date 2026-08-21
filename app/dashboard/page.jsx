@@ -2,20 +2,53 @@
 
 export default function DashboardPage() {
   const stats = [
-    { title: "إجمالي العملاء", value: "1,248", icon: "👥" },
-    { title: "العملاء المهتمون", value: "328", icon: "🔥" },
-    { title: "المتابعات", value: "89", icon: "📞" },
-    { title: "معدل الإغلاق", value: "27%", icon: "📈" }
+    {
+      title: "العملاء",
+      value: "1,248",
+      icon: "👥",
+      color: "#22c55e"
+    },
+    {
+      title: "الفرص الساخنة",
+      value: "328",
+      icon: "🔥",
+      color: "#f97316"
+    },
+    {
+      title: "المتابعات",
+      value: "89",
+      icon: "📅",
+      color: "#3b82f6"
+    },
+    {
+      title: "معدل الإغلاق",
+      value: "27%",
+      icon: "📈",
+      color: "#a855f7"
+    },
+    {
+      title: "الإيرادات",
+      value: "245,000 ر.س",
+      icon: "💰",
+      color: "#eab308"
+    }
   ];
 
   return (
-    <main className="container">
+    <main
+      style={{
+        padding: "32px",
+        color: "white"
+      }}
+    >
       <h1
         style={{
-          marginBottom: "24px"
+          fontSize: "36px",
+          fontWeight: "800",
+          marginBottom: "30px"
         }}
       >
-        ⚡ Dashboard V4
+        ⚡ Dashboard Premium
       </h1>
 
       <div
@@ -29,25 +62,34 @@ export default function DashboardPage() {
         {stats.map((item) => (
           <div
             key={item.title}
-            className="card"
+            style={{
+              background: "#111827",
+              border: "1px solid rgba(255,255,255,.08)",
+              borderRadius: "18px",
+              padding: "24px"
+            }}
           >
             <div
               style={{
-                fontSize: "42px",
-                marginBottom: "10px"
+                fontSize: "42px"
               }}
             >
               {item.icon}
             </div>
 
-            <h3>{item.title}</h3>
+            <h3
+              style={{
+                marginTop: "12px"
+              }}
+            >
+              {item.title}
+            </h3>
 
             <p
               style={{
-                fontSize: "28px",
-                fontWeight: "bold",
-                marginTop: "10px",
-                color: "#22c55e"
+                fontSize: "30px",
+                fontWeight: "800",
+                color: item.color
               }}
             >
               {item.value}
@@ -57,23 +99,57 @@ export default function DashboardPage() {
       </div>
 
       <div
-        className="card"
         style={{
-          marginTop: "24px"
+          display: "grid",
+          gridTemplateColumns:
+            "repeat(auto-fit,minmax(350px,1fr))",
+          gap: "20px",
+          marginTop: "30px"
         }}
       >
-        <h2>🤖 AI Insights</h2>
-
-        <p
+        <div
           style={{
-            marginTop: "12px",
-            lineHeight: "2",
-            color: "#cbd5e1"
+            background: "#111827",
+            borderRadius: "18px",
+            padding: "24px"
           }}
         >
-          العملاء ذوو الاحتمالية الأعلى للإغلاق يجب
-          متابعتهم خلال 24 ساعة القادمة.
-        </p>
+          <h2>📊 ملخص CRM</h2>
+
+          <ul
+            style={{
+              marginTop: "16px",
+              lineHeight: "2"
+            }}
+          >
+            <li>عميل جديد: شركة الريادة</li>
+            <li>عميل جديد: مؤسسة النخبة</li>
+            <li>صفقة مفتوحة: 85,000 ر.س</li>
+            <li>موعد متابعة غداً 10:00 صباحاً</li>
+          </ul>
+        </div>
+
+        <div
+          style={{
+            background: "#111827",
+            borderRadius: "18px",
+            padding: "24px"
+          }}
+        >
+          <h2>🤖 AI Insights</h2>
+
+          <ul
+            style={{
+              marginTop: "16px",
+              lineHeight: "2"
+            }}
+          >
+            <li>أفضل فرصة إغلاق خلال 24 ساعة.</li>
+            <li>يوجد 18 عميلاً يحتاج متابعة.</li>
+            <li>نسبة التحويل ارتفعت 12% هذا الأسبوع.</li>
+            <li>واتساب يحقق أعلى استجابة.</li>
+          </ul>
+        </div>
       </div>
     </main>
   );
