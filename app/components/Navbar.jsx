@@ -94,7 +94,8 @@ export default function Navbar() {
               border:"1px solid rgba(255,255,255,.1)",
               borderRadius:"16px",
               padding:"12px",
-              minWidth:"220px",
+              minWidth:"260px",
+              boxShadow:"0 20px 40px rgba(0,0,0,.35)",
               zIndex:2000
             }}
           >
