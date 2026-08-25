@@ -84,7 +84,7 @@ export default function Navbar() {
           ☰
         </button>
 
-        {mobileMenuOpen && (
+        {accountMenuOpen && (
           <div
             style={{
               position:"absolute",
