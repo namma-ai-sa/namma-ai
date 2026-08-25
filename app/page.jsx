@@ -163,7 +163,15 @@ export default function HomePage() {
             </button>
 
             <button
-              onClick={() => router.push("/guest")}
+              onClick={() =>
+                router.push(
+                  "/guest?q=" +
+                    encodeURIComponent(
+                      demoQuestion ||
+                        "كيف أزيد المبيعات؟"
+                    )
+                )
+              }
               style={{
                 padding: "18px 38px",
                 borderRadius: "16px",
@@ -347,11 +355,33 @@ export default function HomePage() {
                 color: "#cbd5e1",
               }}
             >
-              كيف أزيد مبيعات شركتي خلال 30 يوم؟
+              <input
+                value={demoQuestion}
+                onChange={(e) =>
+                  setDemoQuestion(e.target.value)
+                }
+                placeholder="كيف أزيد مبيعات شركتي خلال 30 يوم؟"
+                style={{
+                  width: "100%",
+                  background: "transparent",
+                  border: "none",
+                  color: "white",
+                  fontSize: "18px",
+                  outline: "none",
+                }}
+              />
             </div>
 
             <button
-              onClick={() => router.push("/guest")}
+              onClick={() =>
+                router.push(
+                  "/guest?q=" +
+                    encodeURIComponent(
+                      demoQuestion ||
+                        "كيف أزيد المبيعات؟"
+                    )
+                )
+              }
               style={{
                 marginTop: "24px",
                 background: "#22c55e",
