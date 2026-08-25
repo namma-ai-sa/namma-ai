@@ -259,7 +259,8 @@ export default function HomePage() {
                   padding: "36px",
                   cursor: "pointer",
                   transition: "all .2s ease",
-                  boxShadow: "0 10px 30px rgba(0,0,0,.25)"
+                  boxShadow: "0 10px 30px rgba(0,0,0,.25)",
+                  transform: "translateY(0)"
                 }}
               >
                 <div
@@ -289,10 +290,79 @@ export default function HomePage() {
                     fontWeight: "700",
                   }}
                 >
-                  ← افتح الأداة
+                  🚀 افتح الأداة
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section
+          style={{
+            maxWidth: "1200px",
+            margin: "100px auto",
+            padding: "0 20px",
+          }}
+        >
+          <div
+            style={{
+              background: "rgba(255,255,255,.04)",
+              border: "1px solid rgba(255,255,255,.08)",
+              borderRadius: "28px",
+              padding: "40px",
+              textAlign: "center",
+              boxShadow: "0 20px 60px rgba(0,0,0,.35)",
+            }}
+          >
+            <div
+              style={{
+                color: "#22c55e",
+                fontWeight: "700",
+                marginBottom: "12px",
+              }}
+            >
+              🤖 جرّب نمّى AI مباشرة
+            </div>
+
+            <h2
+              style={{
+                fontSize: "42px",
+                marginBottom: "20px",
+              }}
+            >
+              اسأل عن المبيعات والتسويق والعملاء
+            </h2>
+
+            <div
+              style={{
+                maxWidth: "700px",
+                margin: "0 auto",
+                background: "#0f172a",
+                border: "1px solid rgba(255,255,255,.08)",
+                borderRadius: "18px",
+                padding: "18px",
+                color: "#cbd5e1",
+              }}
+            >
+              كيف أزيد مبيعات شركتي خلال 30 يوم؟
+            </div>
+
+            <button
+              onClick={() => router.push("/guest")}
+              style={{
+                marginTop: "24px",
+                background: "#22c55e",
+                color: "white",
+                border: "none",
+                borderRadius: "14px",
+                padding: "16px 32px",
+                cursor: "pointer",
+                fontWeight: "700",
+                fontSize: "16px",
+              }}
+            >
+              🚀 ابدأ التجربة الآن
+            </button>
           </div>
         </section>
       </main>
