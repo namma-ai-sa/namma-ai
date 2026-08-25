@@ -109,9 +109,19 @@ export default function ProjectsPage() {
                 </p>
 
                 <div className="flex justify-between items-center">
-                  <span>
-                    التقدم: {project.progress || 0}%
-                  </span>
+                  <div className="flex-1 mr-4">
+                    <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-green-500"
+                        style={{
+                          width: `${project.progress || 0}%`
+                        }}
+                      />
+                    </div>
+                    <div className="text-sm text-gray-400 mt-2">
+                      التقدم: {project.progress || 0}%
+                    </div>
+                  </div>
 
                   <span className="text-green-400">
                     {project.status}
