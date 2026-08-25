@@ -6,10 +6,11 @@ import { useRouter } from "next/navigation";
 export default function Navbar() {
 
   const router = useRouter();
-  const [open,setOpen] = useState(false);
+  const [mobileMenuOpen,setMobileMenuOpen] = useState(false);
+  const [accountMenuOpen,setAccountMenuOpen] = useState(false);
 
   const go = (path) => {
-    setOpen(false);
+    setMobileMenuOpen(false);
     router.push(path);
   };
 
@@ -61,7 +62,7 @@ export default function Navbar() {
         >
 
           <button
-            onClick={() => setOpen(!open)}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
               background:"rgba(255,255,255,.06)",
               border:"1px solid rgba(255,255,255,.1)",
@@ -78,12 +79,12 @@ export default function Navbar() {
 
         <button
           className="mobile-menu-btn"
-          onClick={() => setOpen(!open)}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           ☰
         </button>
 
-        {open && (
+        {mobileMenuOpen && (
           <div
             style={{
               position:"absolute",
@@ -127,7 +128,7 @@ export default function Navbar() {
 
       </nav>
 
-      {open && (
+      {mobileMenuOpen && (
 
         <div
           style={{
