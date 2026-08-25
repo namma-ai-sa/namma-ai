@@ -135,7 +135,7 @@ export default function HomePage() {
               style={{
                 padding: "18px 38px",
                 border: "none",
-                borderRadius: "14px",
+                borderRadius: "16px",
                 background: "#22c55e",
                 color: "white",
                 cursor: "pointer",
@@ -149,7 +149,7 @@ export default function HomePage() {
               onClick={() => router.push("/pricing")}
               style={{
                 padding: "18px 38px",
-                borderRadius: "14px",
+                borderRadius: "16px",
                 border: "1px solid rgba(255,255,255,.15)",
                 background: "transparent",
                 color: "white",
@@ -163,7 +163,7 @@ export default function HomePage() {
               onClick={() => router.push("/guest")}
               style={{
                 padding: "18px 38px",
-                borderRadius: "14px",
+                borderRadius: "16px",
                 border: "none",
                 background: "#2563eb",
                 color: "white",
@@ -197,7 +197,7 @@ export default function HomePage() {
                   background: "rgba(255,255,255,.04)",
                   border:
                     "1px solid rgba(255,255,255,.08)",
-                  borderRadius: "20px",
+                  borderRadius: "24px",
                   padding: "24px",
                   textAlign: "center"
                 }}
@@ -255,11 +255,11 @@ export default function HomePage() {
                   background: "rgba(255,255,255,.04)",
                   border:
                     "1px solid rgba(255,255,255,.08)",
-                  borderRadius: "20px",
+                  borderRadius: "24px",
                   padding: "36px",
                   cursor: "pointer",
                   transition: "all .2s ease",
-                  boxShadow: "0 10px 30px rgba(0,0,0,.25)",
+                  boxShadow: "0 20px 50px rgba(0,0,0,.35)",
                   transform: "translateY(0)"
                 }}
               >
@@ -311,7 +311,7 @@ export default function HomePage() {
               borderRadius: "28px",
               padding: "40px",
               textAlign: "center",
-              boxShadow: "0 20px 60px rgba(0,0,0,.35)",
+              boxShadow: "0 30px 80px rgba(0,0,0,.45)",
             }}
           >
             <div
@@ -339,7 +339,7 @@ export default function HomePage() {
                 margin: "0 auto",
                 background: "#0f172a",
                 border: "1px solid rgba(255,255,255,.08)",
-                borderRadius: "18px",
+                borderRadius: "24px",
                 padding: "18px",
                 color: "#cbd5e1",
               }}
@@ -354,7 +354,7 @@ export default function HomePage() {
                 background: "#22c55e",
                 color: "white",
                 border: "none",
-                borderRadius: "14px",
+                borderRadius: "16px",
                 padding: "16px 32px",
                 cursor: "pointer",
                 fontWeight: "700",
