@@ -2,9 +2,12 @@
 
 import Navbar from "./components/Navbar";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function HomePage() {
   const router = useRouter();
+
+  const [demoQuestion, setDemoQuestion] = useState("");
 
   const features = [
     {
