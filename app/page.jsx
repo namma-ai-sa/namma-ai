@@ -240,7 +240,8 @@ export default function HomePage() {
                   borderRadius: "20px",
                   padding: "36px",
                   cursor: "pointer",
-                  transition: "all .2s ease"
+                  transition: "all .2s ease",
+                  boxShadow: "0 10px 30px rgba(0,0,0,.25)"
                 }}
               >
                 <div
@@ -261,6 +262,16 @@ export default function HomePage() {
                   }}
                 >
                   {item.desc}
+
+                  <div
+                    style={{
+                      marginTop: "18px",
+                      color: "#22c55e",
+                      fontWeight: "700",
+                    }}
+                  >
+                    ← افتح الأداة
+                  </div>
                 </p>
               </div>
             ))}
