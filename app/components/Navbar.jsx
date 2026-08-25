@@ -172,6 +172,15 @@ const linkStyle = {
 };
 
 const drawerBtn = {
-  width:"100%",
-  marginBottom:"10px"
+  width: "100%",
+  marginBottom: "10px",
+  background: "rgba(255,255,255,.04)",
+  border: "1px solid rgba(255,255,255,.08)",
+  color: "#e5e7eb",
+  padding: "14px 16px",
+  borderRadius: "14px",
+  textAlign: "right",
+  cursor: "pointer",
+  fontSize: "15px",
+  backdropFilter: "blur(8px)"
 };
