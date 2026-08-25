@@ -35,20 +35,24 @@ export default function HomePage() {
 
   const stats = [
     {
+      icon: "📈",
       value: "+5000",
-      label: "رسالة تم تحليلها"
+      label: "رسالة محللة"
     },
     {
+      icon: "👥",
       value: "+300",
-      label: "عميل تمت متابعته"
+      label: "عميل نشط"
     },
     {
+      icon: "🤖",
       value: "24/7",
-      label: "مساعد ذكي متاح"
+      label: "مساعد ذكي"
     },
     {
+      icon: "⚡",
       value: "90%",
-      label: "تحسين سرعة المتابعة"
+      label: "تحسين المتابعة"
     }
   ];
 
@@ -205,7 +209,16 @@ export default function HomePage() {
                     fontWeight: "900"
                   }}
                 >
-                  {item.value}
+                  <div
+                  style={{
+                    fontSize: "32px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {item.icon}
+                </div>
+
+                {item.value}
                 </h2>
 
                 <p
