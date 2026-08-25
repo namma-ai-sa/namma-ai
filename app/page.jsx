@@ -269,9 +269,10 @@ export default function HomePage() {
                   borderRadius: "24px",
                   padding: "36px",
                   cursor: "pointer",
-                  transition: "all .2s ease",
+                  transition: "all .25s ease",
                   boxShadow: "0 20px 50px rgba(0,0,0,.35)",
-                  transform: "translateY(0)"
+                  transform: "translateY(0)",
+                  position: "relative"
                 }}
               >
                 <div
