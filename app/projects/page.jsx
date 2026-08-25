@@ -8,7 +8,7 @@ export default function ProjectsPage() {
       </h1>
 
       <p className="mt-4 text-gray-400">
-        Projects Module تحت التطوير.
+        Projects Premium قيد التنفيذ.
       </p>
     </main>
   );
