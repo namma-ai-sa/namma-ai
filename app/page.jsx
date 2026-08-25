@@ -10,22 +10,26 @@ export default function HomePage() {
     {
       icon: "📊",
       title: "CRM الذكي",
-      desc: "إدارة العملاء والمتابعات وتحسين فرص الإغلاق."
+      desc: "إدارة العملاء والمتابعات وتحسين فرص الإغلاق.",
+      path: "/crm",
     },
     {
       icon: "🤖",
       title: "البائع الذكي",
-      desc: "تحليل احتمالية الشراء وتوصيات المبيعات."
+      desc: "تحليل احتمالية الشراء وتوصيات المبيعات.",
+      path: "/ai-seller",
     },
     {
       icon: "📱",
       title: "وكيل واتساب",
-      desc: "تحليل المحادثات واقتراح الردود المناسبة."
+      desc: "تحليل المحادثات واقتراح الردود المناسبة.",
+      path: "/whatsapp-agent",
     },
     {
       icon: "⚡",
       title: "لوحة الإدارة",
-      desc: "إحصائيات ومؤشرات أداء المنصة بالكامل."
+      desc: "إحصائيات ومؤشرات أداء المنصة بالكامل.",
+      path: "/dashboard",
     }
   ];
 
@@ -233,6 +237,7 @@ export default function HomePage() {
             {features.map((item) => (
               <div
                 key={item.title}
+                onClick={() => router.push(item.path)}
                 style={{
                   background: "rgba(255,255,255,.04)",
                   border:
@@ -258,21 +263,21 @@ export default function HomePage() {
                 <p
                   style={{
                     color: "#cbd5e1",
-                    lineHeight: "1.8"
+                    lineHeight: "1.8",
+                    marginBottom: "18px",
                   }}
                 >
                   {item.desc}
-
-                  <div
-                    style={{
-                      marginTop: "18px",
-                      color: "#22c55e",
-                      fontWeight: "700",
-                    }}
-                  >
-                    ← افتح الأداة
-                  </div>
                 </p>
+
+                <div
+                  style={{
+                    color: "#22c55e",
+                    fontWeight: "700",
+                  }}
+                >
+                  ← افتح الأداة
+                </div>
               </div>
             ))}
           </div>
