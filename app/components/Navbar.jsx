@@ -62,7 +62,7 @@ export default function Navbar() {
         >
 
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => setAccountMenuOpen(!accountMenuOpen)}
             style={{
               background:"rgba(255,255,255,.06)",
               border:"1px solid rgba(255,255,255,.1)",
