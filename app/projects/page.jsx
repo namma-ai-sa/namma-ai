@@ -6,6 +6,8 @@ import Link from "next/link";
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     loadProjects();
@@ -34,6 +36,20 @@ export default function ProjectsPage() {
     (p) => p.status === "completed"
   ).length;
 
+  const filteredProjects = projects.filter((p) => {
+    const matchesSearch =
+      (p.project_name || "")
+        .toLowerCase()
+        .includes(search.toLowerCase());
+
+    const matchesFilter =
+      filter === "all"
+        ? true
+        : p.status === filter;
+
+    return matchesSearch && matchesFilter;
+  });
+
   return (
     <main className="min-h-screen bg-[#050509] text-white p-10">
       <div className="max-w-6xl mx-auto">
@@ -47,6 +63,31 @@ export default function ProjectsPage() {
               إدارة وتتبع جميع مشاريعك من مكان واحد
             </p>
           </div>
+
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+
+          <input
+            value={search}
+            onChange={(e) =>
+              setSearch(e.target.value)
+            }
+            placeholder="ابحث عن مشروع..."
+            className="flex-1 bg-[#0b0b12] border border-gray-800 rounded-2xl px-4 py-3"
+          />
+
+          <select
+            value={filter}
+            onChange={(e) =>
+              setFilter(e.target.value)
+            }
+            className="bg-[#0b0b12] border border-gray-800 rounded-2xl px-4 py-3"
+          >
+            <option value="all">كل المشاريع</option>
+            <option value="active">النشطة</option>
+            <option value="completed">المكتملة</option>
+          </select>
 
         </div>
 
@@ -95,7 +136,7 @@ export default function ProjectsPage() {
         ) : (
           <div className="grid gap-5">
 
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <div
                 key={project.id}
                 className="bg-[#0b0b12] border border-gray-800 rounded-2xl p-6 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
@@ -124,7 +165,11 @@ export default function ProjectsPage() {
                   </div>
 
                   <span className="text-green-400">
-                    {project.status}
+                    {project.status === "active"
+                      ? "🟢 نشط"
+                      : project.status === "completed"
+                      ? "✅ مكتمل"
+                      : project.status}
                   </span>
                 </div>
               </div>
