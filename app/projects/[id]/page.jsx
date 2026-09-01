@@ -70,12 +70,12 @@ export default function ProjectPage({ params }) {
     <main className="min-h-screen bg-[#050509] text-white px-6 py-10">
       <div className="max-w-3xl mx-auto">
 
-        <h1 className="text-3xl font-semibold mb-6">{project.title}</h1>
+        <h1 className="text-3xl font-semibold mb-6">{project.project_name}</h1>
 
         <div className="flex flex-col gap-4 mb-6">
 
           <textarea
-            value={project.description}
+            value={project.last_task}
             onChange={(e) =>
               setProject({ ...project, description: e.target.value })
             }
@@ -84,20 +84,20 @@ export default function ProjectPage({ params }) {
 
           <input
             type="text"
-            value={project.lastTask || ""}
+            value={project.last_task || ""}
             placeholder="آخر مهمة..."
             onChange={(e) =>
-              setProject({ ...project, lastTask: e.target.value })
+              setProject({ ...project, last_task: e.target.value })
             }
             className="w-full p-3 rounded-lg bg-[#0b0b12] border border-gray-700 text-white"
           />
 
           <input
             type="text"
-            value={project.nextTask || ""}
+            value={project.next_task || ""}
             placeholder="المهمة التالية..."
             onChange={(e) =>
-              setProject({ ...project, nextTask: e.target.value })
+              setProject({ ...project, next_task: e.target.value })
             }
             className="w-full p-3 rounded-lg bg-[#0b0b12] border border-gray-700 text-white"
           />
