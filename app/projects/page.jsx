@@ -36,6 +36,10 @@ export default function ProjectsPage() {
     (p) => p.status === "completed"
   ).length;
 
+  const reviewProjects = projects.filter(
+    (p) => p.status === "review"
+  ).length;
+
   const filteredProjects = projects.filter((p) => {
     const matchesSearch =
       (p.project_name || "")
@@ -87,6 +91,8 @@ export default function ProjectsPage() {
           >
             <option value="all">كل المشاريع</option>
             <option value="active">النشطة</option>
+            <option value="review">المراجعة</option>
+            <option value="paused">المتوقفة</option>
             <option value="completed">المكتملة</option>
           </select>
 
@@ -172,6 +178,10 @@ export default function ProjectsPage() {
                   <span className="text-green-400">
                     {project.status === "active"
                       ? "🟢 نشط"
+                      : project.status === "review"
+                      ? "🟡 مراجعة"
+                      : project.status === "paused"
+                      ? "⏸ متوقف"
                       : project.status === "completed"
                       ? "✅ مكتمل"
                       : project.status}
