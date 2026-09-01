@@ -60,9 +60,10 @@ export default function ProjectsPage() {
               📁 مشاريعي
             </h1>
             <p className="text-gray-400 mt-2">
-              إدارة وتتبع جميع مشاريعك من مكان واحد
+              إدارة وتتبع جميع مشاريعك من مكان واحد • {filteredProjects.length} مشروع
             </p>
           </div>
+
 
         </div>
 
@@ -139,7 +140,11 @@ export default function ProjectsPage() {
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="bg-[#0b0b12] border border-gray-800 rounded-2xl p-6 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+                onClick={() =>
+                  window.location.href =
+                    "/projects/" + project.id
+                }
+                className="bg-[#0b0b12] border border-gray-800 rounded-2xl p-6 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 cursor-pointer"
               >
                 <h3 className="text-xl font-semibold mb-3">
                   📁 {project.project_name}
