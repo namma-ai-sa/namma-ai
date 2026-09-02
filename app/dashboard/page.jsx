@@ -1,5 +1,7 @@
 "use client";
 
+import PremiumCard from "../components/PremiumCard";
+
 export default function DashboardPage() {
   const stats = [
     {
@@ -54,15 +56,9 @@ export default function DashboardPage() {
       </h1>
 
 
-      <div
+      <PremiumCard
         style={{
-          background: "#111827",
-          border: "1px solid rgba(255,255,255,.08)",
-          borderRadius: "24px",
-          padding: "24px",
-          marginBottom: "24px",
-          boxShadow:
-            "0 20px 50px rgba(0,0,0,.35)"
+          marginBottom: "24px"
         }}
       >
         <h2>🛰️ حالة منصة NAMMA AI</h2>
@@ -72,14 +68,10 @@ export default function DashboardPage() {
         <p>✅ Security مفعلة</p>
         <p>✅ Billing جاهز</p>
         <p>✅ AI Seller جاهز</p>
-      </div>
+      </PremiumCard>
 
-      <div
+      <PremiumCard
         style={{
-          background: "#111827",
-          border: "1px solid rgba(255,255,255,.08)",
-          borderRadius: "24px",
-          padding: "24px",
           marginBottom: "24px"
         }}
       >
@@ -98,7 +90,7 @@ export default function DashboardPage() {
         <p style={{ color: "#94a3b8" }}>
           أداء المنصة ممتاز ويقترب من الجاهزية الكاملة.
         </p>
-      </div>
+      </PremiumCard>
 
       <div
         style={{
