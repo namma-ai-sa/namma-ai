@@ -53,6 +53,27 @@ export default function DashboardPage() {
         ⚡ Dashboard Premium
       </h1>
 
+
+      <div
+        style={{
+          background: "#111827",
+          border: "1px solid rgba(255,255,255,.08)",
+          borderRadius: "24px",
+          padding: "24px",
+          marginBottom: "24px",
+          boxShadow:
+            "0 20px 50px rgba(0,0,0,.35)"
+        }}
+      >
+        <h2>🛰️ حالة منصة NAMMA AI</h2>
+
+        <p>✅ CRM جاهز</p>
+        <p>✅ Projects جاهزة</p>
+        <p>✅ Security مفعلة</p>
+        <p>✅ Billing جاهز</p>
+        <p>✅ AI Seller جاهز</p>
+      </div>
+
       <div
         style={{
           background: "#111827",
