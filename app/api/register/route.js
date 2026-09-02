@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import bcrypt from "bcryptjs";
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -42,14 +43,15 @@ export async function POST(req) {
         .maybeSingle();
 
     if (existingUser) {
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "البريد مستخدم مسبقاً",
-        }
-      );
+      return NextResponse.json({
+        success: false,
+        message:
+          "البريد مستخدم مسبقاً",
+      });
     }
+
+    const hashedPassword =
+      await bcrypt.hash(password, 10);
 
     const { error } =
       await supabase
@@ -59,17 +61,15 @@ export async function POST(req) {
             name,
             username,
             email,
-            password,
+            password: hashedPassword,
           },
         ]);
 
     if (error) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: error.message,
-        }
-      );
+      return NextResponse.json({
+        success: false,
+        message: error.message,
+      });
     }
 
     return NextResponse.json({
@@ -77,6 +77,7 @@ export async function POST(req) {
       message:
         "تم إنشاء الحساب بنجاح",
     });
+
   } catch (error) {
     return NextResponse.json({
       success: false,
