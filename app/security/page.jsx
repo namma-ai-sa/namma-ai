@@ -35,7 +35,38 @@ export default function SecurityPage() {
 
 
         
+        
         <div
+          style={{
+            background: "#111827",
+            border: "1px solid rgba(255,255,255,.08)",
+            borderRadius: "24px",
+            padding: "24px",
+            marginBottom: "24px",
+            boxShadow:
+              "0 20px 50px rgba(0,0,0,.35)"
+          }}
+        >
+          <h2>🛡️ مستوى الأمان</h2>
+
+          <div
+            style={{
+              fontSize: "42px",
+              fontWeight: "800",
+              color: "#22c55e",
+              textShadow:
+                "0 0 20px rgba(34,197,94,.35)"
+            }}
+          >
+            Advanced
+          </div>
+
+          <p style={{ color: "#94a3b8" }}>
+            الحساب محمي بكلمة مرور مشفرة وجلسات مراقبة.
+          </p>
+        </div>
+
+<div
           style={{
             background: "#111827",
             border: "1px solid rgba(255,255,255,.08)",
