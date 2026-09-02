@@ -34,6 +34,23 @@ export default function SecurityPage() {
 
         <div
           style={{
+            background: "#111827",
+            border: "1px solid rgba(255,255,255,.08)",
+            borderRadius: "24px",
+            padding: "24px",
+            marginBottom: "24px",
+          }}
+        >
+          <h2>🛡️ فحص الأمان</h2>
+
+          <p>✅ كلمة المرور مفعلة</p>
+          <p>✅ الحساب نشط</p>
+          <p>⚠️ المصادقة الثنائية غير مفعلة</p>
+          <p>⚠️ Passkeys غير مفعلة</p>
+        </div>
+
+        <div
+          style={{
             display: "grid",
             gridTemplateColumns:
               "repeat(auto-fit,minmax(280px,1fr))",
