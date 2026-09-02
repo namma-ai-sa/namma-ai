@@ -93,8 +93,11 @@ export default function DashboardPage() {
             style={{
               background: "#111827",
               border: "1px solid rgba(255,255,255,.08)",
-              borderRadius: "18px",
-              padding: "24px"
+              borderRadius: "24px",
+              padding: "24px",
+              transition: "all .25s ease",
+              boxShadow:
+                "0 20px 50px rgba(0,0,0,.20)"
             }}
           >
             <div
