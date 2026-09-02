@@ -101,10 +101,9 @@ export default function DashboardPage() {
         }}
       >
         {stats.map((item) => (
-          <div
+          <PremiumCard
             key={item.title}
             style={{
-              background: "#111827",
               border: "1px solid rgba(255,255,255,.08)",
               borderRadius: "24px",
               padding: "24px",
@@ -138,7 +137,7 @@ export default function DashboardPage() {
             >
               {item.value}
             </p>
-          </div>
+          </PremiumCard>
         ))}
       </div>
 
