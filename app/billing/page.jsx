@@ -34,6 +34,26 @@ export default function BillingPage() {
 
         <div
           style={{
+            background: "#111827",
+            border: "1px solid rgba(255,255,255,.08)",
+            borderRadius: "24px",
+            padding: "24px",
+            marginBottom: "24px",
+          }}
+        >
+          <h2>📋 حالة الاشتراك</h2>
+
+          <p style={{ color: "#94a3b8" }}>
+            الخطة الحالية: Free
+          </p>
+
+          <p style={{ color: "#94a3b8" }}>
+            الحالة: نشطة
+          </p>
+        </div>
+
+        <div
+          style={{
             display: "grid",
             gridTemplateColumns:
               "repeat(auto-fit,minmax(280px,1fr))",
