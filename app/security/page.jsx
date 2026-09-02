@@ -33,6 +33,39 @@ export default function SecurityPage() {
         </p>
 
 
+
+        <div
+          style={{
+            background: "#111827",
+            border: "1px solid rgba(255,255,255,.08)",
+            borderRadius: "24px",
+            padding: "24px",
+            marginBottom: "24px",
+            boxShadow:
+              "0 20px 50px rgba(0,0,0,.35)"
+          }}
+        >
+          <h2>🔐 Passkeys & Biometrics</h2>
+
+          <p>👆 Face ID: قريباً</p>
+          <p>🖐 Fingerprint: قريباً</p>
+          <p>🔑 Passkeys: قيد التجهيز</p>
+
+          <button
+            style={{
+              marginTop: "16px",
+              background: "#22c55e",
+              color: "white",
+              padding: "12px 18px",
+              border: "none",
+              borderRadius: "16px",
+              fontWeight: "700"
+            }}
+          >
+            Enable Passkey
+          </button>
+        </div>
+
         <div
           style={{
             background: "#111827",
