@@ -34,7 +34,39 @@ export default function SecurityPage() {
 
 
 
+        
         <div
+          style={{
+            background: "#111827",
+            border: "1px solid rgba(255,255,255,.08)",
+            borderRadius: "24px",
+            padding: "24px",
+            marginBottom: "24px",
+            boxShadow:
+              "0 20px 50px rgba(0,0,0,.35)"
+          }}
+        >
+          <h2>📱 الجلسات النشطة</h2>
+
+          <p>🟢 Current Browser Session</p>
+          <p>💻 Desktop Session Active</p>
+
+          <button
+            style={{
+              marginTop: "16px",
+              background: "#ef4444",
+              color: "white",
+              padding: "12px 18px",
+              border: "none",
+              borderRadius: "16px",
+              fontWeight: "700"
+            }}
+          >
+            تسجيل خروج جميع الأجهزة
+          </button>
+        </div>
+
+<div
           style={{
             background: "#111827",
             border: "1px solid rgba(255,255,255,.08)",
