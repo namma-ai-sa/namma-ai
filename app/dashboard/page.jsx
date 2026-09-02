@@ -6,7 +6,9 @@ export default function DashboardPage() {
       title: "العملاء",
       value: "1,248",
       icon: "👥",
-      color: "#22c55e"
+      color: "#22c55e",
+            textShadow:
+              "0 0 20px rgba(34,197,94,.45)"
     },
     {
       title: "الفرص الساخنة",
