@@ -32,6 +32,25 @@ export default function SecurityPage() {
           إدارة إعدادات الأمان والخصوصية الخاصة بحسابك.
         </p>
 
+
+        <div
+          style={{
+            background: "#111827",
+            border: "1px solid rgba(255,255,255,.08)",
+            borderRadius: "24px",
+            padding: "24px",
+            marginBottom: "24px",
+            boxShadow:
+              "0 20px 50px rgba(0,0,0,.35)"
+          }}
+        >
+          <h2>🖥️ الأجهزة الموثوقة</h2>
+
+          <p>✅ Current Device</p>
+          <p>✅ Browser Session Active</p>
+          <p>⚠️ Passkeys غير مفعلة بعد</p>
+        </div>
+
         <div
           style={{
             background: "#111827",
@@ -129,9 +148,9 @@ export default function SecurityPage() {
               padding: "24px",
             }}
           >
-            <h2>👆 Passkeys</h2>
+            <h2>👆 Passkeys & Face ID</h2>
             <p style={{ color: "#94a3b8" }}>
-              جاهزة للتطوير مستقبلاً
+              جاهزة للمرحلة القادمة من NAMMA AI
             </p>
           </div>
 
