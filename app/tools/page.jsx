@@ -51,7 +51,7 @@ export default function ToolsPage() {
             marginBottom: "40px",
           }}
         >
-          جميع أدوات الذكاء الاصطناعي والتسويق في مكان واحد. • 12 أداة متاحة
+          جميع أدوات الذكاء الاصطناعي والتسويق في مكان واحد. • أكثر من 20 أداة ذكية متاحة
         </p>
 
 
@@ -72,6 +72,56 @@ export default function ToolsPage() {
           <p>✍️ Article Writer</p>
           <p>📢 Ad Generator</p>
           <p>🤖 AI Seller</p>
+        </div>
+
+
+        <div
+          style={{
+            display:"grid",
+            gridTemplateColumns:"repeat(4,1fr)",
+            gap:"20px",
+            marginBottom:"32px"
+          }}
+        >
+          <div style={{
+            background:"#111827",
+            padding:"20px",
+            borderRadius:"24px",
+            border:"1px solid rgba(255,255,255,.08)"
+          }}>
+            <h2>21+</h2>
+            <p>أداة ذكية</p>
+          </div>
+
+          <div style={{
+            background:"#111827",
+            padding:"20px",
+            borderRadius:"24px",
+            border:"1px solid rgba(255,255,255,.08)"
+          }}>
+            <h2>11+</h2>
+            <p>AI APIs</p>
+          </div>
+
+          <div style={{
+            background:"#111827",
+            padding:"20px",
+            borderRadius:"24px",
+            border:"1px solid rgba(255,255,255,.08)"
+          }}>
+            <h2>6</h2>
+            <p>Marketing Tools</p>
+          </div>
+
+          <div style={{
+            background:"#111827",
+            padding:"20px",
+            borderRadius:"24px",
+            border:"1px solid rgba(255,255,255,.08)"
+          }}>
+            <h2>100%</h2>
+            <p>Cloud Ready</p>
+          </div>
         </div>
 
         <div
