@@ -14,7 +14,61 @@ export default function SecurityPage() {
           margin: "0 auto",
         }}
       >
-        <h1
+        
+        <div
+          style={{
+            display:"grid",
+            gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
+            gap:"20px",
+            marginBottom:"24px"
+          }}
+        >
+          <div style={{
+            background:"#111827",
+            border:"1px solid rgba(255,255,255,.08)",
+            borderRadius:"24px",
+            padding:"20px"
+          }}>
+            <h2>🔑</h2>
+            <h3>Passkeys</h3>
+            <p>Pending</p>
+          </div>
+
+          <div style={{
+            background:"#111827",
+            border:"1px solid rgba(255,255,255,.08)",
+            borderRadius:"24px",
+            padding:"20px"
+          }}>
+            <h2>👆</h2>
+            <h3>Face ID</h3>
+            <p>Ready</p>
+          </div>
+
+          <div style={{
+            background:"#111827",
+            border:"1px solid rgba(255,255,255,.08)",
+            borderRadius:"24px",
+            padding:"20px"
+          }}>
+            <h2>🖐</h2>
+            <h3>Fingerprint</h3>
+            <p>Ready</p>
+          </div>
+
+          <div style={{
+            background:"#111827",
+            border:"1px solid rgba(255,255,255,.08)",
+            borderRadius:"24px",
+            padding:"20px"
+          }}>
+            <h2>📱</h2>
+            <h3>Sessions</h3>
+            <p>1 Active</p>
+          </div>
+        </div>
+
+<h1
           style={{
             fontSize: "48px",
             marginBottom: "12px",
