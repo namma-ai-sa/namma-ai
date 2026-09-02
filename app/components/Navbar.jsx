@@ -45,12 +45,12 @@ export default function Navbar() {
 
         <div className="desktop-menu">
 
-          <button style={linkStyle} onClick={() => go("/")}>الرئيسية</button>
-          <button style={linkStyle} onClick={() => go("/tools")}>الأدوات</button>
-          <button style={linkStyle} onClick={() => go("/projects")}>المشاريع</button>
-          <button style={linkStyle} onClick={() => go("/pricing")}>الأسعار</button>
-          <button style={linkStyle} onClick={() => go("/about")}>عن المنصة</button>
-          <button style={linkStyle} onClick={() => go("/contact")}>تواصل معنا</button>
+          <button style={linkStyle} onClick={() => go("/dashboard")}>🏠 Dashboard</button>
+          <button style={linkStyle} onClick={() => go("/crm")}>👥 CRM</button>
+          <button style={linkStyle} onClick={() => go("/projects")}>📁 Projects</button>
+          <button style={linkStyle} onClick={() => go("/ai-seller")}>🤖 AI Seller</button>
+          <button style={linkStyle} onClick={() => go("/whatsapp-agent")}>📱 WhatsApp</button>
+          <button style={linkStyle} onClick={() => go("/pricing")}>💳 Pricing</button>
 
         </div>
 
@@ -68,7 +68,7 @@ export default function Navbar() {
               border:"1px solid rgba(255,255,255,.1)",
               color:"white",
               padding:"10px 16px",
-              borderRadius:"12px",
+              borderRadius:"16px",
               cursor:"pointer"
             }}
           >
@@ -109,6 +109,14 @@ export default function Navbar() {
 
             <button style={drawerBtn} onClick={() => go("/crm")}>
               📊 CRM
+            </button>
+
+            <button style={drawerBtn} onClick={() => go("/billing")}>
+              💳 الفوترة
+            </button>
+
+            <button style={drawerBtn} onClick={() => go("/security")}>
+              🔐 الأمان
             </button>
 
             <button style={drawerBtn} onClick={() => go("/settings")}>
