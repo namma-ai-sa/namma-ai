@@ -1,52 +1,32 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_ANON_KEY
-);
 
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
 
-    const question =
-      searchParams.get("topic") || "مرحبا";
+    const topic =
+      searchParams.get("topic") || "موضوع عام";
 
     const prompt = `
-أنت نمّى AI 🌱.
+أنت كاتب محتوى عربي محترف وخبير SEO ضمن منصة NAMMA AI.
 
-مساعد عربي احترافي وودود.
+أنشئ مقالاً احترافياً حول:
 
-تحدث بشكل طبيعي ومختصر.
+${topic}
 
-لا تقل:
-- أنا نموذج ذكاء اصطناعي
-- أنا مساعد افتراضي
-- لا أملك مشاعر
+يجب أن يتضمن:
 
-إذا قال المستخدم:
-كيف حالك
+1. عنوان رئيسي جذاب
+2. مقدمة احترافية
+3. عناوين H2
+4. عناوين H3 عند الحاجة
+5. محتوى تفصيلي ومنظم
+6. نصائح عملية
+7. خاتمة
+8. CTA مناسب
+9. كلمات مفتاحية مقترحة
 
-أجب بشكل ودي مثل:
-بخير والحمد لله 🌱 كيف أقدر أخدمك اليوم؟
-
-إذا كانت الرسالة عامة مثل:
-ابي قهوة
-وش عندك
-هلا
-
-فتفاعل معه بشكل طبيعي مثل شخص حقيقي.
-
-كن:
-- مختصر
-- ذكي
-- عملي
-- بشوش
-
-سؤال المستخدم:
-
-${question}
+أجب باللغة العربية فقط.
 `;
 
     const response = await fetch(
@@ -54,20 +34,20 @@ ${question}
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          Authorization:
+            `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model:
-            "nvidia/nemotron-3-ultra-550b-a55b:free",
+          model: "deepseek/deepseek-chat",
+          temperature: 0.5,
+          max_tokens: 2500,
           messages: [
             {
               role: "user",
               content: prompt,
             },
           ],
-          temperature: 0.8,
-          max_tokens: 800,
         }),
       }
     );
@@ -76,31 +56,19 @@ ${question}
 
     const result =
       data?.choices?.[0]?.message?.content ||
-      "عذراً، ما قدرت أجهز الرد حالياً.";
-
-    await supabase
-      .from("chat_messages")
-      .insert([
-        {
-          username: "guest",
-          conversation_id: "main-chat",
-          role: "assistant",
-          content: result,
-        },
-      ]);
+      "تعذر إنشاء المقال";
 
     return NextResponse.json(
       { result },
       { status: 200 }
     );
+
   } catch (error) {
     return NextResponse.json(
       {
         result: error.message,
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }
