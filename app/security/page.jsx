@@ -1,3 +1,5 @@
+import PremiumCard from "../components/PremiumCard";
+import PremiumButton from "../components/PremiumButton";
 export default function SecurityPage() {
   return (
     <main
@@ -165,19 +167,9 @@ export default function SecurityPage() {
           <p>🟢 Current Browser Session</p>
           <p>💻 Desktop Session Active</p>
 
-          <button
-            style={{
-              marginTop: "16px",
-              background: "#ef4444",
-              color: "white",
-              padding: "12px 18px",
-              border: "none",
-              borderRadius: "16px",
-              fontWeight: "700"
-            }}
-          >
+          <PremiumButton style={{ marginTop: "16px", background: "#ef4444" }}>
             تسجيل خروج جميع الأجهزة
-          </button>
+          </PremiumButton>
         </div>
 
 <div
@@ -197,19 +189,9 @@ export default function SecurityPage() {
           <p>🖐 Fingerprint: قريباً</p>
           <p>🔑 Passkeys: قيد التجهيز</p>
 
-          <button
-            style={{
-              marginTop: "16px",
-              background: "#22c55e",
-              color: "white",
-              padding: "12px 18px",
-              border: "none",
-              borderRadius: "16px",
-              fontWeight: "700"
-            }}
-          >
+          <PremiumButton style={{ marginTop: "16px" }}>
             Enable Passkey
-          </button>
+          </PremiumButton>
         </div>
 
         <div
