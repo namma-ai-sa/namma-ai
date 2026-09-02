@@ -156,13 +156,22 @@ export default function CRMPage() {
         color: "white",
       }}
     >
-      <h1>📊 CRM V4</h1>
+      <h1
+        style={{
+          fontSize: "42px",
+          fontWeight: "800",
+          marginBottom: "24px",
+        }}
+      >
+        📊 CRM Premium
+      </h1>
 
       <div
         style={{
           background: "#111827",
+            border: "1px solid rgba(255,255,255,.08)",
           padding: "20px",
-          borderRadius: "12px",
+          borderRadius: "24px",
           marginBottom: "30px",
         }}
       >
@@ -220,8 +229,9 @@ export default function CRMPage() {
               key={lead.id}
               style={{
                 background: "#111827",
-                padding: "16px",
-                borderRadius: "12px",
+            border: "1px solid rgba(255,255,255,.08)",
+                padding: "20px",
+                borderRadius: "24px",
                 marginBottom: "15px",
               }}
             >
@@ -308,8 +318,9 @@ export default function CRMPage() {
         <div
           style={{
             background: "#111827",
+            border: "1px solid rgba(255,255,255,.08)",
             padding: "20px",
-            borderRadius: "12px",
+            borderRadius: "24px",
             height: "fit-content",
           }}
         >
@@ -365,8 +376,10 @@ export default function CRMPage() {
             marginTop: "30px",
             background:
               "#111827",
+            border:
+              "1px solid rgba(34,197,94,.35)",
             padding: "20px",
-            borderRadius: "12px",
+            borderRadius: "24px",
             whiteSpace:
               "pre-wrap",
           }}
