@@ -8,7 +8,36 @@ export default function SecurityPage() {
         padding: "40px",
       }}
     >
-      <div
+      
+        <div
+          style={{
+            background:"#111827",
+            border:"1px solid rgba(255,255,255,.08)",
+            borderRadius:"24px",
+            padding:"24px",
+            marginBottom:"24px",
+            boxShadow:"0 20px 50px rgba(0,0,0,.35)"
+          }}
+        >
+          <h2>🛡 Security Score</h2>
+
+          <div
+            style={{
+              fontSize:"56px",
+              fontWeight:"800",
+              color:"#22c55e",
+              textShadow:"0 0 24px rgba(34,197,94,.4)"
+            }}
+          >
+            85/100
+          </div>
+
+          <p style={{color:"#94a3b8"}}>
+            الحماية جيدة جداً ويمكن رفعها بتفعيل Passkeys مستقبلاً.
+          </p>
+        </div>
+
+<div
         style={{
           maxWidth: "1100px",
           margin: "0 auto",
