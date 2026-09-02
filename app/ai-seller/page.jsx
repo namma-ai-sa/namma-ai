@@ -28,11 +28,25 @@ export default function AISellerPage() {
   return (
     <main className="container">
       <h1 style={{ marginBottom: "24px" }}>
-        🤖 AI Seller V4
+        🤖 AI Seller Premium
       </h1>
 
-      <div className="card">
+      <div className="card"
+        style={{
+          border: "1px solid rgba(255,255,255,.08)",
+          borderRadius: "24px",
+          padding: "24px",
+          background: "#111827"
+        }}>
         <textarea
+          style={{
+            width: "100%",
+            background: "#030712",
+            color: "white",
+            border: "1px solid rgba(255,255,255,.08)",
+            borderRadius: "16px",
+            padding: "16px"
+          }}
           rows="8"
           placeholder="اكتب معلومات العميل هنا..."
         />
@@ -48,6 +62,12 @@ export default function AISellerPage() {
       {result && (
         <div
           className="card"
+        style={{
+          border: "1px solid rgba(255,255,255,.08)",
+          borderRadius: "24px",
+          padding: "24px",
+          background: "#111827"
+        }}
           style={{
             marginTop: "24px",
             whiteSpace: "pre-wrap"
