@@ -29,11 +29,25 @@ export default function WhatsAppAgentPage() {
   return (
     <main className="container">
       <h1 style={{ marginBottom: "24px" }}>
-        📱 WhatsApp Agent V4
+        📱 WhatsApp Agent Premium
       </h1>
 
-      <div className="card">
+      <div className="card"
+        style={{
+          background: "#111827",
+          border: "1px solid rgba(255,255,255,.08)",
+          borderRadius: "24px",
+          padding: "24px"
+        }}>
         <textarea
+          style={{
+            width: "100%",
+            background: "#030712",
+            color: "white",
+            border: "1px solid rgba(255,255,255,.08)",
+            borderRadius: "16px",
+            padding: "16px"
+          }}
           rows="8"
           placeholder="ألصق المحادثة هنا..."
         />
@@ -49,9 +63,19 @@ export default function WhatsAppAgentPage() {
       {result && (
         <div
           className="card"
+        style={{
+          background: "#111827",
+          border: "1px solid rgba(255,255,255,.08)",
+          borderRadius: "24px",
+          padding: "24px"
+        }}
           style={{
             marginTop: "24px",
-            whiteSpace: "pre-wrap"
+            whiteSpace: "pre-wrap",
+            border: "1px solid rgba(34,197,94,.35)",
+            borderRadius: "24px",
+            padding: "24px",
+            background: "#111827"
           }}
         >
           {result}
