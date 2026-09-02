@@ -51,8 +51,28 @@ export default function ToolsPage() {
             marginBottom: "40px",
           }}
         >
-          جميع أدوات الذكاء الاصطناعي والتسويق في مكان واحد.
+          جميع أدوات الذكاء الاصطناعي والتسويق في مكان واحد. • 12 أداة متاحة
         </p>
+
+
+        <div
+          style={{
+            background: "#111827",
+            border: "1px solid rgba(255,255,255,.08)",
+            borderRadius: "24px",
+            padding: "24px",
+            marginBottom: "32px",
+            boxShadow:
+              "0 20px 50px rgba(0,0,0,.35)"
+          }}
+        >
+          <h2>⭐ الأدوات المميزة</h2>
+
+          <p>🔍 SEO Generator</p>
+          <p>✍️ Article Writer</p>
+          <p>📢 Ad Generator</p>
+          <p>🤖 AI Seller</p>
+        </div>
 
         <div
           style={{
