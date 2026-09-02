@@ -22,8 +22,10 @@ export default function Navbar() {
           justifyContent:"space-between",
           alignItems:"center",
           padding:"18px 24px",
-          background:"rgba(2,6,23,.9)",
-          backdropFilter:"blur(12px)",
+          background:"rgba(2,6,23,.72)",
+          backdropFilter:"blur(20px)",
+          boxShadow:
+            "0 20px 50px rgba(0,0,0,.25)",
           borderBottom:"1px solid rgba(255,255,255,.08)",
           position:"sticky",
           top:0,
@@ -68,7 +70,8 @@ export default function Navbar() {
               border:"1px solid rgba(255,255,255,.1)",
               color:"white",
               padding:"10px 16px",
-              borderRadius:"16px",
+              borderRadius:"20px",
+              backdropFilter:"blur(16px)",
               cursor:"pointer"
             }}
           >
@@ -90,9 +93,10 @@ export default function Navbar() {
               position:"absolute",
               top:"70px",
               left:"24px",
-              background:"#111827",
+              background:"rgba(17,24,39,.92)",
               border:"1px solid rgba(255,255,255,.1)",
-              borderRadius:"16px",
+              borderRadius:"20px",
+              backdropFilter:"blur(16px)",
               padding:"12px",
               minWidth:"260px",
               boxShadow:"0 20px 40px rgba(0,0,0,.35)",
