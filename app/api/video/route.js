@@ -4,40 +4,26 @@ export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
 
-    const topic =
-      searchParams.get("topic") || "موضوع عام";
+    const idea =
+      searchParams.get("idea") || "فيديو تسويقي";
 
     const prompt = `
-أنت خبير صناعة فيديو وتسويق محتوى ضمن منصة نمّى AI.
+أنت خبير صناعة محتوى فيديو وتسويق.
 
-مهم جداً:
+أنشئ سكربت فيديو احترافي حول:
 
-- أجب باللغة العربية فقط.
-- لا تخترع معلومات أو إحصائيات غير مؤكدة.
-- ركز على الدقة والوضوح.
-- اجعل المحتوى مناسباً للنشر والتنفيذ مباشرة.
-- استخدم أفضل الممارسات الحديثة للفيديو القصير والطويل.
-- ركز على جذب انتباه المشاهد منذ الثواني الأولى.
+${idea}
 
-أنشئ خطة فيديو احترافية حول:
-
-${topic}
-
-يجب أن تتضمن:
+يجب أن يتضمن:
 
 1. عنوان الفيديو
-2. وصف الفيديو
-3. الجمهور المستهدف
-4. الخطاف الافتتاحي (Hook)
-5. سكربت كامل للفيديو
-6. تقسيم المشاهد
-7. فكرة فيديو قصير Shorts أو Reels
-8. CTA مناسب
-9. هاشتاقات مقترحة
-10. نصائح لزيادة المشاهدات
-11. أخطاء يجب تجنبها
+2. Hook قوي
+3. التعليق الصوتي
+4. تقسيم المشاهد
+5. CTA
+6. مدة الفيديو
 
-اكتب النتيجة بشكل احترافي ومنظم.
+أجب باللغة العربية فقط.
 `;
 
     const response = await fetch(
@@ -45,13 +31,14 @@ ${topic}
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          Authorization:
+            `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
-          temperature: 0.2,
-          max_tokens: 2000,
+          temperature: 0.7,
+          max_tokens: 1800,
           messages: [
             {
               role: "user",
@@ -64,21 +51,12 @@ ${topic}
 
     const data = await response.json();
 
-    let result =
-      data?.choices?.[0]?.message?.content ||
-      "تعذر إنشاء خطة الفيديو";
+    return NextResponse.json({
+      result:
+        data?.choices?.[0]?.message?.content ||
+        "تعذر إنشاء الفيديو",
+    });
 
-    result = result
-      .replace(/\\n/g, "\n")
-      .replace(/\\"/g, '"')
-      .replace(/\*\*/g, "")
-      .replace(/#/g, "")
-      .trim();
-
-    return NextResponse.json(
-      { result },
-      { status: 200 }
-    );
   } catch (error) {
     return NextResponse.json(
       {

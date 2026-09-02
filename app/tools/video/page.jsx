@@ -3,53 +3,52 @@
 import { useState } from "react";
 
 export default function VideoStudioPage() {
+  const [idea, setIdea] = useState("");
   const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function generateVideo() {
-    setResult(`
-🎬 عنوان الفيديو
-كيف تضاعف مبيعاتك باستخدام NAMMA AI
+  async function generateVideo() {
+    if (!idea) return;
 
-🎙️ التعليق الصوتي
-اكتشف منصة عربية متكاملة تساعدك على إدارة العملاء وتحليل المحادثات وتحسين فرص البيع.
+    setLoading(true);
 
-🎥 المشهد 1
-شعار NAMMA AI مع ظهور الخدمات.
+    try {
+      const res = await fetch(
+        `/api/video?idea=${encodeURIComponent(idea)}`
+      );
 
-🎥 المشهد 2
-عرض CRM وإدارة العملاء.
+      const data = await res.json();
 
-🎥 المشهد 3
-عرض AI Seller وتحليل العملاء.
+      setResult(data.result || "");
+    } catch {
+      setResult("حدث خطأ أثناء إنشاء الفيديو");
+    }
 
-🎥 المشهد 4
-عرض WhatsApp Agent وتحليل المحادثات.
-
-🎥 المشهد 5
-دعوة للتسجيل والبدء مجاناً.
-
-⏱️ المدة
-30 ثانية
-`);
+    setLoading(false);
   }
 
   return (
     <main className="container">
       <h1 style={{ marginBottom: "24px" }}>
-        🎬 Video Studio V1
+        🎬 Video Studio Premium
       </h1>
 
       <div className="card">
         <textarea
           rows="8"
+          value={idea}
+          onChange={(e) =>
+            setIdea(e.target.value)
+          }
           placeholder="اكتب فكرة الفيديو..."
         />
 
-        <br />
-        <br />
+        <br /><br />
 
         <button onClick={generateVideo}>
-          إنشاء الفيديو
+          {loading
+            ? "جاري الإنشاء..."
+            : "إنشاء الفيديو"}
         </button>
       </div>
 
