@@ -100,6 +100,10 @@ export default function PricingPage() {
                 background: "#111827",
                 border: `2px solid ${plan.color}`,
                 borderRadius: "24px",
+              boxShadow:
+                "0 20px 50px rgba(0,0,0,.35)",
+              transition:
+                "all .25s ease",
                 padding: "30px",
                 position: "relative",
                 boxShadow:
