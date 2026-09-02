@@ -4,40 +4,42 @@ import { useState } from "react";
 
 export default function PublishHubPage() {
   const [content, setContent] = useState("");
-  const [status, setStatus] = useState("");
+  const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function publish() {
-    setStatus(`
-✅ المحتوى جاهز للنشر
+  async function publish() {
+    if (!content) return;
 
-📘 Facebook
-✅ جاهز
+    setLoading(true);
 
-📸 Instagram
-✅ جاهز
+    try {
+      const res = await fetch(
+        `/api/social?input=${encodeURIComponent(content)}`
+      );
 
-💼 LinkedIn
-✅ جاهز
+      const data = await res.json();
 
-𝕏 X
-✅ جاهز
+      setResult(data.result || "");
+    } catch {
+      setResult("حدث خطأ أثناء إنشاء المحتوى");
+    }
 
-📅 Schedule
-جاهز للجدولة
-`);
+    setLoading(false);
   }
 
   return (
     <main className="container">
       <h1 style={{ marginBottom: "24px" }}>
-        📢 Publish Hub V1
+        📢 Publish Hub Premium
       </h1>
 
       <div className="card">
         <textarea
           rows="8"
           value={content}
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) =>
+            setContent(e.target.value)
+          }
           placeholder="اكتب المحتوى هنا..."
         />
 
@@ -45,11 +47,13 @@ export default function PublishHubPage() {
         <br />
 
         <button onClick={publish}>
-          مراجعة وتجهيز النشر
+          {loading
+            ? "جاري الإنشاء..."
+            : "إنشاء محتوى السوشيال"}
         </button>
       </div>
 
-      {status && (
+      {result && (
         <div
           className="card"
           style={{
@@ -57,7 +61,7 @@ export default function PublishHubPage() {
             whiteSpace: "pre-wrap"
           }}
         >
-          {status}
+          {result}
         </div>
       )}
     </main>

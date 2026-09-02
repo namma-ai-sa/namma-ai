@@ -4,40 +4,24 @@ export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
 
-    const topic =
-      searchParams.get("topic") || "موضوع عام";
+    const input =
+      searchParams.get("input") || "";
 
     const prompt = `
-أنت خبير محتوى وتسويق رقمي ضمن منصة نمّى AI.
+أنت خبير تسويق ومحتوى سوشيال ميديا.
 
-مهم جداً:
+أنشئ من المحتوى التالي:
 
-- أجب باللغة العربية فقط.
-- لا تخترع معلومات أو إحصائيات غير مؤكدة.
-- ركز على الوضوح والتأثير والإقناع.
-- اجعل المحتوى جاهزاً للنشر مباشرة.
-- خصص أسلوب الكتابة لكل منصة.
-- استخدم أفضل الممارسات الحديثة لمنصات التواصل الاجتماعي.
-- ركز على جذب الانتباه وتحفيز التفاعل.
+${input}
 
-أنشئ محتوى احترافياً حول:
+1. منشور Facebook
+2. Caption Instagram
+3. منشور LinkedIn
+4. منشور X
+5. Hashtags مناسبة
+6. أفضل CTA
 
-${topic}
-
-يجب أن تتضمن النتيجة:
-
-1. منشور منصة X
-2. منشور Instagram
-3. منشور TikTok
-4. منشور Facebook
-5. منشور LinkedIn
-6. هاشتاقات مناسبة
-7. CTA مناسب
-8. فكرة تصميم مرافقة
-9. أفكار لتحسين التفاعل
-10. أفضل وقت مقترح للنشر
-
-اكتب المحتوى بشكل احترافي ومنظم.
+أجب بالعربية فقط.
 `;
 
     const response = await fetch(
@@ -50,8 +34,8 @@ ${topic}
         },
         body: JSON.stringify({
           model: "deepseek/deepseek-chat",
-          temperature: 0.3,
-          max_tokens: 2000,
+          temperature: 0.7,
+          max_tokens: 1800,
           messages: [
             {
               role: "user",
@@ -64,26 +48,15 @@ ${topic}
 
     const data = await response.json();
 
-    let result =
-      data?.choices?.[0]?.message?.content ||
-      "تعذر إنشاء محتوى التواصل الاجتماعي";
+    return NextResponse.json({
+      result:
+        data?.choices?.[0]?.message?.content ||
+        "تعذر إنشاء المحتوى",
+    });
 
-    result = result
-      .replace(/\\n/g, "\n")
-      .replace(/\\"/g, '"')
-      .replace(/\*\*/g, "")
-      .replace(/#/g, "")
-      .trim();
-
-    return NextResponse.json(
-      { result },
-      { status: 200 }
-    );
   } catch (error) {
     return NextResponse.json(
-      {
-        result: error.message,
-      },
+      { result: error.message },
       { status: 500 }
     );
   }
