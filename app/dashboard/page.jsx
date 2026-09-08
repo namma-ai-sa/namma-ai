@@ -1,6 +1,7 @@
 "use client";
 
 import PremiumCard from "../components/PremiumCard";
+import theme from "../theme/theme";
 
 export default function DashboardPage() {
   const stats = [
@@ -8,7 +9,7 @@ export default function DashboardPage() {
       title: "العملاء",
       value: "1,248",
       icon: "👥",
-      color: "#22c55e",
+      color: theme.colors.primary,
             textShadow:
               "0 0 20px rgba(34,197,94,.45)"
     },
@@ -81,13 +82,13 @@ export default function DashboardPage() {
           style={{
             fontSize: "52px",
             fontWeight: "800",
-            color: "#22c55e"
+            color: theme.colors.primary
           }}
         >
           92%
         </div>
 
-        <p style={{ color: "#94a3b8" }}>
+        <p style={{ color: theme.colors.muted }}>
           أداء المنصة ممتاز ويقترب من الجاهزية الكاملة.
         </p>
       </PremiumCard>
@@ -152,7 +153,7 @@ export default function DashboardPage() {
       >
         <div
           style={{
-            background: "#111827",
+            background: theme.colors.card,
             borderRadius: "18px",
             padding: "24px"
           }}
@@ -174,7 +175,7 @@ export default function DashboardPage() {
 
         <div
           style={{
-            background: "#111827",
+            background: theme.colors.card,
             borderRadius: "18px",
             padding: "24px"
           }}
@@ -197,7 +198,7 @@ export default function DashboardPage() {
 
       <div
         style={{
-          background: "#111827",
+          background: theme.colors.card,
           borderRadius: "18px",
           padding: "24px",
           marginTop: "30px"
@@ -220,7 +221,7 @@ export default function DashboardPage() {
 
       <div
         style={{
-          background: "#111827",
+          background: theme.colors.card,
           borderRadius: "18px",
           padding: "24px",
           marginTop: "20px"

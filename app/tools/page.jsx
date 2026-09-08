@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import theme from "../theme/theme";
 
 export default function ToolsPage() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function ToolsPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#030712",
+        background: theme.colors.background,
         color: "white",
         padding: "40px",
       }}
@@ -47,7 +48,7 @@ export default function ToolsPage() {
 
         <p
           style={{
-            color: "#94a3b8",
+            color: theme.colors.muted,
             marginBottom: "40px",
           }}
         >
@@ -57,7 +58,7 @@ export default function ToolsPage() {
 
         <div
           style={{
-            background: "#111827",
+            background: theme.colors.card,
             border: "1px solid rgba(255,255,255,.08)",
             borderRadius: "24px",
             padding: "24px",
@@ -84,7 +85,7 @@ export default function ToolsPage() {
           }}
         >
           <div style={{
-            background:"#111827",
+            background:theme.colors.card,
             padding:"20px",
             borderRadius:"24px",
             border:"1px solid rgba(255,255,255,.08)"
@@ -94,7 +95,7 @@ export default function ToolsPage() {
           </div>
 
           <div style={{
-            background:"#111827",
+            background:theme.colors.card,
             padding:"20px",
             borderRadius:"24px",
             border:"1px solid rgba(255,255,255,.08)"
@@ -104,7 +105,7 @@ export default function ToolsPage() {
           </div>
 
           <div style={{
-            background:"#111827",
+            background:theme.colors.card,
             padding:"20px",
             borderRadius:"24px",
             border:"1px solid rgba(255,255,255,.08)"
@@ -114,7 +115,7 @@ export default function ToolsPage() {
           </div>
 
           <div style={{
-            background:"#111827",
+            background:theme.colors.card,
             padding:"20px",
             borderRadius:"24px",
             border:"1px solid rgba(255,255,255,.08)"
@@ -137,7 +138,7 @@ export default function ToolsPage() {
               key={tool.path}
               onClick={() => router.push(tool.path)}
               style={{
-                background: "#111827",
+                background: theme.colors.card,
                 border: "1px solid rgba(255,255,255,.08)",
                 borderRadius: "24px",
                 padding: "24px",
