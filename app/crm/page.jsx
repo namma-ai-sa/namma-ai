@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import theme from "../theme/theme";
 
 export default function CRMPage() {
   const [leads, setLeads] = useState([]);
@@ -168,7 +169,7 @@ export default function CRMPage() {
 
       <div
         style={{
-          background: "#111827",
+          background: theme.colors.card,
             border: "1px solid rgba(255,255,255,.08)",
           padding: "20px",
           borderRadius: "24px",
@@ -228,7 +229,7 @@ export default function CRMPage() {
             <div
               key={lead.id}
               style={{
-                background: "#111827",
+                background: theme.colors.card,
             border: "1px solid rgba(255,255,255,.08)",
                 padding: "20px",
                 borderRadius: "24px",
@@ -317,7 +318,7 @@ export default function CRMPage() {
 
         <div
           style={{
-            background: "#111827",
+            background: theme.colors.card,
             border: "1px solid rgba(255,255,255,.08)",
             padding: "20px",
             borderRadius: "24px",
@@ -375,7 +376,7 @@ export default function CRMPage() {
           style={{
             marginTop: "30px",
             background:
-              "#111827",
+              theme.colors.card,
             border:
               "1px solid rgba(34,197,94,.35)",
             padding: "20px",
