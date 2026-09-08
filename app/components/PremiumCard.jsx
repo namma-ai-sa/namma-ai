@@ -1,16 +1,20 @@
+import theme from "../theme/theme";
+
 export default function PremiumCard({
   children,
-  style = {}
+  style = {},
+  onClick,
+  className = "",
 }) {
   return (
     <div
+      onClick={onClick}
+      className={className}
       style={{
-        background: "#111827",
-        border:
-          "1px solid rgba(255,255,255,.08)",
-        borderRadius: "24px",
-        boxShadow:
-          "0 20px 50px rgba(0,0,0,.35)",
+        background: theme.colors.card,
+        border: `1px solid ${theme.colors.border}`,
+        borderRadius: theme.radius.lg,
+        boxShadow: theme.shadows.premium,
         padding: "24px",
         ...style,
       }}

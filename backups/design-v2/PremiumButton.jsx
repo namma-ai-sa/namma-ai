@@ -1,5 +1,3 @@
-import theme from "../theme/theme";
-
 export default function PremiumButton({
   children,
   style = {},
@@ -9,15 +7,13 @@ export default function PremiumButton({
     <button
       {...props}
       style={{
-        background:
-          `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary})`,
-        color: theme.colors.text,
+        background: "#22c55e",
+        color: "white",
         border: "none",
-        borderRadius: theme.radius.md,
+        borderRadius: "16px",
         padding: "14px 20px",
         fontWeight: "700",
         cursor: "pointer",
-        boxShadow: theme.shadows.premium,
         transition: "all .25s ease",
         ...style,
       }}

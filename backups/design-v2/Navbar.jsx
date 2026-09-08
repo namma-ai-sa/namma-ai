@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import theme from "../theme/theme";
 
 export default function Navbar() {
 
