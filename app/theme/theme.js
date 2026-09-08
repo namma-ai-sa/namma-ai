@@ -24,10 +24,17 @@ const theme = {
     pill: "999px",
   },
 
+  typography: {
+    hero: "88px",
+    h1: "48px",
+    h2: "32px",
+    body: "16px",
+  },
+
   shadows: {
     card: "0 20px 50px rgba(0,0,0,.35)",
     premium:
-      "0 20px 60px rgba(0,0,0,.45), 0 0 40px rgba(249,115,22,.08)",
+      "0 20px 60px rgba(0,0,0,.45),0 0 40px rgba(249,115,22,.08)",
   },
 };
 

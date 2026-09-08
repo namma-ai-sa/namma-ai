@@ -3,6 +3,7 @@
 import Navbar from "./components/Navbar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import theme from "./theme/theme";
 
 export default function HomePage() {
   const router = useRouter();
@@ -67,7 +68,7 @@ export default function HomePage() {
         style={{
           minHeight: "100vh",
           background:
-            "linear-gradient(180deg,#020617,#0f172a,#111827)",
+            `linear-gradient(180deg,#020617,#0f172a,${theme.colors.card})`,
           color: "white",
           padding: "40px 20px"
         }}
@@ -87,7 +88,7 @@ export default function HomePage() {
               border: "1px solid rgba(34,197,94,.3)",
               background: "rgba(34,197,94,.08)",
               borderRadius: "999px",
-              color: "#22c55e",
+              color: theme.colors.primary,
               fontWeight: "700",
               marginBottom: "25px"
             }}
@@ -139,7 +140,7 @@ export default function HomePage() {
                 padding: "18px 38px",
                 border: "none",
                 borderRadius: "16px",
-                background: "#22c55e",
+                background: theme.colors.primary,
                 color: "white",
                 cursor: "pointer",
                 fontWeight: "bold"
@@ -176,7 +177,7 @@ export default function HomePage() {
                 padding: "18px 38px",
                 borderRadius: "16px",
                 border: "none",
-                background: "#2563eb",
+                background: theme.colors.secondary,
                 color: "white",
                 cursor: "pointer",
                 fontWeight: "bold"
@@ -215,7 +216,7 @@ export default function HomePage() {
               >
                 <h2
                   style={{
-                    color: "#22c55e",
+                    color: theme.colors.primary,
                     fontSize: "48px",
                     fontWeight: "900"
                   }}
@@ -298,7 +299,7 @@ export default function HomePage() {
 
                 <div
                   style={{
-                    color: "#22c55e",
+                    color: theme.colors.primary,
                     fontWeight: "700",
                   }}
                 >
@@ -328,7 +329,7 @@ export default function HomePage() {
           >
             <div
               style={{
-                color: "#22c55e",
+                color: theme.colors.primary,
                 fontWeight: "700",
                 marginBottom: "12px",
               }}
@@ -385,7 +386,7 @@ export default function HomePage() {
               }
               style={{
                 marginTop: "24px",
-                background: "#22c55e",
+                background: theme.colors.primary,
                 color: "white",
                 border: "none",
                 borderRadius: "16px",

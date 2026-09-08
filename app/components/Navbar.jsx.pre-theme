@@ -38,7 +38,7 @@ export default function Navbar() {
           onClick={() => go("/")}
           style={{
             cursor:"pointer",
-            color:theme.colors.primary,
+            color:"#22c55e",
             fontSize:"28px",
             fontWeight:"800"
           }}
@@ -150,8 +150,8 @@ export default function Navbar() {
             top:"70px",
             right:"12px",
             left:"12px",
-            background:theme.colors.card,
-            border:`1px solid ${theme.colors.border}`,
+            background:"#111827",
+            border:"1px solid #1f2937",
             borderRadius:"18px",
             padding:"16px",
             zIndex:1000
