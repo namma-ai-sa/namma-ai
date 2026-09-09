@@ -1,0 +1,195 @@
+7:export default function Navbar() {
+8-
+9-  const router = useRouter();
+10-  const [mobileMenuOpen,setMobileMenuOpen] = useState(false);
+11-  const [accountMenuOpen,setAccountMenuOpen] = useState(false);
+12-
+13-  const go = (path) => {
+14-    setMobileMenuOpen(false);
+15-    router.push(path);
+16-  };
+17-
+18-  return (
+19-    <>
+20-      <nav
+21-        style={{
+22-          display:"flex",
+23-          justifyContent:"space-between",
+24-          alignItems:"center",
+25-          padding:"18px 24px",
+26-          background:"rgba(2,6,23,.72)",
+27-          backdropFilter:"blur(20px)",
+28-          boxShadow:
+29-            "0 20px 50px rgba(0,0,0,.25)",
+30-          borderBottom:"1px solid rgba(255,255,255,.08)",
+31-          position:"sticky",
+32-          top:0,
+33-          zIndex:999
+34-        }}
+35-      >
+36-
+37-        <div
+38-          onClick={() => go("/")}
+39-          style={{
+40-            cursor:"pointer",
+41-            color:theme.colors.primary,
+42-            fontSize:"28px",
+43-            fontWeight:"800"
+44-          }}
+45-        >
+46-          🌱 نمّى AI
+47-        </div>
+48-
+49-        <div className="desktop-menu">
+50-
+51-          <button style={linkStyle} onClick={() => go("/dashboard")}>🏠 Dashboard</button>
+52-          <button style={linkStyle} onClick={() => go("/crm")}>👥 CRM</button>
+53-          <button style={linkStyle} onClick={() => go("/projects")}>📁 Projects</button>
+54-          <button style={linkStyle} onClick={() => go("/ai-seller")}>🤖 AI Seller</button>
+55-          <button style={linkStyle} onClick={() => go("/whatsapp-agent")}>📱 WhatsApp</button>
+56-          <button style={linkStyle} onClick={() => go("/pricing")}>💳 Pricing</button>
+57-
+58-        </div>
+59-
+60-        <div
+61-          className="desktop-auth"
+62-          style={{
+63-            position:"relative"
+64-          }}
+65-        >
+66-
+67-          <button
+68-            onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+69-            style={{
+70-              background:"rgba(255,255,255,.06)",
+71-              border:"1px solid rgba(255,255,255,.1)",
+72-              color:"white",
+73-              padding:"10px 16px",
+74-              borderRadius:"20px",
+75-              backdropFilter:"blur(16px)",
+76-              cursor:"pointer"
+77-            }}
+78-          >
+79-            👤 حسابي
+80-          </button>
+81-
+82-        </div>
+83-
+84-        <button
+85-          className="mobile-menu-btn"
+86-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+87-        >
+88-          ☰
+89-        </button>
+90-
+91-        {accountMenuOpen && (
+92-          <div
+93-            style={{
+94-              position:"absolute",
+95-              top:"70px",
+96-              left:"24px",
+97-              background:"rgba(17,24,39,.92)",
+98-              border:"1px solid rgba(255,255,255,.1)",
+99-              borderRadius:"20px",
+100-              backdropFilter:"blur(16px)",
+101-              padding:"12px",
+102-              minWidth:"260px",
+103-              boxShadow:"0 20px 40px rgba(0,0,0,.35)",
+104-              zIndex:2000
+105-            }}
+106-          >
+107-            <button style={drawerBtn} onClick={() => go("/profile")}>
+108-              👤 الملف الشخصي
+109-            </button>
+110-
+111-            <button style={drawerBtn} onClick={() => go("/projects")}>
+112-              📁 مشاريعي
+113-            </button>
+114-
+115-            <button style={drawerBtn} onClick={() => go("/crm")}>
+116-              📊 CRM
+117-            </button>
+118-
+119-            <button style={drawerBtn} onClick={() => go("/billing")}>
+120-              💳 الفوترة
+121-            </button>
+122-
+123-            <button style={drawerBtn} onClick={() => go("/security")}>
+124-              🔐 الأمان
+125-            </button>
+126-
+127-            <button style={drawerBtn} onClick={() => go("/settings")}>
+128-              ⚙️ الإعدادات
+129-            </button>
+130-
+131-            <button
+132-              style={{
+133-                ...drawerBtn,
+134-                color:"#ef4444"
+135-              }}
+136-              onClick={() => go("/logout")}
+137-            >
+138-              🚪 تسجيل الخروج
+139-            </button>
+140-          </div>
+141-        )}
+142-
+143-      </nav>
+144-
+145-      {mobileMenuOpen && (
+146-
+147-        <div
+148-          style={{
+149-            position:"fixed",
+150-            top:"70px",
+151-            right:"12px",
+152-            left:"12px",
+153-            background:theme.colors.card,
+154-            border:`1px solid ${theme.colors.border}`,
+155-            borderRadius:"18px",
+156-            padding:"16px",
+157-            zIndex:1000
+158-          }}
+159-        >
+160-
+161-          <button style={drawerBtn} onClick={() => go("/")}>الرئيسية</button>
+162-          <button style={drawerBtn} onClick={() => go("/tools")}>الأدوات</button>
+163-          <button style={drawerBtn} onClick={() => go("/crm")}>CRM</button>
+164-          <button style={drawerBtn} onClick={() => go("/ai-seller")}>مساعد المبيعات</button>
+165-          <button style={drawerBtn} onClick={() => go("/whatsapp-agent")}>وكيل واتساب</button>
+166-          <button style={drawerBtn} onClick={() => go("/projects")}>المشاريع</button>
+167-          <button style={drawerBtn} onClick={() => go("/pricing")}>الأسعار</button>
+168-          <button style={drawerBtn} onClick={() => go("/about")}>عن المنصة</button>
+169-          <button style={drawerBtn} onClick={() => go("/contact")}>تواصل معنا</button>
+170-          <button style={drawerBtn} onClick={() => go("/login")}>دخول</button>
+171-          <button style={drawerBtn} onClick={() => go("/register")}>إنشاء حساب</button>
+172-
+173-        </div>
+174-
+175-      )}
+176-
+177-    </>
+178-  );
+179-}
+180-
+181-const linkStyle = {
+182-  background:"transparent",
+183-  border:"none",
+184-  color:"#cbd5e1",
+185-  cursor:"pointer",
+186-  fontSize:"15px"
+187-};
+188-
+189-const drawerBtn = {
+190-  width: "100%",
+191-  marginBottom: "10px",
+192-  background: "rgba(255,255,255,.04)",
+193-  border: "1px solid rgba(255,255,255,.08)",
+194-  color: "#e5e7eb",
+195-  padding: "14px 16px",
+196-  borderRadius: "14px",
+197-  textAlign: "right",
+198-  cursor: "pointer",
+199-  fontSize: "15px",
+200-  backdropFilter: "blur(8px)"
+201-};

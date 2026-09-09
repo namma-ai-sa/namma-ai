@@ -39,7 +39,7 @@ export default function Navbar() {
           style={{
             cursor:"pointer",
             color:theme.colors.primary,
-            fontSize:"28px",
+            fontSize:theme.typography.h3,
             fontWeight:"800"
           }}
         >
@@ -71,7 +71,7 @@ export default function Navbar() {
               border:"1px solid rgba(255,255,255,.1)",
               color:"white",
               padding:"10px 16px",
-              borderRadius:"20px",
+              borderRadius:theme.radius.lg,
               backdropFilter:"blur(16px)",
               cursor:"pointer"
             }}
@@ -96,9 +96,9 @@ export default function Navbar() {
               left:"24px",
               background:"rgba(17,24,39,.92)",
               border:"1px solid rgba(255,255,255,.1)",
-              borderRadius:"20px",
+              borderRadius:theme.radius.lg,
               backdropFilter:"blur(16px)",
-              padding:"12px",
+              padding:theme.spacing.sm,
               minWidth:"260px",
               boxShadow:"0 20px 40px rgba(0,0,0,.35)",
               zIndex:2000
@@ -152,8 +152,8 @@ export default function Navbar() {
             left:"12px",
             background:theme.colors.card,
             border:`1px solid ${theme.colors.border}`,
-            borderRadius:"18px",
-            padding:"16px",
+            borderRadius:theme.radius.md,
+            padding:theme.spacing.md,
             zIndex:1000
           }}
         >
@@ -183,7 +183,7 @@ const linkStyle = {
   border:"none",
   color:"#cbd5e1",
   cursor:"pointer",
-  fontSize:"15px"
+  fontSize:theme.typography.small
 };
 
 const drawerBtn = {
@@ -193,7 +193,7 @@ const drawerBtn = {
   border: "1px solid rgba(255,255,255,.08)",
   color: "#e5e7eb",
   padding: "14px 16px",
-  borderRadius: "14px",
+  borderRadius: theme.radius.sm,
   textAlign: "right",
   cursor: "pointer",
   fontSize: "15px",
