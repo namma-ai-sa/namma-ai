@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import theme from "../theme/theme";
 
 export default function GuestPage() {
   const [message, setMessage] = useState("");
@@ -108,7 +109,7 @@ export default function GuestPage() {
         <p
           style={{
             textAlign: "center",
-            color: "#94a3b8",
+            color: theme.colors.muted,
             marginBottom: "15px",
           }}
         >
@@ -132,7 +133,7 @@ export default function GuestPage() {
             <div
               key={item}
               style={{
-                background: "#111827",
+                background: theme.colors.card,
                 border: "1px solid #374151",
                 borderRadius: "14px",
                 padding: "12px",
@@ -160,7 +161,7 @@ export default function GuestPage() {
             <div
               key={item}
               style={{
-                background: "#111827",
+                background: theme.colors.card,
                 border: "1px solid #374151",
                 borderRadius: "12px",
                 padding: "12px",
@@ -176,7 +177,7 @@ export default function GuestPage() {
           style={{
             textAlign: "center",
             marginBottom: "25px",
-            color: "#22c55e",
+            color: theme.colors.primary,
             fontWeight: "bold",
           }}
         >
@@ -188,7 +189,7 @@ export default function GuestPage() {
 
         <div
           style={{
-            background: "#111827",
+            background: theme.colors.card,
             borderRadius: "20px",
             padding: "20px",
             minHeight: "400px",
@@ -199,7 +200,7 @@ export default function GuestPage() {
           {messages.length === 0 && (
             <div
               style={{
-                color: "#94a3b8",
+                color: theme.colors.muted,
                 textAlign: "center",
                 marginTop: "120px",
               }}
@@ -240,7 +241,7 @@ export default function GuestPage() {
                       );
                     }}
                     style={{
-                      background: "#111827",
+                      background: theme.colors.card,
                       border: "1px solid #374151",
                       color: "white",
                       padding: "10px 14px",
@@ -274,7 +275,7 @@ export default function GuestPage() {
                   borderRadius: "16px",
                   background:
                     item.role === "user"
-                      ? "#2563eb"
+                      ? theme.colors.secondary
                       : "#1f2937",
                   whiteSpace: "pre-wrap",
                 }}
@@ -329,7 +330,7 @@ export default function GuestPage() {
                         )
                       }
                       style={{
-                        background: "#22c55e",
+                        background: theme.colors.primary,
                         border: "none",
                         color: "white",
                         padding: "6px 10px",
@@ -374,7 +375,7 @@ export default function GuestPage() {
               style={{
                 marginTop: "20px",
                 textAlign: "center",
-                color: "#22c55e",
+                color: theme.colors.primary,
                 fontWeight: "bold",
               }}
             >
@@ -384,7 +385,7 @@ export default function GuestPage() {
                     "/register";
                 }}
                 style={{
-                  background: "#22c55e",
+                  background: theme.colors.primary,
                   color: "white",
                   border: "none",
                   borderRadius: "12px",
@@ -421,7 +422,7 @@ export default function GuestPage() {
               padding: "16px",
               borderRadius: "12px",
               border: "1px solid #374151",
-              background: "#111827",
+              background: theme.colors.card,
               color: "white",
             }}
           />
@@ -436,7 +437,7 @@ export default function GuestPage() {
               padding: "16px 24px",
               border: "none",
               borderRadius: "12px",
-              background: "#22c55e",
+              background: theme.colors.primary,
               color: "white",
               cursor: "pointer",
               fontWeight: "bold",
