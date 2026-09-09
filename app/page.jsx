@@ -87,7 +87,7 @@ export default function HomePage() {
               padding: "10px 18px",
               border: "1px solid rgba(34,197,94,.3)",
               background: "rgba(34,197,94,.08)",
-              borderRadius: "999px",
+              borderRadius: theme.radius.pill,
               color: theme.colors.primary,
               fontWeight: "700",
               marginBottom: "25px"
@@ -98,11 +98,11 @@ export default function HomePage() {
 
           <h1
             style={{
-              fontSize: "88px",
+              fontSize: theme.typography.hero,
               textShadow: "0 0 30px rgba(34,197,94,.25)",
               fontWeight: "900",
               lineHeight: "1.2",
-              marginBottom: "24px"
+              marginBottom: theme.spacing.lg
             }}
           >
             شغّل شركة كاملة
@@ -128,10 +128,10 @@ export default function HomePage() {
           <div
             style={{
               display: "flex",
-              gap: "16px",
+              gap: theme.spacing.md,
               justifyContent: "center",
               flexWrap: "wrap",
-              marginTop: "40px"
+              marginTop: theme.spacing.xl
             }}
           >
             <button
@@ -139,7 +139,7 @@ export default function HomePage() {
               style={{
                 padding: "18px 38px",
                 border: "none",
-                borderRadius: "16px",
+                borderRadius: theme.radius.md,
                 background: theme.colors.primary,
                 color: "white",
                 cursor: "pointer",
@@ -153,7 +153,7 @@ export default function HomePage() {
               onClick={() => router.push("/pricing")}
               style={{
                 padding: "18px 38px",
-                borderRadius: "16px",
+                borderRadius: theme.radius.md,
                 border: "1px solid rgba(255,255,255,.15)",
                 background: "transparent",
                 color: "white",
@@ -175,7 +175,7 @@ export default function HomePage() {
               }
               style={{
                 padding: "18px 38px",
-                borderRadius: "16px",
+                borderRadius: theme.radius.md,
                 border: "none",
                 background: theme.colors.secondary,
                 color: "white",
@@ -209,21 +209,21 @@ export default function HomePage() {
                   background: "rgba(255,255,255,.04)",
                   border:
                     "1px solid rgba(255,255,255,.08)",
-                  borderRadius: "24px",
-                  padding: "24px",
+                  borderRadius: theme.radius.lg,
+                  padding: theme.spacing.lg,
                   textAlign: "center"
                 }}
               >
                 <h2
                   style={{
                     color: theme.colors.primary,
-                    fontSize: "48px",
+                    fontSize: theme.typography.h1,
                     fontWeight: "900"
                   }}
                 >
                   <div
                   style={{
-                    fontSize: "32px",
+                    fontSize: theme.typography.h2,
                     marginBottom: "10px",
                   }}
                 >
@@ -267,7 +267,7 @@ export default function HomePage() {
                   background: "rgba(255,255,255,.04)",
                   border:
                     "1px solid rgba(255,255,255,.08)",
-                  borderRadius: "24px",
+                  borderRadius: theme.radius.lg,
                   padding: "36px",
                   cursor: "pointer",
                   transition: "all .25s ease",
@@ -278,7 +278,7 @@ export default function HomePage() {
               >
                 <div
                   style={{
-                    fontSize: "48px",
+                    fontSize: theme.typography.h1,
                     marginBottom: "12px"
                   }}
                 >
@@ -322,7 +322,7 @@ export default function HomePage() {
               background: "rgba(255,255,255,.04)",
               border: "1px solid rgba(255,255,255,.08)",
               borderRadius: "28px",
-              padding: "40px",
+              padding: theme.spacing.xl,
               textAlign: "center",
               boxShadow: "0 30px 80px rgba(0,0,0,.45)",
             }}
@@ -352,7 +352,7 @@ export default function HomePage() {
                 margin: "0 auto",
                 background: "#0f172a",
                 border: "1px solid rgba(255,255,255,.08)",
-                borderRadius: "24px",
+                borderRadius: theme.radius.lg,
                 padding: "18px",
                 color: "#cbd5e1",
               }}
@@ -385,11 +385,11 @@ export default function HomePage() {
                 )
               }
               style={{
-                marginTop: "24px",
+                marginTop: theme.spacing.lg,
                 background: theme.colors.primary,
                 color: "white",
                 border: "none",
-                borderRadius: "16px",
+                borderRadius: theme.radius.md,
                 padding: "16px 32px",
                 cursor: "pointer",
                 fontWeight: "700",

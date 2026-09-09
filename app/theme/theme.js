@@ -14,9 +14,13 @@ const theme = {
     danger: "#ef4444",
 
     border: "rgba(255,255,255,.08)",
+
+    overlay: "rgba(255,255,255,.04)",
+    overlayStrong: "rgba(255,255,255,.08)",
   },
 
   radius: {
+    xs: "8px",
     sm: "12px",
     md: "16px",
     lg: "24px",
@@ -24,17 +28,37 @@ const theme = {
     pill: "999px",
   },
 
+  spacing: {
+    xs: "8px",
+    sm: "12px",
+    md: "16px",
+    lg: "24px",
+    xl: "40px",
+    xxl: "64px",
+  },
+
   typography: {
     hero: "88px",
+    display: "64px",
     h1: "48px",
     h2: "32px",
+    h3: "24px",
     body: "16px",
+    small: "14px",
   },
 
   shadows: {
     card: "0 20px 50px rgba(0,0,0,.35)",
     premium:
       "0 20px 60px rgba(0,0,0,.45),0 0 40px rgba(249,115,22,.08)",
+    glow:
+      "0 0 30px rgba(245,158,11,.15)",
+  },
+
+  animation: {
+    fast: "0.2s ease",
+    normal: "0.3s ease",
+    slow: "0.5s ease",
   },
 };
 
