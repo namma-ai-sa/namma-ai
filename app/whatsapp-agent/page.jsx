@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import theme from "../theme/theme";
 
 export default function WhatsAppAgentPage() {
   const [result, setResult] = useState("");
@@ -34,7 +35,7 @@ export default function WhatsAppAgentPage() {
 
       <div className="card"
         style={{
-          background: "#111827",
+          background: theme.colors.card,
           border: "1px solid rgba(255,255,255,.08)",
           borderRadius: "24px",
           padding: "24px"
@@ -64,7 +65,7 @@ export default function WhatsAppAgentPage() {
         <div
           className="card"
         style={{
-          background: "#111827",
+          background: theme.colors.card,
           border: "1px solid rgba(255,255,255,.08)",
           borderRadius: "24px",
           padding: "24px"
@@ -75,7 +76,7 @@ export default function WhatsAppAgentPage() {
             border: "1px solid rgba(34,197,94,.35)",
             borderRadius: "24px",
             padding: "24px",
-            background: "#111827"
+            background: theme.colors.card
           }}
         >
           {result}

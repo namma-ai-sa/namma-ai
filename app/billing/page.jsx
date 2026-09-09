@@ -1,9 +1,10 @@
+import theme from "../theme/theme";
 export default function BillingPage() {
   return (
     <main
       style={{
         minHeight: "100vh",
-        background: "#030712",
+        background: theme.colors.background,
         color: "white",
         padding: "40px",
       }}
@@ -25,7 +26,7 @@ export default function BillingPage() {
 
         <p
           style={{
-            color: "#94a3b8",
+            color: theme.colors.muted,
             marginBottom: "40px",
           }}
         >
@@ -34,7 +35,7 @@ export default function BillingPage() {
 
         <div
           style={{
-            background: "#111827",
+            background: theme.colors.card,
             border: "1px solid rgba(255,255,255,.08)",
             borderRadius: "24px",
               boxShadow:
@@ -47,11 +48,11 @@ export default function BillingPage() {
         >
           <h2>📋 حالة الاشتراك</h2>
 
-          <p style={{ color: "#94a3b8" }}>
+          <p style={{ color: theme.colors.muted }}>
             الخطة الحالية: Free
           </p>
 
-          <p style={{ color: "#94a3b8" }}>
+          <p style={{ color: theme.colors.muted }}>
             الحالة: نشطة
           </p>
         </div>
@@ -66,7 +67,7 @@ export default function BillingPage() {
         >
           <div
             style={{
-              background: "#111827",
+              background: theme.colors.card,
               border: "1px solid rgba(255,255,255,.08)",
               borderRadius: "24px",
               boxShadow:
@@ -87,14 +88,14 @@ export default function BillingPage() {
               Free
             </h3>
 
-            <p style={{ color: "#94a3b8" }}>
+            <p style={{ color: theme.colors.muted }}>
               الحساب يعمل بالخطة المجانية.
             </p>
           </div>
 
           <div
             style={{
-              background: "#111827",
+              background: theme.colors.card,
               border: "1px solid rgba(255,255,255,.08)",
               borderRadius: "24px",
               boxShadow:
@@ -106,7 +107,7 @@ export default function BillingPage() {
           >
             <h2>🚀 الترقية</h2>
 
-            <p style={{ color: "#94a3b8" }}>
+            <p style={{ color: theme.colors.muted }}>
               الانتقال إلى Pro أو Business
               عند جاهزية الإطلاق.
             </p>
@@ -118,7 +119,7 @@ export default function BillingPage() {
                 padding: "14px",
                 border: "none",
                 borderRadius: "16px",
-                background: "#22c55e",
+                background: theme.colors.primary,
                 color: "white",
                 fontWeight: "700",
                 cursor: "pointer",
