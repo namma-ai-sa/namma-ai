@@ -1,11 +1,12 @@
 import PremiumCard from "../components/PremiumCard";
 import PremiumButton from "../components/PremiumButton";
+import theme from "../theme/theme";
 export default function SecurityPage() {
   return (
     <main
       style={{
         minHeight: "100vh",
-        background: "#030712",
+        background: theme.colors.background,
         color: "white",
         padding: "40px",
       }}
@@ -13,7 +14,7 @@ export default function SecurityPage() {
       
         <div
           style={{
-            background:"#111827",
+            background:theme.colors.card,
             border:"1px solid rgba(255,255,255,.08)",
             borderRadius:"24px",
             padding:"24px",
@@ -27,14 +28,14 @@ export default function SecurityPage() {
             style={{
               fontSize:"56px",
               fontWeight:"800",
-              color:"#22c55e",
+              color:theme.colors.primary,
               textShadow:"0 0 24px rgba(34,197,94,.4)"
             }}
           >
             85/100
           </div>
 
-          <p style={{color:"#94a3b8"}}>
+          <p style={{color:theme.colors.muted}}>
             الحماية جيدة جداً ويمكن رفعها بتفعيل Passkeys مستقبلاً.
           </p>
         </div>
@@ -55,7 +56,7 @@ export default function SecurityPage() {
           }}
         >
           <div style={{
-            background:"#111827",
+            background:theme.colors.card,
             border:"1px solid rgba(255,255,255,.08)",
             borderRadius:"24px",
             padding:"20px"
@@ -66,7 +67,7 @@ export default function SecurityPage() {
           </div>
 
           <div style={{
-            background:"#111827",
+            background:theme.colors.card,
             border:"1px solid rgba(255,255,255,.08)",
             borderRadius:"24px",
             padding:"20px"
@@ -77,7 +78,7 @@ export default function SecurityPage() {
           </div>
 
           <div style={{
-            background:"#111827",
+            background:theme.colors.card,
             border:"1px solid rgba(255,255,255,.08)",
             borderRadius:"24px",
             padding:"20px"
@@ -88,7 +89,7 @@ export default function SecurityPage() {
           </div>
 
           <div style={{
-            background:"#111827",
+            background:theme.colors.card,
             border:"1px solid rgba(255,255,255,.08)",
             borderRadius:"24px",
             padding:"20px"
@@ -110,7 +111,7 @@ export default function SecurityPage() {
 
         <p
           style={{
-            color: "#94a3b8",
+            color: theme.colors.muted,
             marginBottom: "40px",
           }}
         >
@@ -132,7 +133,7 @@ export default function SecurityPage() {
             style={{
               fontSize: "42px",
               fontWeight: "800",
-              color: "#22c55e",
+              color: theme.colors.primary,
               textShadow:
                 "0 0 20px rgba(34,197,94,.35)"
             }}
@@ -140,7 +141,7 @@ export default function SecurityPage() {
             Advanced
           </div>
 
-          <p style={{ color: "#94a3b8" }}>
+          <p style={{ color: theme.colors.muted }}>
             الحساب محمي بكلمة مرور مشفرة وجلسات مراقبة.
           </p>
         </PremiumCard>
@@ -190,7 +191,7 @@ export default function SecurityPage() {
 
         <div
           style={{
-            background: "#111827",
+            background: theme.colors.card,
             border: "1px solid rgba(255,255,255,.08)",
             borderRadius: "24px",
               boxShadow:
@@ -211,7 +212,7 @@ export default function SecurityPage() {
 
         <div
           style={{
-            background: "#111827",
+            background: theme.colors.card,
             border: "1px solid rgba(255,255,255,.08)",
             borderRadius: "24px",
               boxShadow:
@@ -239,7 +240,7 @@ export default function SecurityPage() {
         >
           <div
             style={{
-              background: "#111827",
+              background: theme.colors.card,
               border: "1px solid rgba(255,255,255,.08)",
               borderRadius: "24px",
               boxShadow:
@@ -250,14 +251,14 @@ export default function SecurityPage() {
             }}
           >
             <h2>🔑 كلمة المرور</h2>
-            <p style={{ color: "#94a3b8" }}>
+            <p style={{ color: theme.colors.muted }}>
               آخر تحديث: غير متوفر حالياً
             </p>
           </div>
 
           <div
             style={{
-              background: "#111827",
+              background: theme.colors.card,
               border: "1px solid rgba(255,255,255,.08)",
               borderRadius: "24px",
               boxShadow:
@@ -268,14 +269,14 @@ export default function SecurityPage() {
             }}
           >
             <h2>📱 المصادقة الثنائية</h2>
-            <p style={{ color: "#94a3b8" }}>
+            <p style={{ color: theme.colors.muted }}>
               قريباً في NAMMA AI
             </p>
           </div>
 
           <div
             style={{
-              background: "#111827",
+              background: theme.colors.card,
               border: "1px solid rgba(255,255,255,.08)",
               borderRadius: "24px",
               boxShadow:
@@ -286,14 +287,14 @@ export default function SecurityPage() {
             }}
           >
             <h2>👆 Passkeys & Face ID</h2>
-            <p style={{ color: "#94a3b8" }}>
+            <p style={{ color: theme.colors.muted }}>
               جاهزة للمرحلة القادمة من NAMMA AI
             </p>
           </div>
 
           <div
             style={{
-              background: "#111827",
+              background: theme.colors.card,
               border: "1px solid rgba(255,255,255,.08)",
               borderRadius: "24px",
               boxShadow:
@@ -304,7 +305,7 @@ export default function SecurityPage() {
             }}
           >
             <h2>🖥️ الجلسات النشطة</h2>
-            <p style={{ color: "#94a3b8" }}>
+            <p style={{ color: theme.colors.muted }}>
               سيتم عرض الأجهزة المسجلة هنا
             </p>
           </div>
