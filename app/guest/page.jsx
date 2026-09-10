@@ -1,456 +1,68 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import theme from "../theme/theme";
+import { useEffect, useRef, useState } from "react";
+
+const products = [
+  ["▦", "CRM", "إدارة علاقات العملاء"],
+  ["✦", "AI Seller", "مساعد مبيعات ذكي"],
+  ["◌", "WhatsApp Agent", "وكيل واتساب آلي"],
+  ["↗", "Analytics", "رؤى وقرارات أدق"],
+];
+const plans = [["Basic", "299"], ["Pro", "599"], ["Enterprise", "999+"]];
+
+function Logo() { return <a className="brand" href="#top"><b>N</b><strong>NAMMA <i>AI</i></strong></a>; }
 
 export default function GuestPage() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const messagesEndRef = useRef(null);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, [messages, loading]);
-
-  const FREE_MESSAGES = 3;
-  const remainingMessages =
-    FREE_MESSAGES -
-    messages.filter(
-      (m) => m.role === "user"
-    ).length;
-
+  const endRef = useRef(null);
+  const remaining = 3 - messages.filter((item) => item.role === "user").length;
+  useEffect(() => endRef.current?.scrollIntoView({ behavior: "smooth" }), [messages, loading]);
   async function askAI() {
-    if (
-      !message.trim() ||
-      loading ||
-      remainingMessages <= 0
-    ) {
-      return;
-    }
-
-    const userMessage = message;
-
-    setMessages((prev) => [
-      ...prev,
-      {
-        role: "user",
-        content: userMessage,
-      },
-    ]);
-
-    setMessage("");
-    setLoading(true);
-
+    if (!message.trim() || loading || remaining <= 0) return;
+    const current = message; setMessage(""); setLoading(true);
+    setMessages((items) => [...items, { role: "user", content: current }]);
     try {
-      const res = await fetch("/api/guest-chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: userMessage,
-        }),
-      });
-
-      const data = await res.json();
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content:
-            data.message ||
-            "تعذر إنشاء الرد.",
-        },
-      ]);
-    } catch {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content:
-            "حدث خطأ أثناء الاتصال بالخادم.",
-        },
-      ]);
-    }
-
-    setLoading(false);
+      const response = await fetch("/api/guest-chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: current }) });
+      const data = await response.json(); setMessages((items) => [...items, { role: "assistant", content: data.message || "تعذر إنشاء الرد." }]);
+    } catch { setMessages((items) => [...items, { role: "assistant", content: "حدث خطأ أثناء الاتصال بالخادم." }]); }
+    finally { setLoading(false); }
   }
-
-  return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#050509",
-        color: "white",
-        padding: "20px",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "900px",
-          margin: "0 auto",
-        }}
-      >
-        <h1
-          style={{
-            textAlign: "center",
-            fontSize: "48px",
-            marginBottom: "10px",
-          }}
-        >
-          🤖 جرّب نمّى AI
-        </h1>
-
-        <p
-          style={{
-            textAlign: "center",
-            color: theme.colors.muted,
-            marginBottom: "15px",
-          }}
-        >
-          جرّب الذكاء الاصطناعي قبل التسجيل.
-        </p>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
-            gap: "12px",
-            marginBottom: "25px",
-          }}
-        >
-          {[
-            "📈 زيادة المبيعات",
-            "📱 كتابة رسائل واتساب",
-            "🎯 إنشاء خطط تسويقية",
-            "🤖 تحليل العملاء",
-          ].map((item) => (
-            <div
-              key={item}
-              style={{
-                background: theme.colors.card,
-                border: "1px solid #374151",
-                borderRadius: "14px",
-                padding: "12px",
-                textAlign: "center",
-              }}
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3,1fr)",
-            gap: "12px",
-            marginBottom: "20px",
-          }}
-        >
-          {[
-            "⭐ 5000+ رسالة",
-            "👥 300+ عميل",
-            "⚡ تحسين المتابعة 90%",
-          ].map((item) => (
-            <div
-              key={item}
-              style={{
-                background: theme.colors.card,
-                border: "1px solid #374151",
-                borderRadius: "12px",
-                padding: "12px",
-                textAlign: "center",
-              }}
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-
-        <div
-          style={{
-            textAlign: "center",
-            marginBottom: "25px",
-            color: theme.colors.primary,
-            fontWeight: "bold",
-          }}
-        >
-          🎁 المتبقي من التجربة المجانية:
-          {" "}
-          {remainingMessages}
-          /3
-        </div>
-
-        <div
-          style={{
-            background: theme.colors.card,
-            borderRadius: "20px",
-            padding: "20px",
-            minHeight: "400px",
-            marginBottom: "20px",
-            border: "1px solid #374151",
-          }}
-        >
-          {messages.length === 0 && (
-            <div
-              style={{
-                color: theme.colors.muted,
-                textAlign: "center",
-                marginTop: "120px",
-              }}
-            >
-              🌱 مرحباً بك في نمّى AI
-
-              وكيل النمو الذكي للشركات العربية
-
-              📈 زيادة المبيعات
-              📱 رسائل واتساب
-              🎯 خطط التسويق
-              🤖 تحليل العملاء
-
-              <div
-                style={{
-                  marginTop: "25px",
-                  display: "flex",
-                  gap: "10px",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                }}
-              >
-                {[
-                  "📈 كيف أزيد المبيعات؟",
-                  "📱 اكتب رسالة واتساب",
-                  "🎯 أعطني خطة تسويق",
-                  "🤖 حلل نشاطي التجاري",
-                ].map((prompt) => (
-                  <button
-                    key={prompt}
-                    onClick={() => {
-                      setMessage(
-                        prompt
-                          .replace("📈 ", "")
-                          .replace("📱 ", "")
-                          .replace("🎯 ", "")
-                          .replace("🤖 ", "")
-                      );
-                    }}
-                    style={{
-                      background: theme.colors.card,
-                      border: "1px solid #374151",
-                      color: "white",
-                      padding: "10px 14px",
-                      borderRadius: "999px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    {prompt}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {messages.map((item, index) => (
-            <div
-              key={index}
-              style={{
-                display: "flex",
-                justifyContent:
-                  item.role === "user"
-                    ? "flex-end"
-                    : "flex-start",
-                marginBottom: "15px",
-              }}
-            >
-              <div
-                style={{
-                  maxWidth: "80%",
-                  padding: "14px",
-                  borderRadius: "16px",
-                  background:
-                    item.role === "user"
-                      ? theme.colors.secondary
-                      : "#1f2937",
-                  whiteSpace: "pre-wrap",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: "bold",
-                    marginBottom: "8px",
-                    opacity: 0.8,
-                  }}
-                >
-                  {item.role === "user"
-                    ? "👤 أنت"
-                    : "🤖 نمّى AI"}
-                </div>
-
-                {item.content}
-
-                {item.role === "assistant" && (
-                  <div
-                    style={{
-                      marginTop: "10px",
-                    }}
-                  >
-                    <button
-                      onClick={() =>
-                        navigator.clipboard.writeText(
-                          item.content
-                        )
-                      }
-                      style={{
-                        background: "transparent",
-                        border: "1px solid #4b5563",
-                        color: "#cbd5e1",
-                        padding: "6px 10px",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      📋 نسخ الرد
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        window.open(
-                          "https://wa.me/?text=" +
-                            encodeURIComponent(
-                              item.content
-                            ),
-                          "_blank"
-                        )
-                      }
-                      style={{
-                        background: theme.colors.primary,
-                        border: "none",
-                        color: "white",
-                        padding: "6px 10px",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        marginRight: "8px",
-                      }}
-                    >
-                      📱 واتساب
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-
-          {loading && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                marginBottom: "15px",
-              }}
-            >
-              <div
-                style={{
-                  maxWidth: "80%",
-                  padding: "14px",
-                  borderRadius: "16px",
-                  background: "#1f2937",
-                }}
-              >
-                🤖 نمّى AI يكتب...
-              </div>
-            </div>
-          )}
-
-          <div ref={messagesEndRef} />
-
-          {messages.length >= 3 && (
-            <div
-              style={{
-                marginTop: "20px",
-                textAlign: "center",
-                color: theme.colors.primary,
-                fontWeight: "bold",
-              }}
-            >
-              <button
-                onClick={() => {
-                  window.location.href =
-                    "/register";
-                }}
-                style={{
-                  background: theme.colors.primary,
-                  color: "white",
-                  border: "none",
-                  borderRadius: "12px",
-                  padding: "14px 22px",
-                  cursor: "pointer",
-                  fontWeight: "bold",
-                }}
-              >
-                🚀 ابدأ مجاناً الآن
-              </button>
-            </div>
-          )}
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            gap: "10px",
-          }}
-        >
-          <input
-            value={message}
-            onChange={(e) =>
-              setMessage(e.target.value)
-            }
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                askAI();
-              }
-            }}
-            placeholder="كيف أزيد مبيعات شركتي؟"
-            style={{
-              flex: 1,
-              padding: "16px",
-              borderRadius: "12px",
-              border: "1px solid #374151",
-              background: theme.colors.card,
-              color: "white",
-            }}
-          />
-
-          <button
-            onClick={askAI}
-            disabled={
-              loading ||
-              remainingMessages <= 0
-            }
-            style={{
-              padding: "16px 24px",
-              border: "none",
-              borderRadius: "12px",
-              background: theme.colors.primary,
-              color: "white",
-              cursor: "pointer",
-              fontWeight: "bold",
-            }}
-          >
-            {loading
-              ? "..."
-              : remainingMessages <= 0
-              ? "انتهت التجربة"
-              : "إرسال"}
-          </button>
-        </div>
-      </div>
-    </main>
-  );
+  return <main className="page" id="top" dir="rtl">
+    <nav className="nav wrap"><Logo/><div className="links"><a href="#ecosystem">المنصة</a><a href="#preview">المنتجات</a><a href="#pricing">الأسعار</a></div><div className="actions"><a href="/login">تسجيل الدخول</a><a className="button small" href="/register">ابدأ الآن ←</a></div></nav>
+    <section className="hero wrap"><div><span className="eyebrow">●　منصة نمو عربية للشركات الطموحة</span><h1>نظام تشغيل أعمالك<br/><em>بالذكاء الاصطناعي</em></h1><p>CRM + AI Seller + WhatsApp Agent + Analytics<br/>في منصة واحدة للشركات العربية.</p><div className="actions"><a className="button" href="/register">ابدأ الآن　←</a><a className="secondary" href="#demo">احجز عرضاً تجريبياً　↗</a></div></div><div className="hero-card"><div className="mock"><header><b>▣ NAMMA AI</b><span>⌁　◉　◌</span></header><div className="mock-body"><aside>▦　نظرة عامة<br/>♧　العملاء<br/>✦　AI Seller<br/>◌　واتساب<br/>↗　التحليلات</aside><div><h3>صباح الخير، فريق النمو ✦</h3><small>إليك ملخص أداء عملك اليوم</small><div className="stats"><span>إجمالي المبيعات<b>128,430 <i>ر.س</i></b><em>+18.4%</em></span><span>العملاء الجدد<b>1,284</b><em>+12.8%</em></span></div><div className="chart">أداء المبيعات <div>{[30,50,40,75,58,85,95].map((height) => <i style={{ height: `${height}%` }} key={height}/>)}</div></div></div></div></div></div></section>
+    <section className="trust wrap"><b>كل ما تحتاجه للنمو، في مكان واحد</b>{products.map(([icon, name]) => <span key={name}>{icon}　{name}</span>)}</section>
+    <section className="section wrap" id="ecosystem"><div className="intro"><span className="eyebrow">منصة واحدة. أثر أكبر.</span><h2>كل فريقك، بنفس الإيقاع.</h2><p>اربط أدوات عملك الأساسية في نظام واحد يفهم سياق عملك ويمنح فريقك وقتاً أكبر لما يهم.</p></div><div className="grid">{products.map(([icon, name, text], index) => <article className="card" key={name}><strong className={`icon i${index}`}>{icon}</strong><h3>{name}</h3><p>{text}</p><a href="#preview">اكتشف المزيد ←</a></article>)}</div></section>
+    <section className="section wrap" id="preview"><div className="intro center"><span className="eyebrow">مصمم للعمل الحقيقي</span><h2>رؤية كاملة. من أول تواصل إلى آخر صفقة.</h2><p>واجهات واضحة تساعد فريقك على التحرك بسرعة واتخاذ قرارات مبنية على البيانات.</p></div><div className="previews">{["Dashboard Screenshot", "CRM Screenshot", "WhatsApp Agent Screenshot", "AI Seller Screenshot"].map((title, index) => <article className={`placeholder p${index}`} key={title}><small>{products[index][1]}</small><h3>{title}</h3><div className="placeholder-art">{index === 0 ? "▥　▥　▥" : index === 1 ? "◯　━━" : index === 2 ? "▰　▰" : "✦"}</div></article>)}</div></section>
+    <section className="metrics"><div className="wrap metric-grid">{[["+42%", "زيادة التحويل"], ["-37%", "تقليل وقت المتابعة"], ["3.2x", "سرعة الاستجابة"], ["24/7", "تشغيل تلقائي"]].map(([value, label]) => <div key={label}><b>{value}</b><span>{label}</span></div>)}</div></section>
+    <section className="section wrap demo" id="demo"><div><span className="eyebrow">جرّب NAMMA AI</span><h2>أول خطوة نحو<br/><em>نمو أذكى.</em></h2><p>اسأل مساعد NAMMA عن أي تحدٍ في عملك. لديك 3 رسائل مجانية لتبدأ.</p><strong className="remaining">{remaining} / 3 رسائل متبقية</strong></div><div className="chat"><header>●　مساعد NAMMA <small>متصل الآن</small></header><div className="messages">{messages.length === 0 && <div className="empty"><b>✦</b><strong>كيف يمكنني مساعدتك اليوم؟</strong><small>جرّب أحد الاقتراحات أو اكتب سؤالك مباشرة</small><div>{["كيف أزيد مبيعاتي؟", "اكتب رسالة واتساب", "أعطني خطة تسويق"].map((prompt) => <button key={prompt} onClick={() => setMessage(prompt)}>{prompt}</button>)}</div></div>}{messages.map((item, index) => <div className={`message ${item.role}`} key={`${item.role}-${index}`}><b>{item.role === "user" ? "أنت" : "NAMMA AI"}</b>{item.content}</div>)}{loading && <div className="message assistant"><b>NAMMA AI</b>يكتب الآن ...</div>}<div ref={endRef}/></div><div className="chat-input"><input value={message} onChange={(event) => setMessage(event.target.value)} onKeyDown={(event) => event.key === "Enter" && askAI()} placeholder="كيف أزيد مبيعات شركتي؟"/><button disabled={loading || remaining <= 0} onClick={askAI}>إرسال　←</button></div></div></section>
+    <section className="section wrap" id="pricing"><div className="intro center"><span className="eyebrow">خطط مرنة لنموك</span><h2>اختر المساحة التي تناسب طموحك.</h2></div><div className="plans">{plans.map(([name, price], index) => <article className={index === 1 ? "plan featured" : "plan"} key={name}>{index === 1 && <label>الأكثر اختياراً</label>}<h3>{name}</h3><p>للفرق التي تريد النمو</p><div className="price"><b>{price}</b><small>SAR / شهر</small></div><a className="button" href="/register">ابدأ الآن　←</a><ul><li>✓　CRM وإدارة العملاء</li><li>✓　أدوات AI متقدمة</li><li>✓　تقارير وتحليلات</li></ul></article>)}</div></section>
+    <section className="final wrap"><div><span className="eyebrow">جاهز للخطوة التالية؟</span><h2>خلّ عملك ينمو<br/><em>بطريقة أذكى.</em></h2></div><div><p>كل ما تحتاجه لتبني تجربة أفضل لعملائك، وتمنح فريقك مساحة أكبر للإنجاز.</p><a className="light" href="/register">ابدأ الآن مجاناً　←</a></div></section><footer className="footer wrap"><Logo/><span>© 2025 NAMMA AI. صُنع للشركات العربية.</span></footer>
+    <style jsx>{`*{box-sizing:border-box}.page{--green:#16A34A;--navy:#0F172A;--blue:#2563EB;--muted:#64748B;--border:#E2E8F0;min-height:100vh;background:#F8FAF7;color:var(--navy);font-family:Tahoma,Arial,sans-serif}.page :global(a){color:inherit;text-decoration:none}.wrap{width:min(1160px,calc(100% - 48px));margin:auto}.nav{height:76px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:9px;font-size:16px;letter-spacing:.05em}.brand b{display:grid;place-items:center;width:31px;height:31px;border-radius:8px;background:var(--green);color:#fff}.brand i{color:var(--green);font-size:11px;font-style:normal}.links,.actions{display:flex;align-items:center;gap:28px;font-size:13px;font-weight:700}.links a,.nav-actions>a:first-child{color:var(--muted)}.button{display:inline-block;padding:14px 21px;border-radius:6px;background:var(--green);color:#fff!important;font-weight:800;box-shadow:0 9px 22px #16A34A24}.button.small{padding:11px 17px;font-size:12px}.hero{display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:30px;min-height:620px;padding:65px 0}.eyebrow{color:var(--green);font-size:12px;font-weight:800}.hero h1{margin:20px 0 16px;font-size:clamp(40px,5vw,67px);line-height:1.15;letter-spacing:-1.8px}.hero h1 em,.intro em,.demo em,.final em{color:var(--green);font-style:normal}.hero p{color:var(--muted);font-size:18px;line-height:1.9}.secondary{font-size:13px;font-weight:800}.hero-card{min-height:430px;display:grid;place-items:center}.mock{width:min(540px,100%);height:350px;border:1px solid var(--border);border-radius:13px;background:#fff;box-shadow:0 26px 60px #0F172A1A;transform:perspective(1100px) rotateY(-7deg);overflow:hidden;direction:ltr}.mock header{display:flex;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #F1F5F9;color:#94A3B8;font-size:10px}.mock-body{display:flex;height:307px}.mock aside{width:128px;padding:25px 10px;border-left:1px solid #F1F5F9;color:#94A3B8;font-size:9px;line-height:3;background:#FBFDFB}.mock aside b{color:var(--green)}.mock-body>div{flex:1;padding:25px 22px}.mock h3{font-size:14px}.mock small{font-size:9px;color:#94A3B8}.stats{display:flex;gap:12px;margin-top:20px}.stats span{flex:1;padding:11px;border:1px solid #EDF2F7;border-radius:7px;font-size:8px;color:#94A3B8}.stats b{display:block;margin:8px 0;font-size:15px;color:var(--navy)}.stats em{color:var(--green);font-style:normal}.chart{height:130px;margin-top:12px;padding:12px;border:1px solid #EDF2F7;border-radius:7px;font-size:8px;color:var(--muted)}.chart div{display:flex;align-items:flex-end;gap:10px;height:95px;padding-top:25px;background:linear-gradient(180deg,#EFFDF4,transparent)}.chart i{display:block;width:22px;background:var(--green);border-radius:3px 3px 0 0}.trust{display:flex;justify-content:space-between;align-items:center;padding:23px 0;border-block:1px solid var(--border);font-size:12px;color:var(--muted)}.trust span{color:var(--navy);font-weight:800}.trust span:first-letter{color:var(--green)}.section{padding:125px 0}.intro{max-width:560px}.intro.center{text-align:center;margin:0 auto 50px}.intro h2,.demo h2{font-size:42px;line-height:1.2;margin:14px 0}.intro p,.demo p{color:var(--muted);line-height:1.8}.grid,.previews,.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid{margin-top:48px}.card,.placeholder,.plan{padding:25px 22px;border:1px solid var(--border);border-radius:8px;background:#fff}.card{min-height:220px}.card:hover{transform:translateY(-4px)}.icon{display:grid;place-items:center;width:43px;height:43px;border-radius:10px;font-style:normal;font-size:22px}.i0{background:#DCFCE7;color:var(--green)}.i1{background:#DBEAFE;color:var(--blue)}.i2{background:#FEF3C7;color:#D97706}.i3{background:#F1E8FF;color:#7C3AED}.card h3{margin:24px 0 8px}.card p{color:var(--muted);font-size:13px}.card a{display:block;margin-top:27px;color:var(--green);font-size:11px;font-weight:800}.preview-section{padding-top:0}.placeholder{min-height:240px}.placeholder small{color:var(--green);font-weight:800}.placeholder h3{font-size:14px}.placeholder-art{height:125px;display:grid;place-items:center;margin-top:20px;border-radius:6px;background:#EFF6FF;color:var(--blue);font-size:30px}.p0 .placeholder-art{background:#ECFDF5;color:var(--green)}.p2 .placeholder-art{background:#ECFDF5;color:var(--green)}.metrics{background:var(--navy);color:#fff}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);padding:50px 0}.metric-grid>div{text-align:center;border-left:1px solid #FFFFFF20}.metric-grid>div:last-child{border:0}.metric-grid b{display:block;color:#4ADE80;font-size:38px}.metric-grid span{color:#CBD5E1;font-size:13px}.demo{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:center}.remaining{display:inline-block;margin-top:20px;padding:9px 12px;background:#DCFCE7;color:var(--green);font-size:11px}.chat{overflow:hidden;border:1px solid var(--border);border-radius:10px;background:#fff}.chat>header{padding:18px;border-bottom:1px solid #F1F5F9;font-size:13px;font-weight:800}.chat>header i{color:var(--green)}.chat>header small{color:var(--muted);font-size:10px}.messages{height:285px;padding:20px;overflow:auto}.empty{text-align:center;color:var(--muted);padding:25px 5px}.empty b{display:grid;place-items:center;width:38px;height:38px;margin:auto;background:#DCFCE7;color:var(--green);border-radius:10px}.empty strong,.empty small{display:block}.empty strong{margin-top:13px;color:var(--navy)}.empty div{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;margin-top:20px}.empty button,.message button{padding:7px;border:1px solid var(--border);border-radius:5px;background:#fff;color:var(--muted);font-size:10px}.message{max-width:80%;margin-bottom:15px;padding:11px;border-radius:8px;font-size:12px;line-height:1.7}.message b{display:block;color:var(--green);font-size:9px}.message.user{margin-right:auto;background:#EFF6FF}.message.assistant{margin-left:auto;background:#F8FAFC}.chat-input{display:flex;gap:8px;padding:13px;border-top:1px solid #F1F5F9}.chat-input input{flex:1;padding:11px;border:1px solid var(--border);border-radius:6px;outline:0}.chat-input button{padding:0 17px;border:0;border-radius:6px;background:var(--green);color:#fff}.plans{grid-template-columns:repeat(3,1fr)}.plan{position:relative}.plan.featured{border:2px solid var(--green)}.plan label{position:absolute;top:0;right:25px;transform:translateY(-50%);padding:5px 10px;background:var(--green);color:#fff;font-size:10px}.price{display:flex;align-items:baseline;gap:6px;margin:28px 0 20px}.price b{font-size:37px}.price small{color:var(--muted)}.plan .button{width:100%;text-align:center}.plan ul{padding:20px 0 0;border-top:1px solid #F1F5F9;list-style:none;color:var(--muted);font-size:12px;line-height:2.5}.final{display:flex;align-items:center;justify-content:space-between;margin-bottom:80px;padding:65px 75px;border-radius:11px;background:var(--green);color:#fff}.final .eyebrow{color:#BBF7D0}.final h2{font-size:43px}.final p{max-width:320px;color:#DCFCE7;line-height:1.8}.light{display:inline-block;margin-top:10px;padding:14px 20px;border-radius:6px;background:#fff;color:var(--navy);font-size:12px;font-weight:800}.footer{display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-top:1px solid var(--border);color:var(--muted);font-size:11px}
+      @media(max-width:800px){.wrap{width:calc(100% - 32px)}.links,.nav-actions>a:first-child{display:none}.hero{grid-template-columns:1fr;padding:45px 0 70px}.mock{transform:none}.trust{flex-wrap:wrap;gap:14px}.trust>b{width:100%}.trust span{width:45%;font-size:10px}.section{padding:80px 0}.intro h2,.demo h2{font-size:33px}.grid,.previews{grid-template-columns:repeat(2,1fr)}.metric-grid{grid-template-columns:repeat(2,1fr);gap:28px}.metric-grid>div{border:0}.demo{grid-template-columns:1fr;gap:35px}.plans{grid-template-columns:1fr}.final{display:block;padding:40px 28px}.final h2{font-size:35px}.footer{flex-wrap:wrap;gap:20px}}@media(max-width:460px){.hero h1{font-size:39px}.actions{flex-direction:column;align-items:stretch}.grid,.previews{grid-template-columns:1fr}.chat-input{flex-direction:column}.chat-input button{height:42px}}
+    `}</style>
+    <style jsx>{`
+      .page{font-family:Tahoma,"Segoe UI",sans-serif;letter-spacing:0}.nav{height:88px}.hero{padding:92px 0 132px;min-height:680px}.hero h1{font-weight:900;line-height:1.12}.hero p{max-width:520px;margin:0 0 34px}.hero-card{position:relative}.hero-card:before{content:"";position:absolute;width:430px;height:330px;border-radius:50%;background:#dcfce7;filter:blur(52px);opacity:.8}.mock{position:relative;box-shadow:0 30px 70px #0f172a1c}.button{transition:transform .2s,box-shadow .2s}.button:hover,.light:hover{transform:translateY(-3px);box-shadow:0 14px 28px #16a34a38}.secondary{transition:color .2s}.secondary:hover{color:var(--blue)}.trust{padding:29px 0}.section{padding:150px 0}.heading h2,.demo h2{font-weight:900}.heading p,.demo p{max-width:590px}.grid,.previews,.plans{gap:18px}.card,.placeholder,.plan{box-shadow:0 12px 30px #0f172a08;transition:transform .25s,box-shadow .25s,border-color .25s}.card:hover,.placeholder:hover,.plan:hover{transform:translateY(-7px);border-color:#bbf7d0;box-shadow:0 20px 40px #0f172a14}.card{min-height:245px;padding:29px 25px}.product-icon{box-shadow:0 6px 14px #0f172a0b}.preview-section{padding-top:15px;padding-bottom:150px}.placeholder{min-height:265px;padding:24px}.placeholder-art{height:145px;border:1px solid #e2e8f0}.metrics{box-shadow:inset 0 1px #ffffff12,inset 0 -1px #ffffff12}.metric-grid{padding:68px 0}.metric-grid>div{padding:10px 20px}.metric-grid b{font-size:45px;font-weight:900}.metric-grid span{margin-top:12px}.demo{padding-top:150px;padding-bottom:150px}.chat{box-shadow:0 22px 50px #0f172a12}.plans{padding-top:12px}.plan{padding:34px 30px;min-height:405px}.plan.featured{transform:translateY(-10px);box-shadow:0 24px 50px #16a34a20}.plan.featured:hover{transform:translateY(-16px)}.plan .button{box-shadow:none}.plan ul{margin-top:25px}.final{padding:78px 82px;margin-bottom:100px;box-shadow:0 20px 45px #16a34a20}.final h2{font-weight:900}.footer{padding:31px 0}.page :global(button){transition:transform .2s,background .2s}.page :global(button:hover){transform:translateY(-2px)}
+      @media(max-width:800px){.nav{height:76px}.hero{padding:70px 0 100px}.section{padding:100px 0}.preview-section,.demo{padding-bottom:100px}.metric-grid{padding:48px 0}.plan.featured{transform:none}.plan.featured:hover{transform:translateY(-7px)}.final{margin-bottom:70px;padding:48px 30px}}
+    `}</style>
+    <style jsx>{`
+      .page{font-family:Tahoma,"Segoe UI",sans-serif;letter-spacing:0}
+      .nav{height:88px;border-bottom:1px solid #e2e8f080}
+      .brand{font-weight:800;transition:opacity .2s}.brand:hover{opacity:.78}
+      .hero{position:relative;min-height:720px;padding:112px 0 150px}
+      .hero:before{content:"";position:absolute;top:34px;right:-14%;width:48%;height:66%;background:radial-gradient(circle,#dcfce7 0,transparent 68%);opacity:.7;pointer-events:none}
+      .hero>div:first-child{position:relative;z-index:1}.hero h1{max-width:690px;margin:24px 0 20px;font-weight:900;line-height:1.09;letter-spacing:-2.5px}.hero h1 em{display:inline-block}.hero p{max-width:510px;margin:0 0 38px;font-size:19px;line-height:2;color:#64748b}.eyebrow{letter-spacing:.02em}.proof{margin-top:38px}
+      .hero-card{position:relative;z-index:1}.hero-card:before{width:500px;height:390px;opacity:.55}.mock{box-shadow:0 34px 85px #0f172a22;transition:transform .5s,box-shadow .5s}.mock:hover{transform:perspective(1100px) rotateY(-3deg) rotateX(1deg) translateY(-7px);box-shadow:0 42px 90px #0f172a28}
+      .button{transition:transform .2s,box-shadow .2s}.button:hover,.light:hover{transform:translateY(-3px);box-shadow:0 16px 30px #16a34a35}.secondary{transition:color .2s}.secondary:hover{color:#2563eb}
+      .trust{padding:30px 0}.trust span{transition:color .2s}.trust span:hover{color:#16a34a}
+      .section{padding:168px 0}.heading h2,.demo h2{font-weight:900;letter-spacing:-1.2px}.heading p,.demo p{max-width:590px}.grid,.previews,.plans{gap:20px}.card,.placeholder,.plan{box-shadow:0 14px 35px #0f172a09;transition:transform .25s,box-shadow .25s,border-color .25s}.card:hover,.placeholder:hover,.plan:hover{border-color:#bbf7d0;box-shadow:0 24px 50px #0f172a16;transform:translateY(-8px)}.card{min-height:255px;padding:30px 27px}.card h3{font-size:19px}.card a{font-size:12px}.icon{box-shadow:0 8px 18px #0f172a0c}
+      .preview-section{padding-top:10px;padding-bottom:168px}.placeholder{min-height:280px;padding:25px}.placeholder h3{font-size:15px}.placeholder-art{height:155px;border:1px solid #e2e8f0;box-shadow:inset 0 1px #fff}
+      .metrics{box-shadow:inset 0 1px #ffffff12,inset 0 -1px #ffffff12}.metric-grid{padding:76px 0}.metric-grid>div{padding:12px 22px}.metric-grid b{font-size:47px;font-weight:900}.metric-grid span{display:block;margin-top:12px}
+      .demo{padding-top:168px;padding-bottom:168px}.chat{box-shadow:0 25px 60px #0f172a14}.chat>header{padding:21px}.messages{height:310px}.chat-input{padding:16px}.chat-input button{transition:filter .2s,transform .2s}.chat-input button:hover{filter:brightness(1.06);transform:translateY(-1px)}
+      .pricing{padding-top:0}.plans{padding-top:16px}.plan{min-height:425px;padding:36px 31px}.plan.featured{border-width:2px;transform:translateY(-13px);box-shadow:0 27px 60px #16a34a22}.plan.featured:hover{transform:translateY(-20px)}.plan h3{font-size:21px}.price b{font-size:42px}.plan ul{margin-top:28px}.plan li{line-height:2.2}
+      .final{position:relative;overflow:hidden;padding:85px 88px;margin-bottom:115px;box-shadow:0 24px 55px #16a34a22}.final:after{content:"";position:absolute;left:-90px;top:-150px;width:360px;height:360px;border:1px solid #ffffff35;border-radius:50%;box-shadow:0 0 0 40px #ffffff0b,0 0 0 80px #ffffff08}.final>div{position:relative;z-index:1}.final h2{font-weight:900;letter-spacing:-1px}.final p{font-size:14px}.footer{padding:34px 0}
+      @media(max-width:800px){.nav{height:76px}.hero{min-height:0;padding:80px 0 110px}.hero:before{right:-40%;width:100%}.hero h1{letter-spacing:-1.5px}.section{padding:105px 0}.preview-section,.demo{padding-bottom:110px}.metric-grid{padding:55px 0}.metric-grid>div{padding:8px}.metric-grid b{font-size:34px}.plan.featured{transform:none}.plan.featured:hover{transform:translateY(-8px)}.final{margin-bottom:75px;padding:55px 32px}}
+    `}</style>
+  </main>;
 }

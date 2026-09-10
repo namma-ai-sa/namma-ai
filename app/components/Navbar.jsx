@@ -2,200 +2,103 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import theme from "../theme/theme";
+
+const mainLinks = [
+  ["لوحة التحكم", "/dashboard"],
+  ["CRM", "/crm"],
+  ["المشاريع", "/projects"],
+  ["AI Seller", "/ai-seller"],
+  ["واتساب", "/whatsapp-agent"],
+  ["الأسعار", "/pricing"],
+];
+
+const accountLinks = [
+  ["الملف الشخصي", "/profile"],
+  ["مشاريعي", "/projects"],
+  ["CRM", "/crm"],
+  ["الفوترة", "/billing"],
+  ["الأمان", "/security"],
+  ["الإعدادات", "/settings"],
+];
+
+const mobileLinks = [
+  ["الرئيسية", "/"],
+  ["الأدوات", "/tools"],
+  ["CRM", "/crm"],
+  ["مساعد المبيعات", "/ai-seller"],
+  ["وكيل واتساب", "/whatsapp-agent"],
+  ["المشاريع", "/projects"],
+  ["الأسعار", "/pricing"],
+  ["عن المنصة", "/about"],
+  ["تواصل معنا", "/contact"],
+];
+
+function Logo({ onClick }) {
+  return (
+    <button className="navbar-brand" onClick={onClick} aria-label="NAMMA AI">
+      <span className="navbar-mark">N</span>
+      <span className="navbar-wordmark">NAMMA <em>AI</em></span>
+    </button>
+  );
+}
 
 export default function Navbar() {
-
   const router = useRouter();
-  const [mobileMenuOpen,setMobileMenuOpen] = useState(false);
-  const [accountMenuOpen,setAccountMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
 
   const go = (path) => {
     setMobileMenuOpen(false);
+    setAccountMenuOpen(false);
     router.push(path);
   };
 
   return (
     <>
-      <nav
-        style={{
-          display:"flex",
-          justifyContent:"space-between",
-          alignItems:"center",
-          padding:"18px 24px",
-          background:"rgba(2,6,23,.72)",
-          backdropFilter:"blur(20px)",
-          boxShadow:
-            "0 20px 50px rgba(0,0,0,.25)",
-          borderBottom:"1px solid rgba(255,255,255,.08)",
-          position:"sticky",
-          top:0,
-          zIndex:999
-        }}
-      >
+      <nav className="navbar-v3" dir="rtl">
+        <div className="navbar-inner">
+          <Logo onClick={() => go("/")} />
 
-        <div
-          onClick={() => go("/")}
-          style={{
-            cursor:"pointer",
-            color:theme.colors.primary,
-            fontSize:theme.typography.h3,
-            fontWeight:"800"
-          }}
-        >
-          🌱 نمّى AI
-        </div>
+          <div className="navbar-links" aria-label="التنقل الرئيسي">
+            {mainLinks.map(([label, path]) => (
+              <button key={path} onClick={() => go(path)}>{label}</button>
+            ))}
+          </div>
 
-        <div className="desktop-menu">
+          <div className="navbar-actions">
+            <button className="login-button" onClick={() => setAccountMenuOpen((open) => !open)}>
+              حسابي <span className="user-dot">◉</span>
+            </button>
+            <button className="start-button" onClick={() => go("/register")}>ابدأ الآن <span>←</span></button>
+          </div>
 
-          <button style={linkStyle} onClick={() => go("/dashboard")}>🏠 Dashboard</button>
-          <button style={linkStyle} onClick={() => go("/crm")}>👥 CRM</button>
-          <button style={linkStyle} onClick={() => go("/projects")}>📁 Projects</button>
-          <button style={linkStyle} onClick={() => go("/ai-seller")}>🤖 AI Seller</button>
-          <button style={linkStyle} onClick={() => go("/whatsapp-agent")}>📱 WhatsApp</button>
-          <button style={linkStyle} onClick={() => go("/pricing")}>💳 Pricing</button>
-
-        </div>
-
-        <div
-          className="desktop-auth"
-          style={{
-            position:"relative"
-          }}
-        >
-
-          <button
-            onClick={() => setAccountMenuOpen(!accountMenuOpen)}
-            style={{
-              background:"rgba(255,255,255,.06)",
-              border:"1px solid rgba(255,255,255,.1)",
-              color:"white",
-              padding:"10px 16px",
-              borderRadius:theme.radius.lg,
-              backdropFilter:"blur(16px)",
-              cursor:"pointer"
-            }}
-          >
-            👤 حسابي
+          <button className="menu-button" onClick={() => setMobileMenuOpen((open) => !open)} aria-label="فتح القائمة" aria-expanded={mobileMenuOpen}>
+            <span /><span /><span />
           </button>
-
         </div>
-
-        <button
-          className="mobile-menu-btn"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          ☰
-        </button>
 
         {accountMenuOpen && (
-          <div
-            style={{
-              position:"absolute",
-              top:"70px",
-              left:"24px",
-              background:"rgba(17,24,39,.92)",
-              border:"1px solid rgba(255,255,255,.1)",
-              borderRadius:theme.radius.lg,
-              backdropFilter:"blur(16px)",
-              padding:theme.spacing.sm,
-              minWidth:"260px",
-              boxShadow:"0 20px 40px rgba(0,0,0,.35)",
-              zIndex:2000
-            }}
-          >
-            <button style={drawerBtn} onClick={() => go("/profile")}>
-              👤 الملف الشخصي
-            </button>
-
-            <button style={drawerBtn} onClick={() => go("/projects")}>
-              📁 مشاريعي
-            </button>
-
-            <button style={drawerBtn} onClick={() => go("/crm")}>
-              📊 CRM
-            </button>
-
-            <button style={drawerBtn} onClick={() => go("/billing")}>
-              💳 الفوترة
-            </button>
-
-            <button style={drawerBtn} onClick={() => go("/security")}>
-              🔐 الأمان
-            </button>
-
-            <button style={drawerBtn} onClick={() => go("/settings")}>
-              ⚙️ الإعدادات
-            </button>
-
-            <button
-              style={{
-                ...drawerBtn,
-                color:"#ef4444"
-              }}
-              onClick={() => go("/logout")}
-            >
-              🚪 تسجيل الخروج
-            </button>
+          <div className="account-menu">
+            <div className="account-heading"><span>◉</span><div><b>حسابي</b><small>إدارة مساحة العمل</small></div></div>
+            {accountLinks.map(([label, path]) => <button key={path} onClick={() => go(path)}>{label}<span>←</span></button>)}
+            <button className="logout" onClick={() => go("/logout")}>تسجيل الخروج <span>↗</span></button>
           </div>
         )}
-
       </nav>
 
       {mobileMenuOpen && (
-
-        <div
-          style={{
-            position:"fixed",
-            top:"70px",
-            right:"12px",
-            left:"12px",
-            background:theme.colors.card,
-            border:`1px solid ${theme.colors.border}`,
-            borderRadius:theme.radius.md,
-            padding:theme.spacing.md,
-            zIndex:1000
-          }}
-        >
-
-          <button style={drawerBtn} onClick={() => go("/")}>الرئيسية</button>
-          <button style={drawerBtn} onClick={() => go("/tools")}>الأدوات</button>
-          <button style={drawerBtn} onClick={() => go("/crm")}>CRM</button>
-          <button style={drawerBtn} onClick={() => go("/ai-seller")}>مساعد المبيعات</button>
-          <button style={drawerBtn} onClick={() => go("/whatsapp-agent")}>وكيل واتساب</button>
-          <button style={drawerBtn} onClick={() => go("/projects")}>المشاريع</button>
-          <button style={drawerBtn} onClick={() => go("/pricing")}>الأسعار</button>
-          <button style={drawerBtn} onClick={() => go("/about")}>عن المنصة</button>
-          <button style={drawerBtn} onClick={() => go("/contact")}>تواصل معنا</button>
-          <button style={drawerBtn} onClick={() => go("/login")}>دخول</button>
-          <button style={drawerBtn} onClick={() => go("/register")}>إنشاء حساب</button>
-
+        <div className="mobile-menu" dir="rtl">
+          <div className="mobile-menu-header"><span>القائمة الرئيسية</span><button onClick={() => setMobileMenuOpen(false)} aria-label="إغلاق القائمة">×</button></div>
+          {mobileLinks.map(([label, path]) => <button key={path} onClick={() => go(path)}>{label}<span>←</span></button>)}
+          <div className="mobile-actions"><button onClick={() => go("/login")}>تسجيل الدخول</button><button onClick={() => go("/register")}>ابدأ الآن</button></div>
         </div>
-
       )}
 
+      <style jsx>{`
+        .navbar-v3{position:sticky;top:0;z-index:999;width:100%;border-bottom:1px solid #e2e8f0;background:rgba(248,250,247,.9);backdrop-filter:blur(18px);box-shadow:0 8px 25px rgba(15,23,42,.05);font-family:Tahoma,Arial,sans-serif}.navbar-inner{width:min(1200px,calc(100% - 40px));min-height:78px;margin:auto;display:flex;align-items:center;gap:30px}.navbar-brand{display:flex;align-items:center;gap:9px;padding:0;border:0;background:transparent;color:#0f172a;cursor:pointer;direction:ltr}.navbar-mark{display:grid;place-items:center;width:32px;height:32px;border-radius:8px;background:#16a34a;color:#fff;font-size:18px;font-weight:900}.navbar-wordmark{font-size:16px;font-weight:900;letter-spacing:.04em}.navbar-wordmark em{color:#16a34a;font-size:11px;font-style:normal}.navbar-links{display:flex;align-items:center;gap:4px;margin-right:auto}.navbar-links button,.login-button{padding:10px 11px;border:0;background:transparent;color:#64748b;font-size:12px;font-weight:700;cursor:pointer;transition:color .2s,background .2s}.navbar-links button:hover{color:#16a34a;background:#dcfce7;border-radius:6px}.navbar-actions{display:flex;align-items:center;gap:9px}.login-button{border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#0f172a}.login-button:hover{border-color:#bbf7d0;color:#16a34a}.user-dot{margin-right:5px;color:#16a34a}.start-button{padding:12px 17px;border:0;border-radius:6px;background:#16a34a;color:#fff;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 7px 16px rgba(22,163,74,.2);transition:transform .2s,box-shadow .2s}.start-button:hover{transform:translateY(-2px);box-shadow:0 11px 22px rgba(22,163,74,.3)}.start-button span{margin-right:9px;font-size:16px}.menu-button{display:none;margin-right:auto;width:40px;height:40px;padding:9px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;cursor:pointer}.menu-button span{display:block;width:19px;height:2px;margin:4px auto;border-radius:2px;background:#0f172a}.account-menu{position:absolute;top:70px;left:max(20px,calc((100% - 1200px) / 2));width:245px;padding:10px;border:1px solid #e2e8f0;border-radius:9px;background:#fff;box-shadow:0 20px 45px rgba(15,23,42,.14)}.account-heading{display:flex;align-items:center;gap:10px;padding:10px 9px 13px;border-bottom:1px solid #f1f5f9}.account-heading>span{display:grid;place-items:center;width:31px;height:31px;border-radius:7px;background:#dcfce7;color:#16a34a}.account-heading b,.account-heading small{display:block}.account-heading b{font-size:12px}.account-heading small{margin-top:4px;color:#64748b;font-size:10px}.account-menu button,.mobile-menu button{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 10px;border:0;border-radius:5px;background:transparent;color:#0f172a;text-align:right;font-size:12px;cursor:pointer}.account-menu button:hover,.mobile-menu>button:hover{background:#f0fdf4;color:#16a34a}.account-menu .logout{margin-top:5px;border-top:1px solid #f1f5f9;border-radius:0;color:#dc2626}.mobile-menu{display:none}
+        @media(max-width:900px){.navbar-inner{width:calc(100% - 32px);min-height:70px}.navbar-links{display:none}.navbar-actions{margin-right:auto}.menu-button{display:block}.account-menu{top:64px;left:16px}}
+        @media(max-width:560px){.navbar-inner{gap:12px}.navbar-actions{display:none}.navbar-wordmark{font-size:14px}.navbar-mark{width:30px;height:30px}.mobile-menu{position:fixed;top:70px;right:12px;left:12px;z-index:998;display:block;padding:12px;border:1px solid #e2e8f0;border-radius:9px;background:#fff;box-shadow:0 20px 45px rgba(15,23,42,.14)}.mobile-menu-header{display:flex;align-items:center;justify-content:space-between;padding:5px 10px 12px;border-bottom:1px solid #f1f5f9;color:#64748b;font-size:11px;font-weight:800}.mobile-menu-header button{display:block;width:auto;padding:0;color:#64748b;font-size:24px;line-height:1}.mobile-menu>button{padding:13px 10px}.mobile-actions{display:flex;gap:8px;margin-top:8px;padding-top:11px;border-top:1px solid #f1f5f9}.mobile-actions button{justify-content:center;background:#f8fafc}.mobile-actions button:last-child{background:#16a34a;color:#fff}}
+      `}</style>
     </>
   );
 }
-
-const linkStyle = {
-  background:"transparent",
-  border:"none",
-  color:"#cbd5e1",
-  cursor:"pointer",
-  fontSize:theme.typography.small
-};
-
-const drawerBtn = {
-  width: "100%",
-  marginBottom: "10px",
-  background: "rgba(255,255,255,.04)",
-  border: "1px solid rgba(255,255,255,.08)",
-  color: "#e5e7eb",
-  padding: "14px 16px",
-  borderRadius: theme.radius.sm,
-  textAlign: "right",
-  cursor: "pointer",
-  fontSize: "15px",
-  backdropFilter: "blur(8px)"
-};
