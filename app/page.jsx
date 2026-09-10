@@ -68,7 +68,7 @@ export default function HomePage() {
         style={{
           minHeight: "100vh",
           background:
-            `linear-gradient(180deg,#020617,#0f172a,${theme.colors.card})`,
+            `linear-gradient(180deg,#F7F4ED,#475569,${theme.colors.card})`,
           color: "white",
           padding: "40px 20px"
         }}
@@ -350,7 +350,7 @@ export default function HomePage() {
               style={{
                 maxWidth: "700px",
                 margin: "0 auto",
-                background: "#0f172a",
+                background: "#475569",
                 border: "1px solid rgba(255,255,255,.08)",
                 borderRadius: theme.radius.lg,
                 padding: "18px",

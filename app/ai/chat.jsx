@@ -133,7 +133,7 @@ export default function Chat({
           style={{
             border: "none",
             cursor: "pointer",
-            background: "#22c55e",
+            background: "#7C8F5A",
             color: "white",
             width: "50px",
             height: "50px",

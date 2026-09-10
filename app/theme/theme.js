@@ -1,7 +1,7 @@
 const theme = {
   colors: {
-    background: "#020617",
-    surface: "#0f172a",
+    background: "#F7F4ED",
+    surface: "#475569",
     card: "#111827",
 
     primary: "#f59e0b",
@@ -10,7 +10,7 @@ const theme = {
     text: "#ffffff",
     muted: "#94a3b8",
 
-    success: "#22c55e",
+    success: "#7C8F5A",
     danger: "#ef4444",
 
     border: "rgba(255,255,255,.08)",

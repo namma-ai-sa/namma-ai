@@ -45,7 +45,7 @@ export default function AdminPage() {
                 marginTop: "12px",
                 fontSize: "28px",
                 fontWeight: "800",
-                color: "#22c55e"
+                color: "#7C8F5A"
               }}
             >
               {item.value}

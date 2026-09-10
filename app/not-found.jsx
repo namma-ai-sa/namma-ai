@@ -7,7 +7,7 @@ export default function NotFound() {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        background: "#020617",
+        background: "#F7F4ED",
         color: "white"
       }}
     >

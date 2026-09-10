@@ -22,7 +22,7 @@ export default function PricingPage() {
         "البائع الذكي",
         "وكيل واتساب",
       ],
-      color: "#22c55e",
+      color: "#7C8F5A",
     },
     {
       name: "🏢 Business",
@@ -116,7 +116,7 @@ export default function PricingPage() {
                     position: "absolute",
                     top: "-12px",
                     left: "20px",
-                    background: "#22c55e",
+                    background: "#7C8F5A",
                     color: "white",
                     padding: "6px 14px",
                     borderRadius: "999px",

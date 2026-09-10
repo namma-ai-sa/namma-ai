@@ -9,7 +9,7 @@ html{
 }
 
 body{
-  background:#020617;
+  background:#F7F4ED;
   color:white;
   font-family:system-ui,sans-serif;
 }
@@ -48,7 +48,7 @@ button{
   padding:12px 18px;
   border:none;
   border-radius:12px;
-  background:#22c55e;
+  background:#7C8F5A;
   color:white;
   cursor:pointer;
   font-weight:700;
@@ -238,7 +238,7 @@ button:hover{
 }
 
 .desktop-menu button:hover{
-  color:#22c55e;
+  color:#7C8F5A;
 }
 
 nav{
@@ -268,6 +268,6 @@ nav{
 
 .feature-card:hover{
   transform:translateY(-6px);
-  border-color:#22c55e;
+  border-color:#7C8F5A;
 }
 
