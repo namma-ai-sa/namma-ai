@@ -1,407 +1,87 @@
 "use client";
 
-import Navbar from "./components/Navbar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import theme from "./theme/theme";
+import Navbar from "./components/Navbar";
+
+const ecosystem = [
+  { icon: "▦", title: "CRM", text: "نظّم دورة حياة العميل من أول تواصل حتى إتمام الصفقة.", tone: "green" },
+  { icon: "✦", title: "AI Seller", text: "امنح فريق المبيعات مساعداً يفهم كل فرصة ويقترح الخطوة التالية.", tone: "blue" },
+  { icon: "◌", title: "WhatsApp Agent", text: "حوّل محادثات واتساب إلى تجارب سريعة ومتابعات لا تتوقف.", tone: "amber" },
+  { icon: "↗", title: "Analytics", text: "شاهد أداء عملك بوضوح واتخذ قرارات مبنية على بيانات حقيقية.", tone: "violet" },
+];
+
+const metrics = [
+  ["+42%", "زيادة التحويل", "من خلال متابعة أذكى"],
+  ["-37%", "تقليل وقت المتابعة", "بفضل الأتمتة"],
+  ["3.2x", "سرعة الاستجابة", "لفريق أكثر إنتاجية"],
+  ["24/7", "تشغيل تلقائي", "دون توقف أو تعقيد"],
+];
+
+const plans = [
+  { name: "Basic", price: "299", description: "لبدء تنظيم عملياتك", features: ["5 مستخدمين", "CRM وإدارة العملاء", "تقارير أساسية"] },
+  { name: "Pro", price: "599", description: "للفرق التي تريد النمو", featured: true, features: ["20 مستخدماً", "AI Seller", "WhatsApp Agent", "تحليلات متقدمة"] },
+  { name: "Enterprise", price: "999+", description: "للمؤسسات والعمليات الكبيرة", features: ["مستخدمون غير محدودين", "تكاملات مخصصة", "دعم أولوية"] },
+];
+
+function ProductPreview({ type, title, label }) {
+  return (
+    <article className={`preview preview-${type}`}>
+      <div className="preview-top"><span>{label}</span><b>•••</b></div>
+      <h3>{title}</h3>
+      <div className="preview-lines"><i /><i /><i /></div>
+      <div className="preview-screen">
+        {type === "dashboard" && <><div className="kpi-row"><span>128,430 <small>ر.س</small></span><span>+42% <small>نمو</small></span></div><div className="bars">{[30, 48, 40, 65, 54, 80, 93].map((height) => <i style={{ height: `${height}%` }} key={height} />)}</div></>}
+        {type === "crm" && ["شركة آفاق", "مجموعة نمو", "حلول الأعمال"].map((name, index) => <div className="contact-row" key={name}><i /><span><b>{name}</b><small>{index === 0 ? "عميل محتمل" : index === 1 ? "صفقة قيد التفاوض" : "تم التواصل اليوم"}</small></span><em>{index === 0 ? "جديدة" : "نشطة"}</em></div>)}
+        {type === "whatsapp" && <><div className="chat-bubble received">مرحباً، أحتاج تفاصيل الباقة</div><div className="chat-bubble sent">أهلاً بك، يسعدنا مساعدتك ✦</div><div className="chat-bubble received short">هل يمكنني حجز عرض؟</div></>}
+        {type === "seller" && <><strong className="ai-orb">✦</strong><b>تحليل فرصة البيع</b><small>احتمالية التحويل <em>87%</em></small><div className="confidence"><i /></div></>}
+      </div>
+    </article>
+  );
+}
 
 export default function HomePage() {
   const router = useRouter();
-
   const [demoQuestion, setDemoQuestion] = useState("");
 
-  const features = [
-    {
-      icon: "📊",
-      title: "CRM الذكي",
-      desc: "إدارة العملاء والمتابعات وتحسين فرص الإغلاق.",
-      path: "/crm",
-    },
-    {
-      icon: "🤖",
-      title: "البائع الذكي",
-      desc: "تحليل احتمالية الشراء وتوصيات المبيعات.",
-      path: "/ai-seller",
-    },
-    {
-      icon: "📱",
-      title: "وكيل واتساب",
-      desc: "تحليل المحادثات واقتراح الردود المناسبة.",
-      path: "/whatsapp-agent",
-    },
-    {
-      icon: "⚡",
-      title: "لوحة الإدارة",
-      desc: "إحصائيات ومؤشرات أداء المنصة بالكامل.",
-      path: "/dashboard",
-    }
-  ];
-
-  const stats = [
-    {
-      icon: "📈",
-      value: "+5000",
-      label: "رسالة محللة"
-    },
-    {
-      icon: "👥",
-      value: "+300",
-      label: "عميل نشط"
-    },
-    {
-      icon: "🤖",
-      value: "24/7",
-      label: "مساعد ذكي"
-    },
-    {
-      icon: "⚡",
-      value: "90%",
-      label: "تحسين المتابعة"
-    }
-  ];
+  const openGuestChat = () => router.push(`/guest?q=${encodeURIComponent(demoQuestion || "كيف أزيد المبيعات؟")}`);
 
   return (
     <>
       <Navbar />
-
-      <main
-        style={{
-          minHeight: "100vh",
-          background:
-            `linear-gradient(180deg,#020617,#0f172a,${theme.colors.card})`,
-          color: "white",
-          padding: "40px 20px"
-        }}
-      >
-        <section
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            textAlign: "center",
-            paddingTop: "80px"
-          }}
-        >
-          <div
-            style={{
-              display: "inline-block",
-              padding: "10px 18px",
-              border: "1px solid rgba(34,197,94,.3)",
-              background: "rgba(34,197,94,.08)",
-              borderRadius: theme.radius.pill,
-              color: theme.colors.primary,
-              fontWeight: "700",
-              marginBottom: "25px"
-            }}
-          >
-            ⭐ أكثر من 5000 رسالة تم تحليلها
+      <main className="enterprise-home" dir="rtl">
+        <section className="hero-section page-shell">
+          <div className="hero-copy">
+            <span className="eyebrow"><i /> منصة تشغيل عربية للشركات الطموحة</span>
+            <h1>نظام تشغيل أعمالك<br /><em>بالذكاء الاصطناعي</em></h1>
+            <p>CRM + AI Seller + WhatsApp Agent + Analytics<br />في منصة واحدة للشركات العربية.</p>
+            <div className="hero-actions"><button className="primary-button" onClick={() => router.push("/register")}>ابدأ الآن <span>←</span></button><button className="secondary-button" onClick={() => document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" })}>احجز عرضاً تجريبياً <span>↗</span></button></div>
+            <div className="hero-proof"><span className="proof-stack"><i>س</i><i>م</i><i>ر</i><i>+</i></span><span>موثوق من فرق عربية تنمو كل يوم</span></div>
           </div>
-
-          <h1
-            style={{
-              fontSize: theme.typography.hero,
-              textShadow: "0 0 30px rgba(34,197,94,.25)",
-              fontWeight: "900",
-              lineHeight: "1.2",
-              marginBottom: theme.spacing.lg
-            }}
-          >
-            شغّل شركة كاملة
-            <br />
-            بذكاء اصطناعي واحد
-          </h1>
-
-          <p
-            style={{
-              maxWidth: "850px",
-              margin: "0 auto",
-              color: "#cbd5e1",
-              fontSize: "22px",
-              lineHeight: "2"
-            }}
-          >
-            CRM + WhatsApp + AI + Analytics
-
-            كل أدوات النمو والمبيعات والتسويق
-            داخل منصة واحدة مصممة للشركات العربية.
-          </p>
-
-          <div
-            style={{
-              display: "flex",
-              gap: theme.spacing.md,
-              justifyContent: "center",
-              flexWrap: "wrap",
-              marginTop: theme.spacing.xl
-            }}
-          >
-            <button
-              onClick={() => router.push("/register")}
-              style={{
-                padding: "18px 38px",
-                border: "none",
-                borderRadius: theme.radius.md,
-                background: theme.colors.primary,
-                color: "white",
-                cursor: "pointer",
-                fontWeight: "bold"
-              }}
-            >
-              ابدأ مجاناً
-            </button>
-
-            <button
-              onClick={() => router.push("/pricing")}
-              style={{
-                padding: "18px 38px",
-                borderRadius: theme.radius.md,
-                border: "1px solid rgba(255,255,255,.15)",
-                background: "transparent",
-                color: "white",
-                cursor: "pointer"
-              }}
-            >
-              شاهد الأسعار
-            </button>
-
-            <button
-              onClick={() =>
-                router.push(
-                  "/guest?q=" +
-                    encodeURIComponent(
-                      demoQuestion ||
-                        "كيف أزيد المبيعات؟"
-                    )
-                )
-              }
-              style={{
-                padding: "18px 38px",
-                borderRadius: theme.radius.md,
-                border: "none",
-                background: theme.colors.secondary,
-                color: "white",
-                cursor: "pointer",
-                fontWeight: "bold"
-              }}
-            >
-              🤖 جرّب نمّى AI
-            </button>
-          </div>
+          <div className="hero-product" aria-label="معاينة لوحة تحكم NAMMA AI"><div className="hero-glow" /><div className="dashboard-window"><header><b><span>N</span> NAMMA AI</b><small>آخر تحديث منذ 4 دقائق　◉</small></header><div className="dashboard-content"><aside><strong>نظرة عامة</strong><span>العملاء</span><span>الفرص</span><span>التحليلات</span></aside><div className="dashboard-main"><div className="dashboard-welcome"><span><b>صباح الخير، فريق النمو</b><small>إليك ملخص أداء عملك اليوم</small></span><em>هذا الشهر　⌄</em></div><div className="dashboard-stats"><span><small>إجمالي المبيعات</small><b>128,430 <i>ر.س</i></b><em>+18.4%</em></span><span><small>العملاء الجدد</small><b>1,284</b><em>+12.8%</em></span><span><small>معدل التحويل</small><b>24.8%</b><em>+6.2%</em></span></div><div className="dashboard-chart"><div><b>أداء المبيعات</b><small>آخر 30 يوم　↗</small></div><div className="chart-bars">{[35, 47, 40, 60, 52, 72, 64, 86, 77, 94].map((height) => <i style={{ height: `${height}%` }} key={height} />)}</div></div></div></div></div><div className="hero-notification"><b>✦</b><span><strong>فرصة جديدة</strong><small>تم اكتشاف عميل عالي القيمة</small></span></div></div>
         </section>
 
-        <section
-          style={{
-            maxWidth: "1200px",
-            margin: "80px auto"
-          }}
-        >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(220px,1fr))",
-              gap: "20px"
-            }}
-          >
-            {stats.map((item) => (
-              <div
-                key={item.label}
-                style={{
-                  background: "rgba(255,255,255,.04)",
-                  border:
-                    "1px solid rgba(255,255,255,.08)",
-                  borderRadius: theme.radius.lg,
-                  padding: theme.spacing.lg,
-                  textAlign: "center"
-                }}
-              >
-                <h2
-                  style={{
-                    color: theme.colors.primary,
-                    fontSize: theme.typography.h1,
-                    fontWeight: "900"
-                  }}
-                >
-                  <div
-                  style={{
-                    fontSize: theme.typography.h2,
-                    marginBottom: "10px",
-                  }}
-                >
-                  {item.icon}
-                </div>
+        <section className="trust-bar page-shell"><b>كل ما تحتاجه للنمو، في مكان واحد</b>{ecosystem.map((item) => <span key={item.title}><i>{item.icon}</i>{item.title}</span>)}</section>
 
-                {item.value}
-                </h2>
+        <section className="section page-shell ecosystem-section" id="ecosystem"><div className="section-heading"><span className="eyebrow">منصة واحدة. أثر أكبر.</span><h2>كل فريقك، بنفس الإيقاع.</h2><p>اربط أدوات عملك الأساسية في نظام واحد يفهم سياق عملك ويمنح فريقك وقتاً أكبر لما يهم.</p></div><div className="ecosystem-grid">{ecosystem.map((item) => <article className="ecosystem-card" key={item.title}><i className={`ecosystem-icon ${item.tone}`}>{item.icon}</i><h3>{item.title}</h3><p>{item.text}</p><a href="#preview">اكتشف المزيد <span>←</span></a></article>)}</div></section>
 
-                <p
-                  style={{
-                    color: "#cbd5e1"
-                  }}
-                >
-                  {item.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <section className="section page-shell preview-section" id="preview"><div className="section-heading centered"><span className="eyebrow">مصمم للعمل الحقيقي</span><h2>رؤية كاملة. من أول تواصل إلى آخر صفقة.</h2><p>واجهات واضحة تساعد فريقك على التحرك بسرعة واتخاذ قرارات مبنية على البيانات.</p></div><div className="preview-grid"><ProductPreview type="dashboard" label="Dashboard" title="نظرة عامة على الأداء" /><ProductPreview type="crm" label="CRM" title="علاقات عملائك" /><ProductPreview type="whatsapp" label="WhatsApp Agent" title="محادثاتك، تلقائية" /><ProductPreview type="seller" label="AI Seller" title="مساعد مبيعاتك" /></div></section>
 
-        <section
-          style={{
-            maxWidth: "1200px",
-            margin: "80px auto"
-          }}
-        >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(250px,1fr))",
-              gap: "20px"
-            }}
-          >
-            {features.map((item) => (
-              <div
-                key={item.title}
-                onClick={() => router.push(item.path)}
-                style={{
-                  background: "rgba(255,255,255,.04)",
-                  border:
-                    "1px solid rgba(255,255,255,.08)",
-                  borderRadius: theme.radius.lg,
-                  padding: "36px",
-                  cursor: "pointer",
-                  transition: "all .25s ease",
-                  boxShadow: "0 20px 50px rgba(0,0,0,.35)",
-                  transform: "translateY(0)",
-                  position: "relative"
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: theme.typography.h1,
-                    marginBottom: "12px"
-                  }}
-                >
-                  {item.icon}
-                </div>
+        <section className="metrics-section"><div className="page-shell metrics-grid">{metrics.map(([value, label, detail]) => <div key={label}><b>{value}</b><strong>{label}</strong><span>{detail}</span></div>)}</div></section>
 
-                <h3>{item.title}</h3>
+        <section className="section page-shell demo-section" id="demo"><div className="demo-copy"><span className="eyebrow">جرّب NAMMA AI</span><h2>أول خطوة نحو<br /><em>نمو أذكى.</em></h2><p>اسأل مساعد NAMMA عن أي تحدٍ في عملك. ابدأ بسؤال واحد وشاهد كيف يفكر معك.</p><div className="demo-checks"><span>✓ بدون بطاقة ائتمانية</span><span>✓ 3 رسائل مجانية</span></div></div><div className="demo-box"><header><span><i /> مساعد NAMMA</span><small>متصل الآن</small></header><div className="demo-body"><div className="assistant-avatar">✦</div><strong>كيف يمكنني مساعدتك اليوم؟</strong><small>اسأل عن المبيعات، التسويق، أو تجربة عملائك</small><div className="demo-input"><input value={demoQuestion} onChange={(event) => setDemoQuestion(event.target.value)} onKeyDown={(event) => event.key === "Enter" && openGuestChat()} placeholder="كيف أزيد مبيعات شركتي؟" /><button onClick={openGuestChat}>إرسال　←</button></div><div className="demo-suggestions"><button onClick={() => setDemoQuestion("كيف أزيد مبيعاتي؟")}>كيف أزيد مبيعاتي؟</button><button onClick={() => setDemoQuestion("اكتب رسالة واتساب")}>اكتب رسالة واتساب</button></div></div></div></section>
 
-                <p
-                  style={{
-                    color: "#cbd5e1",
-                    lineHeight: "1.8",
-                    marginBottom: "18px",
-                  }}
-                >
-                  {item.desc}
-                </p>
+        <section className="section page-shell pricing-section" id="pricing"><div className="section-heading centered"><span className="eyebrow">خطط مرنة لنموك</span><h2>اختر المساحة التي تناسب طموحك.</h2><p>ابدأ صغيراً، وكبّر مع NAMMA عندما يكبر عملك.</p></div><div className="pricing-grid">{plans.map((plan) => <article className={`pricing-card ${plan.featured ? "featured" : ""}`} key={plan.name}>{plan.featured && <label>الأكثر اختياراً</label>}<h3>{plan.name}</h3><p>{plan.description}</p><div className="pricing-value"><b>{plan.price}</b><span>ر.س / شهر</span></div><button className={plan.featured ? "primary-button" : "outline-button"} onClick={() => router.push("/register")}>ابدأ الآن <span>←</span></button><ul>{plan.features.map((feature) => <li key={feature}><i>✓</i>{feature}</li>)}</ul></article>)}</div></section>
 
-                <div
-                  style={{
-                    color: theme.colors.primary,
-                    fontWeight: "700",
-                  }}
-                >
-                  🚀 افتح الأداة
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        <section className="final-cta page-shell"><div><span className="eyebrow">جاهز للخطوة التالية؟</span><h2>خلّ عملك ينمو<br /><em>بطريقة أذكى.</em></h2></div><div><p>كل ما تحتاجه لتبني تجربة أفضل لعملائك، وتمنح فريقك مساحة أكبر للإنجاز.</p><button className="light-button" onClick={() => router.push("/register")}>ابدأ الآن مجاناً <span>←</span></button></div></section>
+        <footer className="home-footer page-shell"><b>NAMMA <i>AI</i></b><span>© 2025 NAMMA AI. صُنع للشركات العربية.</span><div><a href="/about">عن NAMMA</a><a href="/contact">تواصل معنا</a><a href="/security">الأمان</a></div></footer>
 
-        <section
-          style={{
-            maxWidth: "1200px",
-            margin: "100px auto",
-            padding: "0 20px",
-          }}
-        >
-          <div
-            style={{
-              background: "rgba(255,255,255,.04)",
-              border: "1px solid rgba(255,255,255,.08)",
-              borderRadius: "28px",
-              padding: theme.spacing.xl,
-              textAlign: "center",
-              boxShadow: "0 30px 80px rgba(0,0,0,.45)",
-            }}
-          >
-            <div
-              style={{
-                color: theme.colors.primary,
-                fontWeight: "700",
-                marginBottom: "12px",
-              }}
-            >
-              🤖 جرّب نمّى AI مباشرة
-            </div>
-
-            <h2
-              style={{
-                fontSize: "42px",
-                marginBottom: "20px",
-              }}
-            >
-              اسأل عن المبيعات والتسويق والعملاء
-            </h2>
-
-            <div
-              style={{
-                maxWidth: "700px",
-                margin: "0 auto",
-                background: "#0f172a",
-                border: "1px solid rgba(255,255,255,.08)",
-                borderRadius: theme.radius.lg,
-                padding: "18px",
-                color: "#cbd5e1",
-              }}
-            >
-              <input
-                value={demoQuestion}
-                onChange={(e) =>
-                  setDemoQuestion(e.target.value)
-                }
-                placeholder="كيف أزيد مبيعات شركتي خلال 30 يوم؟"
-                style={{
-                  width: "100%",
-                  background: "transparent",
-                  border: "none",
-                  color: "white",
-                  fontSize: "18px",
-                  outline: "none",
-                }}
-              />
-            </div>
-
-            <button
-              onClick={() =>
-                router.push(
-                  "/guest?q=" +
-                    encodeURIComponent(
-                      demoQuestion ||
-                        "كيف أزيد المبيعات؟"
-                    )
-                )
-              }
-              style={{
-                marginTop: theme.spacing.lg,
-                background: theme.colors.primary,
-                color: "white",
-                border: "none",
-                borderRadius: theme.radius.md,
-                padding: "16px 32px",
-                cursor: "pointer",
-                fontWeight: "700",
-                fontSize: "16px",
-              }}
-            >
-              🚀 ابدأ التجربة الآن
-            </button>
-          </div>
-        </section>
+        <style jsx>{`
+          .enterprise-home{--green:#16A34A;--navy:#0F172A;--blue:#2563EB;--muted:#64748B;--border:#E2E8F0;background:#F8FAF7;color:var(--navy);font-family:Tahoma,Arial,sans-serif;overflow:hidden}.enterprise-home *{box-sizing:border-box}.enterprise-home button{font:inherit;cursor:pointer}.enterprise-home a{text-decoration:none;color:inherit}.page-shell{width:min(1160px,calc(100% - 48px));margin:auto}.hero-section{position:relative;display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:36px;min-height:690px;padding:92px 0 135px}.hero-section:before{content:"";position:absolute;top:8%;right:-16%;width:60%;height:75%;background:radial-gradient(circle,#dcfce7 0,transparent 69%);opacity:.7;pointer-events:none}.hero-copy{position:relative;z-index:1}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-size:12px;font-weight:800;letter-spacing:.02em}.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px #16a34a1a}.hero-copy h1{margin:23px 0 20px;font-size:clamp(42px,5vw,69px);line-height:1.1;letter-spacing:-2px;font-weight:900}.hero-copy h1 em,.section-heading h2 em,.demo-copy h2 em,.final-cta h2 em{font-style:normal;color:var(--green)}.hero-copy p{margin:0 0 35px;color:var(--muted);font-size:18px;line-height:2}.hero-actions{display:flex;align-items:center;gap:24px}.primary-button,.secondary-button,.outline-button,.light-button{display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:14px 21px;border:0;border-radius:6px;font-size:13px;font-weight:800;transition:transform .2s,box-shadow .2s}.primary-button{background:var(--green);color:#fff;box-shadow:0 10px 23px #16a34a2e}.primary-button:hover,.light-button:hover{transform:translateY(-3px);box-shadow:0 16px 30px #16a34a3b}.secondary-button{padding:13px 0;background:transparent;color:var(--navy)}.secondary-button span{color:var(--blue);font-size:17px}.hero-proof{display:flex;align-items:center;gap:10px;margin-top:36px;color:var(--muted);font-size:11px}.proof-stack{display:flex;direction:ltr}.proof-stack i{display:grid;place-items:center;width:27px;height:27px;margin-left:-6px;border:2px solid #f8faf7;border-radius:50%;background:#dbeafe;color:var(--blue);font-style:normal;font-size:10px}.proof-stack i:nth-child(2){background:#dcfce7;color:var(--green)}.proof-stack i:nth-child(3){background:#fef3c7;color:#b45309}.proof-stack i:last-child{background:var(--navy);color:#fff}.hero-product{position:relative;z-index:1;display:grid;place-items:center;min-height:450px;direction:ltr}.hero-glow{position:absolute;width:500px;height:400px;border-radius:50%;background:#dcfce7;filter:blur(55px);opacity:.72}.dashboard-window{position:relative;width:min(560px,100%);height:370px;border:1px solid var(--border);border-radius:14px;background:#fff;box-shadow:0 32px 75px #0f172a20;overflow:hidden;transform:perspective(1200px) rotateY(-6deg);transition:transform .4s,box-shadow .4s}.dashboard-window:hover{transform:perspective(1200px) rotateY(-2deg) translateY(-5px);box-shadow:0 40px 90px #0f172a29}.dashboard-window>header{display:flex;align-items:center;justify-content:space-between;height:45px;padding:0 18px;border-bottom:1px solid #f1f5f9;color:#94a3b8;font-size:9px}.dashboard-window>header b{display:flex;align-items:center;gap:7px;color:var(--navy)}.dashboard-window>header b span{display:grid;place-items:center;width:19px;height:19px;border-radius:5px;background:var(--green);color:#fff;font-size:10px}.dashboard-content{display:flex;height:325px}.dashboard-content aside{display:flex;flex-direction:column;gap:20px;width:125px;padding:26px 11px;border-left:1px solid #f1f5f9;background:#fbfdfb;color:#94a3b8;font-size:9px}.dashboard-content aside strong{padding:8px;border-radius:5px;background:#dcfce7;color:var(--green)}.dashboard-main{flex:1;padding:25px 23px}.dashboard-welcome{display:flex;justify-content:space-between;align-items:start}.dashboard-welcome b,.dashboard-welcome small{display:block}.dashboard-welcome b{font-size:14px}.dashboard-welcome small{margin-top:5px;color:#94a3b8;font-size:8px}.dashboard-welcome em{padding:7px;border:1px solid var(--border);border-radius:5px;color:#64748b;font-size:8px;font-style:normal}.dashboard-stats{display:flex;gap:10px;margin-top:19px}.dashboard-stats>span{flex:1;padding:11px;border:1px solid #edf2f7;border-radius:7px}.dashboard-stats small,.dashboard-stats b,.dashboard-stats em{display:block}.dashboard-stats small{color:#94a3b8;font-size:7px}.dashboard-stats b{margin:8px 0 4px;font-size:14px}.dashboard-stats b i{color:#94a3b8;font-size:7px;font-style:normal}.dashboard-stats em{color:var(--green);font-size:7px;font-style:normal}.dashboard-chart{height:145px;margin-top:12px;padding:12px;border:1px solid #edf2f7;border-radius:7px}.dashboard-chart>div:first-child{display:flex;justify-content:space-between;font-size:8px;color:var(--muted)}.dashboard-chart small{font-size:8px}.chart-bars{display:flex;align-items:flex-end;gap:9px;height:105px;padding:12px 9px 0;background:linear-gradient(180deg,#effdf4,transparent)}.chart-bars i{display:block;width:8%;border-radius:3px 3px 0 0;background:var(--green)}.hero-notification{position:absolute;right:-7px;bottom:28px;display:flex;align-items:center;gap:10px;padding:12px 15px;border:1px solid var(--border);border-radius:9px;background:#fff;box-shadow:0 15px 32px #0f172a1a;direction:rtl;font-size:10px}.hero-notification>b{display:grid;place-items:center;width:30px;height:30px;border-radius:7px;background:#dcfce7;color:var(--green)}.hero-notification strong,.hero-notification small{display:block}.hero-notification small{margin-top:4px;color:var(--muted);font-size:8px}.trust-bar{display:flex;align-items:center;justify-content:space-between;padding:27px 0;border-block:1px solid var(--border);color:var(--muted);font-size:12px}.trust-bar>span{display:flex;align-items:center;gap:8px;color:var(--navy);font-weight:800}.trust-bar>span i{color:var(--green);font-size:18px;font-style:normal}.section{padding:155px 0}.section-heading{max-width:580px}.section-heading.centered{margin:0 auto 52px;text-align:center}.section-heading h2,.demo-copy h2{margin:15px 0;font-size:43px;line-height:1.2;letter-spacing:-1.2px;font-weight:900}.section-heading p,.demo-copy p{margin:0;color:var(--muted);font-size:15px;line-height:1.9}.ecosystem-grid,.preview-grid,.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.ecosystem-grid{margin-top:50px}.ecosystem-card{min-height:255px;padding:29px 26px;border:1px solid var(--border);border-radius:9px;background:#fff;box-shadow:0 14px 35px #0f172a08;transition:.25s}.ecosystem-card:hover,.preview:hover,.pricing-card:hover{transform:translateY(-7px);border-color:#bbf7d0;box-shadow:0 24px 50px #0f172a16}.ecosystem-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:10px;font-size:22px;font-style:normal}.ecosystem-icon.green{background:#dcfce7;color:var(--green)}.ecosystem-icon.blue{background:#dbeafe;color:var(--blue)}.ecosystem-icon.amber{background:#fef3c7;color:#d97706}.ecosystem-icon.violet{background:#f1e8ff;color:#7c3aed}.ecosystem-card h3{margin:25px 0 9px;font-size:19px}.ecosystem-card p{min-height:57px;color:var(--muted);font-size:13px;line-height:1.8}.ecosystem-card a{display:block;margin-top:26px;color:var(--green);font-size:11px;font-weight:800}.preview-section{padding-top:0}.preview-grid{grid-template-columns:repeat(4,1fr)}.preview{min-height:290px;padding:23px 21px;border:1px solid var(--border);border-radius:9px;background:#fff;box-shadow:0 14px 35px #0f172a09;transition:.25s}.preview-top{display:flex;justify-content:space-between;color:var(--green);font-size:9px;font-weight:800}.preview-top b{color:#cbd5e1;letter-spacing:2px}.preview h3{margin:13px 0;font-size:14px}.preview-lines i{display:block;width:70%;height:5px;margin:5px 0;border-radius:4px;background:#f1f5f9}.preview-lines i:nth-child(2){width:45%}.preview-screen{position:relative;height:158px;margin-top:20px;overflow:hidden;border-radius:6px;background:#f8fafc}.preview-dashboard .preview-screen{padding:11px}.kpi-row{display:flex;gap:7px}.kpi-row span{flex:1;padding:8px;border:1px solid #dbeafe;border-radius:5px;background:#fff;font-size:10px;font-weight:800}.kpi-row small{display:block;color:#64748b;font-size:7px;font-weight:400}.bars{position:absolute;right:11px;bottom:12px;left:11px;display:flex;align-items:flex-end;gap:7px;height:63px;background:linear-gradient(180deg,#ecfdf5,transparent)}.bars i{display:block;width:13%;border-radius:3px 3px 0 0;background:var(--green)}.preview-crm .preview-screen{padding:10px}.contact-row{display:flex;align-items:center;gap:7px;padding:7px 4px;border-bottom:1px solid #e2e8f0;font-size:8px}.contact-row>i{width:23px;height:23px;border-radius:50%;background:#bfdbfe}.contact-row span{flex:1}.contact-row b,.contact-row small{display:block}.contact-row small{margin-top:3px;color:#64748b;font-size:7px}.contact-row em{padding:3px 5px;border-radius:3px;background:#dcfce7;color:var(--green);font-size:7px;font-style:normal}.preview-whatsapp .preview-screen{padding:14px;background:#ecfdf5}.chat-bubble{width:77%;padding:8px;border-radius:6px 6px 0 6px;background:#fff;box-shadow:0 2px 5px #0f172a0c;color:#334155;font-size:8px}.chat-bubble.sent{margin:10px 0 0 auto;border-radius:6px 6px 6px 0;background:#bbf7d0}.chat-bubble.short{width:58%;margin-top:10px}.preview-seller .preview-screen{padding:16px;background:#eff6ff}.ai-orb{display:grid;place-items:center;width:40px;height:40px;margin-bottom:10px;border-radius:11px;background:#dbeafe;color:var(--blue);font-size:23px}.preview-seller .preview-screen>b,.preview-seller .preview-screen>small{display:block;font-size:9px}.preview-seller .preview-screen>small{margin-top:7px;color:var(--muted)}.preview-seller .preview-screen>small em{color:var(--green);font-style:normal;font-weight:800}.confidence{height:6px;margin-top:15px;border-radius:5px;background:#dbeafe}.confidence i{display:block;width:87%;height:100%;border-radius:5px;background:var(--blue)}.metrics-section{background:var(--navy);color:#fff}.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);padding:72px 0}.metrics-grid>div{padding:10px 20px;text-align:center;border-left:1px solid #ffffff20}.metrics-grid>div:last-child{border-left:0}.metrics-grid b,.metrics-grid strong,.metrics-grid span{display:block}.metrics-grid b{color:#4ade80;font-size:45px;font-weight:900}.metrics-grid strong{margin-top:10px;font-size:14px}.metrics-grid span{margin-top:6px;color:#94a3b8;font-size:11px}.demo-section{display:grid;grid-template-columns:.75fr 1.25fr;gap:90px;align-items:center}.demo-copy h2{font-size:43px}.demo-copy p{max-width:390px}.demo-checks{display:flex;flex-wrap:wrap;gap:14px;margin-top:27px;color:var(--green);font-size:11px;font-weight:800}.demo-box{overflow:hidden;border:1px solid var(--border);border-radius:11px;background:#fff;box-shadow:0 25px 55px #0f172a14}.demo-box>header{display:flex;align-items:center;justify-content:space-between;padding:20px;border-bottom:1px solid #f1f5f9;font-size:13px;font-weight:800}.demo-box>header span{display:flex;align-items:center;gap:8px}.demo-box>header i{width:7px;height:7px;border-radius:50%;background:var(--green)}.demo-box>header small{color:var(--muted);font-size:10px;font-weight:400}.demo-body{padding:30px;text-align:center}.assistant-avatar{display:grid;place-items:center;width:45px;height:45px;margin:auto;border-radius:12px;background:#dcfce7;color:var(--green);font-size:23px}.demo-body>strong,.demo-body>small{display:block}.demo-body>strong{margin-top:14px;font-size:15px}.demo-body>small{margin-top:7px;color:var(--muted);font-size:11px}.demo-input{display:flex;gap:8px;margin-top:27px;padding:6px;border:1px solid var(--border);border-radius:7px;background:#fff}.demo-input input{flex:1;min-width:0;padding:10px;border:0;outline:0;color:var(--navy);font-size:12px}.demo-input button{padding:0 15px;border:0;border-radius:5px;background:var(--green);color:#fff;font-size:11px;font-weight:800}.demo-suggestions{display:flex;justify-content:center;gap:7px;margin-top:13px}.demo-suggestions button{padding:6px 9px;border:1px solid var(--border);border-radius:5px;background:#fff;color:var(--muted);font-size:10px}.pricing-section{padding-top:0}.pricing-grid{grid-template-columns:repeat(3,1fr);padding-top:15px}.pricing-card{position:relative;min-height:420px;padding:35px 30px;border:1px solid var(--border);border-radius:9px;background:#fff;box-shadow:0 14px 35px #0f172a09;transition:.25s}.pricing-card.featured{border:2px solid var(--green);transform:translateY(-13px);box-shadow:0 25px 58px #16a34a21}.pricing-card.featured:hover{transform:translateY(-20px)}.pricing-card label{position:absolute;top:0;right:24px;transform:translateY(-50%);padding:5px 11px;border-radius:4px;background:var(--green);color:#fff;font-size:10px;font-weight:800}.pricing-card h3{margin:0 0 8px;font-size:21px}.pricing-card>p{margin:0;color:var(--muted);font-size:12px}.pricing-value{display:flex;align-items:baseline;gap:7px;margin:27px 0 20px}.pricing-value b{font-size:42px}.pricing-value span{color:var(--muted);font-size:11px}.pricing-card .primary-button,.pricing-card .outline-button{width:100%}.outline-button{border:1px solid var(--border);background:#fff;color:var(--navy)}.pricing-card ul{margin:25px 0 0;padding:20px 0 0;border-top:1px solid #f1f5f9;list-style:none}.pricing-card li{margin:12px 0;color:var(--muted);font-size:12px;font-weight:600}.pricing-card li i{margin-left:7px;color:var(--green);font-style:normal}.final-cta{display:flex;align-items:center;justify-content:space-between;margin-bottom:105px;padding:82px 88px;border-radius:12px;background:var(--green);color:#fff;box-shadow:0 25px 55px #16a34a25}.final-cta .eyebrow{color:#bbf7d0}.final-cta h2{margin:14px 0 0;font-size:45px;line-height:1.18;font-weight:900}.final-cta p{max-width:330px;color:#dcfce7;font-size:14px;line-height:1.9}.light-button{margin-top:10px;background:#fff;color:var(--navy)}.home-footer{display:flex;align-items:center;justify-content:space-between;padding:32px 0;border-top:1px solid var(--border);color:var(--muted);font-size:11px}.home-footer>b{color:var(--navy);font-size:16px;letter-spacing:.05em}.home-footer i{color:var(--green);font-style:normal;font-size:10px}.home-footer div{display:flex;gap:20px}
+          @media(max-width:900px){.page-shell{width:calc(100% - 32px)}.hero-section{grid-template-columns:1fr;padding:80px 0 110px}.hero-section:before{right:-40%;width:100%}.hero-product{min-height:390px}.dashboard-window{transform:none}.dashboard-window:hover{transform:translateY(-5px)}.section{padding:110px 0}.ecosystem-grid,.preview-grid{grid-template-columns:repeat(2,1fr)}.demo-section{grid-template-columns:1fr;gap:42px}.metrics-grid{grid-template-columns:repeat(2,1fr);gap:28px}.metrics-grid>div{border-left:0}.pricing-grid{grid-template-columns:1fr}.pricing-card.featured,.pricing-card.featured:hover{transform:none}.final-cta{padding:55px 32px}}
+          @media(max-width:520px){.hero-copy h1{font-size:40px;letter-spacing:-1px}.hero-copy p{font-size:16px}.hero-actions{align-items:stretch;flex-direction:column;gap:14px}.primary-button,.secondary-button{width:100%}.trust-bar{flex-wrap:wrap;gap:15px}.trust-bar>b{width:100%}.trust-bar>span{width:45%;font-size:10px}.ecosystem-grid,.preview-grid{grid-template-columns:1fr}.dashboard-window{height:310px}.dashboard-content aside{width:82px;font-size:8px}.dashboard-main{padding:17px 11px}.dashboard-stats>span:last-child{display:none}.dashboard-chart{height:120px}.chart-bars{height:78px}.hero-notification{right:0;bottom:3px}.section-heading h2,.demo-copy h2{font-size:33px}.section{padding:85px 0}.demo-body{padding:22px 15px}.demo-suggestions{flex-wrap:wrap}.final-cta{display:block;padding:45px 28px;margin-bottom:65px}.final-cta h2{font-size:36px}.final-cta p{margin-top:30px}.home-footer{flex-wrap:wrap;gap:18px}.home-footer span{width:100%;order:3}}
+        `}</style>
       </main>
     </>
   );
-
 }
