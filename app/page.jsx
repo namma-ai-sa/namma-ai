@@ -82,7 +82,7 @@ export default function HomePage() {
           @media(max-width:520px){.hero-copy h1{font-size:40px;letter-spacing:-1px}.hero-copy p{font-size:16px}.hero-actions{align-items:stretch;flex-direction:column;gap:14px}.primary-button,.secondary-button{width:100%}.trust-bar{flex-wrap:wrap;gap:15px}.trust-bar>b{width:100%}.trust-bar>span{width:45%;font-size:10px}.ecosystem-grid,.preview-grid{grid-template-columns:1fr}.dashboard-window{height:310px}.dashboard-content aside{width:82px;font-size:8px}.dashboard-main{padding:17px 11px}.dashboard-stats>span:last-child{display:none}.dashboard-chart{height:120px}.chart-bars{height:78px}.hero-notification{right:0;bottom:3px}.section-heading h2,.demo-copy h2{font-size:33px}.section{padding:85px 0}.demo-body{padding:22px 15px}.demo-suggestions{flex-wrap:wrap}.final-cta{display:block;padding:45px 28px;margin-bottom:65px}.final-cta h2{font-size:36px}.final-cta p{margin-top:30px}.home-footer{flex-wrap:wrap;gap:18px}.home-footer span{width:100%;order:3}}
         `}</style>
         <style jsx>{`
-          .home-footer>b img{display:block;width:auto;height:36px;max-height:36px;max-width:100%;object-fit:contain}.hero-brand img{display:block;width:auto;height:64px;max-height:64px;max-width:100%;object-fit:contain}
+          .home-footer img{display:block;max-height:36px;width:auto;object-fit:contain}.hero-brand img{display:block;max-height:64px;width:auto;object-fit:contain}
         `}</style>
       </main>
     </>
