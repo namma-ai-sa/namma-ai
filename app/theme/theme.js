@@ -4,8 +4,8 @@ const theme = {
     surface: "#475569",
     card: "#111827",
 
-    primary: "#f59e0b",
-    secondary: "#f97316",
+    primary: "#7C8F5A",
+    secondary: "#7C8F5A",
 
     text: "#ffffff",
     muted: "#94a3b8",

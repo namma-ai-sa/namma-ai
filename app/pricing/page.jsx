@@ -46,7 +46,7 @@ export default function PricingPage() {
         "دعم مخصص",
         "بنية للشركات الكبرى",
       ],
-      color: "#f59e0b",
+      color: "#7C8F5A",
     },
   ];
 
