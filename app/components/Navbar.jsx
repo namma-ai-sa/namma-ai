@@ -99,7 +99,7 @@ export default function Navbar() {
         @media(max-width:560px){.navbar-inner{gap:12px}.navbar-actions{display:none}.navbar-logo-image{width:116px;max-height:38px}.mobile-menu{position:fixed;top:70px;right:12px;left:12px;z-index:998;display:block;padding:12px;border:1px solid #e2e8f0;border-radius:9px;background:#fff;box-shadow:0 20px 45px rgba(15,23,42,.14)}.mobile-menu-brand{display:flex;align-items:center;padding:8px 10px 14px;border-bottom:1px solid #f1f5f9}.mobile-menu-brand img{display:block;width:125px;height:auto;max-height:38px;object-fit:contain}.mobile-menu-header{display:flex;align-items:center;justify-content:space-between;padding:12px 10px;border-bottom:1px solid #f1f5f9;color:#64748b;font-size:11px;font-weight:800}.mobile-menu-header button{display:block;width:auto;padding:0;color:#64748b;font-size:24px;line-height:1}.mobile-menu>button{padding:13px 10px}.mobile-actions{display:flex;gap:8px;margin-top:8px;padding-top:11px;border-top:1px solid #f1f5f9}.mobile-actions button{justify-content:center;background:#f8fafc}.mobile-actions button:last-child{background:#15803d;color:#fff}}
       `}</style>
       <style jsx>{`
-        .navbar-logo-image{display:block;width:auto;height:40px;max-height:40px;max-width:100%;object-fit:contain}.mobile-menu-brand img{display:block;width:auto;height:40px;max-height:40px;max-width:100%;object-fit:contain}
+        .navbar-logo-image{display:block;width:auto;height:36px;max-height:36px;max-width:100%;object-fit:contain}.mobile-menu-brand img{display:block;width:auto;height:36px;max-height:36px;max-width:100%;object-fit:contain}
       `}</style>
     </>
   );
