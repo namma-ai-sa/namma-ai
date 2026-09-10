@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import theme from "../theme/theme";
 
 export default function Navbar() {
   const router = useRouter();
@@ -43,32 +42,15 @@ export default function Navbar() {
         </div>
 
         <div className="desktop-menu">
-          <button style={linkStyle} onClick={() => go("/dashboard")}>
-            🏠 Dashboard
-          </button>
-          <button style={linkStyle} onClick={() => go("/crm")}>
-            👥 CRM
-          </button>
-          <button style={linkStyle} onClick={() => go("/projects")}>
-            📁 Projects
-          </button>
-          <button style={linkStyle} onClick={() => go("/ai-seller")}>
-            🤖 AI Seller
-          </button>
-          <button style={linkStyle} onClick={() => go("/whatsapp-agent")}>
-            📱 WhatsApp
-          </button>
-          <button style={linkStyle} onClick={() => go("/pricing")}>
-            💳 Pricing
-          </button>
+          <button style={linkStyle} onClick={() => go("/dashboard")}>🏠 Dashboard</button>
+          <button style={linkStyle} onClick={() => go("/crm")}>👥 CRM</button>
+          <button style={linkStyle} onClick={() => go("/projects")}>📁 Projects</button>
+          <button style={linkStyle} onClick={() => go("/ai-seller")}>🤖 AI Seller</button>
+          <button style={linkStyle} onClick={() => go("/whatsapp-agent")}>📱 WhatsApp</button>
+          <button style={linkStyle} onClick={() => go("/pricing")}>💳 Pricing</button>
         </div>
 
-        <div
-          className="desktop-auth"
-          style={{
-            position: "relative",
-          }}
-        >
+        <div style={{ position: "relative" }}>
           <button
             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
             style={{
@@ -86,56 +68,18 @@ export default function Navbar() {
         </div>
 
         <button
-          className="mobile-menu-btn"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{
+            background: "transparent",
+            border: "none",
+            color: "white",
+            fontSize: "24px",
+            cursor: "pointer",
+          }}
         >
           ☰
         </button>
       </nav>
-
-      {mobileMenuOpen && (
-        <div
-          style={{
-            position: "fixed",
-            top: "70px",
-            right: "12px",
-            left: "12px",
-            background: "#111827",
-            border: "1px solid #1f2937",
-            borderRadius: "18px",
-            padding: "16px",
-            zIndex: 1000,
-          }}
-        >
-          <button style={drawerBtn} onClick={() => go("/")}>
-            الرئيسية
-          </button>
-          <button style={drawerBtn} onClick={() => go("/tools")}>
-            الأدوات
-          </button>
-          <button style={drawerBtn} onClick={() => go("/crm")}>
-            CRM
-          </button>
-          <button style={drawerBtn} onClick={() => go("/ai-seller")}>
-            مساعد المبيعات
-          </button>
-          <button style={drawerBtn} onClick={() => go("/whatsapp-agent")}>
-            وكيل واتساب
-          </button>
-          <button style={drawerBtn} onClick={() => go("/projects")}>
-            المشاريع
-          </button>
-          <button style={drawerBtn} onClick={() => go("/pricing")}>
-            الأسعار
-          </button>
-          <button style={drawerBtn} onClick={() => go("/about")}>
-            عن المنصة
-          </button>
-          <button style={drawerBtn} onClick={() => go("/contact")}>
-            تواصل معنا
-          </button>
-        </div>
-      )}
     </>
   );
 }
@@ -146,18 +90,4 @@ const linkStyle = {
   color: "#cbd5e1",
   cursor: "pointer",
   fontSize: "15px",
-};
-
-const drawerBtn = {
-  width: "100%",
-  marginBottom: "10px",
-  background: "rgba(255,255,255,.04)",
-  border: "1px solid rgba(255,255,255,.08)",
-  color: "#e5e7eb",
-  padding: "14px 16px",
-  borderRadius: "14px",
-  textAlign: "right",
-  cursor: "pointer",
-  fontSize: "15px",
-  backdropFilter: "blur(8px)",
 };
