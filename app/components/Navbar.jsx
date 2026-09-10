@@ -33,6 +33,7 @@ const mobileLinks = [
   ["تواصل معنا", "/contact"],
 ];
 
+
 function Logo({ onClick }) {
   return (
     <button className="navbar-brand" onClick={onClick} aria-label="NAMMA AI">
