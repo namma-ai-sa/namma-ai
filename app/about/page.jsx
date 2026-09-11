@@ -16,7 +16,9 @@ export default function AboutPage() {
           marginBottom: "80px",
         }}
       >
-
+<div style={{ marginBottom: "24px" }}>
+  /namma-logo.png
+</div>
         <h1
           style={{
             fontSize: "56px",
