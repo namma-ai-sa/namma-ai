@@ -85,8 +85,8 @@ export default function HomePage() {
             style={{
               display: "inline-block",
               padding: "10px 18px",
-              border: "1px solid rgba(34,197,94,.3)",
-              background: "rgba(34,197,94,.08)",
+              border: "1px solid rgba(139,92,246,.25)",
+              background: "rgba(139,92,246,.08)",
               borderRadius: theme.radius.pill,
               color: theme.colors.primary,
               fontWeight: "700",
@@ -99,7 +99,7 @@ export default function HomePage() {
           <h1
             style={{
               fontSize: theme.typography.hero,
-              textShadow: "0 0 30px rgba(34,197,94,.25)",
+              textShadow: "0 0 30px rgba(139,92,246,.18)",
               fontWeight: "900",
               lineHeight: "1.2",
               marginBottom: theme.spacing.lg
