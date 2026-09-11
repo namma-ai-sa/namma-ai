@@ -157,12 +157,14 @@ export default function Navbar() {
           style={{
             position: "fixed",
             top: "70px",
-            right: "12px",
-            left: "12px",
+            right: "16px",
+            left: "auto",
             background: "#111827",
             border: "1px solid #1f2937",
             borderRadius: "18px",
+            width: "320px",
             padding: "16px",
+            boxShadow: "0 20px 60px rgba(0,0,0,.30)",
             zIndex: 1000,
           }}
         >
