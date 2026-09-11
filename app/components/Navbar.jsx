@@ -75,7 +75,7 @@ export default function Navbar() {
             style={{
               background: "rgba(255,255,255,.06)",
               border: "1px solid rgba(255,255,255,.1)",
-              color: "#1e293b",
+              color: "#334155",
               padding: "10px 16px",
               borderRadius: "20px",
               backdropFilter: "blur(16px)",
@@ -143,7 +143,7 @@ export default function Navbar() {
           style={{
             background: "transparent",
             border: "none",
-            color: "#1e293b",
+            color: "#334155",
             fontSize: "24px",
             cursor: "pointer",
           }}
@@ -186,9 +186,10 @@ export default function Navbar() {
 const linkStyle = {
   background: "transparent",
   border: "none",
-  color: "#1e293b",
+  color: "#334155",
   cursor: "pointer",
   fontSize: "15px",
+  fontWeight: "600",
 };
 
 const drawerBtn = {
@@ -202,5 +203,6 @@ const drawerBtn = {
   textAlign: "right",
   cursor: "pointer",
   fontSize: "15px",
+  fontWeight: "600",
   backdropFilter: "blur(8px)",
 };
