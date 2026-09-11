@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function AboutPage() {
   return (
     <main
@@ -15,6 +16,8 @@ export default function AboutPage() {
           marginBottom: "80px",
         }}
       >
+        /namma-logo.png
+
         <h1
           style={{
             fontSize: "64px",
