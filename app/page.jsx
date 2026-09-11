@@ -114,7 +114,7 @@ export default function HomePage() {
             style={{
               maxWidth: "850px",
               margin: "0 auto",
-              color: "#cbd5e1",
+              color: "#EAE7E1",
               fontSize: "22px",
               lineHeight: "2"
             }}
@@ -235,7 +235,7 @@ export default function HomePage() {
 
                 <p
                   style={{
-                    color: "#cbd5e1"
+                    color: "#EAE7E1"
                   }}
                 >
                   {item.label}
@@ -289,7 +289,7 @@ export default function HomePage() {
 
                 <p
                   style={{
-                    color: "#cbd5e1",
+                    color: "#EAE7E1",
                     lineHeight: "1.8",
                     marginBottom: "18px",
                   }}
@@ -354,7 +354,7 @@ export default function HomePage() {
                 border: "1px solid rgba(255,255,255,.08)",
                 borderRadius: theme.radius.lg,
                 padding: "18px",
-                color: "#cbd5e1",
+                color: "#EAE7E1",
               }}
             >
               <input

@@ -8,7 +8,7 @@ const theme = {
     secondary: "#2F3E6B",
 
     text: "#ffffff",
-    muted: "#CBD5E1",
+    muted: "#EAE7E1",
 
     success: "#2F3E6B",
     danger: "#ef4444",
