@@ -38,7 +38,7 @@ export default function Navbar() {
             alignItems: "center",
           }}
         >
-          /namma-logo.png.png
+          /namma-logo.png
         </div>
 
         <div className="desktop-menu">
