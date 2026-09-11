@@ -16,6 +16,7 @@ export default function AboutPage() {
           marginBottom: "80px",
         }}
       >
+        /namma-logo.png
 
         <h1
           style={{
@@ -66,24 +67,25 @@ export default function AboutPage() {
       </section>
 
       <section style={{ marginBottom: "70px" }}>
-        <h2>من يخدم NAMMA AI؟</h2>
+        <h2>التكاملات القادمة</h2>
 
         <p>
-          تم تصميم NAMMA AI لمساعدة مختلف أنواع المستخدمين على إدارة أعمالهم ونموهم من مكان واحد.
+          نعمل على تحويل NAMMA AI إلى منصة أعمال متكاملة تستطيع التواصل
+          مع أشهر الأنظمة والخدمات المستخدمة داخل الشركات.
         </p>
 
         <ul>
-          <li>🏢 الشركات لإدارة العملاء والمبيعات والمشاريع.</li>
-          <li>🚀 رواد الأعمال لتنظيم العمليات واتخاذ القرارات.</li>
-          <li>🎨 صناع المحتوى للتخطيط والإدارة وتحليل الأداء.</li>
-          <li>📈 فرق التسويق للحملات والمحتوى والمتابعة.</li>
-          <li>💼 فرق المبيعات لإدارة العملاء والفرص والإيرادات.</li>
-          <li>⚡ أتمتة الأعمال والمهام اليومية.</li>
+          <li>🚀 LinkedIn لإدارة المحتوى والنشر والتحليلات</li>
+          <li>🚀 Microsoft 365 و Teams و Outlook</li>
+          <li>🚀 Google Workspace و Gmail و Drive</li>
+          <li>🚀 Telegram و Slack</li>
+          <li>🚀 Stripe والفوترة والاشتراكات</li>
+          <li>🚀 أدوات الذكاء الاصطناعي والأتمتة</li>
         </ul>
       </section>
 
       <section style={{ marginBottom: "70px" }}>
-        <h2>كيف يمكن أن يساعدك NAMMA AI؟</h2>
+        <h2>مستقبل المنصة</h2>
 
         <p>
           هدفنا أن يستطيع صاحب الشركة الدخول إلى NAMMA AI وطلب أي مهمة
@@ -102,7 +104,7 @@ export default function AboutPage() {
             fontSize: "20px",
           }}
         >
-          "حلّل أعمالي، رتّب أولوياتي، واقترح أفضل الفرص للنمو هذا الشهر."
+          "أنشئ خطة محتوى 30 يوم، جهّز المنشورات، وجدول النشر على LinkedIn."
         </div>
 
         <p style={{ marginTop: "24px" }}>
