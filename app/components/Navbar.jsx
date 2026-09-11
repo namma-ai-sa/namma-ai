@@ -157,8 +157,8 @@ export default function Navbar() {
           style={{
             position: "fixed",
             top: "70px",
-            right: "16px",
-            left: "auto",
+            right: "auto",
+            left: "16px",
             background: "rgba(15,23,42,.92)",
             border: "1px solid #1f2937",
             borderRadius: "18px",
