@@ -13,12 +13,12 @@ export default function AboutPage() {
       <section
         style={{
           textAlign: "center",
-          marginBottom: "50px",
+          marginBottom: "35px",
         }}
       >
         <h1
           style={{
-            fontSize: "56px",
+            fontSize: "48px",
             fontWeight: "900",
             marginBottom: "24px",
           }}
@@ -31,7 +31,7 @@ export default function AboutPage() {
             maxWidth: "900px",
             margin: "0 auto",
             fontSize: "24px",
-            color: "#334155",
+            color: "#243457",
           }}
         >
           منصة أعمال عربية موحدة تجمع المبيعات والتسويق والذكاء الاصطناعي
@@ -39,7 +39,7 @@ export default function AboutPage() {
         </p>
       </section>
 
-      <section style={{ marginBottom: "45px" }}>
+      <section style={{ marginBottom: "30px" }}>
         <h2>رؤيتنا</h2>
 
         <p>
@@ -50,7 +50,7 @@ export default function AboutPage() {
         </p>
       </section>
 
-      <section style={{ marginBottom: "45px" }}>
+      <section style={{ marginBottom: "30px" }}>
         <h2>ماذا تقدم NAMMA AI؟</h2>
 
 <div
@@ -105,7 +105,7 @@ export default function AboutPage() {
 </div>
       </section>
 
-      <section style={{ marginBottom: "45px" }}>
+      <section style={{ marginBottom: "30px" }}>
         <h2>من يخدم NAMMA AI؟</h2>
 
         <p>
@@ -122,7 +122,7 @@ export default function AboutPage() {
         </ul>
       </section>
 
-      <section style={{ marginBottom: "45px" }}>
+      <section style={{ marginBottom: "30px" }}>
         <h2>كيف يمكن أن يساعدك NAMMA AI؟</h2>
 
         <p>
