@@ -43,7 +43,7 @@ export default function Navbar() {
           <Logo />
         </div>
 
-        <div className="desktop-menu">
+        <div className="desktop-menu" style={{display:"flex",alignItems:"center",gap:"32px"}}>
           <button style={linkStyle} onClick={() => go("/dashboard")}>
             🏠 Dashboard
           </button>
@@ -190,6 +190,8 @@ const linkStyle = {
   cursor: "pointer",
   fontSize: "15px",
   fontWeight: "600",
+  letterSpacing: ".2px",
+  transition: "all .25s ease",
 };
 
 const drawerBtn = {
@@ -204,5 +206,7 @@ const drawerBtn = {
   cursor: "pointer",
   fontSize: "15px",
   fontWeight: "600",
+  letterSpacing: ".2px",
+  transition: "all .25s ease",
   backdropFilter: "blur(8px)",
 };
