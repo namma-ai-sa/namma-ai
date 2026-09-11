@@ -53,56 +53,15 @@ export default function AboutPage() {
       <section style={{ marginBottom: "45px" }}>
         <h2>ماذا تقدم NAMMA AI؟</h2>
 
-<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
-    gap: "20px",
-    marginTop: "24px",
-  }}
->
-  {[
-    ["📊", "CRM", "إدارة العملاء والمتابعات"],
-    ["🤖", "AI Seller", "تحليل فرص البيع"],
-    ["📱", "WhatsApp", "إدارة المحادثات"],
-    ["📁", "Projects", "إدارة المشاريع والفرق"],
-    ["📈", "Analytics", "التحليلات ولوحات التحكم"],
-    ["⚡", "Automation", "أتمتة المهام والعمليات"],
-  ].map(([icon, title, text]) => (
-    <div
-      key={title}
-      style={{
-        background: "rgba(255,255,255,.75)",
-        border: "1px solid rgba(36,52,87,.08)",
-        borderRadius: "18px",
-        padding: "20px",
-        boxShadow: "0 10px 30px rgba(0,0,0,.05)",
-      }}
-    >
-      <div style={{ fontSize: "32px", marginBottom: "10px" }}>
-        {icon}
-      </div>
-
-      <h3
-        style={{
-          marginBottom: "8px",
-          color: "#243457",
-        }}
-      >
-        {title}
-      </h3>
-
-      <p
-        style={{
-          color: "#64748B",
-          margin: 0,
-        }}
-      >
-        {text}
-      </p>
-    </div>
-  ))}
-</div>
+        <ul>
+          <li>✅ إدارة العملاء CRM</li>
+          <li>✅ البائع الذكي AI Seller</li>
+          <li>✅ وكيل واتساب الذكي</li>
+          <li>✅ إدارة المشاريع والفرق</li>
+          <li>✅ التحليلات ولوحات التحكم</li>
+          <li>✅ أتمتة العمليات والمهام</li>
+          <li>✅ صناعة المحتوى والتسويق</li>
+        </ul>
       </section>
 
       <section style={{ marginBottom: "45px" }}>
