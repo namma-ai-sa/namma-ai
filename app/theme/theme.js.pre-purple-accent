@@ -4,13 +4,13 @@ const theme = {
     surface: "#475569",
     card: "#111827",
 
-    primary: "#2F3E6B",
-    secondary: "#2F3E6B",
+    primary: "#243457",
+    secondary: "#243457",
 
     text: "#ffffff",
-    muted: "#CBD5E1",
+    muted: "#94a3b8",
 
-    success: "#2F3E6B",
+    success: "#243457",
     danger: "#ef4444",
 
     border: "rgba(255,255,255,.08)",
