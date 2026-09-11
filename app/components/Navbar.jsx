@@ -23,7 +23,7 @@ export default function Navbar() {
           justifyContent: "space-between",
           alignItems: "center",
           padding: "18px 24px",
-          background: "rgba(2,6,23,.72)",
+          background: "#EAE7E1",
           backdropFilter: "blur(20px)",
           boxShadow: "0 20px 50px rgba(0,0,0,.25)",
           borderBottom: "1px solid rgba(255,255,255,.08)",
