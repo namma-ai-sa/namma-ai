@@ -30,16 +30,16 @@ export default function Navbar() {
           zIndex: 999,
         }}
       >
-        <div
-          onClick={() => go("/")}
-          style={{
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          /namma-logo.png
-        </div>
+<div
+  onClick={() => go("/")}
+  style={{
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+  }}
+>
+  /namma-logo.png
+</div>
 
         <div className="desktop-menu">
           <button style={linkStyle} onClick={() => go("/dashboard")}>🏠 Dashboard</button>
