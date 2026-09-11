@@ -6,7 +6,7 @@ export default function AboutPage() {
         maxWidth: "1200px",
         margin: "0 auto",
         padding: "100px 24px",
-        color: "#1E293B",
+        color: "#243457",
         lineHeight: "2",
       }}
     >
@@ -32,7 +32,7 @@ export default function AboutPage() {
             maxWidth: "900px",
             margin: "0 auto",
             fontSize: "24px",
-            color: "#475569",
+            color: "#64748B",
           }}
         >
           منصة أعمال عربية موحدة تجمع المبيعات والتسويق والذكاء الاصطناعي
@@ -93,7 +93,7 @@ export default function AboutPage() {
 
         <div
           style={{
-            background: "rgba(255,255,255,.65)",
+            background: "#F8F7F4",
             border: "1px solid rgba(36,52,87,.12)",
             padding: "24px",
             borderRadius: "18px",
@@ -102,7 +102,7 @@ export default function AboutPage() {
             fontSize: "20px",
           }}
         >
-          "ساعدني على إدارة العملاء والمشاريع والمبيعات واقترح الخطوات التالية للنمو."
+          "حلّل أعمالي، رتّب أولوياتي، واقترح أفضل الفرص للنمو هذا الشهر."
         </div>
 
         <p style={{ marginTop: "24px" }}>
