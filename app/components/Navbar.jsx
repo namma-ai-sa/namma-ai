@@ -40,7 +40,7 @@ export default function Navbar() {
             alignItems: "center",
           }}
         >
-         <div style={{background:"rgba(255,255,255,.95)",padding:"8px 12px",borderRadius:"14px",boxShadow:"0 8px 24px rgba(0,0,0,.15)",display:"flex",alignItems:"center"}}><Logo /></div>
+          <Logo />
         </div>
 
         <div className="desktop-menu">
