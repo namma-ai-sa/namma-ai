@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Logo from "./Logo";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -39,7 +40,7 @@ export default function Navbar() {
             alignItems: "center",
           }}
         >
-         /namma-logo.png
+         <Logo />
         </div>
 
         <div className="desktop-menu">
