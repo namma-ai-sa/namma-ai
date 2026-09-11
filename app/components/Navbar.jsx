@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -10,7 +11,6 @@ export default function Navbar() {
 
   const go = (path) => {
     setMobileMenuOpen(false);
-    setAccountMenuOpen(false);
     router.push(path);
   };
 
@@ -39,17 +39,10 @@ export default function Navbar() {
             alignItems: "center",
           }}
         >
-          /namma-logo.png
+         /namma-logo.png
         </div>
 
-        <div
-          className="desktop-menu"
-          style={{
-            display: "flex",
-            gap: "16px",
-            alignItems: "center",
-          }}
-        >
+        <div className="desktop-menu">
           <button style={linkStyle} onClick={() => go("/dashboard")}>
             🏠 Dashboard
           </button>
@@ -207,4 +200,6 @@ const drawerBtn = {
   borderRadius: "14px",
   textAlign: "right",
   cursor: "pointer",
+  fontSize: "15px",
+  backdropFilter: "blur(8px)",
 };
