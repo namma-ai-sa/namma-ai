@@ -36,14 +36,14 @@ export default function AIPage() {
               padding: "20px",
               display: "flex",
               flexDirection: "column",
-              gap: "20px",
+              gap: "12px",
             }}
           >
             <div style={{display:"flex",justifyContent:"center"}}>
               <div
   style={{
-    background:"#ffffff",
-    padding:"10px",
+    background:"#EAE4D8",
+    padding:"10px 32px",
     borderRadius:"16px",
     display:"inline-flex"
   }}
@@ -65,7 +65,7 @@ export default function AIPage() {
               padding: "30px",
               display: "flex",
               flexDirection: "column",
-              gap: "20px",
+              gap: "12px",
             }}
           >
             <div>

@@ -2,6 +2,6 @@ import Image from "next/image";
 
 export default function Logo() {
   return (
-    <Image src="/namma-logo.png" alt="Namma Logo" width={100} height={100} />
+    <Image src="/namma-logo.png" alt="Namma Logo" width={70} height={70} />
   );
 }
