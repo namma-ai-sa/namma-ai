@@ -8,36 +8,24 @@ export async function GET(req) {
 
     if (!token) {
       return NextResponse.json(
-        {
-          success: false,
-          authenticated: false,
-        },
-        {
-          status: 401,
-        }
+        { success: false },
+        { status: 401 }
       );
     }
 
-    const decoded = jwt.verify(
+    const user = jwt.verify(
       token,
       process.env.JWT_SECRET
     );
 
     return NextResponse.json({
       success: true,
-      authenticated: true,
-      user: decoded,
+      user,
     });
-
-  } catch (error) {
+  } catch {
     return NextResponse.json(
-      {
-        success: false,
-        authenticated: false,
-      },
-      {
-        status: 401,
-      }
+      { success: false },
+      { status: 401 }
     );
   }
 }

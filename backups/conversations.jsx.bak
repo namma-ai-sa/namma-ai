@@ -13,21 +13,14 @@ export default function Conversations() {
   } = useConversation();
 
   useEffect(() => {
-  async function loadUser() {
-    try {
-      const response = await fetch("/api/me");
-      const data = await response.json();
+    const user = JSON.parse(
+      localStorage.getItem("user") || "{}"
+    );
 
-      if (data.success) {
-        setUserId(data.user.id);
-      }
-    } catch (error) {
-      console.error(error);
+    if (user.id) {
+      setUserId(user.id);
     }
-  }
-
-  loadUser();
-}, []);
+  }, []);
 
   useEffect(() => {
     if (userId) {

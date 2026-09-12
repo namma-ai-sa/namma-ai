@@ -1,19 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-
-    if (user) {
-      window.location.href = "/ai";
-    }
-  }, []);
 
   async function handleLogin() {
     const response = await fetch("/api/login", {
@@ -22,7 +14,7 @@ export default function LoginPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
+        email,
         password,
       }),
     });
@@ -30,11 +22,6 @@ export default function LoginPage() {
     const data = await response.json();
 
     if (data.success) {
-      localStorage.setItem(
-        "user",
-        JSON.stringify(data.user)
-      );
-
       window.location.href = "/ai";
     } else {
       setMessage(data.message);
@@ -64,7 +51,7 @@ export default function LoginPage() {
         }}
       >
         <h1 style={{ textAlign: "center" }}>
-          🌱 نمّى AI
+          🌱 NAMMA AI
         </h1>
 
         <p
@@ -78,9 +65,9 @@ export default function LoginPage() {
         </p>
 
         <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="اسم المستخدم"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="البريد الإلكتروني"
           style={{
             width: "100%",
             padding: "12px",

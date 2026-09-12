@@ -3,20 +3,49 @@
 import { useEffect, useState } from "react";
 
 export default function AuthGuard({ children }) {
-  const [ready, setReady] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    async function checkAuth() {
+      try {
+        const response = await fetch("/api/session");
 
-    if (!user) {
-      window.location.href = "/login";
-      return;
+        const data = await response.json();
+
+        if (data.success) {
+          setAuthenticated(true);
+        } else {
+          window.location.href = "/login";
+        }
+      } catch (error) {
+        window.location.href = "/login";
+      } finally {
+        setLoading(false);
+      }
     }
 
-    setReady(true);
+    checkAuth();
   }, []);
 
-  if (!ready) {
+  if (loading) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          background: "#030712",
+          color: "#fff",
+        }}
+      >
+        جاري التحقق...
+      </div>
+    );
+  }
+
+  if (!authenticated) {
     return null;
   }
 
