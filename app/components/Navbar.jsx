@@ -41,7 +41,7 @@ export default function Navbar() {
             padding: "8px 14px",
             borderRadius: "18px",
             boxShadow: "0 4px 20px rgba(255,255,255,.12)",
-            background: "#F8F7F4",
+            background: "#FFFFFF",
           }}
         >
           <Logo />
@@ -78,7 +78,7 @@ export default function Navbar() {
           <button
             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
             style={{
-              background: "#F8F7F4",
+              background: "#FFFFFF",
               border: "1px solid rgba(255,255,255,.1)",
               color: "#1E293B",
               padding: "12px 20px",
