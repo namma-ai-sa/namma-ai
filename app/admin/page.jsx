@@ -7,7 +7,7 @@ export default function AdminPage() {
     { title: "العملاء المهتمون", value: "61", icon: "🔥" },
     { title: "الصفقات المغلقة", value: "24", icon: "✅" },
     { title: "معدل الإغلاق", value: "31%", icon: "📈" },
-    { title: "تحليلات الذكاء", value: "783", icon: "🤖" }
+    { title: "تحليلات الذكاء", value: "783", icon: "" }
   ];
 
   return (

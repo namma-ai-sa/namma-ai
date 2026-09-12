@@ -271,7 +271,7 @@ export default function CRMPage() {
                   analyzeLead(lead)
                 }
               >
-                🤖 تحليل AI
+                 تحليل AI
               </button>
 
               {" "}
@@ -386,7 +386,7 @@ export default function CRMPage() {
           }}
         >
           <h2>
-            🤖 تحليل العميل
+             تحليل العميل
           </h2>
 
           {analysis}

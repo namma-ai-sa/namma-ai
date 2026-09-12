@@ -22,7 +22,7 @@ export default function WhatsAppAgentPage() {
 - التوقيت
 - المقارنة مع المنافسين
 
-🚀 Next Action:
+ Next Action:
 إرسال عرض وتحديد موعد متابعة خلال 24 ساعة.
 `);
   }

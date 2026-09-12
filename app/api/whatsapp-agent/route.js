@@ -30,7 +30,7 @@ Hot / Warm / Cold
 
 📅 Follow-up Timing:
 
-🚀 Next Best Action:
+ Next Best Action:
 
 ⚠️ Possible Objections:
 `;

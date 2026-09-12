@@ -75,12 +75,12 @@ export default function AboutPage() {
         </p>
 
         <ul>
-          <li>🚀 LinkedIn لإدارة المحتوى والنشر والتحليلات</li>
-          <li>🚀 Microsoft 365 و Teams و Outlook</li>
-          <li>🚀 Google Workspace و Gmail و Drive</li>
-          <li>🚀 Telegram و Slack</li>
-          <li>🚀 Stripe والفوترة والاشتراكات</li>
-          <li>🚀 أدوات الذكاء الاصطناعي والأتمتة</li>
+          <li> LinkedIn لإدارة المحتوى والنشر والتحليلات</li>
+          <li> Microsoft 365 و Teams و Outlook</li>
+          <li> Google Workspace و Gmail و Drive</li>
+          <li> Telegram و Slack</li>
+          <li> Stripe والفوترة والاشتراكات</li>
+          <li> أدوات الذكاء الاصطناعي والأتمتة</li>
         </ul>
       </section>
 

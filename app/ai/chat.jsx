@@ -104,7 +104,7 @@ export default function Chat({
           marginBottom: "15px",
         }}
       >
-        🤖 كيف أستطيع مساعدتك اليوم؟
+         كيف أستطيع مساعدتك اليوم؟
       </h2>
 
       <textarea

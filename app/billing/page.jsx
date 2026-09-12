@@ -105,7 +105,7 @@ export default function BillingPage() {
               padding: "24px",
             }}
           >
-            <h2>🚀 الترقية</h2>
+            <h2> الترقية</h2>
 
             <p style={{ color: theme.colors.muted }}>
               الانتقال إلى Pro أو Business

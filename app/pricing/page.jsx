@@ -12,7 +12,7 @@ export default function PricingPage() {
       color: "#374151",
     },
     {
-      name: "🚀 Pro",
+      name: " Pro",
       price: "49 ريال",
       popular: true,
       features: [

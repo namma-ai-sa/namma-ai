@@ -18,7 +18,7 @@ export default function HomePage() {
       path: "/crm",
     },
     {
-      icon: "🤖",
+      icon: "",
       title: "البائع الذكي",
       desc: "تحليل احتمالية الشراء وتوصيات المبيعات.",
       path: "/ai-seller",
@@ -49,7 +49,7 @@ export default function HomePage() {
       label: "عميل نشط"
     },
     {
-      icon: "🤖",
+      icon: "",
       value: "24/7",
       label: "مساعد ذكي"
     },
@@ -183,7 +183,7 @@ export default function HomePage() {
                 fontWeight: "bold"
               }}
             >
-              🤖 جرّب نمّى AI
+               جرّب نمّى AI
             </button>
           </div>
         </section>
@@ -303,7 +303,7 @@ export default function HomePage() {
                     fontWeight: "700",
                   }}
                 >
-                  🚀 افتح الأداة
+                   افتح الأداة
                 </div>
               </div>
             ))}
@@ -334,7 +334,7 @@ export default function HomePage() {
                 marginBottom: "12px",
               }}
             >
-              🤖 جرّب نمّى AI مباشرة
+               جرّب نمّى AI مباشرة
             </div>
 
             <h2
@@ -396,7 +396,7 @@ export default function HomePage() {
                 fontSize: "16px",
               }}
             >
-              🚀 ابدأ التجربة الآن
+               ابدأ التجربة الآن
             </button>
           </div>
         </section>

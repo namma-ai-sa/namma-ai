@@ -87,7 +87,7 @@ export default function Conversations() {
   }
 
   return (
-    <div style={{ marginTop: "18px", marginBottom: "20px" }}>
+    <div style={{ marginTop: "28px", marginBottom: "20px" }}>
       <button
         onClick={createConversation}
       >

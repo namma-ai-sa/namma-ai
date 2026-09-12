@@ -76,7 +76,7 @@ export default function DashboardPage() {
           marginBottom: "24px"
         }}
       >
-        <h2>🚀 NAMMA Score</h2>
+        <h2> NAMMA Score</h2>
 
         <div
           style={{
@@ -180,7 +180,7 @@ export default function DashboardPage() {
             padding: "24px"
           }}
         >
-          <h2>🤖 AI Insights</h2>
+          <h2> AI Insights</h2>
 
           <ul
             style={{
@@ -214,7 +214,7 @@ export default function DashboardPage() {
         >
           <li>➕ إنشاء مشروع جديد</li>
           <li>👥 فتح CRM</li>
-          <li>🤖 تشغيل البائع الذكي</li>
+          <li> تشغيل البائع الذكي</li>
           <li>📱 فتح وكيل واتساب</li>
         </ul>
       </div>

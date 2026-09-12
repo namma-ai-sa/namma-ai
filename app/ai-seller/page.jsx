@@ -20,7 +20,7 @@ export default function AISellerPage() {
 ✉️ الرسالة المقترحة:
 مرحباً، لاحظنا اهتمامك بالخدمة ونود تقديم عرض خاص يساعدك على اتخاذ القرار المناسب.
 
-🚀 الخطوة التالية:
+ الخطوة التالية:
 متابعة خلال 24 ساعة
 `);
   }
@@ -28,7 +28,7 @@ export default function AISellerPage() {
   return (
     <main className="container">
       <h1 style={{ marginBottom: "24px" }}>
-        🤖 AI Seller Premium
+         AI Seller Premium
       </h1>
 
       <div className="card"

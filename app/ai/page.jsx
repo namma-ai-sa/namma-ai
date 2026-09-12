@@ -42,7 +42,7 @@ export default function AIPage() {
             <div style={{display:"flex",justifyContent:"center"}}>
               <div
   style={{
-    background:"#EAE4D8",
+    background:"#EFE8DB",
     padding:"10px 32px",
     borderRadius:"16px",
     display:"inline-flex"
@@ -75,7 +75,7 @@ export default function AIPage() {
                   marginBottom: "8px",
                 }}
               >
-                مركز نمو الأعمال 🚀
+                مركز نمو الأعمال 
               </h1>
 
               <p

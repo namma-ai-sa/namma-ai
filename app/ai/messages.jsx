@@ -89,7 +89,7 @@ export default function Messages() {
           <strong>
             {message.role === "user"
               ? "👤 أنت"
-              : "🤖 نمّى AI"}
+              : " نمّى AI"}
           </strong>
 
           <p>{message.content}</p>

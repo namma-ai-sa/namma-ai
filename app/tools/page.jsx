@@ -43,7 +43,7 @@ export default function ToolsPage() {
             marginBottom: "12px",
           }}
         >
-          🚀 NAMMA AI Tools
+           NAMMA AI Tools
         </h1>
 
         <p
@@ -72,7 +72,7 @@ export default function ToolsPage() {
           <p>🔍 SEO Generator</p>
           <p>✍️ Article Writer</p>
           <p>📢 Ad Generator</p>
-          <p>🤖 AI Seller</p>
+          <p> AI Seller</p>
         </div>
 
 
