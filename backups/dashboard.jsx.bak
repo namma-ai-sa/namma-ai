@@ -1,54 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 export default function Dashboard() {
-  const [stats, setStats] = useState({
-    users: 0,
-    integrations: 0,
-  });
-
-  useEffect(() => {
-    async function loadStats() {
-      try {
-        const response = await fetch(
-          "/api/dashboard/stats"
-        );
-
-        const data = await response.json();
-
-        if (data.success) {
-          setStats(data.stats);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    loadStats();
-  }, []);
-
-  const cards = [
+  const stats = [
     {
-      title: "المستخدمون",
-      value: stats.users,
-      icon: "👥",
+      title: "المحادثات",
+      value: "∞",
+      icon: "💬",
     },
     {
-      title: "التكاملات",
-      value: stats.integrations,
-      icon: "🔗",
+      title: "الأدوات",
+      value: "15",
+      icon: "🛠️",
     },
     {
-      title: "الحالة",
-      value: "Online",
-      icon: "🟢",
+      title: "المشاريع",
+      value: "∞",
+      icon: "📁",
     },
   ];
 
   return (
-    <div style={{ marginBottom: "20px" }}>
-      <div style={{ marginBottom: "25px" }}>
+    <div
+      style={{
+        marginBottom: "20px",
+      }}
+    >
+      <div
+        style={{
+          marginBottom: "25px",
+        }}
+      >
         <h2
           style={{
             color: "white",
@@ -64,7 +45,7 @@ export default function Dashboard() {
             color: "#94a3b8",
           }}
         >
-          مركز التحكم الذكي للأعمال
+          ماذا تريد أن تنجز اليوم؟
         </p>
       </div>
 
@@ -76,7 +57,7 @@ export default function Dashboard() {
           gap: "15px",
         }}
       >
-        {cards.map((item, i) => (
+        {stats.map((item, i) => (
           <div
             key={i}
             style={{
