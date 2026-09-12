@@ -8,41 +8,79 @@ export default function Dashboard() {
     integrations: 0,
   });
 
+  const [summary, setSummary] = useState({
+    users: 0,
+    projects: 0,
+    conversations: 0,
+    integrations: 0,
+  });
+
+  const [status, setStatus] = useState({
+    auth: "-",
+    integrations: "-",
+    ai: "-",
+    crm: "-",
+    projects: "-",
+  });
+
   useEffect(() => {
-    async function loadStats() {
+    async function loadDashboard() {
       try {
-        const response = await fetch(
-          "/api/dashboard/stats"
-        );
+        const [statsRes, summaryRes, statusRes] =
+          await Promise.all([
+            fetch("/api/dashboard/stats"),
+            fetch("/api/dashboard/summary"),
+            fetch("/api/system/status"),
+          ]);
 
-        const data = await response.json();
+        const statsData =
+          await statsRes.json();
 
-        if (data.success) {
-          setStats(data.stats);
+        const summaryData =
+          await summaryRes.json();
+
+        const statusData =
+          await statusRes.json();
+
+        if (statsData.success) {
+          setStats(statsData.stats);
+        }
+
+        if (summaryData.success) {
+          setSummary(summaryData.metrics);
+        }
+
+        if (statusData.success) {
+          setStatus(statusData);
         }
       } catch (error) {
         console.error(error);
       }
     }
 
-    loadStats();
+    loadDashboard();
   }, []);
 
   const cards = [
     {
       title: "المستخدمون",
-      value: stats.users,
+      value: summary.users,
       icon: "👥",
     },
     {
+      title: "المحادثات",
+      value: summary.conversations,
+      icon: "💬",
+    },
+    {
       title: "التكاملات",
-      value: stats.integrations,
+      value: summary.integrations,
       icon: "🔗",
     },
     {
-      title: "الحالة",
-      value: "Online",
-      icon: "🟢",
+      title: "المشاريع",
+      value: summary.projects,
+      icon: "📁",
     },
   ];
 
@@ -115,6 +153,42 @@ export default function Dashboard() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div
+        style={{
+          marginTop: "20px",
+          background: "#111827",
+          border: "1px solid #374151",
+          borderRadius: "16px",
+          padding: "20px",
+        }}
+      >
+        <h3
+          style={{
+            color: "#fff",
+            marginBottom: "15px",
+          }}
+        >
+          🟢 حالة المنصة
+        </h3>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit,minmax(150px,1fr))",
+            gap: "10px",
+          }}
+        >
+          <div>Auth: {status.auth}</div>
+          <div>AI: {status.ai}</div>
+          <div>CRM: {status.crm}</div>
+          <div>Projects: {status.projects}</div>
+          <div>
+            Integrations: {status.integrations}
+          </div>
+        </div>
       </div>
     </div>
   );
