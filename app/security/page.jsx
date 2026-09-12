@@ -1,8 +1,34 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import PremiumCard from "../components/PremiumCard";
 import PremiumButton from "../components/PremiumButton";
 import theme from "../theme/theme";
 export default function SecurityPage() {
-  return (
+  const [security, setSecurity] = useState({
+  jwt: false,
+  authGuard: false,
+  sessionApi: false,
+  integrationsTable: false,
+  score: 0,
+});
+
+useEffect(() => {
+  async function loadSecurity() {
+    try {
+      const response = await fetch("/api/security/status");
+      const data = await response.json();
+
+      if (data.success) {
+        setSecurity(data.security);
+      }
+    } catch {}
+  }
+
+  loadSecurity();
+}, []);
+
+return (
     <main
       style={{
         minHeight: "100vh",
@@ -32,11 +58,11 @@ export default function SecurityPage() {
               textShadow:"0 0 24px rgba(34,197,94,.4)"
             }}
           >
-            85/100
+            {security.score}/100
           </div>
 
           <p style={{color:theme.colors.muted}}>
-            الحماية جيدة جداً ويمكن رفعها بتفعيل Passkeys مستقبلاً.
+            JWT: {security.jwt ? "✅" : "❌"} | AuthGuard: {security.authGuard ? "✅" : "❌"} | Session API: {security.sessionApi ? "✅" : "❌"}
           </p>
         </div>
 
