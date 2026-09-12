@@ -10,6 +10,7 @@ import { useState } from "react";
 import AuthGuard from "../components/AuthGuard";
 import UserInfo from "../components/UserInfo";
 import LogoutButton from "../components/LogoutButton";
+import Logo from "../components/Logo";
 
 import {
   ConversationProvider,
@@ -38,14 +39,9 @@ export default function AIPage() {
               gap: "20px",
             }}
           >
-            <h2
-              style={{
-                color: "#3b82f6",
-                fontSize: "26px",
-              }}
-            >
-              🌱 NAMMA AI
-            </h2>
+            <div style={{display:"flex",justifyContent:"center"}}>
+              <Logo />
+            </div>
 
             <Conversations />
 
