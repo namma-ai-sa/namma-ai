@@ -339,7 +339,7 @@ export default function HomePage() {
 
             <h2
               style={{
-                fontSize: "42px",
+                fontSize: "56px",
                 marginBottom: "20px",
               }}
             >
@@ -348,7 +348,7 @@ export default function HomePage() {
 
             <div
               style={{
-                maxWidth: "700px",
+                maxWidth: "600px",
                 margin: "0 auto",
                 background: "#475569",
                 border: "1px solid rgba(255,255,255,.08)",

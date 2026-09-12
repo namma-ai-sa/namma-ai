@@ -80,7 +80,7 @@ export default function Navbar() {
             style={{
               background: "#F8F7F4",
               border: "1px solid rgba(255,255,255,.1)",
-              color: "#FFFFFF",
+              color: "#1E293B",
               padding: "12px 20px",
               borderRadius: "20px",
               backdropFilter: "blur(16px)",
@@ -101,7 +101,7 @@ export default function Navbar() {
                 borderRadius: "20px",
                 backdropFilter: "blur(16px)",
                 padding: "12px",
-                minWidth: "260px",
+                minWidth: "220px",
                 boxShadow: "0 20px 40px rgba(0,0,0,.35)",
                 zIndex: 2000,
               }}
@@ -148,7 +148,7 @@ export default function Navbar() {
           style={{
             background: "transparent",
             border: "none",
-            color: "#FFFFFF",
+            color: "#1E293B",
             fontSize: "32px",
             cursor: "pointer",
           }}
@@ -195,7 +195,7 @@ export default function Navbar() {
 const linkStyle = {
   background: "transparent",
   border: "none",
-  color: "#FFFFFF",
+  color: "#1E293B",
   cursor: "pointer",
   fontSize: "16px",
   fontWeight: "700",
