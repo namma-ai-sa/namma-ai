@@ -36,6 +36,7 @@ export default function Navbar() {
           onClick={() => go("/")}
           style={{
             cursor: "pointer",
+            fontWeight: "900",
             display: "flex",
             alignItems: "center",
             padding: "8px 14px",
@@ -48,17 +49,18 @@ export default function Navbar() {
           <div style={{position:"absolute"}}></div>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "4px", position: "relative" }}>
           <button
             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
             style={{
               background: "#FFFFFF",
               border: "1px solid rgba(255,255,255,.1)",
               color: "#1E293B",
-              padding: "12px 20px",
+              padding: "8px 14px",
               borderRadius: "20px",
               backdropFilter: "blur(16px)",
               cursor: "pointer",
+            fontWeight: "900",
             }}
           >
             👤 حسابي
@@ -125,6 +127,7 @@ export default function Navbar() {
             color: "#1E293B",
             fontSize: "42px",
             cursor: "pointer",
+            fontWeight: "900",
           }}
         >
           ☰
@@ -171,6 +174,7 @@ const linkStyle = {
   border: "none",
   color: "#1E293B",
   cursor: "pointer",
+            fontWeight: "900",
   fontSize: "16px",
   fontWeight: "700",
   letterSpacing: ".2px",
@@ -188,6 +192,7 @@ const drawerBtn = {
             boxShadow: "0 4px 20px rgba(255,255,255,.12)",
   textAlign: "right",
   cursor: "pointer",
+            fontWeight: "900",
   fontSize: "16px",
   fontWeight: "700",
   letterSpacing: ".2px",
