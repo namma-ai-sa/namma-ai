@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 
 export default function IntegrationsPage() {
-  const [connected, setConnected] = useState([]);
-  const [providers, setProviders] = useState([]);
+  const [connected, setConnected] =
     useState([]);
 
   useEffect(() => {
@@ -27,24 +26,21 @@ export default function IntegrationsPage() {
     }
 
     loadData();
-
-    async function loadProviders() {
-      try {
-        const response = await fetch("/api/integrations/catalog");
-        const data = await response.json();
-
-        if (data.success) {
-          setProviders(data.providers || []);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    loadProviders();
   }, []);
 
-    return (
+  const providers = [
+    "Microsoft",
+    "Google",
+    "LinkedIn",
+    "YouTube",
+    "TikTok",
+    "Instagram",
+    "WhatsApp",
+    "Stripe",
+    "GitHub",
+  ];
+
+  return (
     <main
       style={{
         maxWidth: "1200px",
@@ -77,12 +73,12 @@ export default function IntegrationsPage() {
             connected.some(
               (x) =>
                 x.provider ===
-                provider.provider
+                provider.toLowerCase()
             );
 
           return (
             <div
-              key={provider.id}
+              key={provider}
               style={{
                 background: "#111827",
                 border:
@@ -91,7 +87,7 @@ export default function IntegrationsPage() {
                 padding: "20px",
               }}
             >
-              <h3>{provider.provider}</h3>
+              <h3>{provider}</h3>
 
               <p>
                 Status:
