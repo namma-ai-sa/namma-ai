@@ -48,32 +48,6 @@ export default function Navbar() {
           <div style={{position:"absolute"}}></div>
         </div>
 
-        <div className="desktop-menu" style={{display:"flex",alignItems:"center",gap:"32px"}}>
-          <button style={linkStyle} onClick={() => go("/dashboard")}>
-            🏠 Dashboard
-          </button>
-
-          <button style={linkStyle} onClick={() => go("/crm")}>
-            👥 CRM
-          </button>
-
-          <button style={linkStyle} onClick={() => go("/projects")}>
-            📁 Projects
-          </button>
-
-          <button style={linkStyle} onClick={() => go("/ai-seller")}>
-            🤖 AI Seller
-          </button>
-
-          <button style={linkStyle} onClick={() => go("/whatsapp-agent")}>
-            📱 WhatsApp
-          </button>
-
-          <button style={linkStyle} onClick={() => go("/pricing")}>
-            💳 Pricing
-          </button>
-        </div>
-
         <div style={{ position: "relative" }}>
           <button
             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
@@ -149,7 +123,7 @@ export default function Navbar() {
             background: "transparent",
             border: "none",
             color: "#1E293B",
-            fontSize: "32px",
+            fontSize: "38px",
             cursor: "pointer",
           }}
         >
