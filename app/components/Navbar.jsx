@@ -23,7 +23,7 @@ export default function Navbar() {
           justifyContent: "space-between",
           alignItems: "center",
           padding: "18px 24px",
-          background: "rgba(250,248,243,.55)",
+          background: "rgba(15,23,42,.92)",
           backdropFilter: "blur(28px)",
           boxShadow: "0 8px 32px rgba(15,23,42,.08)",
           borderBottom: "1px solid rgba(255,255,255,.6)",
@@ -38,6 +38,9 @@ export default function Navbar() {
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
+            padding: "8px 14px",
+            borderRadius: "18px",
+            background: "rgba(255,255,255,.12)",
           }}
         >
           <Logo />
@@ -73,9 +76,9 @@ export default function Navbar() {
           <button
             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
             style={{
-              background: "rgba(255,255,255,.06)",
+              background: "rgba(255,255,255,.12)",
               border: "1px solid rgba(255,255,255,.1)",
-              color: "#F8F7F4",
+              color: "#FFFFFF",
               padding: "10px 16px",
               borderRadius: "20px",
               backdropFilter: "blur(16px)",
@@ -143,7 +146,7 @@ export default function Navbar() {
           style={{
             background: "transparent",
             border: "none",
-            color: "#F8F7F4",
+            color: "#FFFFFF",
             fontSize: "24px",
             cursor: "pointer",
           }}
@@ -189,7 +192,7 @@ export default function Navbar() {
 const linkStyle = {
   background: "transparent",
   border: "none",
-  color: "#F8F7F4",
+  color: "#FFFFFF",
   cursor: "pointer",
   fontSize: "16px",
   fontWeight: "700",
@@ -204,7 +207,7 @@ const drawerBtn = {
   border: "1px solid rgba(255,255,255,.08)",
   color: "#e5e7eb",
   padding: "12px 14px",
-  borderRadius: "14px",
+  borderRadius: "18px",
   textAlign: "right",
   cursor: "pointer",
   fontSize: "16px",
