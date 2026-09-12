@@ -40,7 +40,8 @@ export default function Navbar() {
             alignItems: "center",
             padding: "8px 14px",
             borderRadius: "18px",
-            background: "rgba(255,255,255,.12)",
+            boxShadow: "0 4px 20px rgba(255,255,255,.12)",
+            background: "#F8F7F4",
           }}
         >
           <Logo />
@@ -77,7 +78,7 @@ export default function Navbar() {
           <button
             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
             style={{
-              background: "rgba(255,255,255,.12)",
+              background: "#F8F7F4",
               border: "1px solid rgba(255,255,255,.1)",
               color: "#FFFFFF",
               padding: "12px 20px",
@@ -166,6 +167,7 @@ export default function Navbar() {
             background: "rgba(15,23,42,.92)",
             border: "1px solid #1f2937",
             borderRadius: "18px",
+            boxShadow: "0 4px 20px rgba(255,255,255,.12)",
             backdropFilter: "blur(20px)",
             width: "280px",
             padding: "16px",
@@ -209,6 +211,7 @@ const drawerBtn = {
   color: "#e5e7eb",
   padding: "12px 14px",
   borderRadius: "18px",
+            boxShadow: "0 4px 20px rgba(255,255,255,.12)",
   textAlign: "right",
   cursor: "pointer",
   fontSize: "16px",
