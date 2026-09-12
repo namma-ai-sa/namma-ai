@@ -40,7 +40,16 @@ export default function AIPage() {
             }}
           >
             <div style={{display:"flex",justifyContent:"center"}}>
-              <Logo />
+              <div
+  style={{
+    background:"#ffffff",
+    padding:"10px",
+    borderRadius:"16px",
+    display:"inline-flex"
+  }}
+>
+  <Logo />
+</div>
             </div>
 
             <Conversations />
