@@ -98,7 +98,7 @@ export default function HomePage() {
 
           <h1
             style={{
-              fontSize: theme.typography.hero,
+              fontSize: "88px",
               textShadow: "0 0 30px rgba(139,92,246,.18)",
               fontWeight: "900",
               lineHeight: "1.2",
@@ -115,7 +115,7 @@ export default function HomePage() {
               maxWidth: "850px",
               margin: "0 auto",
               color: "#FFFFFF",
-              fontSize: "22px",
+              fontSize: "26px",
               lineHeight: "2"
             }}
           >
@@ -154,8 +154,8 @@ export default function HomePage() {
               style={{
                 padding: "18px 38px",
                 borderRadius: theme.radius.md,
-                border: "1px solid rgba(255,255,255,.15)",
-                background: "transparent",
+                border: "none",
+                background: theme.colors.primary,
                 color: "white",
                 cursor: "pointer"
               }}
@@ -365,7 +365,7 @@ export default function HomePage() {
                 placeholder="كيف أزيد مبيعات شركتي خلال 30 يوم؟"
                 style={{
                   width: "100%",
-                  background: "transparent",
+                  background: theme.colors.primary,
                   border: "none",
                   color: "white",
                   fontSize: "18px",

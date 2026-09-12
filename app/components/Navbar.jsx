@@ -44,6 +44,7 @@ export default function Navbar() {
           }}
         >
           <Logo />
+          <div style={{position:"absolute"}}></div>
         </div>
 
         <div className="desktop-menu" style={{display:"flex",alignItems:"center",gap:"32px"}}>
