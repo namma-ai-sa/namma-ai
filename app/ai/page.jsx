@@ -75,7 +75,7 @@ export default function AIPage() {
 
               <p
                 style={{
-                  color: "#94a3b8",
+                  color: "#334155",
                 }}
               >
                 التسويق • المبيعات • المحتوى • SEO • التحليل

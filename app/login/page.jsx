@@ -57,7 +57,7 @@ export default function LoginPage() {
         <p
           style={{
             textAlign: "center",
-            color: "#94a3b8",
+            color: "#334155",
             marginBottom: "24px",
           }}
         >

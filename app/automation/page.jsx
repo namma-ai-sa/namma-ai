@@ -35,7 +35,7 @@ export default function AutomationPage() {
 
       <p
         style={{
-          color: "#94a3b8",
+          color: "#334155",
           marginBottom: "24px",
         }}
       >

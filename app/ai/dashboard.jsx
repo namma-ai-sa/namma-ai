@@ -99,7 +99,7 @@ export default function Dashboard() {
 
         <p
           style={{
-            color: "#94a3b8",
+            color: "#334155",
           }}
         >
           مركز التحكم الذكي للأعمال
@@ -135,7 +135,7 @@ export default function Dashboard() {
 
             <div
               style={{
-                color: "#94a3b8",
+                color: "#334155",
                 fontSize: "14px",
               }}
             >

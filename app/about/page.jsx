@@ -94,7 +94,7 @@ export default function AboutPage() {
 
       <p
         style={{
-          color: "#64748B",
+          color: "#334155",
           margin: 0,
         }}
       >

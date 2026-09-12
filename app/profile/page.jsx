@@ -24,7 +24,7 @@ export default function ProfilePage() {
           👤 الملف الشخصي
         </h1>
 
-        <p style={{ color: "#94a3b8" }}>
+        <p style={{ color: "#334155" }}>
           إدارة بيانات الحساب الشخصية.
         </p>
       </div>

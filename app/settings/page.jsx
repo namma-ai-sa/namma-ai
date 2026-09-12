@@ -24,7 +24,7 @@ export default function SettingsPage() {
           ⚙️ الإعدادات
         </h1>
 
-        <p style={{ color: "#94a3b8" }}>
+        <p style={{ color: "#334155" }}>
           إعدادات المنصة والحساب.
         </p>
       </div>
