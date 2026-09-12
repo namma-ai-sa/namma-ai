@@ -75,11 +75,11 @@ export default function IntegrationsPage() {
         color: "white",
       }}
     >
-      <h1>🔗 Integrations Hub</h1>
+      <h1>التكاملات</h1>
 
       <p
         style={{
-          color: "#334155",
+          color: "#94A3B8",
           marginBottom: "24px",
         }}
       >
@@ -87,10 +87,27 @@ export default function IntegrationsPage() {
       </p>
 
       <div
+        className="namma-card"
+        style={{
+          marginBottom: "24px"
+        }}
+      >
+        <h3>حالة التكاملات</h3>
+
+        <p
+          style={{
+            color:"#94A3B8"
+          }}
+        >
+          اربط Microsoft و Google و LinkedIn و WhatsApp مع نمّى AI لإدارة أعمالك من مكان واحد.
+        </p>
+      </div>
+
+      <div
         style={{
           display: "grid",
           gridTemplateColumns:
-            "repeat(auto-fit,minmax(240px,1fr))",
+            "repeat(auto-fit,minmax(220px,1fr))",
           gap: "16px",
         }}
       >
@@ -106,7 +123,7 @@ export default function IntegrationsPage() {
             <div
               key={provider.id}
               style={{
-                background: "#111827",
+                background: "#0F172A",
                 border:
                   "1px solid #374151",
                 borderRadius: "16px",
@@ -116,11 +133,11 @@ export default function IntegrationsPage() {
               <h3>{provider.provider}</h3>
 
               <p>
-                Status:
+                الحالة:
                 {" "}
                 {isConnected
-                  ? "✅ Connected"
-                  : "⚪ Ready"}
+                  ? "✅ متصل"
+                  : "⚪ جاهز للربط"}
               </p>
 
               <button
@@ -129,10 +146,10 @@ export default function IntegrationsPage() {
                 style={{
                   marginTop: "12px",
                   width: "100%",
-                  padding: "10px",
+                  padding: "12px", borderRadius: "12px", fontWeight: "700",
                 }}
               >
-                Connect
+                ربط الحساب
               </button>
             </div>
           );
