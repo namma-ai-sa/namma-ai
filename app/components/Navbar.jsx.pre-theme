@@ -38,7 +38,7 @@ export default function Navbar() {
           onClick={() => go("/")}
           style={{
             cursor:"pointer",
-            color:"#7C8F5A",
+            color:"#7A8660",
             fontSize:"28px",
             fontWeight:"800"
           }}

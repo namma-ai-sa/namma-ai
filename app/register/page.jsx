@@ -60,7 +60,7 @@ export default function RegisterPage() {
             marginBottom:"20px"
           }}
         >
-          🌱 نمّى AI
+          نمّى AI
         </h1>
 
         <input

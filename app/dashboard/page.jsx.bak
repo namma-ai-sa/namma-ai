@@ -17,7 +17,7 @@ export default function DashboardPage() {
       title: "الفرص الساخنة",
       value: "328",
       icon: "🔥",
-      color: "#7C8F5A"
+      color: "#7A8660"
     },
     {
       title: "المتابعات",

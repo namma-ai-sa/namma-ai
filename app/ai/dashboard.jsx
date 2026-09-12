@@ -94,7 +94,7 @@ export default function Dashboard() {
             marginBottom: "10px",
           }}
         >
-          🌱 أهلاً بك في NAMMA AI
+          أهلاً بك في نمّى AI
         </h2>
 
         <p

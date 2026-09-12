@@ -51,7 +51,7 @@ export default function LoginPage() {
         }}
       >
         <h1 style={{ textAlign: "center" }}>
-          🌱 NAMMA AI
+          نمّى AI
         </h1>
 
         <p

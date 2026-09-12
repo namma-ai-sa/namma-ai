@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "🌱 نمّى AI",
+  title: "نمّى AI",
   description: "منصة عربية للذكاء الاصطناعي وصناعة المحتوى والتسويق الرقمي",
 };
 

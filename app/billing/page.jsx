@@ -77,7 +77,7 @@ export default function BillingPage() {
               padding: "24px",
             }}
           >
-            <h2>🌱 الخطة الحالية</h2>
+            <h2>الخطة الحالية</h2>
 
             <h3
               style={{
