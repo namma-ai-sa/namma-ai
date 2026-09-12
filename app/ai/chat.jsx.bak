@@ -89,48 +89,5 @@ export default function Chat({
     setLoading(false);
   };
 
-  return (
-    <div
-      style={{
-        background: "#111827",
-        border: "1px solid #374151",
-        borderRadius: "20px",
-        padding: "20px",
-      }}
-    >
-      <h2
-        style={{
-          color: "#fff",
-          marginBottom: "15px",
-        }}
-      >
-        🤖 كيف أستطيع مساعدتك اليوم؟
-      </h2>
-
-      <textarea
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="اكتب سؤالك أو طلبك هنا..."
-        style={{
-          width: "100%",
-          minHeight: "140px",
-          background: "#030712",
-          color: "#fff",
-          border: "1px solid #374151",
-          borderRadius: "14px",
-          padding: "16px",
-        }}
-      />
-
-      <button
-        onClick={handleSend}
-        disabled={loading}
-        style={{
-          marginTop: "12px",
-        }}
-      >
-        {loading ? "جاري الإرسال..." : "✨ إرسال"}
-      </button>
-    </div>
-  );
+  return null;
 }
