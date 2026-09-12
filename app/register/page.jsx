@@ -22,6 +22,7 @@ export default function RegisterPage() {
         body:JSON.stringify({
           name,
           username,
+            email,
           password
         })
       }

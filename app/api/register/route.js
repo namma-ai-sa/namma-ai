@@ -18,8 +18,9 @@ export async function POST(req) {
       password,
     } = body;
 
-    if (
-      !name ||
+    console.log({ name, username, email, password });
+
+    if (!name ||
       !username ||
       !email ||
       !password
