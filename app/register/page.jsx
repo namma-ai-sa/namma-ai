@@ -6,6 +6,7 @@ export default function RegisterPage() {
 
   const [name,setName] = useState("");
   const [username,setUsername] = useState("");
+  const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [message,setMessage] = useState("");
 
@@ -76,6 +77,17 @@ export default function RegisterPage() {
           value={username}
           onChange={(e)=>
             setUsername(e.target.value)
+          }
+        />
+
+        <br /><br />
+
+        <input
+          type="email"
+          placeholder="البريد الإلكتروني"
+          value={email}
+          onChange={(e)=>
+            setEmail(e.target.value)
           }
         />
 
