@@ -79,7 +79,7 @@ export default function Navbar() {
               background: "rgba(255,255,255,.12)",
               border: "1px solid rgba(255,255,255,.1)",
               color: "#FFFFFF",
-              padding: "10px 16px",
+              padding: "12px 20px",
               borderRadius: "20px",
               backdropFilter: "blur(16px)",
               cursor: "pointer",
@@ -147,7 +147,7 @@ export default function Navbar() {
             background: "transparent",
             border: "none",
             color: "#FFFFFF",
-            fontSize: "24px",
+            fontSize: "32px",
             cursor: "pointer",
           }}
         >
