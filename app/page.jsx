@@ -68,7 +68,7 @@ export default function HomePage() {
         style={{
           minHeight: "100vh",
           background:
-            `linear-gradient(180deg,#F7F4ED,#475569,${theme.colors.card})`,
+            `linear-gradient(180deg,#0F172A,#475569,${theme.colors.card})`,
           color: "white",
           padding: "40px 20px"
         }}
@@ -88,7 +88,7 @@ export default function HomePage() {
               border: "1px solid rgba(139,92,246,.25)",
               background: "rgba(139,92,246,.08)",
               borderRadius: theme.radius.pill,
-              color: theme.colors.primary,
+              color: "#FFFFFF",
               fontWeight: "700",
               marginBottom: "25px"
             }}
@@ -114,7 +114,7 @@ export default function HomePage() {
             style={{
               maxWidth: "850px",
               margin: "0 auto",
-              color: "#F5F5F0",
+              color: "#FFFFFF",
               fontSize: "22px",
               lineHeight: "2"
             }}
@@ -216,7 +216,7 @@ export default function HomePage() {
               >
                 <h2
                   style={{
-                    color: theme.colors.primary,
+                    color: "#FFFFFF",
                     fontSize: theme.typography.h1,
                     fontWeight: "900"
                   }}
@@ -235,7 +235,7 @@ export default function HomePage() {
 
                 <p
                   style={{
-                    color: "#F5F5F0"
+                    color: "#FFFFFF"
                   }}
                 >
                   {item.label}
@@ -289,7 +289,7 @@ export default function HomePage() {
 
                 <p
                   style={{
-                    color: "#F5F5F0",
+                    color: "#FFFFFF",
                     lineHeight: "1.8",
                     marginBottom: "18px",
                   }}
@@ -299,7 +299,7 @@ export default function HomePage() {
 
                 <div
                   style={{
-                    color: theme.colors.primary,
+                    color: "#FFFFFF",
                     fontWeight: "700",
                   }}
                 >
@@ -329,7 +329,7 @@ export default function HomePage() {
           >
             <div
               style={{
-                color: theme.colors.primary,
+                color: "#FFFFFF",
                 fontWeight: "700",
                 marginBottom: "12px",
               }}
@@ -354,7 +354,7 @@ export default function HomePage() {
                 border: "1px solid rgba(255,255,255,.08)",
                 borderRadius: theme.radius.lg,
                 padding: "18px",
-                color: "#F5F5F0",
+                color: "#FFFFFF",
               }}
             >
               <input
