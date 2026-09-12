@@ -48,13 +48,13 @@ export default function Navbar() {
           <div style={{position:"absolute"}}></div>
         </div>
 
-        <div style={{ position: "relative" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", position: "relative" }}>
           <button
             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
             style={{
               background: "#FFFFFF",
               border: "1px solid rgba(255,255,255,.1)",
-              color: "#F8F7F4",
+              color: "#1E293B",
               padding: "12px 20px",
               borderRadius: "20px",
               backdropFilter: "blur(16px)",
@@ -122,7 +122,7 @@ export default function Navbar() {
           style={{
             background: "transparent",
             border: "none",
-            color: "#F8F7F4",
+            color: "#1E293B",
             fontSize: "42px",
             cursor: "pointer",
           }}
@@ -169,7 +169,7 @@ export default function Navbar() {
 const linkStyle = {
   background: "transparent",
   border: "none",
-  color: "#F8F7F4",
+  color: "#1E293B",
   cursor: "pointer",
   fontSize: "16px",
   fontWeight: "700",
