@@ -82,9 +82,11 @@ export default function AIPage() {
               </p>
             </div>
 
-            <Dashboard />
+            <Chat initialMessage={cardPrompt} />
 
             <Cards onSelect={setCardPrompt} />
+
+            <Dashboard />
 
             <div
               style={{
@@ -98,8 +100,6 @@ export default function AIPage() {
             >
               <Messages />
             </div>
-
-            <Chat initialMessage={cardPrompt} />
           </main>
         </div>
       </ConversationProvider>
