@@ -3,6 +3,28 @@
 import { useEffect, useState } from "react";
 
 export default function IntegrationsPage() {
+  async function connectProvider(provider) {
+    try {
+      const response = await fetch("/api/integrations/connect", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          provider: provider.toLowerCase()
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const [connected, setConnected] = useState([]);
   const [providers, setProviders] = useState([]);
     useState([]);
@@ -102,14 +124,15 @@ export default function IntegrationsPage() {
               </p>
 
               <button
-                disabled
+                onClick={() => connectProvider(provider.provider)}
+                
                 style={{
                   marginTop: "12px",
                   width: "100%",
                   padding: "10px",
                 }}
               >
-                Connect Soon
+                Connect
               </button>
             </div>
           );
