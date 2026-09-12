@@ -103,6 +103,15 @@ export default function IntegrationsPage() {
         </p>
       </div>
 
+      <p
+        style={{
+          color:"#94A3B8",
+          marginBottom:"16px"
+        }}
+      >
+        Providers Count: {providers.length}
+      </p>
+
       <div
         style={{
           display: "grid",

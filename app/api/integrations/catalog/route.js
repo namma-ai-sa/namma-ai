@@ -16,11 +16,15 @@ export async function GET() {
 
     if (error) throw error;
 
+    console.log("PROVIDERS:", data);
+    console.log("ERROR:", error);
     return NextResponse.json({
       success: true,
       providers: data || [],
     });
   } catch (error) {
+    console.log("PROVIDERS:", data);
+    console.log("ERROR:", error);
     return NextResponse.json(
       {
         success: false,
