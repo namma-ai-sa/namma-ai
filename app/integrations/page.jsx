@@ -27,7 +27,6 @@ export default function IntegrationsPage() {
 
   const [connected, setConnected] = useState([]);
   const [providers, setProviders] = useState([]);
-    useState([]);
 
   useEffect(() => {
     async function loadData() {

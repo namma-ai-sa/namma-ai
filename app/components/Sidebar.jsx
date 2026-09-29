@@ -17,6 +17,7 @@ export default function Sidebar() {
     { name: "تحليل المتجر الإلكتروني", path: "/tools/ecommerce" },
     { name: "أفكار المنتجات", path: "/tools/product-ideas" },
     { name: "تحليل الهوية البصرية", path: "/tools/brand-identity" },
+    { name: "التكاملات", path: "/integrations" },
   ];
 
   return (
